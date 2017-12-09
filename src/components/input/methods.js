@@ -1,4 +1,4 @@
-const restrictVal = (value, props) => {
+function restrictVal(value, props) {
   const { type, maxLength } = props;
 
   const newValue = value;
@@ -12,9 +12,9 @@ const restrictVal = (value, props) => {
     default:
       return newValue;
   }
-};
+}
 
-const validateValue = (value, props) => {
+function validateValue(value, props) {
   const { validateWithPattern } = props;
 
   let isValid = true;
@@ -33,7 +33,7 @@ const validateValue = (value, props) => {
   }
 
   return { isValid, errorMsg };
-};
+}
 
 function getValidatedOutput(value) {
   const { props } = this;

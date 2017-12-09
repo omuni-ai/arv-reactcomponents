@@ -1,5 +1,9 @@
 @import '../main';
 
+.nwc-autocomplete {
+  position: relative;
+}
+
 .nwc-autocomplete-list-container {
   position: absolute;
   top: 100%;
