@@ -1,0 +1,33 @@
+$transparent: transparent;
+$pink: #f2258b !default;
+$blue: #0182cb !default;
+$white: #fff !default;
+$black: #000 !default;
+$green: #738c00 !default;
+$red: #ea0423 !default;
+$gray: #f3f3f3 !default;
+
+$font-size: 18px !default;
+$font-size-xxxs: get-rems(10px, $font-size) !default;
+$font-size-xxs: get-rems(12px, $font-size) !default;
+$font-size-xs: get-rems(14px, $font-size) !default;
+$font-size-sm: get-rems(16px, $font-size) !default;
+$font-size-normal: 1rem !default;
+$font-size-lg: get-rems(20px, $font-size) !default;
+$font-size-xl: get-rems(22px, $font-size) !default;
+$font-size-xxl: get-rems(24px, $font-size) !default;
+$font-size-xxxl: get-rems(28px, $font-size) !default;
+
+$screen-max-xs: 768px;
+$screen-min-sm: 769px;
+$screen-max-sm: 992px;
+$screen-min-md: 993px;
+$screen-max-md: 1024px;
+$screen-min-lg: 1025px;
+
+$color-primary: $pink !default;
+$color-secondary: $blue !default;
+$color-success: $green !default;
+$color-danger: $red !default;
+
+$color-transparent-modal: rgba(0, 0, 0, 0.7);

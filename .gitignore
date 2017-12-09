@@ -1,0 +1,15 @@
+.idea/
+odinPuc.iml
+package-lock.json
+node_modules/
+.linting
+react-scripts/
+hello-world.iml
+build/
+coverage/
+.vscode/settings.json
+hello-world.iml
+package-lock.json
+hello-world.iml
+jest_0/
+README.md

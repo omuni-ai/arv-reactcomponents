@@ -1,0 +1,14 @@
+/** Media Mixins */
+
+@mixin button {
+  .nwc-btn {
+    @extend %nwc-btn;
+  }
+}
+
+@mixin button-769 {
+  .nwc-btn {
+    @extend %nwc-btn;
+    @extend %nwc-btn-769;
+  }
+}

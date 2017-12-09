@@ -1,0 +1,8 @@
+{
+   "phabricator.uri": "https://ben10.ailiens.com/",
+   "project.name": "odinPoc",
+   "repository.callsign": "odinPoc",
+   "history.immutable": true,
+   "arc.land.onto.default": "rel",
+   "arc.feature.start.default": "rel"
+}

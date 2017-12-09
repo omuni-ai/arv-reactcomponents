@@ -1,0 +1,60 @@
+@import '../main';
+
+.nwc-inp {
+  border: 1px solid #eee;
+  background: $transparent;
+  outline: 0;
+  
+  &.is-invalid {
+    border-color: $red;
+  }
+}
+
+.nwc-inp-dash {
+  border: 0;
+  border-bottom: 2px solid darken-colors($gray, 1);
+}
+
+
+/* stylelint-disable */
+
+.nwc-disable-controls::-webkit-outer-spin-button,
+.nwc-disable-controls::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* stylelint-enable */
+
+// Size Variants
+.nwc-inp-xxs {
+  font-size: $font-size-xxs;
+}
+
+.nwc-inp-xs {
+  font-size: $font-size-xs;
+}
+
+.nwc-inp-sm {
+  padding: 5px;
+  font-size: $font-size-sm;
+}
+
+.nwc-inp-normal {
+  padding: 8px;
+  font-size: $font-size-normal;
+}
+
+.nwc-inp-lg {
+  font-size: $font-size-lg;
+}
+
+.nwc-inp-xl {
+  font-size: $font-size-xl;
+}
+
+.nwc-inp-xxl {
+  padding-top: 10px;
+  font-size: $font-size-xxl;
+}

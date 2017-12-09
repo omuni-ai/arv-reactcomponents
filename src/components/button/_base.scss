@@ -1,0 +1,48 @@
+%nwc-btn {
+  border: 1px solid #eee;
+  background: $transparent;
+  outline: 0;
+}
+
+%nwc-btn-769 {
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+}
+
+.nwc-btn-primary {
+  background: $color-primary;
+  color: $white;
+}
+
+
+// Size Variants
+.nwc-btn-xxs {
+  font-size: $font-size-xxs;
+}
+
+.nwc-btn-xs {
+  font-size: $font-size-xs;
+}
+
+.nwc-btn-sm {
+  font-size: $font-size-sm;
+}
+
+.nwc-btn-normal {
+  padding: 8px;
+  font-size: $font-size-normal;
+}
+
+.nwc-btn-lg {
+  font-size: $font-size-lg;
+}
+
+.nwc-btn-xl {
+  font-size: $font-size-xl;
+}
+
+.nwc-btn-xxl {
+  font-size: $font-size-xxl;
+}

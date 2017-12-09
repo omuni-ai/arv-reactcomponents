@@ -1,0 +1,16 @@
+node_modules/
+build/
+react-scripts
+.idea/
+scripts/
+config/
+config-overrides.js
+registerServiceWorker.js
+package.json
+package-lock.json
+Navtree.test.js
+README.md
+package-lock.json
+hello-world.iml
+odinPoc.iml
+

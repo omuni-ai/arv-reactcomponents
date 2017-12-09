@@ -1,0 +1,11 @@
+@import '../main';
+@import 'base';
+@import 'media';
+
+@if $screen-media==xs {
+  @include modal;
+}
+
+@else if $screen-media==sm {
+  @include modal-769;
+}

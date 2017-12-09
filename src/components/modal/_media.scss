@@ -1,0 +1,32 @@
+/** Media Mixins */
+
+@mixin modal {
+  .nwc-modal-container {
+    @extend %nwc-modal-container;
+  }
+
+  .nwc-modal {
+    @extend %nwc-modal;
+  }
+
+  .nwc-modal-close {
+    @extend %nwc-modal-close;
+  }
+}
+
+@mixin modal-769 {
+  .nwc-modal-container {
+    @extend %nwc-modal-container;
+    @extend %nwc-modal-container-769;
+  }
+
+  .nwc-modal {
+    @extend %nwc-modal;
+    @extend %nwc-modal-769;
+  }
+
+  .nwc-modal-close {
+    @extend %nwc-modal-close;
+    @extend %nwc-modal-close-769;
+  }
+}
