@@ -12,7 +12,11 @@ class Autocomplete extends Component {
   constructor(props) {
     super(props);
 
-    this.listNode = {};
+    this.state = {
+      isAutocompleteActive: false, // eslint-disable-line react/no-unused-state
+      listNode: [], // eslint-disable-line react/no-unused-state
+      listNodeItem: [], // eslint-disable-line react/no-unused-state
+    };
 
     renderAutocompleteInputFn = renderAutocompleteInput.bind(this);
     renderListItemsFn = renderListItems.bind(this);

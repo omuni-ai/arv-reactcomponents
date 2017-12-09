@@ -28,19 +28,23 @@ function getBoundClientRect(elem) { // crossbrowser version
 }
 
 function hideAutocompleteList(index = selectedListIndex) {
-  const selectedNode = this.listNode[`item-${index}`];
+  const selectedNode = this.state.listNode[`item-${index}`];
   if (!selectedNode) {
     return;
   }
-  this.isAutocompleteActive = false;
 
-  this.props.getSelection(this.listNodeItem[index]);
+  this.setState({
+    isAutocompleteActive: false,
+  });
+
+  this.props.getSelection(this.state.listNodeItem[index]);
 }
 
-function toggleAutocompleteVisibility(bool) {
+function toggleAutocompleteDisplay(bool) {
   setTimeout(() => {
-    this.isAutocompleteActive = bool;
-    this.forceUpdate();
+    this.setState({
+      isAutocompleteActive: bool,
+    });
   }, 500);
 }
 
@@ -63,10 +67,9 @@ function scrollElemToView(parent, child) {
 
 function onUserInput(e) {
   e.stopPropagation();
-  const listNodeLength = Object.keys(this.listNode).length - 1;
+  const listNodeLength = Object.keys(this.state.listNode).length - 1;
   const hideAutocompleteListFn = hideAutocompleteList.bind(this);
-
-  this.isAutocompleteActive = true;
+  let isAutocompleteActive = true;
 
   switch (e.key) {
     case 'ArrowUp':
@@ -74,20 +77,18 @@ function onUserInput(e) {
       selectedListIndex = selectedListIndex !== 0 ?
         selectedListIndex - 1 :
         listNodeLength;
-      this.forceUpdate();
       break;
     case 'ArrowDown':
       selectedListIndex = selectedListIndex !== listNodeLength ?
         selectedListIndex + 1 :
         0;
-      this.forceUpdate();
       break;
     case 'ArrowRight':
     case 'ArrowLeft':
       break;
     case 'Enter':
     case 'Tab':
-      this.isAutocompleteActive = false;
+      isAutocompleteActive = false;
       hideAutocompleteListFn();
       break;
     default:
@@ -97,16 +98,18 @@ function onUserInput(e) {
   clearTimeout(navigateTimeoutId);
   navigateTimeoutId = setTimeout(() => {
     scrollElemToView(
-      this.listNodeWrapper,
-      this.listNode[`item-${selectedListIndex}`],
+      this.listNodeWrapperRef,
+      this.state.listNode[`item-${selectedListIndex}`],
     );
   }, 10);
+
+  this.setState({
+    isAutocompleteActive,
+  });
 }
 
 function renderListItems(inpVal, inpList, renderList) {
   const hideAutocompleteListFn = hideAutocompleteList.bind(this);
-  this.listNodeItem = [];
-  this.listNode = [];
   const filteredList = inpList.filter(item => (
     item.toLowerCase().indexOf(inpVal.toLowerCase()) > -1
   ));
@@ -117,19 +120,19 @@ function renderListItems(inpVal, inpList, renderList) {
     if (index === selectedListIndex) {
       addClass = 'is-active';
     }
-    this.listNodeItem[index] = item;
+    this.state.listNodeItem[index] = item;
     return cloneElement(elem, {
       className: `${elem.props.className || ''} ${addClass}`,
-      ref: (c) => { this.listNode[`item-${index}`] = c; },
+      ref: (c) => { this.state.listNode[`item-${index}`] = c; },
       onClick: () => { hideAutocompleteListFn(index); },
     });
   });
 
-  return this.isAutocompleteActive && filteredList.length > 0 && inpVal.length > 2 ?
+  return this.state.isAutocompleteActive && filteredList.length > 0 && inpVal.length > 2 ?
     (
       <ul
         className="nwc-autocomplete-list-container"
-        ref={(c) => { this.listNodeWrapper = c; }}
+        ref={(c) => { this.listNodeWrapperRef = c; }}
       >
         {list}
       </ul>
@@ -138,12 +141,12 @@ function renderListItems(inpVal, inpList, renderList) {
 }
 
 function renderAutocompleteInput(elem) {
-  const toggleAutocompleteVisibilityFn = toggleAutocompleteVisibility.bind(this);
+  const toggleAutocompleteDisplayFn = toggleAutocompleteDisplay.bind(this);
 
   return cloneElement(elem, {
     onKeyDown: onUserInput.bind(this),
-    onFocus: () => { toggleAutocompleteVisibilityFn(true); },
-    onBlur: () => { toggleAutocompleteVisibilityFn(false); },
+    onFocus: () => { toggleAutocompleteDisplayFn(true); },
+    onBlur: () => { toggleAutocompleteDisplayFn(false); },
     ref: (c) => { this.inputNode = c; },
   });
 }
