@@ -1,46 +1,53 @@
-function onInpChange(e) {
-  this.props.onChange(e);
+const restrictVal = (value, props) => {
+  const { type, maxLength } = props;
 
-  this.setState({
-    val: e.target.value,
-  });
-}
+  const newValue = value;
 
-function restrictVal(val, type) {
   switch (type) {
     case 'number':
-      if (this.props.maxLength) {
-        return val.slice(0, this.props.maxLength);
+      if (maxLength) {
+        return newValue.slice(0, maxLength);
       }
-      return val;
+      return newValue;
     default:
-      return val;
+      return newValue;
   }
-}
+};
 
-function validateInput(restrictedVal, validateWithPattern) {
+const validateValue = (value, props) => {
+  const { validateWithPattern } = props;
+
+  let isValid = true;
+  let errorMsg;
+
   try {
     validateWithPattern.forEach((item) => {
-      if (!item.pattern.test(restrictedVal)) {
-        this.props.onError({
-          status: false,
-          msg: item.msg,
-        });
+      if (!item.pattern.test(value)) {
+        isValid = false;
+        errorMsg = item.msg;
         throw new Error('break');
       }
     });
   } catch (err) {
-    this.isError = true;
-    return;
+    /** break */
   }
-  this.props.onError({
-    status: true,
-  });
-  this.isError = false;
+
+  return { isValid, errorMsg };
+};
+
+function getValidatedOutput(value) {
+  const { props } = this;
+
+  const newValue = restrictVal(value, props);
+
+  const isValidObj = validateValue(newValue, props);
+  const { isValid, errorMsg } = isValidObj;
+
+  return {
+    value: newValue,
+    isValid,
+    errorMsg,
+  };
 }
 
-export {
-  onInpChange,
-  restrictVal,
-  validateInput,
-};
+export default getValidatedOutput;

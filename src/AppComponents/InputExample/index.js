@@ -15,17 +15,27 @@ class InputExample extends Component {
   }
 
   validateInputChange(e) {
-    console.log(this.state.validateInputValue, e.target.value);
+    const validateOutput = this.validateInputRef.getValidatedOutput(e.target.value);
+    this.setState({
+      validateInputValue: validateOutput.value,
+      validateInputErrorMsg: validateOutput.errorMsg,
+    });
   }
 
   render() {
+    const {
+      validateInputValue,
+      validateInputErrorMsg,
+    } = this.state;
+
     return (
       <div>
         <Input
           className="nwc-inp-dash nwc-inp-sm"
           placeholder="Enter between [1-5]"
-          value={this.state.validateInputValue}
+          value={validateInputValue}
           onChange={this.validateInputChange}
+          ref={(c) => { this.validateInputRef = c; }}
           maxLength={6}
           validateWithPattern={[{
               pattern: /^((\d+)*)?$/,
@@ -36,6 +46,7 @@ class InputExample extends Component {
             },
           ]}
         />
+        <div>{validateInputErrorMsg}</div>
       </div>
     );
   }
