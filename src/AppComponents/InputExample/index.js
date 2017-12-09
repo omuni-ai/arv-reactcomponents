@@ -8,15 +8,22 @@ class InputExample extends Component {
     super(props);
 
     this.state = {
+      isValidateInputValid: true,
       validateInputValue: '',
+      validateInputErrorMsg: '',
     };
 
     this.validateInputChange = this.validateInputChange.bind(this);
   }
 
+  get errorClass() {
+    return !this.state.isValidateInputValid ? 'is-invalid' : '';
+  }
+
   validateInputChange(e) {
     const validateOutput = this.validateInputRef.getValidatedOutput(e.target.value);
     this.setState({
+      isValidateInputValid: validateOutput.isValid,
       validateInputValue: validateOutput.value,
       validateInputErrorMsg: validateOutput.errorMsg,
     });
@@ -31,7 +38,7 @@ class InputExample extends Component {
     return (
       <div>
         <Input
-          className="nwc-inp-dash nwc-inp-sm"
+          className={`nwc-inp-dash nwc-inp-sm ${this.errorClass}`}
           placeholder="Enter between [1-5]"
           value={validateInputValue}
           onChange={this.validateInputChange}
