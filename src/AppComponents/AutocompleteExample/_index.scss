@@ -11,6 +11,10 @@
 .nw-sample-autocomplete-list {
   padding: 5px;
 
+  &:hover {
+    background: $gray;
+  }
+
   &.is-active {
     background: $color-secondary;
     color: $white;
