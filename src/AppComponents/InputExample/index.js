@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 // Import common components
 import { Input } from '../../components';
 
+// Import for page
+import './_index.scss';
+
 class InputExample extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +39,7 @@ class InputExample extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="nw-sample-inputwrapper">
         <Input
           className={`nwc-inp-dash nwc-inp-sm ${this.errorClass}`}
           placeholder="Enter between [1-5]"

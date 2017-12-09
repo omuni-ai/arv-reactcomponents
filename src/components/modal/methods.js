@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from './';
 
-function getModalIfOpen() {
+function getModalTemplateIfOpen() {
   const {
     className,
     children,
@@ -62,7 +62,7 @@ function closeModal(e, eventType) {
 }
 
 export {
-  getModalIfOpen,
+  getModalTemplateIfOpen,
   openModal,
   closeModal,
 };

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { DomSelector } from '../';
 
 import './_index.scss';
 import {
-  getModalIfOpen,
+  getModalTemplateIfOpen,
   openModal,
   closeModal,
 } from './methods';
+
+let getModalTemplateIfOpenFn = getModalTemplateIfOpen;
 
 let { scrollY } = window;
 
@@ -17,18 +18,18 @@ class Modal extends Component {
   }
 
   static fixScrollFn() {
-    const bodyElem = DomSelector('body');
     ({ scrollY } = window);
     setTimeout(() => {
-      bodyElem.addClass('nwc-hide-scrollbar');
-      bodyElem[0].style.top = `-${scrollY}px`;
+      const bodyElem = document.querySelector('body');
+      bodyElem.classList.toggle('nwc-hide-scrollbar', true);
+      bodyElem.style.top = `-${scrollY}px`;
     }, 0, false);
   }
 
   static unFixScrollFn() {
-    const bodyElem = DomSelector('body');
-    bodyElem.removeClass('nwc-hide-scrollbar');
-    bodyElem[0].style.top = null;
+    const bodyElem = document.querySelector('body');
+    bodyElem.classList.toggle('nwc-hide-scrollbar', false);
+    bodyElem.style.top = null;
     if (scrollY) {
       window.scrollTo(0, scrollY);
     }
@@ -41,7 +42,7 @@ class Modal extends Component {
       'isOpen': false, // eslint-disable-line react/no-unused-state
     };
 
-    this.getModalIfOpen = getModalIfOpen.bind(this);
+    getModalTemplateIfOpenFn = getModalTemplateIfOpen.bind(this);
     this.openModal = openModal.bind(this);
     this.closeModal = closeModal.bind(this);
   }
@@ -49,7 +50,7 @@ class Modal extends Component {
   render() {
     return (
       <div>
-        {this.getModalIfOpen()}
+        {getModalTemplateIfOpenFn()}
       </div>
     );
   }
