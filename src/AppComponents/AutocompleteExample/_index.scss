@@ -1,0 +1,18 @@
+@import '../variables';
+
+.nw-sample-autocompletewrapper {
+  padding: 20px 0;
+}
+
+.nw-sample-autocomplete {
+  width: 200px;
+}
+
+.nw-sample-autocomplete-list {
+  padding: 5px;
+
+  &.is-active {
+    background: $color-secondary;
+    color: $white;
+  }
+}

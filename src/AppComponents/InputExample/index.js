@@ -40,6 +40,7 @@ class InputExample extends Component {
 
     return (
       <div className="nw-sample-inputwrapper">
+        <div>Input Example field with Validations Example</div>
         <Input
           className={`nwc-inp-dash nwc-inp-sm ${this.errorClass}`}
           placeholder="Enter between [1-5]"

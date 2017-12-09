@@ -8,11 +8,7 @@ import './_index.scss';
 
 class AutocompleteExample extends Component {
   static getList(item) {
-    return <li key={item}>{item}</li>;
-  }
-
-  static autocompleteValueChange(e) {
-    console.log(e.target.value);
+    return <li className="nw-sample-autocomplete-list" key={item}>{item}</li>;
   }
 
   constructor(props) {
@@ -20,6 +16,12 @@ class AutocompleteExample extends Component {
 
     this.state = {
       autocompleteInputValue: '',
+      inpList: [
+        'Arrow', 'Arrow-N', 'Arrow-Y', 'Arrow-L', 'Arrow-B', 'Arrow-Q', 'Arrow-P', 'Arrow-R', 'Arrow-D',
+        'Sephora', 'Sephora-N', 'Sephora-Y', 'Sephora-L', 'Sephora-B', 'Sephora-Q', 'Sephora-P', 'Sephora-R', 'Sephora-D',
+        'Levis', 'Levis-N', 'Levis-Y', 'Levis-L', 'Levis-B', 'Levis-Q', 'Levis-P', 'Levis-R', 'Levis-D',
+        'Gap', 'Gap-N', 'Gap-Y', 'Gap-L', 'Gap-B', 'Gap-Q', 'Gap-P', 'Gap-R', 'Gap-D',
+      ],
     };
 
     this.onInpValChange = this.onInpValChange.bind(this);
@@ -53,14 +55,20 @@ class AutocompleteExample extends Component {
   }
 
   render() {
+    const { inpList } = this.state;
+
     return (
-      <div>
-        <Autocomplete
-          inpList={['Arrow', 'Sephora', 'Levis', 'Gap']}
-          getSelection={this.getAutocompleSelection}
-          renderInput={this.getInput}
-          renderList={AutocompleteExample.getList}
-        />
+      <div className="nw-sample-autocompletewrapper">
+        <div className="nw-sample-autocomplete">
+          <div>Autocomplete Example</div>
+          <Autocomplete
+            className="nw-autocomplete"
+            inpList={inpList}
+            getSelection={this.getAutocompleSelection}
+            renderInput={this.getInput}
+            renderList={AutocompleteExample.getList}
+          />
+        </div>
       </div>
     );
   }

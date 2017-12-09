@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // import for Page
-import './_index.scss';
 import { renderAutocompleteInput, renderListItems } from './methods';
+import './_index.scss';
 
 let renderAutocompleteInputFn;
 let renderListItemsFn;
@@ -50,7 +50,10 @@ Autocomplete.defaultProps = {
 
 Autocomplete.propTypes = {
   className: PropTypes.string,
-  inpList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  inpList: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
   getSelection: PropTypes.func,
   renderInput: PropTypes.func.isRequired,
   renderList: PropTypes.func.isRequired,

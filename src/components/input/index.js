@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './_index.scss';
 
+// import for Page
 import getValidatedOutput from './methods';
+import './_index.scss';
 
 class Input extends Component {
   constructor(props) {

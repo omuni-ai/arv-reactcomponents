@@ -2,16 +2,16 @@ import React from 'react';
 
 import './_index.scss';
 
+import AutocompleteExample from '../AutocompleteExample';
 import InputExample from '../InputExample';
 import ButtonModalExample from '../ButtonModalExample';
-import AutocompleteExample from '../AutocompleteExample';
 
 function App() {
   return (
-    <div className="App">
+    <div className="nw-app">
+      <AutocompleteExample />
       <InputExample />
       <ButtonModalExample />
-      <AutocompleteExample />
     </div>
   );
 }

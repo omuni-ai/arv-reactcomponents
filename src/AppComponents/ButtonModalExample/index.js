@@ -20,7 +20,13 @@ class ButtonModalExample extends Component {
   render() {
     return (
       <div className="nw-sample-buttonwrapper">
-        <Button onClick={this.showHelloMsg}>Open Modal</Button>
+        <div>Button and Modal Example</div>
+        <Button
+          className="nwc-btn-primary nwc-btn-normal"
+          onClick={this.showHelloMsg}
+        >
+          Open Modal
+        </Button>
         <Modal ref={(c) => { this.exampleModalRef = c; }}>Hello</Modal>
       </div>
     );
