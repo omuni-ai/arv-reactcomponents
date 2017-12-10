@@ -25,8 +25,8 @@
   position: relative;
   width: 100%;
   min-height: 1px;
-  padding-left: $grid-gutter-width;
-  padding-right: $grid-gutter-width;
+  padding-left: $grid-gutter-width/2;
+  padding-right: $grid-gutter-width/2;
 }
 
 @each $all-screen-min, $value in $all-screen-min {
