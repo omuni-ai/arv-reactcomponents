@@ -39,25 +39,27 @@ class InputExample extends Component {
     } = this.state;
 
     return (
-      <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-inputwrapper">
-        <div>Input Example field with Validations Example</div>
-        <Input
-          className={`nwc-inp-dash nwc-inp-sm ${this.errorClass}`}
-          placeholder="Enter between [1-5]"
-          value={validateInputValue}
-          onChange={this.validateInputChange}
-          ref={(c) => { this.validateInputRef = c; }}
-          maxLength={6}
-          validateWithPattern={[{
-              pattern: /^((\d+)*)?$/,
-              msg: 'Value should be a number',
-            }, {
-              pattern: /^(([1-5]+)*)?$/,
-              msg: 'Between 1-5',
-            },
-          ]}
-        />
-        <div>{validateInputErrorMsg}</div>
+      <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-inputcontainer">
+        <div className="nw-sample-inputwrapper">
+          <div>Input Example field with Validations Example</div>
+          <Input
+            className={`nwc-inp-dash nwc-inp-sm ${this.errorClass}`}
+            placeholder="Enter between [1-5]"
+            value={validateInputValue}
+            onChange={this.validateInputChange}
+            ref={(c) => { this.validateInputRef = c; }}
+            maxLength={6}
+            validateWithPattern={[{
+                pattern: /^((\d+)*)?$/,
+                msg: 'Value should be a number',
+              }, {
+                pattern: /^(([1-5]+)*)?$/,
+                msg: 'Between 1-5',
+              },
+            ]}
+          />
+          <div>{validateInputErrorMsg}</div>
+        </div>
       </div>
     );
   }

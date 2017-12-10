@@ -1,5 +1,12 @@
 @import '../index';
 
+.nw-sample-autocompletewrapper {
+  border: 1px solid darken($gray, 6%);
+  border-radius: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .nwc-autocomplete {
   position: relative;
 }

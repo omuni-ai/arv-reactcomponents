@@ -1,4 +1,11 @@
+@import '../variables';
+
+.nw-sample-inputcontainer {
+  margin-bottom: 10px;
+}
+
 .nw-sample-inputwrapper {
-  height: 100px;
-  text-align: center;
+  border: 1px solid darken($gray, 6%);
+  border-radius: 3px;
+  padding: 10px;
 }

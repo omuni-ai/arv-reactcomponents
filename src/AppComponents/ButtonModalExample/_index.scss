@@ -1,3 +1,11 @@
+@import '../variables';
+
+.nw-sample-buttoncontainer {
+  margin-bottom: 10px;
+}
+
 .nw-sample-buttonwrapper {
-  text-align: center;
+  border: 1px solid darken($gray, 6%);
+  border-radius: 3px;
+  padding: 10px;
 }

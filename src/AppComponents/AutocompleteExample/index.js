@@ -58,16 +58,18 @@ class AutocompleteExample extends Component {
     const { inpList } = this.state;
 
     return (
-      <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-autocompletewrapper">
-        <div className="nw-sample-autocomplete">
-          <div>Autocomplete Example</div>
-          <Autocomplete
-            className="nw-autocomplete"
-            inpList={inpList}
-            getSelection={this.getAutocompleSelection}
-            renderInput={this.getInput}
-            renderList={AutocompleteExample.getList}
-          />
+      <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-autocompletecontainer">
+        <div className="nw-sample-autocompletewrapper">
+          <div className="nw-sample-autocomplete">
+            <div>Autocomplete Example</div>
+            <Autocomplete
+              className="nw-autocomplete"
+              inpList={inpList}
+              getSelection={this.getAutocompleSelection}
+              renderInput={this.getInput}
+              renderList={AutocompleteExample.getList}
+            />
+          </div>
         </div>
       </div>
     );
