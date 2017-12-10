@@ -3,5 +3,8 @@
 }
 
 @function darken-colors($color, $times) {
+  @if $times==0 {
+    @error 'No 0 value';
+  }
   @return darken($color, $times*6%);
 }
