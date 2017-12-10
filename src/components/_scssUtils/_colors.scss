@@ -1,7 +1,3 @@
-@function get-rems($newVal, $rootVal) {
-  @return ($newVal/$rootVal)+rem;
-}
-
 @function darken-colors($color, $times) {
   @if $times==0 {
     @error 'No 0 value';
