@@ -51,7 +51,7 @@ class InputExample extends Component {
             maxLength={6}
             validateWithPattern={[{
                 pattern: /^((\d+)*)?$/,
-                msg: 'Value should be a number',
+                msg: 'Value must be a number',
               }, {
                 pattern: /^(([1-5]+)*)?$/,
                 msg: 'Between 1-5',
