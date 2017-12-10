@@ -1,11 +1,13 @@
+/** Color Names picked from http://chir.ag/projects/name-that-color/ */
+
 $transparent: transparent;
-$pink: #f2258b !default;
-$blue: #0182cb !default;
+$violet-red: #f2258b !default;
+$lochmara: #0182cb !default;
 $white: #fff !default;
 $black: #000 !default;
-$green: #738c00 !default;
-$red: #ea0423 !default;
-$gray: #f3f3f3 !default;
+$olive: #738c00 !default;
+$red-ribbon: #ea0423 !default;
+$concrete: #f3f3f3 !default;
 
 $font-size: 18px !default;
 $font-size-xxxs: get-rems(10px, $font-size) !default;
@@ -30,10 +32,10 @@ $screen-min-lg: map-get($all-screen-min, lg)+px;
 
 /** Specific */
 
-$color-primary: $pink !default;
-$color-secondary: $blue !default;
-$color-success: $green !default;
-$color-danger: $red !default;
+$color-primary: $violet-red !default;
+$color-secondary: $lochmara !default;
+$color-success: $olive !default;
+$color-danger: $red-ribbon !default;
 
 $color-transparent-modal: rgba(0, 0, 0, 0.7);
 

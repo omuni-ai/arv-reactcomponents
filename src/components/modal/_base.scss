@@ -53,14 +53,14 @@ $font-size-modal-close: 2.5rem;
   font-size: $font-size-modal-close;
   line-height: 0;
   text-align: center;
-  color: darken-colors($gray, 3);
+  color: darken-colors($concrete, 3);
   outline: 0;
 }
 
 %nwc-modal-close-769 {
   @media screen and (min-width: $screen-min-sm) {
     &:hover {
-      color: darken-colors($gray, 1);
+      color: darken-colors($concrete, 1);
     }
   }
 }

@@ -6,13 +6,13 @@
   outline: 0;
   
   &.is-invalid {
-    border-color: $red;
+    border-color: $red-ribbon;
   }
 }
 
 .nwc-inp-dash {
   border: 0;
-  border-bottom: 2px solid darken-colors($gray, 1);
+  border-bottom: 2px solid darken-colors($concrete, 1);
 }
 
 
