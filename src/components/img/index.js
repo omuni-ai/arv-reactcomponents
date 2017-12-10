@@ -12,13 +12,14 @@ function Img(props) {
 }
 
 Img.defaultProps = {
+  className: '',
   alt: 'NNNOW',
   src: PropTypes.string.defaultSrc,
   defaultSrc: '',
 };
 
 Img.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   src: PropTypes.string,
   defaultSrc: PropTypes.string,
   alt: PropTypes.string,

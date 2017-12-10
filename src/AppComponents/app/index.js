@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { GridContainer, GridRow } from '../../components';
 import './_index.scss';
 
 import AutocompleteExample from '../AutocompleteExample';
@@ -8,11 +9,13 @@ import ButtonModalExample from '../ButtonModalExample';
 
 function App() {
   return (
-    <div className="nw-app">
-      <AutocompleteExample />
-      <InputExample />
-      <ButtonModalExample />
-    </div>
+    <GridContainer className="nw-app" strict>
+      <GridRow>
+        <AutocompleteExample />
+        <InputExample />
+        <ButtonModalExample />
+      </GridRow>
+    </GridContainer>
   );
 }
 

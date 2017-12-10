@@ -39,7 +39,7 @@ class InputExample extends Component {
     } = this.state;
 
     return (
-      <div className="nw-sample-inputwrapper">
+      <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-inputwrapper">
         <div>Input Example field with Validations Example</div>
         <Input
           className={`nwc-inp-dash nwc-inp-sm ${this.errorClass}`}

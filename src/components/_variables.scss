@@ -18,12 +18,17 @@ $font-size-xl: get-rems(22px, $font-size) !default;
 $font-size-xxl: get-rems(24px, $font-size) !default;
 $font-size-xxxl: get-rems(28px, $font-size) !default;
 
-$screen-max-xs: 768px;
-$screen-min-sm: 769px;
-$screen-max-sm: 992px;
-$screen-min-md: 993px;
-$screen-max-md: 1024px;
-$screen-min-lg: 1025px;
+$all-screen-max: (xs: 768, sm: 992, md: 1200);
+$all-screen-min: (sm: 769, md: 993, lg: 1201);
+
+$screen-max-xs: map-get($all-screen-max, xs)+px;
+$screen-min-sm: map-get($all-screen-min, sm)+px;
+$screen-max-sm: map-get($all-screen-max, sm)+px;
+$screen-min-md: map-get($all-screen-min, md)+px;
+$screen-max-md: map-get($all-screen-max, md)+px;
+$screen-min-lg: map-get($all-screen-min, lg)+px;
+
+/** Specific */
 
 $color-primary: $pink !default;
 $color-secondary: $blue !default;
@@ -31,3 +36,9 @@ $color-success: $green !default;
 $color-danger: $red !default;
 
 $color-transparent-modal: rgba(0, 0, 0, 0.7);
+
+$grid-gutter-width: 15px;
+$grid-container-offset: 50px;
+$total-cols: 12;
+
+$screen-media: sm !default;

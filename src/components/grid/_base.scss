@@ -1,0 +1,61 @@
+%nwc-grid-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
+}
+
+@each $all-screen-min, $value in $all-screen-min {
+  %nwc-grid-container-769 {
+    @media screen and (min-width: $value+px) {
+      width: $value - $grid-container-offset;
+    }
+  }
+}
+
+%nwc-grid-row {
+  flex-wrap: wrap;
+  display: flex;
+  margin-left: -$grid-gutter-width;
+  margin-right: -$grid-gutter-width;
+}
+
+%all-col-base {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
+}
+
+@each $all-screen-min, $value in $all-screen-min {
+  %nwc-grid-col-#{$all-screen-min} {
+    @extend %all-col-base;
+  }
+
+  %nwc-grid-col-#{$all-screen-min}-769 {
+    @media screen and (min-width: $value+px) {
+      flex-grow: 1;
+      flex-basis: 0;
+      max-width: 100%;
+      /* stylelint-disable */
+      -ms-flex-preferred-size: 0;
+      -ms-flex-positive: 1;
+      /* stylelint-enable */
+    }
+  }
+
+  @for $i from 1 through $total-cols {
+    %nwc-grid-col-#{$all-screen-min}-#{$i} {
+      @extend %all-col-base;
+    }
+
+    %nwc-grid-col-#{$all-screen-min}-#{$i}-769 {
+      @media screen and (min-width: $value+px) {
+        flex: 0 0 ($i / $total-cols) * 100%;
+        max-width: ($i / $total-cols) * 100%;
+      }
+    }
+  }
+}

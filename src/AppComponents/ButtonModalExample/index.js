@@ -19,7 +19,7 @@ class ButtonModalExample extends Component {
 
   render() {
     return (
-      <div className="nw-sample-buttonwrapper">
+      <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-buttonwrapper">
         <div>Button and Modal Example</div>
         <Button
           className="nwc-btn-primary nwc-btn-normal"
