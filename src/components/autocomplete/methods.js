@@ -76,6 +76,7 @@ function renderListItems(inpVal, inpList, renderList) {
 
   const list = filteredList.map((item, index) => {
     const elem = renderList(item);
+    const onClickFn = elem.props.onClick || (() => {});
     let addClass = '';
     if (index === selectedListIndex) {
       addClass = 'is-active';
@@ -84,7 +85,7 @@ function renderListItems(inpVal, inpList, renderList) {
     return cloneElement(elem, {
       className: `${elem.props.className || ''} ${addClass}`,
       ref: (c) => { this.state.listNode[`item-${index}`] = c; },
-      onClick: () => { hideAutocompleteListFn(index); },
+      onClick: (e) => { onClickFn(e); hideAutocompleteListFn(index); },
     });
   });
 
@@ -102,11 +103,14 @@ function renderListItems(inpVal, inpList, renderList) {
 
 function renderAutocompleteInput(elem) {
   const toggleAutocompleteDisplayFn = toggleAutocompleteDisplay.bind(this);
+  const onKeyDownFn = elem.props.onKeyDown || (() => {});
+  const onFocusFn = elem.props.onFocus || (() => {});
+  const onBlurFn = elem.props.onBlur || (() => {});
 
   return cloneElement(elem, {
-    onKeyDown: onUserInput.bind(this),
-    onFocus: () => { toggleAutocompleteDisplayFn(true); },
-    onBlur: () => { toggleAutocompleteDisplayFn(false); },
+    onKeyDown: (e) => { onKeyDownFn(e); onUserInput.bind(this)(e); },
+    onFocus: (e) => { onFocusFn(e); toggleAutocompleteDisplayFn(true); },
+    onBlur: (e) => { onBlurFn(e); toggleAutocompleteDisplayFn(false); },
     ref: (c) => { this.inputNode = c; },
   });
 }
