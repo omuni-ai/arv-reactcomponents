@@ -1,6 +1,7 @@
 %nwc-btn {
   border: 1px solid #eee;
   background: $transparent;
+  color: $black;
   outline: 0;
 }
 
@@ -11,11 +12,15 @@
   }
 }
 
-.nwc-btn-primary {
-  background: $color-primary;
-  color: $white;
+@each $all-button-variants, $value in $all-button-variants {
+  .nwc-btn-#{$all-button-variants} {
+    background: $value;
+    color: set-color($value, $compliment-for-dark, $compliment-for-light);
+    @if(lightness($value) > 70) {
+      border: 1px solid $compliment-for-light;
+    }
+  }
 }
-
 
 // Size Variants
 .nwc-btn-xxs {

@@ -8,7 +8,7 @@
 
 @each $all-screen-min, $value in $all-screen-min {
   %nwc-grid-container-769 {
-    @media screen and (min-width: $value+px) {
+    @media screen and (min-width: $value) {
       width: $value - $grid-container-offset;
     }
   }
@@ -35,7 +35,7 @@
   }
 
   %nwc-grid-col-#{$all-screen-min}-769 {
-    @media screen and (min-width: $value+px) {
+    @media screen and (min-width: $value) {
       flex-grow: 1;
       flex-basis: 0;
       max-width: 100%;
@@ -52,7 +52,7 @@
     }
 
     %nwc-grid-col-#{$all-screen-min}-#{$i}-769 {
-      @media screen and (min-width: $value+px) {
+      @media screen and (min-width: $value) {
         flex: 0 0 ($i / $total-cols) * 100%;
         max-width: ($i / $total-cols) * 100%;
       }

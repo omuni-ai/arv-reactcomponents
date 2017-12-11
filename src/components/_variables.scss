@@ -20,27 +20,46 @@ $font-size-xl: get-rems(22px, $font-size) !default;
 $font-size-xxl: get-rems(24px, $font-size) !default;
 $font-size-xxxl: get-rems(28px, $font-size) !default;
 
-$all-screen-max: (xs: 768, sm: 992, md: 1200) !default;
-$all-screen-min: (sm: 769, md: 993, lg: 1201) !default;
-
-$screen-max-xs: map-get($all-screen-max, xs)+px !default;
-$screen-min-sm: map-get($all-screen-min, sm)+px !default;
-$screen-max-sm: map-get($all-screen-max, sm)+px !default;
-$screen-min-md: map-get($all-screen-min, md)+px !default;
-$screen-max-md: map-get($all-screen-max, md)+px !default;
-$screen-min-lg: map-get($all-screen-min, lg)+px !default;
+$screen-max-xs: 768px !default;
+$screen-min-sm: 769px !default;
+$screen-max-sm: 992px !default;
+$screen-min-md: 993px !default;
+$screen-max-md: 1200px !default;
+$screen-min-lg: 1201px !default;
 
 /** Specific */
+
+// Colors
+$compliment-for-dark: $white;
+$compliment-for-light: $black;
 
 $color-primary: $violet-red !default;
 $color-secondary: $lochmara !default;
 $color-success: $olive !default;
 $color-danger: $red-ribbon !default;
-
 $color-transparent-modal: rgba(0, 0, 0, 0.7) !default;
 
+// Grid
+$all-screen-max: (
+  xs: $screen-max-xs,
+  sm: $screen-max-sm,
+  md: $screen-max-md
+) !default;
+$all-screen-min: (
+  sm: $screen-min-sm,
+  md: $screen-min-md,
+  lg: $screen-min-lg
+) !default;
 $grid-gutter-width: 15px !default;
 $grid-container-offset: 50px !default;
 $total-cols: 12 !default;
+
+// Button
+$all-button-variants: (
+  primary: $color-primary,
+  secondary: $white,
+  success: $color-success,
+  danger: $color-danger
+) !default;
 
 $screen-media: sm !default;
