@@ -4,11 +4,23 @@
   .nwc-btn {
     @extend %nwc-btn;
   }
+
+  @each $all-button-variants, $value in $all-button-variants {
+    .nwc-btn-#{$all-button-variants} {
+      @extend %nwc-btn-#{$all-button-variants};
+    }
+  }
 }
 
 @mixin button-769 {
   .nwc-btn {
     @extend %nwc-btn;
-    @extend %nwc-btn-769;
+  }
+
+  @each $all-button-variants, $value in $all-button-variants {
+    .nwc-btn-#{$all-button-variants} {
+      @extend %nwc-btn-#{$all-button-variants};
+      @extend %nwc-btn-#{$all-button-variants}-769;
+    }
   }
 }

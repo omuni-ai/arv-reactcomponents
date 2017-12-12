@@ -5,19 +5,21 @@
   outline: 0;
 }
 
-%nwc-btn-769 {
-  &:hover,
-  &:focus {
-    opacity: 0.8;
-  }
-}
-
 @each $all-button-variants, $value in $all-button-variants {
-  .nwc-btn-#{$all-button-variants} {
+  %nwc-btn-#{$all-button-variants} {
     background: $value;
     color: set-color($value, $compliment-for-dark, $compliment-for-light);
     @if(lightness($value) > 70) {
       border: 1px solid $compliment-for-light;
+    }
+  }
+
+  %nwc-btn-#{$all-button-variants}-769 {
+    @media screen and (min-width: $screen-min-sm) {
+      &:hover,
+      &:focus {
+        background: lighten-colors($value, 2);
+      }
     }
   }
 }
