@@ -1,7 +1,7 @@
-export { GridContainer, GridRow } from './grid';
-export { default as Button } from './button';
-export { default as Img } from './img';
-export { default as Label } from './label';
-export { default as Input } from './input';
-export { default as Autocomplete } from './autocomplete';
-export { default as Modal } from './modal';
+export { GridContainer, GridRow } from './Grid';
+export { default as Button } from './Button';
+export { default as Img } from './Img';
+export { default as Label } from './Label';
+export { default as Input } from './Input';
+export { default as Autocomplete } from './Autocomplete';
+export { default as Modal } from './Modal';

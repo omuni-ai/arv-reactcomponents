@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // import for Page
 import getValidatedOutput from './methods';
-import './_index.scss';
+import './styles/_index.scss';
 
 class Input extends Component {
   constructor(props) {

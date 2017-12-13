@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './_index.scss';
+import './styles/_index.scss';
 
 function Img(props) {
   const {

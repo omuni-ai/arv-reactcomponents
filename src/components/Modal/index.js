@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './_index.scss';
+import './styles/_index.scss';
 import {
   getModalTemplateIfOpen,
   openModal,

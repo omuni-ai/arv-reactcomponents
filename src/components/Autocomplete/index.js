@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // import for Page
 import { renderAutocompleteInput, renderListItems } from './methods';
-import './_index.scss';
+import './styles/_index.scss';
 
 let renderAutocompleteInputFn;
 let renderListItemsFn;
