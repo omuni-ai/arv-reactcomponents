@@ -26,30 +26,36 @@
 
 // Size Variants
 .nwc-btn-xxs {
+  padding: 0;
   font-size: $font-size-xxs;
 }
 
 .nwc-btn-xs {
+  padding: 2px;
   font-size: $font-size-xs;
 }
 
 .nwc-btn-sm {
+  padding: 4px;
   font-size: $font-size-sm;
 }
 
 .nwc-btn-normal {
-  padding: 8px;
+  padding: 6px;
   font-size: $font-size-normal;
 }
 
 .nwc-btn-lg {
+  padding: 8px;
   font-size: $font-size-lg;
 }
 
 .nwc-btn-xl {
+  padding: 10px;
   font-size: $font-size-xl;
 }
 
 .nwc-btn-xxl {
+  padding: 12px;
   font-size: $font-size-xxl;
 }

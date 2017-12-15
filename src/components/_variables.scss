@@ -62,4 +62,12 @@ $all-button-variants: (
   danger: $color-danger
 ) !default;
 
+// Input
+$all-input-variants: (
+  primary: $color-primary,
+  secondary: $white,
+  success: $color-success,
+  danger: $color-danger
+) !default;
+
 $screen-media: sm !default;

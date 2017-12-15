@@ -12,19 +12,18 @@ function Label(props) {
 
   return (
     <label htmlFor={htmlFor} {...otherProps}>
-      <input type="radio" className="nwc-label-radio" />
+      <input type="hidden" />
       {children}
     </label>
   );
 }
 
 Label.defaultProps = {
-  htmlFor: '',
   children: null,
 };
 
 Label.propTypes = {
-  htmlFor: PropTypes.string,
+  htmlFor: PropTypes.string.isRequired,
   children: PropTypes.node,
 };
 

@@ -61,7 +61,7 @@ class AutocompleteExample extends Component {
       <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-autocompletecontainer">
         <div className="nw-sample-autocompletewrapper">
           <div className="nw-sample-autocomplete">
-            <div>Autocomplete Example</div>
+            <div className="nw-space-bottom">Autocomplete Example</div>
             <Autocomplete
               className="nw-autocomplete"
               inpList={inpList}

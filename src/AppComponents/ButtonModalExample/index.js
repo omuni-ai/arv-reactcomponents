@@ -21,7 +21,7 @@ class ButtonModalExample extends Component {
     return (
       <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-buttoncontainer">
         <div className="nw-sample-buttonwrapper">
-          <div>Button and Modal Example</div>
+          <div className="nw-space-bottom">Button and Modal Example</div>
           <Button
             className="nwc-btn-primary nwc-btn-normal"
             onClick={this.showHelloMsg}
