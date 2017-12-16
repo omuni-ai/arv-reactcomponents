@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Import common components
-import { Input, Autocomplete } from '../../components';
+import { Input, Autocomplete, GridColumn } from '../../components';
 
 // Import for page
 import './_index.scss';
@@ -58,7 +58,7 @@ class AutocompleteExample extends Component {
     const { inpList } = this.state;
 
     return (
-      <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-autocompletecontainer">
+      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-autocompletecontainer">
         <div className="nw-sample-autocompletewrapper">
           <div className="nw-sample-autocomplete">
             <div className="nw-space-bottom">Autocomplete Example</div>
@@ -71,7 +71,7 @@ class AutocompleteExample extends Component {
             />
           </div>
         </div>
-      </div>
+      </GridColumn>
     );
   }
 }

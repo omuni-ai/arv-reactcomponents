@@ -4,22 +4,6 @@
   .nwc-grid-container {
     @extend %nwc-grid-container;
   }
-
-  .nwc-grid-row {
-    @extend %nwc-grid-row;
-  }
-
-  @each $all-screen-min, $value in $all-screen-min {
-    .nwc-grid-col-#{$all-screen-min} {
-      @extend %nwc-grid-col-#{$all-screen-min};
-    }
-
-    @for $i from 1 through $total-cols {
-      .nwc-grid-col-#{$all-screen-min}-#{$i} {
-        @extend %nwc-grid-col-#{$all-screen-min}-#{$i};
-      }
-    }
-  }
 }
 
 @mixin grid-769 {
@@ -31,19 +15,13 @@
     @extend %nwc-grid-container-769;
   }
 
-  .nwc-grid-row {
-    @extend %nwc-grid-row;
-  }
-
   @each $all-screen-min, $value in $all-screen-min {
     .nwc-grid-col-#{$all-screen-min} {
-      @extend %nwc-grid-col-#{$all-screen-min};
       @extend %nwc-grid-col-#{$all-screen-min}-769;
     }
 
     @for $i from 1 through $total-cols {
       .nwc-grid-col-#{$all-screen-min}-#{$i} {
-        @extend %nwc-grid-col-#{$all-screen-min}-#{$i};
         @extend %nwc-grid-col-#{$all-screen-min}-#{$i}-769;
       }
     }

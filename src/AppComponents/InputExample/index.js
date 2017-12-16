@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Import common components
-import { Input, GridRow } from '../../components';
+import { Input, GridRow, GridColumn } from '../../components';
 
 // Import for page
 import './_index.scss';
@@ -50,9 +50,9 @@ class InputExample extends Component {
     } = this.state;
 
     return (
-      <div className="nwc-grid-col-sm-6 nwc-grid-col-md-4">
+      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4">
         <GridRow>
-          <div className="nwc-grid-col-sm-12 nw-sample-inputcontainer">
+          <GridColumn className="nwc-grid-col-sm-12 nw-sample-inputcontainer">
             <form
               name="sample-form"
               className="nw-sample-inputwrapper"
@@ -76,8 +76,8 @@ class InputExample extends Component {
               />
               <div>{validateInputErrorMsg}</div>
             </form>
-          </div>
-          <div className="nwc-grid-col-sm-12 nw-sample-inputcontainer">
+          </GridColumn>
+          <GridColumn className="nwc-grid-col-sm-12 nw-sample-inputcontainer">
             <div className="nw-sample-inputwrapper">
               <div className="nw-space-bottom">Input Example checkbox and radio</div>
               <Input
@@ -97,9 +97,9 @@ class InputExample extends Component {
                 onChange={() => { this.toggleValue('radioChecked'); }}
               />
             </div>
-          </div>
+          </GridColumn>
         </GridRow>
-      </div>
+      </GridColumn>
     );
   }
 }

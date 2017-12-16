@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CustomPropTypes from '../_jsUtils/customPropTypes';
 import Label from '../Label';
 
 // import for Page
-import {
-  propsRequiredForType,
-  getValidatedOutput,
-} from './methods';
+import getValidatedOutput from './methods';
 import './styles/_index.scss';
 
 class Input extends Component {
@@ -74,12 +72,12 @@ Input.defaultProps = {
 
 Input.propTypes = {
   id: PropTypes.string,
-  name: propsRequiredForType,
+  name: CustomPropTypes.Input, // eslint-disable-line react/no-typos
   className: PropTypes.string.isRequired,
   type: PropTypes.string,
-  placeholder: propsRequiredForType,
-  value: propsRequiredForType,
-  checked: propsRequiredForType,
+  placeholder: CustomPropTypes.Input, // eslint-disable-line react/no-typos
+  value: CustomPropTypes.Input, // eslint-disable-line react/no-typos
+  checked: CustomPropTypes.Input, // eslint-disable-line react/no-typos
   onChange: PropTypes.func.isRequired,
   maxLength: PropTypes.number,
   validateWithPattern: PropTypes.arrayOf(PropTypes.shape({
