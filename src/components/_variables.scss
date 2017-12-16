@@ -60,7 +60,7 @@ $all-button-variants: (
   secondary: $white,
   success: $color-success,
   danger: $color-danger
-) !default;
+) !default; // variants background property
 
 // Input
 $all-input-variants: (
@@ -68,6 +68,6 @@ $all-input-variants: (
   secondary: $white,
   success: $color-success,
   danger: $color-danger
-) !default;
+) !default; // variants for border property
 
 $screen-media: sm !default;
