@@ -36,7 +36,7 @@ class GridContainer extends Component {
 }
 
 GridContainer.defaultProps = {
-  className: null,
+  className: '',
   strict: false,
   // children: undefined,
 };

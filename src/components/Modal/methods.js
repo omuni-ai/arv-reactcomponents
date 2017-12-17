@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from './';
+import Close from '../Close';
 
 function getModalTemplateIfOpen() {
   const {
@@ -16,7 +17,7 @@ function getModalTemplateIfOpen() {
         tabIndex={0}
         onClick={this.closeModal}
         // onKeyDownCapture={(e) => { this.closeModal(e, 'key'); }}
-        onKeyDown={(e) => { this.closeModal(e, 'key'); }}
+        onKeyDown={this.closeModal}
         ref={(c) => { this.modalRef = c; }}
         {...otherProps}
       >
@@ -27,12 +28,7 @@ function getModalTemplateIfOpen() {
           onClick={Modal.preventEventPropagation}
           onKeyDown={null}
         >
-          <button
-            onClick={this.closeModal}
-            className="nwc-modal-close"
-          >
-            ×
-          </button>
+          <Close className="nwc-close-normal" onClick={this.closeModal} />
           {children}
         </div>
       </div>
@@ -41,8 +37,10 @@ function getModalTemplateIfOpen() {
   return null;
 }
 
-function openModal() {
-  Modal.fixScrollFn();
+function openModal(preventFix) {
+  if (!preventFix) {
+    Modal.fixScrollFn();
+  }
   this.setState({
     isOpen: true,
   });
@@ -51,8 +49,8 @@ function openModal() {
   }, 10);
 }
 
-function closeModal(e, eventType) {
-  if (eventType === 'key' && e.key !== 'Escape') {
+function closeModal(e) {
+  if (e.key && e.key !== 'Escape') {
     return;
   }
   Modal.unFixScrollFn();

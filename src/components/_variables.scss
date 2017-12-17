@@ -54,6 +54,17 @@ $grid-gutter-width: 15px !default;
 $grid-container-offset: 50px !default;
 $total-cols: 12 !default;
 
+// Close
+$all-close-sizevariants: (
+  xxs: get-rems(15px, $font-size),
+  xs: get-rems(25px, $font-size),
+  sm: get-rems(35px, $font-size),
+  normal: get-rems(45px, $font-size),
+  lg: get-rems(55px, $font-size),
+  xl: get-rems(65px, $font-size),
+  xxl: get-rems(75px, $font-size),
+) !default; // variants font-size property
+
 // Button
 $all-button-variants: (
   primary: $color-primary,
@@ -62,6 +73,16 @@ $all-button-variants: (
   danger: $color-danger
 ) !default; // variants background property
 
+$all-button-sizevariants: (
+  xxs: $font-size-xxs,
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  normal: $font-size-normal,
+  lg: $font-size-lg,
+  xl: $font-size-xl,
+  xxl: $font-size-xxl,
+) !default; // variants font-size property
+
 // Input
 $all-input-variants: (
   primary: $color-primary,
@@ -69,6 +90,16 @@ $all-input-variants: (
   success: $color-success,
   danger: $color-danger
 ) !default; // variants for border property
+
+$all-input-sizevariants: (
+  xxs: $font-size-xxs,
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  normal: $font-size-normal,
+  lg: $font-size-lg,
+  xl: $font-size-xl,
+  xxl: $font-size-xxl,
+) !default; // variants font-size property
 
 // Dropdown
 $all-dropdown-variants: (

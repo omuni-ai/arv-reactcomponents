@@ -57,7 +57,7 @@ class Modal extends Component {
 }
 
 Modal.defaultProps = {
-  className: null,
+  className: '',
 };
 
 Modal.propTypes = {

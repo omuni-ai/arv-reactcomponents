@@ -1,6 +1,6 @@
 @import '../../index';
-@import 'base';
-@import 'media';
+@import './base';
+@import './media';
 
 @if $screen-media==xs {
   @include modal;

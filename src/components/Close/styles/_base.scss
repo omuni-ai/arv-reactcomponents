@@ -1,0 +1,23 @@
+.nwc-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  border: 0;
+  width: 37px;
+  height: 37px;
+  padding: 5px;
+  background: $white;
+  line-height: 0;
+  color: darken-colors($concrete, 3);
+  outline: 0;
+}
+
+// Size Variants
+@each $all-close-sizevariants, $value in $all-close-sizevariants {
+  .nwc-close-#{$all-close-sizevariants} {
+    font-size: $value;
+  }
+}

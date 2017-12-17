@@ -5,6 +5,8 @@
 .nwc-dropdown {
   position: relative;
   display: block;
+  cursor: pointer;
+  user-select: none;
 }
 
 @each $all-dropdown-variants, $value in $all-dropdown-variants {

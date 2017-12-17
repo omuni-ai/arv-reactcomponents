@@ -31,7 +31,7 @@ class GridRow extends Component {
 }
 
 GridRow.defaultProps = {
-  className: null,
+  className: '',
 };
 
 GridRow.propTypes = {

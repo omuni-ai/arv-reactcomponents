@@ -19,7 +19,7 @@ function Label(props) {
 }
 
 Label.defaultProps = {
-  children: null,
+  children: '',
 };
 
 Label.propTypes = {

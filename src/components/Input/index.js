@@ -62,8 +62,8 @@ class Input extends Component {
 Input.defaultProps = {
   id: null,
   name: null,
-  labelClassName: null,
-  className: null,
+  labelClassName: '',
+  className: '',
   type: 'text',
   placeholder: null,
   value: null,

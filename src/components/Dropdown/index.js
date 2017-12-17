@@ -79,7 +79,7 @@ class Dropdown extends Component {
 
 Dropdown.defaultProps = {
   id: null,
-  className: null,
+  className: '',
   getSelection: () => {},
 };
 

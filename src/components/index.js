@@ -1,3 +1,4 @@
+export { default as Close } from './Close';
 export { GridContainer, GridRow, GridColumn } from './Grid';
 export { default as Button } from './Button';
 export { default as Img } from './Img';

@@ -90,16 +90,6 @@
   border-bottom: 2px solid darken-colors($concrete, 1);
 }
 
-.nwc-inp-hide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 0;
-  width: 1px;
-  height: 1px;
-  background: $transparent;
-}
-
 /* stylelint-disable */
 
 .nwc-disable-controls::-webkit-outer-spin-button,
@@ -112,37 +102,22 @@
 /* stylelint-enable */
 
 // Size Variants
-.nwc-inp-xxs {
-  padding: 0;
-  font-size: $font-size-xxs;
+@each $all-input-sizevariants, $value in $all-input-sizevariants {
+  .nwc-inp-#{$all-input-sizevariants} {
+    min-width: $value;
+    min-height: $value;
+    font-size: $value;
+  }
 }
 
-.nwc-inp-xs {
-  padding: 2px;
-  font-size: $font-size-xs;
-}
-
-.nwc-inp-sm {
-  padding: 4px;
-  font-size: $font-size-sm;
-}
-
-.nwc-inp-normal {
-  padding: 6px;
-  font-size: $font-size-normal;
-}
-
-.nwc-inp-lg {
-  padding: 8px;
-  font-size: $font-size-lg;
-}
-
-.nwc-inp-xl {
-  padding: 10px;
-  font-size: $font-size-xl;
-}
-
-.nwc-inp-xxl {
-  padding-top: 12px;
-  font-size: $font-size-xxl;
+.nwc-inp-hide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  min-width: 1px;
+  max-width: 1px;
+  min-height: 1px;
+  max-height: 1px;
+  background: $transparent;
 }

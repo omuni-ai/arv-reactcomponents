@@ -48,7 +48,7 @@ class Autocomplete extends Component {
 }
 
 Autocomplete.defaultProps = {
-  className: null,
+  className: '',
   getSelection: () => {},
   minTextLength: 0,
 };
