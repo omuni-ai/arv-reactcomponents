@@ -5,8 +5,24 @@ import Close from '../Close';
 function hideToastr(item) {
   const { toastrList } = this.state;
 
+  toastrList.splice(toastrList.findIndex(i => i === item), 1);
+
   this.setState({
-    toastrList: toastrList.splice(toastrList.findIndex(i => i === item) + 1, 1),
+    toastrList,
+  });
+}
+
+function hideToastrOnKeyDown(e) {
+  if (e.key && e.key !== 'Escape') {
+    return;
+  }
+
+  const { toastrList } = this.state;
+
+  toastrList.splice(0, 1);
+
+  this.setState({
+    toastrList,
   });
 }
 
@@ -22,6 +38,10 @@ function showToastr(item) {
     toastrList,
   });
 
+  setTimeout(() => {
+    this.containerRef.focus();
+  }, 10);
+
   if (!Number.isNaN(timeout)) {
     setTimeout(() => {
       hideToastr.bind(this)(itemClone);
@@ -29,38 +49,63 @@ function showToastr(item) {
   }
 }
 
-function renderToastr() {
+function renderList() {
   const {
     toastrList,
   } = this.state;
 
+  const toastrListRev = [...toastrList].reverse();
   const hideToastrFn = hideToastr.bind(this);
 
+  const listItems = toastrListRev.map((item, index) => {
+    if (index >= this.limitTo) {
+      hideToastrFn(toastrList[0]);
+    }
+    return (
+      <li
+        key={`toastr-${item.id}`}
+        className={`nwc-toastr-msg ${item.className}`}
+      >
+        <Close
+          className="nwc-close-sm"
+          onClick={() => { hideToastrFn(item); }}
+        />
+        {item.message}{item.id}
+      </li>
+    );
+  });
+
+  return listItems;
+}
+
+function renderToastr() {
+  const {
+    toastrList,
+  } = this.state;
+  const hideToastrOnKeyDownFn = hideToastrOnKeyDown.bind(this);
+  const renderListFn = renderList.bind(this);
+
   ReactDOM.render(
-    <ul className="nwc-toastr-list">
-      {
-        toastrList.map((item) => {
-          const msgTypeClass = (item.type && `nwc-toastr-msg-${item.type}`) || '';
-          return (
-            <li
-              key={`toastr-${item.id}`}
-              className={`nwc-toastr-msg ${msgTypeClass}`}
-            >
-              <Close
-                className="nwc-close-sm"
-                onClick={() => { hideToastrFn(item); }}
-              />
-              {item.message}
-            </li>
-          );
-        })
-      }
-    </ul>,
+    <div
+      role="button"
+      tabIndex={0}
+      ref={(c) => { this.containerRef = c; }}
+      onKeyDown={(e) => { hideToastrOnKeyDownFn(e, toastrList[0]); }}
+    >
+      <ul className="nwc-toastr-list">
+        {renderListFn()}
+      </ul>
+    </div>,
     document.querySelectorAll('.nwc-toastr-container')[0],
   );
+}
+
+function setConfig(obj) {
+  this.limitTo = obj.limitTo;
 }
 
 export {
   showToastr,
   renderToastr,
+  setConfig,
 };

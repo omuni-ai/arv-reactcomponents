@@ -6,6 +6,7 @@ import './styles/_index.scss';
 import {
   showToastr,
   renderToastr,
+  setConfig,
 } from './methods';
 
 class Toastr extends Component {
@@ -17,6 +18,8 @@ class Toastr extends Component {
     };
 
     Toastr.showToastr = showToastr.bind(this);
+    Toastr.setConfig = setConfig.bind(this);
+    Toastr.setConfig({ limitTo: 5 });
   }
 
   componentWillMount() {

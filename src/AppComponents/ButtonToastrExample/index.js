@@ -6,19 +6,16 @@ import { Button, Toastr, GridColumn } from '../../components';
 // Import for page
 import './_index.scss';
 
+Toastr.setConfig({
+  limitTo: 3, // Change default value of limitTo to `3`
+});
+
 class ButtonToastrExample extends Component {
-  constructor(props) {
-    super(props);
-
-    this.showHelloMsg = this.showHelloMsg.bind(this);
-  }
-
-  showHelloMsg() {
+  static showHelloMsg() {
     Toastr.showToastr({
-      context: this,
+      className: 'nwc-toastr-msg-notification',
       type: 'notification',
       message: 'hello',
-      timeout: 3000,
     });
   }
 
@@ -29,7 +26,7 @@ class ButtonToastrExample extends Component {
           <div className="nw-space-bottom">Button and Toastr Example</div>
           <Button
             className="nwc-btn-primary nwc-btn-normal"
-            onClick={this.showHelloMsg}
+            onClick={ButtonToastrExample.showHelloMsg}
           >
             Show Toastr
           </Button>
