@@ -26,7 +26,7 @@ class AutocompleteExample extends Component {
 
     this.onInpValChange = this.onInpValChange.bind(this);
     this.getInput = this.getInput.bind(this);
-    this.getAutocompleSelection = this.getAutocompleSelection.bind(this);
+    this.getAutocompleteSelection = this.getAutocompleteSelection.bind(this);
   }
 
   onInpValChange(e) {
@@ -35,7 +35,7 @@ class AutocompleteExample extends Component {
     });
   }
 
-  getAutocompleSelection(selectedValue) {
+  getAutocompleteSelection(selectedValue) {
     this.setState({
       autocompleteInputValue: selectedValue,
     });
@@ -65,7 +65,7 @@ class AutocompleteExample extends Component {
             <Autocomplete
               className="nw-autocomplete"
               inpList={inpList}
-              getSelection={this.getAutocompleSelection}
+              getSelection={this.getAutocompleteSelection}
               renderInput={this.getInput}
               renderList={AutocompleteExample.getList}
             />

@@ -1,0 +1,35 @@
+@import '../index';
+
+.nw-sample-dropdowncontainer {
+  margin-bottom: 10px;
+}
+
+.nw-sample-dropdownwrapper {
+  border: 1px solid darken-colors($concrete, 1);
+  border-radius: 3px;
+  height: 300px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nw-sample-dropdown {
+  margin: 0 auto;
+  width: 200px;
+}
+
+.nw-dropdown {
+  width: 100%;
+}
+
+.nw-sample-dropdown-list {
+  padding: 5px;
+
+  &:hover {
+    background: $concrete;
+  }
+
+  &.is-active {
+    background: $color-secondary;
+    color: $white;
+  }
+}

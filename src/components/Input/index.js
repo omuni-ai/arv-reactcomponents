@@ -41,11 +41,11 @@ class Input extends Component {
 
   render() {
     const {
-      id, className, type, validateWithPattern, ...otherProps
+      id, labelClassName, className, type, validateWithPattern, ...otherProps
     } = this.props;
 
     return (
-      <Label className="nwc-inp-container" htmlFor={id || this.inputId}>
+      <Label className={`nwc-inp-container ${labelClassName}`} htmlFor={id || this.inputId}>
         <input
           id={id || this.inputId}
           className={`${this.defaultClassNames} ${className}`}
@@ -60,20 +60,23 @@ class Input extends Component {
 }
 
 Input.defaultProps = {
-  id: undefined,
-  name: undefined,
+  id: null,
+  name: null,
+  labelClassName: null,
+  className: null,
   type: 'text',
-  placeholder: undefined,
-  value: undefined,
-  checked: undefined,
-  maxLength: undefined,
+  placeholder: null,
+  value: null,
+  checked: null,
+  maxLength: null,
   validateWithPattern: null,
 };
 
 Input.propTypes = {
   id: PropTypes.string,
   name: CustomPropTypes.Input, // eslint-disable-line react/no-typos
-  className: PropTypes.string.isRequired,
+  labelClassName: PropTypes.string,
+  className: PropTypes.string,
   type: PropTypes.string,
   placeholder: CustomPropTypes.Input, // eslint-disable-line react/no-typos
   value: CustomPropTypes.Input, // eslint-disable-line react/no-typos

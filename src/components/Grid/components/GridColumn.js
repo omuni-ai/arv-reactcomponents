@@ -16,7 +16,7 @@ function GridColumn(props) {
 }
 
 GridColumn.defaultProps = {
-  className: undefined,
+  className: null,
 };
 
 GridColumn.propTypes = {

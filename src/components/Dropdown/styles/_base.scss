@@ -1,0 +1,76 @@
+.nwc-dropdown-container {
+  display: inline-block;
+}
+
+.nwc-dropdown {
+  position: relative;
+  display: block;
+}
+
+@each $all-dropdown-variants, $value in $all-dropdown-variants {
+  .nwc-dropdown-#{$all-dropdown-variants} {
+    background: $value;
+    color: set-color($value, $compliment-for-dark, $compliment-for-light);
+    @if(lightness($value) > 70) {
+      border: 1px solid $compliment-for-light;
+    }
+  }
+}
+
+.nwc-dropdown-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+.nwc-dropdown-list-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  overflow: auto;
+  margin: 0;
+  border: 1px solid $concrete;
+  width: 100%;
+  max-height: 200px;
+  padding: 5px 0;
+  background: $white;
+}
+
+// Size Variants
+.nwc-dropdown-xxs {
+  padding: 0;
+  font-size: $font-size-xxs;
+}
+
+.nwc-dropdown-xs {
+  padding: 2px;
+  font-size: $font-size-xs;
+}
+
+.nwc-dropdown-sm {
+  padding: 4px;
+  font-size: $font-size-sm;
+}
+
+.nwc-dropdown-normal {
+  padding: 6px;
+  font-size: $font-size-normal;
+}
+
+.nwc-dropdown-lg {
+  padding: 8px;
+  font-size: $font-size-lg;
+}
+
+.nwc-dropdown-xl {
+  padding: 10px;
+  font-size: $font-size-xl;
+}
+
+.nwc-dropdown-xxl {
+  padding: 12px;
+  font-size: $font-size-xxl;
+}

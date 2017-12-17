@@ -2,25 +2,39 @@ import React, { cloneElement } from 'react';
 import { scrollElemToView } from '../_jsUtils';
 
 let selectedListIndex = null;
+let inputTimeoutId = null;
 let navigateTimeoutId = null;
 
-function hideAutocompleteList(index = selectedListIndex) {
+function onInpValChange(e) {
+  this.setState({
+    inpVal: e.target.value,
+  });
+
+  clearTimeout(inputTimeoutId);
+  inputTimeoutId = setTimeout(() => {
+    this.setState({
+      inpVal: '',
+    });
+  }, 800);
+}
+
+function hideDropdownList(index = selectedListIndex) {
   const selectedNode = this.state.listNode[`item-${index}`];
   if (!selectedNode) {
     return;
   }
 
   this.setState({
-    isAutocompleteActive: false,
+    isDropdownActive: false,
   });
 
   this.props.getSelection(this.state.listNodeItem[index]);
 }
 
-function toggleAutocompleteDisplay(bool) {
+function toggleDropdownDisplay(bool) {
   setTimeout(() => {
     this.setState({
-      isAutocompleteActive: bool,
+      isDropdownActive: bool,
     });
   }, 500);
 }
@@ -28,8 +42,8 @@ function toggleAutocompleteDisplay(bool) {
 function onUserInput(e) {
   e.stopPropagation();
   const listNodeLength = Object.keys(this.state.listNode).length - 1;
-  const hideAutocompleteListFn = hideAutocompleteList.bind(this);
-  let isAutocompleteActive = true;
+  const hideDropdownListFn = hideDropdownList.bind(this);
+  let isDropdownActive = true;
 
   switch (e.key) {
     case 'ArrowUp':
@@ -48,11 +62,11 @@ function onUserInput(e) {
       break;
     case 'Enter':
     case 'Tab':
-      isAutocompleteActive = false;
-      hideAutocompleteListFn();
+      isDropdownActive = false;
+      hideDropdownListFn();
       break;
     default:
-      selectedListIndex = 0;
+      /* default */
   }
 
   clearTimeout(navigateTimeoutId);
@@ -64,17 +78,26 @@ function onUserInput(e) {
   }, 10);
 
   this.setState({
-    isAutocompleteActive,
+    isDropdownActive,
   });
 }
 
 function renderListItems(inpVal, inpList, renderList) {
-  const hideAutocompleteListFn = hideAutocompleteList.bind(this);
-  const filteredList = inpList.filter(item => (
-    item.toLowerCase().indexOf(inpVal.toLowerCase()) > -1
-  ));
+  const hideDropdownListFn = hideDropdownList.bind(this);
+  const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, 'i');
 
-  const list = filteredList.map((item, index) => {
+  try {
+    inpList.forEach((item, index) => {
+      if (inpVal && inpVal.length > 0 && regXSearchItemStartsWith.test(item)) {
+        selectedListIndex = index;
+        throw Error('break');
+      }
+    });
+  } catch (err) {
+    /** break */
+  }
+
+  const list = inpList.map((item, index) => {
     const elem = renderList(item);
     const onClickFn = elem.props.onClick || (() => {});
     let addClass = '';
@@ -85,14 +108,14 @@ function renderListItems(inpVal, inpList, renderList) {
     return cloneElement(elem, {
       className: `${elem.props.className || ''} ${addClass}`,
       ref: (c) => { this.state.listNode[`item-${index}`] = c; },
-      onClick: (e) => { onClickFn(e); hideAutocompleteListFn(index); },
+      onClick: (e) => { onClickFn(e); hideDropdownListFn(index); },
     });
   });
 
-  return this.state.isAutocompleteActive && filteredList.length > 0 && inpVal.length > 2 ?
+  return this.state.isDropdownActive ?
     (
       <ul
-        className="nwc-autocomplete-list-container"
+        className="nwc-dropdown-list-container"
         ref={(c) => { this.listNodeWrapperRef = c; }}
       >
         {list}
@@ -101,23 +124,9 @@ function renderListItems(inpVal, inpList, renderList) {
     null;
 }
 
-function renderAutocompleteInput(elem) {
-  const { id } = this.props;
-  const toggleAutocompleteDisplayFn = toggleAutocompleteDisplay.bind(this);
-  const onKeyDownFn = elem.props.onKeyDown || (() => {});
-  const onFocusFn = elem.props.onFocus || (() => {});
-  const onBlurFn = elem.props.onBlur || (() => {});
-
-  return cloneElement(elem, {
-    id: id || this.inputId,
-    onKeyDown: (e) => { onKeyDownFn(e); onUserInput.bind(this)(e); },
-    onFocus: (e) => { onFocusFn(e); toggleAutocompleteDisplayFn(true); },
-    onBlur: (e) => { onBlurFn(e); toggleAutocompleteDisplayFn(false); },
-    ref: (c) => { this.inputNode = c; },
-  });
-}
-
 export {
-  renderAutocompleteInput,
+  onInpValChange,
+  onUserInput,
+  toggleDropdownDisplay,
   renderListItems,
 };

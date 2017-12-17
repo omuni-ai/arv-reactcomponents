@@ -4,4 +4,5 @@ export { default as Img } from './Img';
 export { default as Label } from './Label';
 export { default as Input } from './Input';
 export { default as Autocomplete } from './Autocomplete';
+export { default as Dropdown } from './Dropdown';
 export { default as Modal } from './Modal';

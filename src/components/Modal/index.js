@@ -57,8 +57,7 @@ class Modal extends Component {
 }
 
 Modal.defaultProps = {
-  className: '',
-  children: '',
+  className: null,
 };
 
 Modal.propTypes = {
@@ -66,7 +65,7 @@ Modal.propTypes = {
   children: PropTypes.oneOfType([ // eslint-disable-line react/no-unused-prop-types
     PropTypes.node,
     PropTypes.string,
-  ]),
+  ]).isRequired,
 };
 
 export default Modal;

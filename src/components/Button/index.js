@@ -14,7 +14,7 @@ function Button(props) {
 }
 
 Button.defaultProps = {
-  className: '',
+  className: null,
 };
 
 Button.propTypes = {

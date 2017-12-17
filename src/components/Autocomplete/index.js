@@ -37,7 +37,6 @@ class Autocomplete extends Component {
     return (
       <div
         className={`nwc-autocomplete ${className}`}
-        ref={(c) => { this.autocompleteNode = c; }}
         {...otherProps}
       >
         {renderAutocompleteInputFn(elem)}
@@ -48,7 +47,7 @@ class Autocomplete extends Component {
 }
 
 Autocomplete.defaultProps = {
-  className: '',
+  className: null,
   getSelection: () => {},
 };
 
