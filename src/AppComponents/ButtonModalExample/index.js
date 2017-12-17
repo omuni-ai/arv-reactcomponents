@@ -11,10 +11,15 @@ class ButtonModalExample extends Component {
     super(props);
 
     this.showHelloMsg = this.showHelloMsg.bind(this);
+    this.showHaiMsg = this.showHaiMsg.bind(this);
   }
 
   showHelloMsg() {
-    this.exampleModalRef.openModal();
+    this.helloRef.openModal();
+  }
+
+  showHaiMsg() {
+    this.haiRef.openModal();
   }
 
   render() {
@@ -26,9 +31,24 @@ class ButtonModalExample extends Component {
             className="nwc-btn-primary nwc-btn-normal"
             onClick={this.showHelloMsg}
           >
-            Open Modal
+            Hello Modal
           </Button>
-          <Modal ref={(c) => { this.exampleModalRef = c; }}>Hello</Modal>
+          <Button
+            className="nwc-btn-primary nwc-btn-normal"
+            onClick={this.showHaiMsg}
+          >
+            Hai Modal
+          </Button>
+          <Modal
+            ref={(c) => { this.helloRef = c; }}
+          >
+            <div>Hello</div>
+          </Modal>
+          <Modal
+            ref={(c) => { this.haiRef = c; }}
+          >
+            <div>Hai</div>
+          </Modal>
         </div>
       </GridColumn>
     );

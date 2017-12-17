@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles/_index.scss';
 import {
-  getModalTemplateIfOpen,
+  renderModal,
   openModal,
   closeModal,
 } from './methods';
-
-let getModalTemplateIfOpenFn = getModalTemplateIfOpen;
 
 let { scrollY } = window;
 
@@ -42,17 +40,22 @@ class Modal extends Component {
       'isOpen': false, // eslint-disable-line react/no-unused-state
     };
 
-    getModalTemplateIfOpenFn = getModalTemplateIfOpen.bind(this);
     this.openModal = openModal.bind(this);
     this.closeModal = closeModal.bind(this);
   }
 
+  componentWillMount() {
+    const modalContainer = document.createElement('div');
+    modalContainer.className = 'nwc-modal-container';
+    document.querySelectorAll('body')[0].appendChild(modalContainer);
+  }
+
+  componentDidUpdate() {
+    renderModal.bind(this)();
+  }
+
   render() {
-    return (
-      <div>
-        {getModalTemplateIfOpenFn()}
-      </div>
-    );
+    return null;
   }
 }
 

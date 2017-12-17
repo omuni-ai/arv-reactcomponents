@@ -1,8 +1,9 @@
 import React from 'react';
-import Modal from './';
+import ReactDOM from 'react-dom';
 import Close from '../Close';
+import Modal from './';
 
-function getModalTemplateIfOpen() {
+function renderModal() {
   const {
     className,
     children,
@@ -10,10 +11,10 @@ function getModalTemplateIfOpen() {
   } = this.props;
 
   if (this.state.isOpen) {
-    return (
+    ReactDOM.render(
       <div
         role="button"
-        className={`nwc-modal-container ${className}`}
+        className={`nwc-modal-overlay ${className}`}
         tabIndex={0}
         onClick={this.closeModal}
         // onKeyDownCapture={(e) => { this.closeModal(e, 'key'); }}
@@ -31,7 +32,13 @@ function getModalTemplateIfOpen() {
           <Close className="nwc-close-normal" onClick={this.closeModal} />
           {children}
         </div>
-      </div>
+      </div>,
+      document.querySelectorAll('.nwc-modal-container')[0],
+    );
+  } else {
+    ReactDOM.render(
+      null,
+      document.querySelectorAll('.nwc-modal-container')[0],
     );
   }
   return null;
@@ -60,7 +67,7 @@ function closeModal(e) {
 }
 
 export {
-  getModalTemplateIfOpen,
+  renderModal,
   openModal,
   closeModal,
 };
