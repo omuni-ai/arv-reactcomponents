@@ -29,6 +29,7 @@ class Autocomplete extends Component {
       getSelection,
       renderInput,
       renderList,
+      minTextLength,
       ...otherProps
     } = this.props;
 
@@ -49,6 +50,7 @@ class Autocomplete extends Component {
 Autocomplete.defaultProps = {
   className: null,
   getSelection: () => {},
+  minTextLength: 0,
 };
 
 Autocomplete.propTypes = {
@@ -60,6 +62,7 @@ Autocomplete.propTypes = {
   getSelection: PropTypes.func,
   renderInput: PropTypes.func.isRequired,
   renderList: PropTypes.func.isRequired,
+  minTextLength: PropTypes.number,
   // children: PropTypes.oneOfType([
   //   PropTypes.arrayOf(PropTypes.node),
   //   PropTypes.node,

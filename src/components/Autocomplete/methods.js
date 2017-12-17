@@ -69,7 +69,11 @@ function onUserInput(e) {
 }
 
 function renderListItems(inpVal, inpList, renderList) {
+  const { minTextLength } = this.props;
   const hideAutocompleteListFn = hideAutocompleteList.bind(this);
+
+  this.state.listNode = [];
+
   const filteredList = inpList.filter(item => (
     item.toLowerCase().indexOf(inpVal.toLowerCase()) > -1
   ));
@@ -89,7 +93,9 @@ function renderListItems(inpVal, inpList, renderList) {
     });
   });
 
-  return this.state.isAutocompleteActive && filteredList.length > 0 && inpVal.length > 2 ?
+  return this.state.isAutocompleteActive &&
+    filteredList.length > 0 &&
+    inpVal.length >= minTextLength ?
     (
       <ul
         className="nwc-autocomplete-list-container"

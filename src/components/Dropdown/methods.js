@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react';
 import { scrollElemToView } from '../_jsUtils';
 
-let selectedListIndex = null;
+let selectedListIndex = 0;
 let inputTimeoutId = null;
 let navigateTimeoutId = null;
 
@@ -19,6 +19,7 @@ function onInpValChange(e) {
 }
 
 function hideDropdownList(index = selectedListIndex) {
+  selectedListIndex = index;
   const selectedNode = this.state.listNode[`item-${index}`];
   if (!selectedNode) {
     return;
@@ -36,6 +37,11 @@ function toggleDropdownDisplay(bool) {
     this.setState({
       isDropdownActive: bool,
     });
+
+    scrollElemToView(
+      this.listNodeWrapperRef,
+      this.state.listNode[`item-${selectedListIndex}`],
+    );
   }, 500);
 }
 
@@ -85,6 +91,8 @@ function onUserInput(e) {
 function renderListItems(inpVal, inpList, renderList) {
   const hideDropdownListFn = hideDropdownList.bind(this);
   const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, 'i');
+
+  this.state.listNode = [];
 
   try {
     inpList.forEach((item, index) => {
