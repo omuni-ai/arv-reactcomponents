@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Close from '../Close';
-import Modal from './';
+import { fixScroll, unFixScroll } from '../_jsUtils';
+
+function preventEventPropagation(e) {
+  e.stopPropagation();
+}
 
 function renderModal() {
   const {
@@ -26,7 +30,7 @@ function renderModal() {
           role="button"
           className="nwc-modal"
           tabIndex={0}
-          onClick={Modal.preventEventPropagation}
+          onClick={preventEventPropagation}
           onKeyDown={null}
         >
           <Close className="nwc-close-normal" onClick={this.closeModal} />
@@ -46,7 +50,7 @@ function renderModal() {
 
 function openModal(preventFix) {
   if (!preventFix) {
-    Modal.fixScrollFn();
+    fixScroll();
   }
   this.setState({
     isOpen: true,
@@ -60,14 +64,21 @@ function closeModal(e) {
   if (e.key && e.key !== 'Escape') {
     return;
   }
-  Modal.unFixScrollFn();
+  unFixScroll();
   this.setState({
     isOpen: false,
   });
+}
+
+function createBaseContainer() {
+  const modalContainer = document.createElement('div');
+  modalContainer.className = 'nwc-modal-container';
+  document.querySelectorAll('body')[0].appendChild(modalContainer);
 }
 
 export {
   renderModal,
   openModal,
   closeModal,
+  createBaseContainer,
 };

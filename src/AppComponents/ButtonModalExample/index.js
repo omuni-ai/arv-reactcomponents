@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Import common components
-import { Button, Modal, GridColumn } from '../../components';
+import { Button, Modal, GridColumn, Toastr } from '../../components';
 
 // Import for page
 import './_index.scss';
@@ -16,10 +16,12 @@ class ButtonModalExample extends Component {
 
   showHelloMsg() {
     this.helloRef.openModal();
+    Toastr.clearAll();
   }
 
   showHaiMsg() {
     this.haiRef.openModal();
+    Toastr.clearAll();
   }
 
   render() {

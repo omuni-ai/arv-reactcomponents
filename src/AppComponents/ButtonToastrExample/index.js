@@ -15,7 +15,7 @@ class ButtonToastrExample extends Component {
     Toastr.showToastr({
       className: 'nwc-toastr-msg-notification',
       type: 'notification',
-      message: 'hello',
+      message: `${Math.round(Math.random() * (10 ** 10))}`,
     });
   }
 

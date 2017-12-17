@@ -2,6 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Close from '../Close';
 
+function clearAll() {
+  this.setState({
+    toastrList: [],
+  });
+}
+
 function hideToastr(item) {
   const { toastrList } = this.state;
 
@@ -70,7 +76,7 @@ function renderList() {
           className="nwc-close-sm"
           onClick={() => { hideToastrFn(item); }}
         />
-        {item.message}{item.id}
+        {item.message}
       </li>
     );
   });
@@ -104,8 +110,16 @@ function setConfig(obj) {
   this.limitTo = obj.limitTo;
 }
 
+function createBaseContainer() {
+  const toastrContainer = document.createElement('div');
+  toastrContainer.className = 'nwc-toastr-container';
+  document.querySelectorAll('body')[0].appendChild(toastrContainer);
+}
+
 export {
+  clearAll,
   showToastr,
   renderToastr,
   setConfig,
+  createBaseContainer,
 };

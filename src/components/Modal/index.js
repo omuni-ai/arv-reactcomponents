@@ -6,33 +6,10 @@ import {
   renderModal,
   openModal,
   closeModal,
+  createBaseContainer,
 } from './methods';
 
-let { scrollY } = window;
-
 class Modal extends Component {
-  static preventEventPropagation(e) {
-    e.stopPropagation();
-  }
-
-  static fixScrollFn() {
-    ({ scrollY } = window);
-    setTimeout(() => {
-      const bodyElem = document.querySelector('body');
-      bodyElem.classList.toggle('nwc-hide-scrollbar', true);
-      bodyElem.style.top = `-${scrollY}px`;
-    }, 0, false);
-  }
-
-  static unFixScrollFn() {
-    const bodyElem = document.querySelector('body');
-    bodyElem.classList.toggle('nwc-hide-scrollbar', false);
-    bodyElem.style.top = null;
-    if (scrollY) {
-      window.scrollTo(0, scrollY);
-    }
-  }
-
   constructor(props) {
     super(props);
 
@@ -42,12 +19,6 @@ class Modal extends Component {
 
     this.openModal = openModal.bind(this);
     this.closeModal = closeModal.bind(this);
-  }
-
-  componentWillMount() {
-    const modalContainer = document.createElement('div');
-    modalContainer.className = 'nwc-modal-container';
-    document.querySelectorAll('body')[0].appendChild(modalContainer);
   }
 
   componentDidUpdate() {
@@ -70,5 +41,7 @@ Modal.propTypes = {
     PropTypes.string,
   ]).isRequired,
 };
+
+createBaseContainer();
 
 export default Modal;

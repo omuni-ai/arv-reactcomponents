@@ -4,9 +4,11 @@ import ReactDOM from 'react-dom';
 
 import './styles/_index.scss';
 import {
+  clearAll,
   showToastr,
   renderToastr,
   setConfig,
+  createBaseContainer,
 } from './methods';
 
 class Toastr extends Component {
@@ -17,15 +19,10 @@ class Toastr extends Component {
       'toastrList': [], // eslint-disable-line react/no-unused-state
     };
 
+    Toastr.clearAll = clearAll.bind(this);
     Toastr.showToastr = showToastr.bind(this);
     Toastr.setConfig = setConfig.bind(this);
     Toastr.setConfig({ limitTo: 5 });
-  }
-
-  componentWillMount() {
-    const toastrContainer = document.createElement('div');
-    toastrContainer.className = 'nwc-toastr-container';
-    document.querySelectorAll('body')[0].appendChild(toastrContainer);
   }
 
   componentDidUpdate() {
@@ -41,5 +38,7 @@ ReactDOM.render(
   <Toastr />,
   document.createElement('div'),
 );
+
+createBaseContainer();
 
 export default Toastr;
