@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react';
 import { scrollElemToView } from '../_jsUtils';
 
-let selectedListIndex = null;
+let selectedListIndex = 0;
 let navigateTimeoutId = null;
 
 function hideAutocompleteList(index = selectedListIndex) {
@@ -18,6 +18,8 @@ function hideAutocompleteList(index = selectedListIndex) {
 }
 
 function toggleAutocompleteDisplay(bool) {
+  selectedListIndex = 0;
+
   setTimeout(() => {
     this.setState({
       isAutocompleteActive: bool,
