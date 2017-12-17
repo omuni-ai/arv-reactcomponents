@@ -35,7 +35,10 @@ class InputExample extends Component {
     });
   }
 
-  toggleValue(stateProp) {
+  toggleValue(e, stateProp) {
+    if (e.key && e.key !== 'Enter') {
+      return;
+    }
     this.setState({
       [stateProp]: !this.state[stateProp],
     });
@@ -86,7 +89,8 @@ class InputExample extends Component {
                 value="0"
                 checked={checkboxChecked}
                 className={`nwc-inp-checkbox-secondary nwc-inp-sm nwc-inp-normal ${this.errorClass}`}
-                onChange={() => { this.toggleValue('checkboxChecked'); }}
+                onChange={(e) => { this.toggleValue(e, 'checkboxChecked'); }}
+                onKeyDown={(e) => { this.toggleValue(e, 'checkboxChecked'); }}
               /> &nbsp;
               <Input
                 name="sampleRadio"
@@ -94,7 +98,8 @@ class InputExample extends Component {
                 value="0"
                 checked={radioChecked}
                 className={`nwc-inp-radio-primary nwc-inp-sm nwc-inp-normal ${this.errorClass}`}
-                onChange={() => { this.toggleValue('radioChecked'); }}
+                onChange={(e) => { this.toggleValue(e, 'radioChecked'); }}
+                onKeyDown={(e) => { this.toggleValue(e, 'radioChecked'); }}
               />
             </div>
           </GridColumn>

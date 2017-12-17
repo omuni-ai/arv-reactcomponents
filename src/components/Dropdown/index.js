@@ -62,7 +62,7 @@ class Dropdown extends Component {
           <Input
             id={id || this.inputId}
             labelClassName="nwc-dropdown-label"
-            className="nwc-inp-dash nwc-inp-sm"
+            className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
             placeholder="Enter text"
             value={inpVal}
             onChange={onInpValChangeFn}

@@ -94,7 +94,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  visibility: hidden;
+  border: 0;
+  width: 1px;
+  height: 1px;
+  background: $transparent;
 }
 
 /* stylelint-disable */
