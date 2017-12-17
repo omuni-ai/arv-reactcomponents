@@ -35,6 +35,7 @@ $compliment-for-light: $black;
 
 $color-primary: $violet-red !default;
 $color-secondary: $lochmara !default;
+$color-notification: $lochmara !default;
 $color-success: $olive !default;
 $color-danger: $red-ribbon !default;
 $color-transparent-modal: rgba(0, 0, 0, 0.7) !default;
@@ -108,5 +109,12 @@ $all-dropdown-variants: (
   success: $color-success,
   danger: $color-danger
 ) !default; // variants for border property
+
+// Toaster
+$all-toaster-variants: (
+  notification: $color-notification,
+  success: $color-success,
+  danger: $color-danger
+) !default; // variants for background property
 
 $screen-media: sm !default;

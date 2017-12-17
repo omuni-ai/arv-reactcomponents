@@ -1,0 +1,33 @@
+.nwc-toastr-container {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  user-select: none;
+}
+
+.nwc-toastr-list {
+  margin: 0;
+  height: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nwc-toastr-msg {
+  position: relative;
+  margin: 0 auto 10px;
+  border-radius: 3px;
+  max-width: 768px;
+  padding: 10px;
+  background: $white;
+}
+
+@each $all-toaster-variants, $value in $all-toaster-variants {
+  .nwc-toastr-msg-#{$all-toaster-variants} {
+    background: $value;
+    color: set-color($value, $compliment-for-dark, $compliment-for-light);
+    @if(lightness($value) > 70) {
+      border: 1px solid $compliment-for-light;
+    }
+  }
+}

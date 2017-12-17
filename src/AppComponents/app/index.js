@@ -7,6 +7,7 @@ import AutocompleteExample from '../AutocompleteExample';
 import DropdownExample from '../DropdownExample';
 import InputExample from '../InputExample';
 import ButtonModalExample from '../ButtonModalExample';
+import ButtonToastrExample from '../ButtonToastrExample';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <DropdownExample />
         <InputExample />
         <ButtonModalExample />
+        <ButtonToastrExample />
       </GridRow>
     </GridContainer>
   );

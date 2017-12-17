@@ -1,0 +1,11 @@
+@import '../index';
+
+.nw-sample-buttoncontainer {
+  margin-bottom: 10px;
+}
+
+.nw-sample-buttonwrapper {
+  border: 1px solid darken-colors($concrete, 1);
+  border-radius: 3px;
+  padding: 10px;
+}

@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 
 import './styles/_index.scss';
 
-function Close(props) {
-  const {
-    className,
-    ...otherProps
-  } = props;
-  return (
-    <Button
-      className={`nwc-close ${className}`}
-      {...otherProps}
-    >
-      ×
-    </Button>
-  );
+class Close extends Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    const {
+      className,
+      ...otherProps
+    } = this.props;
+    return (
+      <Button
+        className={`nwc-close ${className}`}
+        {...otherProps}
+      >
+        ×
+      </Button>
+    );
+  }
 }
 
 Close.defaultProps = {
