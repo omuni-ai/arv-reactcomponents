@@ -11,7 +11,9 @@ function clearAll() {
 function hideToastr(item) {
   const { toastrList } = this.state;
 
-  toastrList.splice(toastrList.findIndex(i => i === item), 1);
+  if (toastrList.findIndex(i => i.id === item.id) !== -1) {
+    toastrList.splice(toastrList.findIndex(i => i.id === item.id), 1);
+  }
 
   this.setState({
     toastrList,
@@ -46,7 +48,7 @@ function showToastr(item) {
 
   setTimeout(() => {
     this.containerRef.focus();
-  }, 10);
+  });
 
   if (!Number.isNaN(timeout)) {
     setTimeout(() => {

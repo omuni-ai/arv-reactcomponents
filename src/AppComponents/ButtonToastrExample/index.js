@@ -11,11 +11,18 @@ Toastr.setConfig({
 });
 
 class ButtonToastrExample extends Component {
-  static showHelloMsg() {
+  static withoutTimeout() {
+    Toastr.showToastr({
+      className: 'nwc-toastr-msg-danger',
+      message: `${Math.round(Math.random() * (10 ** 10))}`,
+    });
+  }
+
+  static withTimeout() {
     Toastr.showToastr({
       className: 'nwc-toastr-msg-notification',
-      type: 'notification',
       message: `${Math.round(Math.random() * (10 ** 10))}`,
+      timeout: 3000,
     });
   }
 
@@ -26,9 +33,15 @@ class ButtonToastrExample extends Component {
           <div className="nw-space-bottom">Button and Toastr Example</div>
           <Button
             className="nwc-btn-primary nwc-btn-normal"
-            onClick={ButtonToastrExample.showHelloMsg}
+            onClick={ButtonToastrExample.withoutTimeout}
           >
             Show Toastr
+          </Button>
+          <Button
+            className="nwc-btn-primary nwc-btn-normal"
+            onClick={ButtonToastrExample.withTimeout}
+          >
+            Show Toastr with Timeout
           </Button>
         </div>
       </GridColumn>
