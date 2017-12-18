@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Import common components
-import { Button, Toastr, GridColumn } from '../../components';
+import { Button, Toastr, GridColumn } from "../../components";
 
 // Import for page
-import './_index.scss';
+import "./_index.scss";
 
 Toastr.setConfig({
   limitTo: 3, // Change default value of limitTo to `3`
@@ -13,15 +13,15 @@ Toastr.setConfig({
 class ButtonToastrExample extends Component {
   static withoutTimeout() {
     Toastr.showToastr({
-      className: 'nwc-toastr-msg-danger',
-      message: `${Math.round(Math.random() * (10 ** 10))}`,
+      className: "nwc-toastr-msg-danger",
+      message: `${Math.round(Math.random() * 10 ** 10)}`,
     });
   }
 
   static withTimeout() {
     Toastr.showToastr({
-      className: 'nwc-toastr-msg-notification',
-      message: `${Math.round(Math.random() * (10 ** 10))}`,
+      className: "nwc-toastr-msg-notification",
+      message: `${Math.round(Math.random() * 10 ** 10)}`,
       timeout: 3000,
     });
   }

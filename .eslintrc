@@ -1,5 +1,10 @@
 {
-  "extends": ["airbnb"],
+
+  "extends": ["airbnb", "prettier","prettier/react"],
+  "parser": "babel-eslint",
+  "plugins": [
+    "prettier"
+  ],
   "env": {
     "browser": true,
     "jest": true
@@ -7,6 +12,11 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "func-names": ["error", "never"],
-    "quote-props": 0
+    "prettier/prettier": [ // customizing prettier rules (unfortunately not many of them are customizable)
+      "error",
+      {
+        "trailingComma": "all"
+      }
+    ]
   }
 }

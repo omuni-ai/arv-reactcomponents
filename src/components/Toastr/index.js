@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 // import Close from '../Close';
 
-import './styles/_index.scss';
+import "./styles/_index.scss";
 import {
   clearAll,
   showToastr,
   renderToastr,
   setConfig,
   createBaseContainer,
-} from './methods';
+} from "./methods";
 
 class Toastr extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      'toastrList': [], // eslint-disable-line react/no-unused-state
+      toastrList: [], // eslint-disable-line react/no-unused-state
     };
 
     Toastr.clearAll = clearAll.bind(this);
@@ -34,10 +34,7 @@ class Toastr extends Component {
   }
 }
 
-ReactDOM.render(
-  <Toastr />,
-  document.createElement('div'),
-);
+ReactDOM.render(<Toastr />, document.createElement("div"));
 
 createBaseContainer();
 

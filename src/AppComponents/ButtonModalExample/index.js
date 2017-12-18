@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Import common components
-import { Button, Modal, GridColumn, Toastr } from '../../components';
+import { Button, Modal, GridColumn, Toastr } from "../../components";
 
 // Import for page
-import './_index.scss';
+import "./_index.scss";
 
 class ButtonModalExample extends Component {
   constructor(props) {
@@ -42,12 +42,16 @@ class ButtonModalExample extends Component {
             Hai Modal
           </Button>
           <Modal
-            ref={(c) => { this.helloRef = c; }}
+            ref={c => {
+              this.helloRef = c;
+            }}
           >
             <div>Hello</div>
           </Modal>
           <Modal
-            ref={(c) => { this.haiRef = c; }}
+            ref={c => {
+              this.haiRef = c;
+            }}
           >
             <div>Hai</div>
           </Modal>

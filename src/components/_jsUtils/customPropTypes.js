@@ -1,8 +1,8 @@
 function Input(props, propName) {
   const CheckFor = {
-    'text': ['value', 'placeholder'],
-    'checkbox': ['value', 'name', 'checked'],
-    'radio': ['value', 'name', 'checked'],
+    text: ["value", "placeholder"],
+    checkbox: ["value", "name", "checked"],
+    radio: ["value", "name", "checked"],
   };
 
   if (

@@ -1,5 +1,5 @@
-import React, { cloneElement } from 'react';
-import { scrollElemToView } from '../_jsUtils';
+import React, { cloneElement } from "react";
+import { scrollElemToView } from "../_jsUtils";
 
 let selectedListIndex = 0;
 let inputTimeoutId = null;
@@ -13,7 +13,7 @@ function onInpValChange(e) {
   clearTimeout(inputTimeoutId);
   inputTimeoutId = setTimeout(() => {
     this.setState({
-      inpVal: '',
+      inpVal: "",
     });
   }, 800);
 }
@@ -52,27 +52,25 @@ function onUserInput(e) {
   let isSelectActive = true;
 
   switch (e.key) {
-    case 'ArrowUp':
+    case "ArrowUp":
       e.preventDefault();
-      selectedListIndex = selectedListIndex !== 0 ?
-        selectedListIndex - 1 :
-        listNodeLength;
+      selectedListIndex =
+        selectedListIndex !== 0 ? selectedListIndex - 1 : listNodeLength;
       break;
-    case 'ArrowDown':
-      selectedListIndex = selectedListIndex !== listNodeLength ?
-        selectedListIndex + 1 :
-        0;
+    case "ArrowDown":
+      selectedListIndex =
+        selectedListIndex !== listNodeLength ? selectedListIndex + 1 : 0;
       break;
-    case 'ArrowRight':
-    case 'ArrowLeft':
+    case "ArrowRight":
+    case "ArrowLeft":
       break;
-    case 'Enter':
-    case 'Tab':
+    case "Enter":
+    case "Tab":
       isSelectActive = false;
       hideSelectListFn();
       break;
     default:
-      /* default */
+    /* default */
   }
 
   clearTimeout(navigateTimeoutId);
@@ -90,7 +88,7 @@ function onUserInput(e) {
 
 function renderListItems(inpVal, inpList, renderList) {
   const hideSelectListFn = hideSelectList.bind(this);
-  const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, 'i');
+  const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, "i");
 
   this.state.listNode = [];
 
@@ -98,7 +96,7 @@ function renderListItems(inpVal, inpList, renderList) {
     inpList.forEach((item, index) => {
       if (inpVal && inpVal.length > 0 && regXSearchItemStartsWith.test(item)) {
         selectedListIndex = index;
-        throw Error('break');
+        throw Error("break");
       }
     });
   } catch (err) {
@@ -108,33 +106,33 @@ function renderListItems(inpVal, inpList, renderList) {
   const list = inpList.map((item, index) => {
     const elem = renderList(item);
     const onClickFn = elem.props.onClick || (() => {});
-    let addClass = '';
+    let addClass = "";
     if (index === selectedListIndex) {
-      addClass = 'is-active';
+      addClass = "is-active";
     }
     this.state.listNodeItem[index] = item;
     return cloneElement(elem, {
-      className: `${elem.props.className || ''} ${addClass}`,
-      ref: (c) => { this.state.listNode[`item-${index}`] = c; },
-      onClick: (e) => { onClickFn(e); hideSelectListFn(index); },
+      className: `${elem.props.className || ""} ${addClass}`,
+      ref: c => {
+        this.state.listNode[`item-${index}`] = c;
+      },
+      onClick: e => {
+        onClickFn(e);
+        hideSelectListFn(index);
+      },
     });
   });
 
-  return this.state.isSelectActive ?
-    (
-      <ul
-        className="nwc-dropdown-list-container"
-        ref={(c) => { this.listNodeWrapperRef = c; }}
-      >
-        {list}
-      </ul>
-    ) :
-    null;
+  return this.state.isSelectActive ? (
+    <ul
+      className="nwc-dropdown-list-container"
+      ref={c => {
+        this.listNodeWrapperRef = c;
+      }}
+    >
+      {list}
+    </ul>
+  ) : null;
 }
 
-export {
-  onInpValChange,
-  onUserInput,
-  toggleSelectDisplay,
-  renderListItems,
-};
+export { onInpValChange, onUserInput, toggleSelectDisplay, renderListItems };

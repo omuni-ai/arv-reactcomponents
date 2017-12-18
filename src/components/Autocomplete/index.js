@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 // import for Page
-import { renderAutocompleteInput, renderListItems } from './methods';
-import './styles/_index.scss';
+import { renderAutocompleteInput, renderListItems } from "./methods";
+import "./styles/_index.scss";
 
 let renderAutocompleteInputFn;
 let renderListItemsFn;
@@ -36,10 +36,7 @@ class Autocomplete extends Component {
     const elem = renderInput();
 
     return (
-      <div
-        className={`nwc-autocomplete ${className}`}
-        {...otherProps}
-      >
+      <div className={`nwc-autocomplete ${className}`} {...otherProps}>
         {renderAutocompleteInputFn(elem)}
         {renderListItemsFn(elem.props.value, inpList, renderList)}
       </div>
@@ -48,7 +45,7 @@ class Autocomplete extends Component {
 }
 
 Autocomplete.defaultProps = {
-  className: '',
+  className: "",
   getSelection: () => {},
   minTextLength: 0,
 };

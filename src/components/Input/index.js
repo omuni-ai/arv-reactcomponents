@@ -1,51 +1,59 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import CustomPropTypes from '../_jsUtils/customPropTypes';
-import Label from '../Label';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import CustomPropTypes from "../_jsUtils/customPropTypes";
+import Label from "../Label";
 
 // import for Page
-import getValidatedOutput from './methods';
-import './styles/_index.scss';
+import getValidatedOutput from "./methods";
+import "./styles/_index.scss";
 
 class Input extends Component {
   constructor(props) {
     super(props);
 
     this.getValidatedOutput = getValidatedOutput.bind(this);
-    this.inputId = `${Math.round(Math.random() * (10 ** 10))}`;
+    this.inputId = `${Math.round(Math.random() * 10 ** 10)}`;
   }
 
   get defaultClassNames() {
     const { type } = this.props;
     switch (type) {
-      case 'checkbox':
-      case 'radio':
-        return 'nwc-inp-hide';
+      case "checkbox":
+      case "radio":
+        return "nwc-inp-hide";
       default:
-        return 'nwc-inp';
+        return "nwc-inp";
     }
   }
 
   get cloneClassName() {
     const { type, checked } = this.props;
-    const isCheckedClass = checked ? ' is-checked' : '';
+    const isCheckedClass = checked ? " is-checked" : "";
     switch (type) {
-      case 'checkbox':
+      case "checkbox":
         return `nwc-inp-checkbox${isCheckedClass}`;
-      case 'radio':
+      case "radio":
         return `nwc-inp-radio${isCheckedClass}`;
       default:
-        return 'nwc-inp-hide';
+        return "nwc-inp-hide";
     }
   }
 
   render() {
     const {
-      id, labelClassName, className, type, validateWithPattern, ...otherProps
+      id,
+      labelClassName,
+      className,
+      type,
+      validateWithPattern,
+      ...otherProps
     } = this.props;
 
     return (
-      <Label className={`nwc-inp-container ${labelClassName}`} htmlFor={id || this.inputId}>
+      <Label
+        className={`nwc-inp-container ${labelClassName}`}
+        htmlFor={id || this.inputId}
+      >
         <input
           id={id || this.inputId}
           className={`${this.defaultClassNames} ${className}`}
@@ -62,9 +70,9 @@ class Input extends Component {
 Input.defaultProps = {
   id: null,
   name: null,
-  labelClassName: '',
-  className: '',
-  type: 'text',
+  labelClassName: "",
+  className: "",
+  type: "text",
   placeholder: null,
   value: null,
   checked: null,
@@ -83,10 +91,12 @@ Input.propTypes = {
   checked: CustomPropTypes.Input, // eslint-disable-line react/no-typos
   onChange: PropTypes.func.isRequired,
   maxLength: PropTypes.number,
-  validateWithPattern: PropTypes.arrayOf(PropTypes.shape({
-    pattern: PropTypes.instanceOf(RegExp),
-    msg: PropTypes.string,
-  })),
+  validateWithPattern: PropTypes.arrayOf(
+    PropTypes.shape({
+      pattern: PropTypes.instanceOf(RegExp),
+      msg: PropTypes.string,
+    }),
+  ),
 };
 
 export default Input;

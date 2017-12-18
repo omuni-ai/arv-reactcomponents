@@ -1,14 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import './styles/_index.scss';
+import "./styles/_index.scss";
 
 function Label(props) {
-  const {
-    htmlFor,
-    children,
-    ...otherProps
-  } = props;
+  const { htmlFor, children, ...otherProps } = props;
 
   return (
     <label htmlFor={htmlFor} {...otherProps}>
@@ -19,7 +15,7 @@ function Label(props) {
 }
 
 Label.defaultProps = {
-  children: '',
+  children: "",
 };
 
 Label.propTypes = {

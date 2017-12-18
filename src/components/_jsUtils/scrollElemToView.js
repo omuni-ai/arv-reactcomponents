@@ -1,4 +1,4 @@
-import getBoundClientRect from './getBoundClientRect';
+import getBoundClientRect from "./getBoundClientRect";
 
 function scrollElemToView(parent, child) {
   const parentElem = parent;

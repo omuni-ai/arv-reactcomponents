@@ -1,26 +1,62 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Import common components
-import { Input, Autocomplete, GridColumn } from '../../components';
+import { Input, Autocomplete, GridColumn } from "../../components";
 
 // Import for page
-import './_index.scss';
+import "./_index.scss";
 
 class AutocompleteExample extends Component {
   static getList(item) {
-    return <li className="nw-sample-autocomplete-list" key={item}>{item}</li>;
+    return (
+      <li className="nw-sample-autocomplete-list" key={item}>
+        {item}
+      </li>
+    );
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      autocompleteInputValue: '',
+      autocompleteInputValue: "",
       inpList: [
-        'Arrow', 'Arrow-N', 'Arrow-Y', 'Arrow-L', 'Arrow-B', 'Arrow-Q', 'Arrow-P', 'Arrow-R', 'Arrow-D',
-        'Sephora', 'Sephora-N', 'Sephora-Y', 'Sephora-L', 'Sephora-B', 'Sephora-Q', 'Sephora-P', 'Sephora-R', 'Sephora-D',
-        'Levis', 'Levis-N', 'Levis-Y', 'Levis-L', 'Levis-B', 'Levis-Q', 'Levis-P', 'Levis-R', 'Levis-D',
-        'Gap', 'Gap-N', 'Gap-Y', 'Gap-L', 'Gap-B', 'Gap-Q', 'Gap-P', 'Gap-R', 'Gap-D',
+        "Arrow",
+        "Arrow-N",
+        "Arrow-Y",
+        "Arrow-L",
+        "Arrow-B",
+        "Arrow-Q",
+        "Arrow-P",
+        "Arrow-R",
+        "Arrow-D",
+        "Sephora",
+        "Sephora-N",
+        "Sephora-Y",
+        "Sephora-L",
+        "Sephora-B",
+        "Sephora-Q",
+        "Sephora-P",
+        "Sephora-R",
+        "Sephora-D",
+        "Levis",
+        "Levis-N",
+        "Levis-Y",
+        "Levis-L",
+        "Levis-B",
+        "Levis-Q",
+        "Levis-P",
+        "Levis-R",
+        "Levis-D",
+        "Gap",
+        "Gap-N",
+        "Gap-Y",
+        "Gap-L",
+        "Gap-B",
+        "Gap-Q",
+        "Gap-P",
+        "Gap-R",
+        "Gap-D",
       ],
     };
 

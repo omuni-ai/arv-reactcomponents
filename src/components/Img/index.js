@@ -1,21 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './styles/_index.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import "./styles/_index.scss";
 
 function Img(props) {
-  const {
-    className, src, defaultSrc, alt, ...otherProps
-  } = props;
+  const { className, src, defaultSrc, alt, ...otherProps } = props;
   return (
-    <img className={`nwc-img ${className}`} src={src || defaultSrc} alt={alt} {...otherProps} />
+    <img
+      className={`nwc-img ${className}`}
+      src={src || defaultSrc}
+      alt={alt}
+      {...otherProps}
+    />
   );
 }
 
 Img.defaultProps = {
-  className: '',
-  alt: 'NNNOW',
+  className: "",
+  alt: "NNNOW",
   src: null,
-  defaultSrc: '',
+  defaultSrc: "",
 };
 
 Img.propTypes = {

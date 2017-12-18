@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 // import GridRow from './GridRow';
 
 class GridContainer extends Component {
   componentDidMount() {
     window.requestAnimationFrame(() => {
       const { childNodes } = this.containerRef;
-      childNodes.forEach((item) => {
-        if (!(/(^|\s)nwc-grid-row($|[\s])/.test(item.className))) {
-          throw Error('`GridContainer` component must have `GridRow` as child');
+      childNodes.forEach(item => {
+        if (!/(^|\s)nwc-grid-row($|[\s])/.test(item.className)) {
+          throw Error("`GridContainer` component must have `GridRow` as child");
         }
       });
     });
   }
 
   get classNameForStrict() {
-    return this.props.strict ? 'nwc-grid-container-strict' : '';
+    return this.props.strict ? "nwc-grid-container-strict" : "";
   }
 
   render() {
-    const {
-      className, strict, children, ...otherProps
-    } = this.props;
+    const { className, strict, children, ...otherProps } = this.props;
 
     return (
       <div
         className={`nwc-grid-container ${this.classNameForStrict} ${className}`}
         {...otherProps}
-        ref={(c) => { this.containerRef = c; }}
+        ref={c => {
+          this.containerRef = c;
+        }}
       >
         {children}
       </div>
@@ -36,7 +36,7 @@ class GridContainer extends Component {
 }
 
 GridContainer.defaultProps = {
-  className: '',
+  className: "",
   strict: false,
   // children: undefined,
 };

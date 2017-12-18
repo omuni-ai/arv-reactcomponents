@@ -1,5 +1,5 @@
-import React, { cloneElement } from 'react';
-import { scrollElemToView } from '../_jsUtils';
+import React, { cloneElement } from "react";
+import { scrollElemToView } from "../_jsUtils";
 
 let selectedListIndex = 0;
 let navigateTimeoutId = null;
@@ -34,22 +34,20 @@ function onUserInput(e) {
   let isAutocompleteActive = true;
 
   switch (e.key) {
-    case 'ArrowUp':
+    case "ArrowUp":
       e.preventDefault();
-      selectedListIndex = selectedListIndex !== 0 ?
-        selectedListIndex - 1 :
-        listNodeLength;
+      selectedListIndex =
+        selectedListIndex !== 0 ? selectedListIndex - 1 : listNodeLength;
       break;
-    case 'ArrowDown':
-      selectedListIndex = selectedListIndex !== listNodeLength ?
-        selectedListIndex + 1 :
-        0;
+    case "ArrowDown":
+      selectedListIndex =
+        selectedListIndex !== listNodeLength ? selectedListIndex + 1 : 0;
       break;
-    case 'ArrowRight':
-    case 'ArrowLeft':
+    case "ArrowRight":
+    case "ArrowLeft":
       break;
-    case 'Enter':
-    case 'Tab':
+    case "Enter":
+    case "Tab":
       isAutocompleteActive = false;
       hideAutocompleteListFn();
       break;
@@ -76,37 +74,42 @@ function renderListItems(inpVal, inpList, renderList) {
 
   this.state.listNode = [];
 
-  const filteredList = inpList.filter(item => (
-    item.toLowerCase().indexOf(inpVal.toLowerCase()) > -1
-  ));
+  const filteredList = inpList.filter(
+    item => item.toLowerCase().indexOf(inpVal.toLowerCase()) > -1,
+  );
 
   const list = filteredList.map((item, index) => {
     const elem = renderList(item);
     const onClickFn = elem.props.onClick || (() => {});
-    let addClass = '';
+    let addClass = "";
     if (index === selectedListIndex) {
-      addClass = 'is-active';
+      addClass = "is-active";
     }
     this.state.listNodeItem[index] = item;
     return cloneElement(elem, {
-      className: `${elem.props.className || ''} ${addClass}`,
-      ref: (c) => { this.state.listNode[`item-${index}`] = c; },
-      onClick: (e) => { onClickFn(e); hideAutocompleteListFn(index); },
+      className: `${elem.props.className || ""} ${addClass}`,
+      ref: c => {
+        this.state.listNode[`item-${index}`] = c;
+      },
+      onClick: e => {
+        onClickFn(e);
+        hideAutocompleteListFn(index);
+      },
     });
   });
 
   return this.state.isAutocompleteActive &&
     filteredList.length > 0 &&
-    inpVal.length >= minTextLength ?
-    (
-      <ul
-        className="nwc-autocomplete-list-container"
-        ref={(c) => { this.listNodeWrapperRef = c; }}
-      >
-        {list}
-      </ul>
-    ) :
-    null;
+    inpVal.length >= minTextLength ? (
+    <ul
+      className="nwc-autocomplete-list-container"
+      ref={c => {
+        this.listNodeWrapperRef = c;
+      }}
+    >
+      {list}
+    </ul>
+  ) : null;
 }
 
 function renderAutocompleteInput(elem) {
@@ -118,14 +121,22 @@ function renderAutocompleteInput(elem) {
 
   return cloneElement(elem, {
     id: id || this.inputId,
-    onKeyDown: (e) => { onKeyDownFn(e); onUserInput.bind(this)(e); },
-    onFocus: (e) => { onFocusFn(e); toggleAutocompleteDisplayFn(true); },
-    onBlur: (e) => { onBlurFn(e); toggleAutocompleteDisplayFn(false); },
-    ref: (c) => { this.inputNode = c; },
+    onKeyDown: e => {
+      onKeyDownFn(e);
+      onUserInput.bind(this)(e);
+    },
+    onFocus: e => {
+      onFocusFn(e);
+      toggleAutocompleteDisplayFn(true);
+    },
+    onBlur: e => {
+      onBlurFn(e);
+      toggleAutocompleteDisplayFn(false);
+    },
+    ref: c => {
+      this.inputNode = c;
+    },
   });
 }
 
-export {
-  renderAutocompleteInput,
-  renderListItems,
-};
+export { renderAutocompleteInput, renderListItems };

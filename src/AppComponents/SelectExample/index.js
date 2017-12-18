@@ -1,28 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // Import common components
-import { Select, GridColumn } from '../../components';
+import { Select, GridColumn } from "../../components";
 
 // Import for page
-import './_index.scss';
+import "./_index.scss";
 
 class SelectExample extends Component {
   static getList(item) {
-    return <li className="nw-sample-dropdown-list" key={item}>{item}</li>;
+    return (
+      <li className="nw-sample-dropdown-list" key={item}>
+        {item}
+      </li>
+    );
   }
 
   constructor(props) {
     super(props);
 
     const dropdownList = [
-      'Delhi',
-      'Mumbai',
-      'Gujarat',
-      'Karnataka',
-      'Pune',
-      'Kerala',
-      'Goa',
-      'Maharashrtra',
+      "Delhi",
+      "Mumbai",
+      "Gujarat",
+      "Karnataka",
+      "Pune",
+      "Kerala",
+      "Goa",
+      "Maharashrtra",
     ];
 
     this.state = {

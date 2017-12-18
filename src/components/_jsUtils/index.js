@@ -1,10 +1,5 @@
-import getBoundClientRect from './getBoundClientRect';
-import scrollElemToView from './scrollElemToView';
-import { fixScroll, unFixScroll } from './fixScroll';
+import getBoundClientRect from "./getBoundClientRect";
+import scrollElemToView from "./scrollElemToView";
+import { fixScroll, unFixScroll } from "./fixScroll";
 
-export {
-  getBoundClientRect,
-  scrollElemToView,
-  fixScroll,
-  unFixScroll,
-};
+export { getBoundClientRect, scrollElemToView, fixScroll, unFixScroll };

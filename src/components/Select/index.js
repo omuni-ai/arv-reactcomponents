@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 // import for Page
-import Label from '../Label';
-import Input from '../Input';
+import Label from "../Label";
+import Input from "../Input";
 import {
   onInpValChange,
   onUserInput,
   toggleSelectDisplay,
   renderListItems,
-} from './methods';
-import './styles/_index.scss';
+} from "./methods";
+import "./styles/_index.scss";
 
 let onInpValChangeFn;
 let onUserInputFn;
@@ -22,13 +22,13 @@ class Select extends Component {
     super(props);
 
     this.state = {
-      inpVal: '',
+      inpVal: "",
       isSelectActive: false, // eslint-disable-line react/no-unused-state
       listNode: [], // eslint-disable-line react/no-unused-state
       listNodeItem: [], // eslint-disable-line react/no-unused-state
     };
 
-    this.inputId = `${Math.round(Math.random() * (10 ** 10))}`;
+    this.inputId = `${Math.round(Math.random() * 10 ** 10)}`;
 
     onInpValChangeFn = onInpValChange.bind(this);
     onUserInputFn = onUserInput.bind(this);
@@ -37,9 +37,7 @@ class Select extends Component {
   }
 
   render() {
-    const {
-      inpVal,
-    } = this.state;
+    const { inpVal } = this.state;
 
     const {
       id,
@@ -67,8 +65,12 @@ class Select extends Component {
             value={inpVal}
             onChange={onInpValChangeFn}
             onKeyDown={onUserInputFn}
-            onFocus={() => { toggleSelectDisplayFn(true); }}
-            onBlur={() => { toggleSelectDisplayFn(false); }}
+            onFocus={() => {
+              toggleSelectDisplayFn(true);
+            }}
+            onBlur={() => {
+              toggleSelectDisplayFn(false);
+            }}
           />
         </Label>
         {renderListItemsFn(inpVal, inpList, renderList)}
@@ -79,17 +81,15 @@ class Select extends Component {
 
 Select.defaultProps = {
   id: null,
-  className: '',
+  className: "",
   getSelection: () => {},
 };
 
 Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  selectedValue: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-  ]).isRequired,
+  selectedValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+    .isRequired,
   inpList: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.arrayOf(PropTypes.string),

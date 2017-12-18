@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Close from '../Close';
+import React from "react";
+import ReactDOM from "react-dom";
+import Close from "../Close";
 
 function clearAll() {
   this.setState({
@@ -21,7 +21,7 @@ function hideToastr(item) {
 }
 
 function hideToastrOnKeyDown(e) {
-  if (e.key && e.key !== 'Escape') {
+  if (e.key && e.key !== "Escape") {
     return;
   }
 
@@ -39,7 +39,7 @@ function showToastr(item) {
   const { toastrList } = this.state;
   const itemClone = item;
 
-  itemClone.id = `${Math.round(Math.random() * (10 ** 10))}`;
+  itemClone.id = `${Math.round(Math.random() * 10 ** 10)}`;
   toastrList.push(itemClone);
 
   this.setState({
@@ -58,9 +58,7 @@ function showToastr(item) {
 }
 
 function renderList() {
-  const {
-    toastrList,
-  } = this.state;
+  const { toastrList } = this.state;
 
   const toastrListRev = [...toastrList].reverse();
   const hideToastrFn = hideToastr.bind(this);
@@ -74,7 +72,9 @@ function renderList() {
         >
           <Close
             className="nwc-close-sm"
-            onClick={() => { hideToastrFn(item); }}
+            onClick={() => {
+              hideToastrFn(item);
+            }}
           />
           {item.message}
         </li>
@@ -88,9 +88,7 @@ function renderList() {
 }
 
 function renderToastr() {
-  const {
-    toastrList,
-  } = this.state;
+  const { toastrList } = this.state;
   const hideToastrOnKeyDownFn = hideToastrOnKeyDown.bind(this);
   const renderListFn = renderList.bind(this);
 
@@ -98,14 +96,16 @@ function renderToastr() {
     <div
       role="button"
       tabIndex={0}
-      ref={(c) => { this.containerRef = c; }}
-      onKeyDown={(e) => { hideToastrOnKeyDownFn(e, toastrList[0]); }}
+      ref={c => {
+        this.containerRef = c;
+      }}
+      onKeyDown={e => {
+        hideToastrOnKeyDownFn(e, toastrList[0]);
+      }}
     >
-      <ul className="nwc-toastr-list">
-        {renderListFn()}
-      </ul>
+      <ul className="nwc-toastr-list">{renderListFn()}</ul>
     </div>,
-    document.querySelectorAll('.nwc-toastr-container')[0],
+    document.querySelectorAll(".nwc-toastr-container")[0],
   );
 }
 
@@ -114,15 +114,9 @@ function setConfig(obj) {
 }
 
 function createBaseContainer() {
-  const toastrContainer = document.createElement('div');
-  toastrContainer.className = 'nwc-toastr-container';
-  document.querySelectorAll('body')[0].appendChild(toastrContainer);
+  const toastrContainer = document.createElement("div");
+  toastrContainer.className = "nwc-toastr-container";
+  document.querySelectorAll("body")[0].appendChild(toastrContainer);
 }
 
-export {
-  clearAll,
-  showToastr,
-  renderToastr,
-  setConfig,
-  createBaseContainer,
-};
+export { clearAll, showToastr, renderToastr, setConfig, createBaseContainer };

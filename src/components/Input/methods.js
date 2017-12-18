@@ -4,7 +4,7 @@ function restrictVal(value, props) {
   const newValue = value;
 
   switch (type) {
-    case 'number':
+    case "number":
       if (maxLength) {
         return newValue.slice(0, maxLength);
       }
@@ -21,11 +21,11 @@ function validateValue(value, props) {
   let errorMsg;
 
   try {
-    validateWithPattern.forEach((item) => {
+    validateWithPattern.forEach(item => {
       if (!item.pattern.test(value)) {
         isValid = false;
         errorMsg = item.msg;
-        throw new Error('break');
+        throw new Error("break");
       }
     });
   } catch (err) {

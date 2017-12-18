@@ -1,20 +1,20 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Component } from "react";
+import PropTypes from "prop-types";
 
-import './styles/_index.scss';
+import "./styles/_index.scss";
 import {
   renderModal,
   openModal,
   closeModal,
   createBaseContainer,
-} from './methods';
+} from "./methods";
 
 class Modal extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      'isOpen': false, // eslint-disable-line react/no-unused-state
+      isOpen: false, // eslint-disable-line react/no-unused-state
     };
 
     this.openModal = openModal.bind(this);
@@ -31,15 +31,13 @@ class Modal extends Component {
 }
 
 Modal.defaultProps = {
-  className: '',
+  className: "",
 };
 
 Modal.propTypes = {
   className: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  children: PropTypes.oneOfType([ // eslint-disable-line react/no-unused-prop-types
-    PropTypes.node,
-    PropTypes.string,
-  ]).isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
 };
 
 createBaseContainer();

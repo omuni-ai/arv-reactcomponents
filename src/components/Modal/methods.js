@@ -1,18 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Close from '../Close';
-import { fixScroll, unFixScroll } from '../_jsUtils';
+import React from "react";
+import ReactDOM from "react-dom";
+import Close from "../Close";
+import { fixScroll, unFixScroll } from "../_jsUtils";
 
 function preventEventPropagation(e) {
   e.stopPropagation();
 }
 
 function renderModal() {
-  const {
-    className,
-    children,
-    ...otherProps
-  } = this.props;
+  const { className, children, ...otherProps } = this.props;
 
   if (this.state.isOpen) {
     ReactDOM.render(
@@ -23,7 +19,9 @@ function renderModal() {
         onClick={this.closeModal}
         // onKeyDownCapture={(e) => { this.closeModal(e, 'key'); }}
         onKeyDown={this.closeModal}
-        ref={(c) => { this.modalRef = c; }}
+        ref={c => {
+          this.modalRef = c;
+        }}
         {...otherProps}
       >
         <div
@@ -37,13 +35,10 @@ function renderModal() {
           {children}
         </div>
       </div>,
-      document.querySelectorAll('.nwc-modal-container')[0],
+      document.querySelectorAll(".nwc-modal-container")[0],
     );
   } else {
-    ReactDOM.render(
-      null,
-      document.querySelectorAll('.nwc-modal-container')[0],
-    );
+    ReactDOM.render(null, document.querySelectorAll(".nwc-modal-container")[0]);
   }
   return null;
 }
@@ -61,7 +56,7 @@ function openModal(preventFix) {
 }
 
 function closeModal(e) {
-  if (e.key && e.key !== 'Escape') {
+  if (e.key && e.key !== "Escape") {
     return;
   }
   unFixScroll();
@@ -71,14 +66,9 @@ function closeModal(e) {
 }
 
 function createBaseContainer() {
-  const modalContainer = document.createElement('div');
-  modalContainer.className = 'nwc-modal-container';
-  document.querySelectorAll('body')[0].appendChild(modalContainer);
+  const modalContainer = document.createElement("div");
+  modalContainer.className = "nwc-modal-container";
+  document.querySelectorAll("body")[0].appendChild(modalContainer);
 }
 
-export {
-  renderModal,
-  openModal,
-  closeModal,
-  createBaseContainer,
-};
+export { renderModal, openModal, closeModal, createBaseContainer };

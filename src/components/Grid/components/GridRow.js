@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class GridRow extends Component {
   componentDidMount() {
     window.requestAnimationFrame(() => {
       const { childNodes } = this.rowRef;
-      childNodes.forEach((item) => {
-        if (!(/(^|\s)nwc-grid-col($|[\s])/.test(item.className))) {
-          throw Error('`GridRow` component must have `GridColumn` as child');
+      childNodes.forEach(item => {
+        if (!/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
+          throw Error("`GridRow` component must have `GridColumn` as child");
         }
       });
     });
   }
 
   render() {
-    const {
-      className, children, ...otherProps
-    } = this.props;
+    const { className, children, ...otherProps } = this.props;
 
     return (
       <div
         className={`nwc-grid-row ${className}`}
         {...otherProps}
-        ref={(c) => { this.rowRef = c; }}
+        ref={c => {
+          this.rowRef = c;
+        }}
       >
         {children}
       </div>
@@ -31,7 +31,7 @@ class GridRow extends Component {
 }
 
 GridRow.defaultProps = {
-  className: '',
+  className: "",
 };
 
 GridRow.propTypes = {
