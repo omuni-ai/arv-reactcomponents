@@ -37,7 +37,7 @@ class Select extends Component {
   }
 
   render() {
-    const { inpVal } = this.state;
+    const { inpVal, isSelectActive } = this.state;
 
     const {
       id,
@@ -66,7 +66,7 @@ class Select extends Component {
             onChange={onInpValChangeFn}
             onKeyDown={onUserInputFn}
             onFocus={() => {
-              toggleSelectDisplayFn(true);
+              toggleSelectDisplayFn(!isSelectActive);
             }}
             onBlur={() => {
               toggleSelectDisplayFn(false);
