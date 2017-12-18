@@ -18,7 +18,7 @@ function onInpValChange(e) {
   }, 800);
 }
 
-function hideDropdownList(index = selectedListIndex) {
+function hideSelectList(index = selectedListIndex) {
   selectedListIndex = index;
   const selectedNode = this.state.listNode[`item-${index}`];
   if (!selectedNode) {
@@ -26,16 +26,16 @@ function hideDropdownList(index = selectedListIndex) {
   }
 
   this.setState({
-    isDropdownActive: false,
+    isSelectActive: false,
   });
 
   this.props.getSelection(this.state.listNodeItem[index]);
 }
 
-function toggleDropdownDisplay(bool) {
+function toggleSelectDisplay(bool) {
   setTimeout(() => {
     this.setState({
-      isDropdownActive: bool,
+      isSelectActive: bool,
     });
 
     scrollElemToView(
@@ -48,8 +48,8 @@ function toggleDropdownDisplay(bool) {
 function onUserInput(e) {
   e.stopPropagation();
   const listNodeLength = Object.keys(this.state.listNode).length - 1;
-  const hideDropdownListFn = hideDropdownList.bind(this);
-  let isDropdownActive = true;
+  const hideSelectListFn = hideSelectList.bind(this);
+  let isSelectActive = true;
 
   switch (e.key) {
     case 'ArrowUp':
@@ -68,8 +68,8 @@ function onUserInput(e) {
       break;
     case 'Enter':
     case 'Tab':
-      isDropdownActive = false;
-      hideDropdownListFn();
+      isSelectActive = false;
+      hideSelectListFn();
       break;
     default:
       /* default */
@@ -84,12 +84,12 @@ function onUserInput(e) {
   }, 10);
 
   this.setState({
-    isDropdownActive,
+    isSelectActive,
   });
 }
 
 function renderListItems(inpVal, inpList, renderList) {
-  const hideDropdownListFn = hideDropdownList.bind(this);
+  const hideSelectListFn = hideSelectList.bind(this);
   const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, 'i');
 
   this.state.listNode = [];
@@ -116,11 +116,11 @@ function renderListItems(inpVal, inpList, renderList) {
     return cloneElement(elem, {
       className: `${elem.props.className || ''} ${addClass}`,
       ref: (c) => { this.state.listNode[`item-${index}`] = c; },
-      onClick: (e) => { onClickFn(e); hideDropdownListFn(index); },
+      onClick: (e) => { onClickFn(e); hideSelectListFn(index); },
     });
   });
 
-  return this.state.isDropdownActive ?
+  return this.state.isSelectActive ?
     (
       <ul
         className="nwc-dropdown-list-container"
@@ -135,6 +135,6 @@ function renderListItems(inpVal, inpList, renderList) {
 export {
   onInpValChange,
   onUserInput,
-  toggleDropdownDisplay,
+  toggleSelectDisplay,
   renderListItems,
 };

@@ -7,23 +7,23 @@ import Input from '../Input';
 import {
   onInpValChange,
   onUserInput,
-  toggleDropdownDisplay,
+  toggleSelectDisplay,
   renderListItems,
 } from './methods';
 import './styles/_index.scss';
 
 let onInpValChangeFn;
 let onUserInputFn;
-let toggleDropdownDisplayFn;
+let toggleSelectDisplayFn;
 let renderListItemsFn;
 
-class Dropdown extends Component {
+class Select extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       inpVal: '',
-      isDropdownActive: false, // eslint-disable-line react/no-unused-state
+      isSelectActive: false, // eslint-disable-line react/no-unused-state
       listNode: [], // eslint-disable-line react/no-unused-state
       listNodeItem: [], // eslint-disable-line react/no-unused-state
     };
@@ -32,7 +32,7 @@ class Dropdown extends Component {
 
     onInpValChangeFn = onInpValChange.bind(this);
     onUserInputFn = onUserInput.bind(this);
-    toggleDropdownDisplayFn = toggleDropdownDisplay.bind(this);
+    toggleSelectDisplayFn = toggleSelectDisplay.bind(this);
     renderListItemsFn = renderListItems.bind(this);
   }
 
@@ -67,8 +67,8 @@ class Dropdown extends Component {
             value={inpVal}
             onChange={onInpValChangeFn}
             onKeyDown={onUserInputFn}
-            onFocus={() => { toggleDropdownDisplayFn(true); }}
-            onBlur={() => { toggleDropdownDisplayFn(false); }}
+            onFocus={() => { toggleSelectDisplayFn(true); }}
+            onBlur={() => { toggleSelectDisplayFn(false); }}
           />
         </Label>
         {renderListItemsFn(inpVal, inpList, renderList)}
@@ -77,13 +77,13 @@ class Dropdown extends Component {
   }
 }
 
-Dropdown.defaultProps = {
+Select.defaultProps = {
   id: null,
   className: '',
   getSelection: () => {},
 };
 
-Dropdown.propTypes = {
+Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   selectedValue: PropTypes.oneOfType([
@@ -102,4 +102,4 @@ Dropdown.propTypes = {
   // ]),
 };
 
-export default Dropdown;
+export default Select;

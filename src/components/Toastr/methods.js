@@ -66,21 +66,22 @@ function renderList() {
   const hideToastrFn = hideToastr.bind(this);
 
   const listItems = toastrListRev.map((item, index) => {
-    if (index >= this.limitTo) {
-      hideToastrFn(toastrList[0]);
+    if (index < this.limitTo) {
+      return (
+        <li
+          key={`toastr-${item.id}`}
+          className={`nwc-toastr-msg ${item.className}`}
+        >
+          <Close
+            className="nwc-close-sm"
+            onClick={() => { hideToastrFn(item); }}
+          />
+          {item.message}
+        </li>
+      );
     }
-    return (
-      <li
-        key={`toastr-${item.id}`}
-        className={`nwc-toastr-msg ${item.className}`}
-      >
-        <Close
-          className="nwc-close-sm"
-          onClick={() => { hideToastrFn(item); }}
-        />
-        {item.message}
-      </li>
-    );
+
+    return null;
   });
 
   return listItems;

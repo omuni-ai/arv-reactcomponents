@@ -4,7 +4,7 @@ import { GridContainer, GridRow } from '../../components';
 import './_index.scss';
 
 import AutocompleteExample from '../AutocompleteExample';
-import DropdownExample from '../DropdownExample';
+import SelectExample from '../SelectExample';
 import InputExample from '../InputExample';
 import ButtonModalExample from '../ButtonModalExample';
 import ButtonToastrExample from '../ButtonToastrExample';
@@ -14,7 +14,7 @@ function App() {
     <GridContainer className="nw-app" strict>
       <GridRow>
         <AutocompleteExample />
-        <DropdownExample />
+        <SelectExample />
         <InputExample />
         <ButtonModalExample />
         <ButtonToastrExample />

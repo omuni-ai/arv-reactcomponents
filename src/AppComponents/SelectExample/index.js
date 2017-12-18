@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 // Import common components
-import { Dropdown, GridColumn } from '../../components';
+import { Select, GridColumn } from '../../components';
 
 // Import for page
 import './_index.scss';
 
-class DropdownExample extends Component {
+class SelectExample extends Component {
   static getList(item) {
     return <li className="nw-sample-dropdown-list" key={item}>{item}</li>;
   }
@@ -30,10 +30,10 @@ class DropdownExample extends Component {
       inpList: dropdownList,
     };
 
-    this.getDropdownSelection = this.getDropdownSelection.bind(this);
+    this.getSelectSelection = this.getSelectSelection.bind(this);
   }
 
-  getDropdownSelection(selectedValue) {
+  getSelectSelection(selectedValue) {
     this.setState({
       dropdownSelectedValue: selectedValue,
     });
@@ -46,13 +46,13 @@ class DropdownExample extends Component {
       <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-dropdowncontainer">
         <div className="nw-sample-dropdownwrapper">
           <div className="nw-sample-dropdown">
-            <div className="nw-space-bottom">Dropdown Example</div>
-            <Dropdown
+            <div className="nw-space-bottom">Select Example</div>
+            <Select
               className="nwc-dropdown nwc-dropdown-secondary nwc-dropdown-sm nw-dropdown"
               selectedValue={dropdownSelectedValue}
               inpList={inpList}
-              getSelection={this.getDropdownSelection}
-              renderList={DropdownExample.getList}
+              getSelection={this.getSelectSelection}
+              renderList={SelectExample.getList}
             />
           </div>
         </div>
@@ -61,4 +61,4 @@ class DropdownExample extends Component {
   }
 }
 
-export default DropdownExample;
+export default SelectExample;
