@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { requestAnimationFrame } from "../_jsUtils";
 
 import "./styles/_index.scss";
 
 class GridRow extends Component {
   componentDidMount() {
-    window.requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
       const { childNodes } = this.rowRef;
       childNodes.forEach(item => {
         if (!/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {

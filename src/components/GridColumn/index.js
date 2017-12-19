@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { requestAnimationFrame } from "../_jsUtils";
 
 import "./styles/_index.scss";
 
 class GridColumn extends Component {
   componentDidMount() {
-    window.requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
       const { childNodes } = this.colRef;
       childNodes.forEach(item => {
         if (/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
-          throw Error(`\`GridColumn\` cannot have \`GridColumn\` as immediate child. 
+          console.error(`\`GridColumn\` cannot have \`GridColumn\` as immediate child. 
             Use \`GridRow\` inbetween when nesting two columns.`);
         }
       });
