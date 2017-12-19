@@ -1,8 +1,8 @@
 /** Media Mixins */
 
 @mixin modal {
-  .nwc-modal-overlay {
-    @extend %nwc-modal-overlay;
+  .nwc-modal-container {
+    @extend %nwc-modal-container;
   }
 
   .nwc-modal {
@@ -11,9 +11,9 @@
 }
 
 @mixin modal-769 {
-  .nwc-modal-overlay {
-    @extend %nwc-modal-overlay;
-    @extend %nwc-modal-overlay-769;
+  .nwc-modal-container {
+    @extend %nwc-modal-container;
+    @extend %nwc-modal-container-769;
   }
 
   .nwc-modal {

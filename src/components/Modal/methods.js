@@ -1,46 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Close from "../Close";
 import { fixScroll, unFixScroll } from "../_jsUtils";
 
-function preventEventPropagation(e) {
-  e.stopPropagation();
-}
+import ModalContainer from "../ModalContainer";
 
 function renderModal() {
-  const { className, children, ...otherProps } = this.props;
-
   if (this.state.isOpen) {
     ReactDOM.render(
-      <div
-        role="button"
-        className={`nwc-modal-overlay ${className}`}
-        tabIndex={0}
-        onClick={this.closeModal}
-        // onKeyDownCapture={(e) => { this.closeModal(e, 'key'); }}
-        onKeyDown={this.closeModal}
-        ref={c => {
-          this.modalRef = c;
-        }}
-        {...otherProps}
-      >
-        <div
-          role="button"
-          className="nwc-modal"
-          tabIndex={0}
-          onClick={preventEventPropagation}
-          onKeyDown={null}
-        >
-          <Close className="nwc-close-normal" onClick={this.closeModal} />
-          {children}
-        </div>
-      </div>,
-      document.querySelectorAll(".nwc-modal-container")[0],
+      <ModalContainer {...this.props} closeModal={this.closeModal} />,
+      document.querySelectorAll(".nwc-modal-holder")[0],
     );
   } else {
-    ReactDOM.render(null, document.querySelectorAll(".nwc-modal-container")[0]);
+    ReactDOM.render(null, document.querySelectorAll(".nwc-modal-holder")[0]);
   }
-  return null;
 }
 
 function openModal(preventFix) {
@@ -50,9 +22,8 @@ function openModal(preventFix) {
   this.setState({
     isOpen: true,
   });
-  setTimeout(() => {
-    this.modalRef.focus();
-  }, 10);
+
+  return this.closeModal;
 }
 
 function closeModal(e) {
@@ -67,7 +38,7 @@ function closeModal(e) {
 
 function createBaseContainer() {
   const modalContainer = document.createElement("div");
-  modalContainer.className = "nwc-modal-container";
+  modalContainer.className = "nwc-modal-holder";
   document.querySelectorAll("body")[0].appendChild(modalContainer);
 }
 

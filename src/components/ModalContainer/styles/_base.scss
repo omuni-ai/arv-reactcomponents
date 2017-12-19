@@ -1,4 +1,4 @@
-%nwc-modal-overlay {
+%nwc-modal-container {
   position: fixed;
   z-index: 999;
   top: 0;
@@ -9,7 +9,7 @@
   outline: 0;
 }
 
-%nwc-modal-overlay-769 {
+%nwc-modal-container-769 {
   @media screen and (min-width: $screen-min-sm) {
     padding: 10px;
   }

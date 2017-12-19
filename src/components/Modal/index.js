@@ -1,7 +1,5 @@
 import { Component } from "react";
-import PropTypes from "prop-types";
 
-import "./styles/_index.scss";
 import {
   renderModal,
   openModal,
@@ -29,16 +27,6 @@ class Modal extends Component {
     return null;
   }
 }
-
-Modal.defaultProps = {
-  className: "",
-};
-
-Modal.propTypes = {
-  className: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  // eslint-disable-next-line react/no-unused-prop-types
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
-};
 
 createBaseContainer();
 
