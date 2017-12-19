@@ -10,7 +10,7 @@ class GridColumn extends Component {
       const { childNodes } = this.colRef;
       childNodes.forEach(item => {
         if (/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
-          console.error(`\`GridColumn\` cannot have \`GridColumn\` as immediate child. 
+          throw Error(`\`GridColumn\` cannot have \`GridColumn\` as immediate child. 
             Use \`GridRow\` inbetween when nesting two columns.`);
         }
       });
