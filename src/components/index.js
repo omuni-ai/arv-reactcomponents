@@ -1,5 +1,7 @@
 export { default as Close } from "./Close";
-export { GridContainer, GridRow, GridColumn } from "./Grid";
+export { default as GridContainer } from "./GridContainer";
+export { default as GridRow } from "./GridRow";
+export { default as GridColumn } from "./GridColumn";
 export { default as Button } from "./Button";
 export { default as Img } from "./Img";
 export { default as Label } from "./Label";

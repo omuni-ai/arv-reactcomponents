@@ -1,0 +1,15 @@
+@mixin grid-container {
+  .nwc-grid-container {
+    @extend %nwc-grid-container;
+  }
+}
+
+@mixin grid-container-769 {
+  .nwc-grid-container {
+    @extend %nwc-grid-container;
+  }
+
+  .nwc-grid-container-strict {
+    @extend %nwc-grid-container-769;
+  }
+}

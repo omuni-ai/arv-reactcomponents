@@ -3,9 +3,9 @@
 @import './media';
 
 @if $screen-media==xs {
-  @include grid;
+  @include grid-container;
 }
 
 @else if $screen-media==sm {
-  @include grid-769;
+  @include grid-container-769;
 }

@@ -1,20 +1,6 @@
 /** Media Mixins */
 
-@mixin grid {
-  .nwc-grid-container {
-    @extend %nwc-grid-container;
-  }
-}
-
-@mixin grid-769 {
-  .nwc-grid-container {
-    @extend %nwc-grid-container;
-  }
-
-  .nwc-grid-container-strict {
-    @extend %nwc-grid-container-769;
-  }
-
+@mixin grid-col-769 {
   @each $all-screen-min, $value in $all-screen-min {
     .nwc-grid-col-#{$all-screen-min} {
       @extend %nwc-grid-col-#{$all-screen-min}-769;

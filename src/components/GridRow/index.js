@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import "./styles/_index.scss";
+
 class GridRow extends Component {
   componentDidMount() {
     window.requestAnimationFrame(() => {

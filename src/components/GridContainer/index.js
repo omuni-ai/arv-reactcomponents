@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import GridRow from './GridRow';
+
+import "./styles/_index.scss";
 
 class GridContainer extends Component {
   componentDidMount() {
