@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CustomPropTypes from "../_jsUtils/customPropTypes";
+import Utils from "../_jsUtils";
 import Label from "../Label";
 
 // import for Page
@@ -82,13 +82,13 @@ Input.defaultProps = {
 
 Input.propTypes = {
   id: PropTypes.string,
-  name: CustomPropTypes.Input, // eslint-disable-line react/no-typos
+  name: Utils.customPropTypes.Input, // eslint-disable-line react/no-typos
   labelClassName: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.string,
-  placeholder: CustomPropTypes.Input, // eslint-disable-line react/no-typos
-  value: CustomPropTypes.Input, // eslint-disable-line react/no-typos
-  checked: CustomPropTypes.Input, // eslint-disable-line react/no-typos
+  placeholder: Utils.customPropTypes.Input, // eslint-disable-line react/no-typos
+  value: Utils.customPropTypes.Input, // eslint-disable-line react/no-typos
+  checked: Utils.customPropTypes.Input, // eslint-disable-line react/no-typos
   onChange: PropTypes.func.isRequired,
   maxLength: PropTypes.number,
   validateWithPattern: PropTypes.arrayOf(

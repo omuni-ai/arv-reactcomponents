@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { fixScroll, unFixScroll } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 import ModalContainer from "../ModalContainer";
 
@@ -17,7 +17,7 @@ function renderModal() {
 
 function openModal(preventFix) {
   if (!preventFix) {
-    fixScroll();
+    Utils.fixScroll();
   }
   this.setState({
     isOpen: true,
@@ -30,7 +30,7 @@ function closeModal(e) {
   if (e.key && e.key !== "Escape") {
     return;
   }
-  unFixScroll();
+  Utils.unFixScroll();
   this.setState({
     isOpen: false,
   });

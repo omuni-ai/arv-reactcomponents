@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { noop } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 // import for Page
 import { renderAutocompleteInput, renderListItems } from "./methods";
@@ -45,7 +45,7 @@ class Autocomplete extends Component {
 
 Autocomplete.defaultProps = {
   className: "",
-  getSelection: noop,
+  getSelection: Utils.noop,
   minTextLength: 0,
 };
 

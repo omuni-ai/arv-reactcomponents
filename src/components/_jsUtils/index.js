@@ -5,8 +5,9 @@ import { fixScroll, unFixScroll } from "./fixScroll";
 import preventEventPropagation from "./preventEventPropagation";
 import requestAnimationFrame from "./requestAnimationFrame";
 import cancelAnimationFrame from "./cancelAnimationFrame";
+import customPropTypes from "./customPropTypes";
 
-export {
+const Utils = {
   noop,
   getBoundClientRect,
   scrollElemToView,
@@ -15,4 +16,7 @@ export {
   preventEventPropagation,
   requestAnimationFrame,
   cancelAnimationFrame,
+  customPropTypes,
 };
+
+export default Utils;

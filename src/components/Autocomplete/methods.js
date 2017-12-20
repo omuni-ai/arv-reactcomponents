@@ -1,5 +1,5 @@
 import React, { cloneElement } from "react";
-import { scrollElemToView } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 let selectedListIndex = 0;
 let navigateTimeoutId = null;
@@ -59,7 +59,7 @@ function onUserInput(e) {
 
   clearTimeout(navigateTimeoutId);
   navigateTimeoutId = setTimeout(() => {
-    scrollElemToView(
+    Utils.scrollElemToView(
       this.listNodeWrapperRef,
       listNode[`item-${selectedListIndex}`],
     );

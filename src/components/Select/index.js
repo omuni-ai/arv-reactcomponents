@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { noop } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 // import for Page
 import Label from "../Label";
@@ -81,7 +81,7 @@ class Select extends Component {
 Select.defaultProps = {
   id: null,
   className: "",
-  getSelection: noop,
+  getSelection: Utils.noop,
 };
 
 Select.propTypes = {

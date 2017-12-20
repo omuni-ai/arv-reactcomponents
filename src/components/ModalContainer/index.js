@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Close from "../Close";
-import { preventEventPropagation } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 import setFocus from "./methods";
 import "./styles/_index.scss";
@@ -24,7 +24,7 @@ function ModalContainer(props) {
         role="button"
         className="nwc-modal"
         tabIndex={0}
-        onClick={preventEventPropagation}
+        onClick={Utils.preventEventPropagation}
         onKeyDown={null}
       >
         <Close className="nwc-close-normal" onClick={closeModal} />

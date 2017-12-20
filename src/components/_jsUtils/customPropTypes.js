@@ -16,8 +16,8 @@ function Input(props, propName) {
   return null;
 }
 
-const CustomPropTypes = {
+const customPropTypes = {
   Input,
 };
 
-export default CustomPropTypes;
+export default customPropTypes;

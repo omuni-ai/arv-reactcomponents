@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { noop } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 import "./styles/_index.scss";
 
@@ -21,8 +21,8 @@ function Img(props) {
 Img.defaultProps = {
   className: "",
   alt: "NNNOW",
-  onLoad: noop,
-  onError: noop,
+  onLoad: Utils.noop,
+  onError: Utils.noop,
 };
 
 Img.propTypes = {

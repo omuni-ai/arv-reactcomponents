@@ -1,5 +1,5 @@
 import React, { cloneElement } from "react";
-import { scrollElemToView } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 let selectedListIndex = 0;
 let inputTimeoutId = null;
@@ -40,7 +40,7 @@ function toggleSelectDisplay(bool) {
       isSelectActive: bool,
     });
 
-    scrollElemToView(
+    Utils.scrollElemToView(
       this.listNodeWrapperRef,
       listNode[`item-${selectedListIndex}`],
     );
@@ -77,7 +77,7 @@ function onUserInput(e) {
 
   clearTimeout(navigateTimeoutId);
   navigateTimeoutId = setTimeout(() => {
-    scrollElemToView(
+    Utils.scrollElemToView(
       this.listNodeWrapperRef,
       listNode[`item-${selectedListIndex}`],
     );

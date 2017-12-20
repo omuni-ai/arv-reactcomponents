@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 
 // Import common components
-import { Select, GridColumn } from "../../components";
+import { Select, GridColumn, Utils } from "../../components";
 
 // Import for page
 import "./_index.scss";
+
+console.log(Utils);
 
 class SelectExample extends Component {
   static getList(item) {

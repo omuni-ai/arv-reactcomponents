@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { requestAnimationFrame } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 import "./styles/_index.scss";
 
 class GridContainer extends Component {
   componentDidMount() {
-    requestAnimationFrame(() => {
+    Utils.requestAnimationFrame(() => {
       const { childNodes } = this.containerRef;
       childNodes.forEach(item => {
         if (!/(^|\s)nwc-grid-row($|[\s])/.test(item.className)) {

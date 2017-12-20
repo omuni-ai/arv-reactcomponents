@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { requestAnimationFrame } from "../_jsUtils";
+import Utils from "../_jsUtils";
 
 import "./styles/_index.scss";
 
 class GridColumn extends Component {
   componentDidMount() {
-    requestAnimationFrame(() => {
+    Utils.requestAnimationFrame(() => {
       const { childNodes } = this.colRef;
       childNodes.forEach(item => {
         if (/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {

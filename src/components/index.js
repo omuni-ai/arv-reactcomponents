@@ -10,3 +10,4 @@ export { default as Autocomplete } from "./Autocomplete";
 export { default as Select } from "./Select";
 export { default as Modal } from "./Modal";
 export { default as Toastr } from "./Toastr";
+export { default as Utils } from "./_jsUtils";
