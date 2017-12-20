@@ -13,14 +13,14 @@ Toastr.setConfig({
 class ButtonToastrExample extends Component {
   static withoutTimeout() {
     Toastr.showToastr({
-      className: "nwc-toastr-msg-danger",
+      className: "nwc-toastr-list-danger",
       message: `${Math.round(Math.random() * 10 ** 10)}`,
     });
   }
 
   static withTimeout() {
     Toastr.showToastr({
-      className: "nwc-toastr-msg-notification",
+      className: "nwc-toastr-list-notification",
       message: `${Math.round(Math.random() * 10 ** 10)}`,
       timeout: 3000,
     });

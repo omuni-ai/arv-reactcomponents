@@ -24,8 +24,8 @@ class GridColumn extends Component {
       <div
         className={`nwc-grid-col ${className}`}
         {...otherProps}
-        ref={c => {
-          this.colRef = c;
+        ref={context => {
+          this.colRef = context;
         }}
       >
         {children}

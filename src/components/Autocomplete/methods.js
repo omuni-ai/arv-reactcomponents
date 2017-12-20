@@ -3,9 +3,11 @@ import { scrollElemToView } from "../_jsUtils";
 
 let selectedListIndex = 0;
 let navigateTimeoutId = null;
+let listNode = [];
+const listNodeItem = [];
 
 function hideAutocompleteList(index = selectedListIndex) {
-  const selectedNode = this.state.listNode[`item-${index}`];
+  const selectedNode = listNode[`item-${index}`];
   if (!selectedNode) {
     return;
   }
@@ -14,7 +16,7 @@ function hideAutocompleteList(index = selectedListIndex) {
     isAutocompleteActive: false,
   });
 
-  this.props.getSelection(this.state.listNodeItem[index]);
+  this.props.getSelection(listNodeItem[index]);
 }
 
 function toggleAutocompleteDisplay(bool) {
@@ -29,7 +31,7 @@ function toggleAutocompleteDisplay(bool) {
 
 function onUserInput(e) {
   e.stopPropagation();
-  const listNodeLength = Object.keys(this.state.listNode).length - 1;
+  const listNodeLength = Object.keys(listNode).length - 1;
   const hideAutocompleteListFn = hideAutocompleteList.bind(this);
   let isAutocompleteActive = true;
 
@@ -59,7 +61,7 @@ function onUserInput(e) {
   navigateTimeoutId = setTimeout(() => {
     scrollElemToView(
       this.listNodeWrapperRef,
-      this.state.listNode[`item-${selectedListIndex}`],
+      listNode[`item-${selectedListIndex}`],
     );
   }, 10);
 
@@ -72,7 +74,7 @@ function renderListItems(inpVal, inpList, renderList) {
   const { minTextLength } = this.props;
   const hideAutocompleteListFn = hideAutocompleteList.bind(this);
 
-  this.state.listNode = [];
+  listNode = [];
 
   const filteredList = inpList.filter(
     item => item.toLowerCase().indexOf(inpVal.toLowerCase()) > -1,
@@ -85,11 +87,11 @@ function renderListItems(inpVal, inpList, renderList) {
     if (index === selectedListIndex) {
       addClass = "is-active";
     }
-    this.state.listNodeItem[index] = item;
+    listNodeItem[index] = item;
     return cloneElement(elem, {
       className: `${elem.props.className || ""} ${addClass}`,
-      ref: c => {
-        this.state.listNode[`item-${index}`] = c;
+      ref: context => {
+        listNode[`item-${index}`] = context;
       },
       onClick: e => {
         onClickFn(e);
@@ -103,8 +105,8 @@ function renderListItems(inpVal, inpList, renderList) {
     inpVal.length >= minTextLength ? (
     <ul
       className="nwc-autocomplete-list-container"
-      ref={c => {
-        this.listNodeWrapperRef = c;
+      ref={context => {
+        this.listNodeWrapperRef = context;
       }}
     >
       {list}
@@ -133,8 +135,8 @@ function renderAutocompleteInput(elem) {
       onBlurFn(e);
       toggleAutocompleteDisplayFn(false);
     },
-    ref: c => {
-      this.inputNode = c;
+    ref: context => {
+      this.inputNode = context;
     },
   });
 }

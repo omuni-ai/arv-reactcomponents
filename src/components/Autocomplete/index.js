@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { noop } from "../_jsUtils";
 
 // import for Page
 import { renderAutocompleteInput, renderListItems } from "./methods";
@@ -14,8 +15,6 @@ class Autocomplete extends Component {
 
     this.state = {
       isAutocompleteActive: false, // eslint-disable-line react/no-unused-state
-      listNode: [], // eslint-disable-line react/no-unused-state
-      listNodeItem: [], // eslint-disable-line react/no-unused-state
     };
 
     renderAutocompleteInputFn = renderAutocompleteInput.bind(this);
@@ -46,7 +45,7 @@ class Autocomplete extends Component {
 
 Autocomplete.defaultProps = {
   className: "",
-  getSelection: () => {},
+  getSelection: noop,
   minTextLength: 0,
 };
 

@@ -1,0 +1,18 @@
+.nwc-toastr-list {
+  position: relative;
+  margin: 0 auto 10px;
+  border-radius: 3px;
+  max-width: 768px;
+  padding: 10px;
+  background: $white;
+}
+
+@each $all-toaster-variants, $value in $all-toaster-variants {
+  .nwc-toastr-list-#{$all-toaster-variants} {
+    background: $value;
+    color: set-color($value, $compliment-for-dark, $compliment-for-light);
+    @if(lightness($value) > 70) {
+      border: 1px solid $compliment-for-light;
+    }
+  }
+}

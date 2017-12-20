@@ -1,14 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { noop } from "../_jsUtils";
+
 import "./styles/_index.scss";
 
 function Img(props) {
-  const { className, src, defaultSrc, alt, ...otherProps } = props;
+  const { className, src, alt, onLoad, onError, ...otherProps } = props;
   return (
     <img
       className={`nwc-img ${className}`}
-      src={src || defaultSrc}
+      src={src}
       alt={alt}
+      onLoad={onLoad}
+      onError={onError}
       {...otherProps}
     />
   );
@@ -17,15 +21,16 @@ function Img(props) {
 Img.defaultProps = {
   className: "",
   alt: "NNNOW",
-  src: null,
-  defaultSrc: "",
+  onLoad: noop,
+  onError: noop,
 };
 
 Img.propTypes = {
   className: PropTypes.string,
-  src: PropTypes.string,
-  defaultSrc: PropTypes.string,
+  src: PropTypes.string.isRequired,
   alt: PropTypes.string,
+  onLoad: PropTypes.func,
+  onError: PropTypes.func,
 };
 
 export default Img;

@@ -23,8 +23,8 @@ class GridRow extends Component {
       <div
         className={`nwc-grid-row ${className}`}
         {...otherProps}
-        ref={c => {
-          this.rowRef = c;
+        ref={context => {
+          this.rowRef = context;
         }}
       >
         {children}

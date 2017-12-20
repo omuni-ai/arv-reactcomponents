@@ -4,6 +4,8 @@ import { scrollElemToView } from "../_jsUtils";
 let selectedListIndex = 0;
 let inputTimeoutId = null;
 let navigateTimeoutId = null;
+let listNode = [];
+const listNodeItem = [];
 
 function onInpValChange(e) {
   this.setState({
@@ -20,7 +22,7 @@ function onInpValChange(e) {
 
 function hideSelectList(index = selectedListIndex) {
   selectedListIndex = index;
-  const selectedNode = this.state.listNode[`item-${index}`];
+  const selectedNode = listNode[`item-${index}`];
   if (!selectedNode) {
     return;
   }
@@ -29,7 +31,7 @@ function hideSelectList(index = selectedListIndex) {
     isSelectActive: false,
   });
 
-  this.props.getSelection(this.state.listNodeItem[index]);
+  this.props.getSelection(listNodeItem[index]);
 }
 
 function toggleSelectDisplay(bool) {
@@ -40,14 +42,14 @@ function toggleSelectDisplay(bool) {
 
     scrollElemToView(
       this.listNodeWrapperRef,
-      this.state.listNode[`item-${selectedListIndex}`],
+      listNode[`item-${selectedListIndex}`],
     );
   }, 500);
 }
 
 function onUserInput(e) {
   e.stopPropagation();
-  const listNodeLength = Object.keys(this.state.listNode).length - 1;
+  const listNodeLength = Object.keys(listNode).length - 1;
   const hideSelectListFn = hideSelectList.bind(this);
   let isSelectActive = true;
 
@@ -77,7 +79,7 @@ function onUserInput(e) {
   navigateTimeoutId = setTimeout(() => {
     scrollElemToView(
       this.listNodeWrapperRef,
-      this.state.listNode[`item-${selectedListIndex}`],
+      listNode[`item-${selectedListIndex}`],
     );
   }, 10);
 
@@ -90,7 +92,7 @@ function renderListItems(inpVal, inpList, renderList) {
   const hideSelectListFn = hideSelectList.bind(this);
   const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, "i");
 
-  this.state.listNode = [];
+  listNode = [];
 
   try {
     inpList.forEach((item, index) => {
@@ -110,11 +112,11 @@ function renderListItems(inpVal, inpList, renderList) {
     if (index === selectedListIndex) {
       addClass = "is-active";
     }
-    this.state.listNodeItem[index] = item;
+    listNodeItem[index] = item;
     return cloneElement(elem, {
       className: `${elem.props.className || ""} ${addClass}`,
-      ref: c => {
-        this.state.listNode[`item-${index}`] = c;
+      ref: context => {
+        listNode[`item-${index}`] = context;
       },
       onClick: e => {
         onClickFn(e);
@@ -126,8 +128,8 @@ function renderListItems(inpVal, inpList, renderList) {
   return this.state.isSelectActive ? (
     <ul
       className="nwc-dropdown-list-container"
-      ref={c => {
-        this.listNodeWrapperRef = c;
+      ref={context => {
+        this.listNodeWrapperRef = context;
       }}
     >
       {list}

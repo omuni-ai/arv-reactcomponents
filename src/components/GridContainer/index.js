@@ -27,8 +27,8 @@ class GridContainer extends Component {
       <div
         className={`nwc-grid-container ${this.classNameForStrict} ${className}`}
         {...otherProps}
-        ref={c => {
-          this.containerRef = c;
+        ref={context => {
+          this.containerRef = context;
         }}
       >
         {children}

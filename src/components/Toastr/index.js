@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 // import Close from '../Close';
 
+import ToastrContainer from "../ToastrContainer";
 import "./styles/_index.scss";
 import {
   clearAll,
+  hideToastr,
   showToastr,
-  renderToastr,
   setConfig,
   createBaseContainer,
 } from "./methods";
+
+let hideToastrFn;
 
 class Toastr extends Component {
   constructor(props) {
@@ -23,19 +26,26 @@ class Toastr extends Component {
     Toastr.showToastr = showToastr.bind(this);
     Toastr.setConfig = setConfig.bind(this);
     Toastr.setConfig({ limitTo: 5 });
-  }
-
-  componentDidUpdate() {
-    renderToastr.bind(this)();
+    hideToastrFn = hideToastr.bind(this);
   }
 
   render() {
-    return null;
+    const { toastrList } = this.state;
+
+    return (
+      <div role="button" tabIndex={0}>
+        <ToastrContainer
+          toastrList={toastrList}
+          limitTo={this.limitTo}
+          hideToastr={hideToastrFn}
+        />
+      </div>
+    );
   }
 }
 
-ReactDOM.render(<Toastr />, document.createElement("div"));
-
 createBaseContainer();
+
+ReactDOM.render(<Toastr />, document.querySelectorAll(".nwc-toastr-holder")[0]);
 
 export default Toastr;

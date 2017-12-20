@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { noop } from "../_jsUtils";
 
 // import for Page
 import Label from "../Label";
@@ -23,9 +24,7 @@ class Select extends Component {
 
     this.state = {
       inpVal: "",
-      isSelectActive: false, // eslint-disable-line react/no-unused-state
-      listNode: [], // eslint-disable-line react/no-unused-state
-      listNodeItem: [], // eslint-disable-line react/no-unused-state
+      isSelectActive: false,
     };
 
     this.inputId = `${Math.round(Math.random() * 10 ** 10)}`;
@@ -82,7 +81,7 @@ class Select extends Component {
 Select.defaultProps = {
   id: null,
   className: "",
-  getSelection: () => {},
+  getSelection: noop,
 };
 
 Select.propTypes = {
