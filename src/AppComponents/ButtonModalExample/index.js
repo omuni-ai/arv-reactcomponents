@@ -7,6 +7,10 @@ import { Button, Modal, GridColumn, Toastr } from "../../components";
 import "./_index.scss";
 
 class ButtonModalExample extends Component {
+  static onStateChange(bool) {
+    console.log(bool);
+  }
+
   constructor(props) {
     super(props);
 
@@ -42,6 +46,7 @@ class ButtonModalExample extends Component {
             Hai Modal
           </Button>
           <Modal
+            onStateChange={ButtonModalExample.onStateChange}
             ref={c => {
               this.helloRef = c;
             }}

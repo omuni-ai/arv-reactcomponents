@@ -5,9 +5,11 @@ import Utils from "../_jsUtils";
 import ModalContainer from "../ModalContainer";
 
 function renderModal() {
+  const { onStateChange, ...otherProps } = this.props;
+
   if (this.state.isOpen) {
     ReactDOM.render(
-      <ModalContainer {...this.props} closeModal={this.closeModal} />,
+      <ModalContainer {...otherProps} closeModal={this.closeModal} />,
       document.querySelectorAll(".nwc-modal-holder")[0],
     );
   } else {
@@ -23,6 +25,7 @@ function openModal(preventFix) {
     isOpen: true,
   });
 
+  this.props.onStateChange(true);
   return this.closeModal;
 }
 
@@ -34,6 +37,8 @@ function closeModal(e) {
   this.setState({
     isOpen: false,
   });
+
+  this.props.onStateChange(false);
 }
 
 function createBaseContainer() {
