@@ -94,16 +94,13 @@ function renderListItems(inpVal, inpList, renderList) {
 
   listNode = [];
 
-  try {
-    inpList.forEach((item, index) => {
-      if (inpVal && inpVal.length > 0 && regXSearchItemStartsWith.test(item)) {
-        selectedListIndex = index;
-        throw Error("break");
-      }
-    });
-  } catch (err) {
-    /** break */
-  }
+  inpList.find((item, index) => {
+    if (inpVal && inpVal.length > 0 && regXSearchItemStartsWith.test(item)) {
+      selectedListIndex = index;
+      return true;
+    }
+    return false;
+  });
 
   const list = inpList.map((item, index) => {
     const elem = renderList(item);

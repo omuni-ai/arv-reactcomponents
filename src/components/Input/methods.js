@@ -16,23 +16,18 @@ function restrictVal(value, props) {
 
 function validateValue(value, props) {
   const { validateWithPattern } = props;
+  const errorObj = { isValid: true, errorMsg: "" };
 
-  let isValid = true;
-  let errorMsg;
+  validateWithPattern.find(item => {
+    if (!item.pattern.test(value)) {
+      errorObj.isValid = false;
+      errorObj.errorMsg = item.msg;
+      return true;
+    }
+    return false;
+  });
 
-  try {
-    validateWithPattern.forEach(item => {
-      if (!item.pattern.test(value)) {
-        isValid = false;
-        errorMsg = item.msg;
-        throw new Error("break");
-      }
-    });
-  } catch (err) {
-    /** break */
-  }
-
-  return { isValid, errorMsg };
+  return errorObj;
 }
 
 function getValidatedOutput(value) {
