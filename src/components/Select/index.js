@@ -58,7 +58,6 @@ class Select extends Component {
           {selectedValue}
           <Input
             id={id || this.inputId}
-            labelClassName="nwc-select-inp-label"
             className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
             placeholder="Enter text"
             value={inpVal}

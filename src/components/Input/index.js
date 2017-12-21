@@ -15,48 +15,57 @@ class Input extends Component {
     this.inputId = `${Math.round(Math.random() * 10 ** 10)}`;
   }
 
-  get defaultClassNames() {
-    const { type, className } = this.props;
-    switch (type) {
-      case "checkbox":
-      case "radio":
-        return "nwc-inp-hide";
-      default:
-        return `nwc-inp  ${className}`;
-    }
-  }
-
   get cloneClassName() {
     const { type, checked, className } = this.props;
     const isCheckedClass = checked ? "is-checked" : "";
+    const additionalClasses = `${className} ${isCheckedClass}`;
     switch (type) {
       case "checkbox":
-        return `nwc-inp-checkbox ${className} ${isCheckedClass}`;
+        return `nwc-inp-checkbox ${additionalClasses}`;
       case "radio":
-        return `nwc-inp-radio ${className} ${isCheckedClass}`;
+        return `nwc-inp-radio ${additionalClasses}`;
       default:
-        return "nwc-inp-hide";
+        return "";
+    }
+  }
+
+  get isCheckTypes() {
+    const { type } = this.props;
+    switch (type) {
+      case "checkbox":
+      case "radio":
+        return true;
+      default:
+        return false;
     }
   }
 
   render() {
     const {
       id,
-      labelClassName,
       className,
       type,
       validateWithPattern,
       ...otherProps
     } = this.props;
 
-    return (
-      <Label
-        className={`nwc-inp-container ${labelClassName}`}
-        htmlFor={id || this.inputId}
-      >
+    if (!this.isCheckTypes) {
+      return (
         <input
           id={id || this.inputId}
-          className={`${this.defaultClassNames}`}
+          className={`nwc-inp  ${className}`}
+          type={type}
+          tabIndex="0"
+          {...otherProps}
+        />
+      );
+    }
+
+    return (
+      <Label className="nwc-inp-container" htmlFor={id || this.inputId}>
+        <input
+          id={id || this.inputId}
+          className="nwc-inp-hide"
           type={type}
           tabIndex="0"
           {...otherProps}
@@ -70,7 +79,6 @@ class Input extends Component {
 Input.defaultProps = {
   id: null,
   name: null,
-  labelClassName: "",
   className: "",
   type: "text",
   placeholder: null,
@@ -83,7 +91,6 @@ Input.defaultProps = {
 Input.propTypes = {
   id: PropTypes.string,
   name: Utils.customPropTypes.Input, // eslint-disable-line react/no-typos
-  labelClassName: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.string,
   placeholder: Utils.customPropTypes.Input, // eslint-disable-line react/no-typos
