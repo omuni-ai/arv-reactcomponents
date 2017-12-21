@@ -28,22 +28,21 @@ class ButtonToastrExample extends Component {
 
   render() {
     return (
-      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-buttoncontainer">
-        <div className="nw-sample-buttonwrapper">
-          <div className="nw-space-bottom">Button and Toastr Example</div>
-          <Button
-            className="nwc-btn-primary nwc-btn-normal"
-            onClick={ButtonToastrExample.withoutTimeout}
-          >
-            Show Toastr
-          </Button>
-          <Button
-            className="nwc-btn-primary nwc-btn-normal"
-            onClick={ButtonToastrExample.withTimeout}
-          >
-            Show Toastr with Timeout
-          </Button>
-        </div>
+      <GridColumn className="nw-block nwc-grid-col-sm-6 nwc-grid-col-md-4">
+        <div className="nw-space-bottom">Button and Toastr Example</div>
+        <Button
+          className="nwc-btn-primary nwc-btn-normal"
+          onClick={ButtonToastrExample.withoutTimeout}
+        >
+          Show Toastr
+        </Button>
+        &nbsp;
+        <Button
+          className="nwc-btn-primary nwc-btn-normal"
+          onClick={ButtonToastrExample.withTimeout}
+        >
+          Show Toastr with Timeout
+        </Button>
       </GridColumn>
     );
   }

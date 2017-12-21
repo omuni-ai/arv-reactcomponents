@@ -1,1 +1,40 @@
 @import '../components/index';
+
+.nw-block {
+  border: 1px solid darken-colors($concrete, 1);
+  border-radius: 3px;
+  padding: 10px;
+  background: $grid-column-background;
+}
+
+.nw-modal {
+  color: $black;
+}
+
+input {
+  /* stylelint-disable */
+  &::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: $white;
+  }
+
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $white;
+  }
+
+  &:-ms-input-placeholder {
+    /* IE 10+ */
+    color: $white;
+  }
+
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: $white;
+  }
+  /* stylelint-enable */
+}
+
+.nw-block-wrapper {
+  margin-bottom: 50px;
+}

@@ -57,8 +57,8 @@ class InputExample extends Component {
     return (
       <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4">
         <GridRow>
-          <GridColumn className="nwc-grid-col-sm-12 nw-sample-inputcontainer">
-            <form name="sample-form" className="nw-sample-inputwrapper">
+          <GridColumn className="nwc-grid-col-sm-12 nw-block">
+            <form name="sample-form">
               <div className="nw-space-bottom">
                 Input Example field with Validations Example
               </div>
@@ -85,43 +85,41 @@ class InputExample extends Component {
               <div>{validateInputErrorMsg}</div>
             </form>
           </GridColumn>
-          <GridColumn className="nwc-grid-col-sm-12 nw-sample-inputcontainer">
-            <div className="nw-sample-inputwrapper">
-              <div className="nw-space-bottom">
-                Input Example checkbox and radio
-              </div>
-              <Input
-                name="sampleCheckbox"
-                type="checkbox"
-                value="0"
-                checked={checkboxChecked}
-                className={`nwc-inp-checkbox-secondary nwc-inp-sm nwc-inp-normal ${
-                  this.errorClass
-                }`}
-                onChange={e => {
-                  this.toggleValue(e, "checkboxChecked");
-                }}
-                onKeyDown={e => {
-                  this.toggleValue(e, "checkboxChecked");
-                }}
-              />{" "}
-              &nbsp;
-              <Input
-                name="sampleRadio"
-                type="radio"
-                value="0"
-                checked={radioChecked}
-                className={`nwc-inp-radio-primary nwc-inp-sm nwc-inp-normal ${
-                  this.errorClass
-                }`}
-                onChange={e => {
-                  this.toggleValue(e, "radioChecked");
-                }}
-                onKeyDown={e => {
-                  this.toggleValue(e, "radioChecked");
-                }}
-              />
+          <GridColumn className="nwc-grid-col-sm-12 nw-block">
+            <div className="nw-space-bottom">
+              Input Example checkbox and radio
             </div>
+            <Input
+              name="sampleCheckbox"
+              type="checkbox"
+              value="0"
+              checked={checkboxChecked}
+              className={`nwc-inp-checkbox-secondary nwc-inp-sm nwc-inp-normal ${
+                this.errorClass
+              }`}
+              onChange={e => {
+                this.toggleValue(e, "checkboxChecked");
+              }}
+              onKeyDown={e => {
+                this.toggleValue(e, "checkboxChecked");
+              }}
+            />{" "}
+            &nbsp;
+            <Input
+              name="sampleRadio"
+              type="radio"
+              value="0"
+              checked={radioChecked}
+              className={`nwc-inp-radio-primary nwc-inp-sm nwc-inp-normal ${
+                this.errorClass
+              }`}
+              onChange={e => {
+                this.toggleValue(e, "radioChecked");
+              }}
+              onKeyDown={e => {
+                this.toggleValue(e, "radioChecked");
+              }}
+            />
           </GridColumn>
         </GridRow>
       </GridColumn>

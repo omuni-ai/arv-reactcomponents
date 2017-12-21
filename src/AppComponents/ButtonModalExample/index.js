@@ -30,37 +30,38 @@ class ButtonModalExample extends Component {
 
   render() {
     return (
-      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-buttoncontainer">
-        <div className="nw-sample-buttonwrapper">
-          <div className="nw-space-bottom">Button and Modal Example</div>
-          <Button
-            className="nwc-btn-primary nwc-btn-normal"
-            onClick={this.showHelloMsg}
-          >
-            Hello Modal
-          </Button>
-          <Button
-            className="nwc-btn-primary nwc-btn-normal"
-            onClick={this.showHaiMsg}
-          >
-            Hai Modal
-          </Button>
-          <Modal
-            onStateChange={ButtonModalExample.onStateChange}
-            ref={c => {
-              this.helloRef = c;
-            }}
-          >
-            <div>Hello</div>
-          </Modal>
-          <Modal
-            ref={c => {
-              this.haiRef = c;
-            }}
-          >
-            <div>Hai</div>
-          </Modal>
-        </div>
+      <GridColumn className="nw-block nwc-grid-col-sm-6 nwc-grid-col-md-4">
+        <div className="nw-space-bottom">Button and Modal Example</div>
+        <Button
+          className="nwc-btn-primary nwc-btn-normal"
+          onClick={this.showHelloMsg}
+        >
+          Hello Modal
+        </Button>
+        &nbsp;
+        <Button
+          className="nwc-btn-primary nwc-btn-normal"
+          onClick={this.showHaiMsg}
+        >
+          Hai Modal
+        </Button>
+        <Modal
+          className="nw-modal"
+          onStateChange={ButtonModalExample.onStateChange}
+          ref={c => {
+            this.helloRef = c;
+          }}
+        >
+          <div>Hello</div>
+        </Modal>
+        <Modal
+          className="nw-modal"
+          ref={c => {
+            this.haiRef = c;
+          }}
+        >
+          <div>Hai</div>
+        </Modal>
       </GridColumn>
     );
   }

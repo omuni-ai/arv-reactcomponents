@@ -14,7 +14,9 @@ body {
   background: $body-background;
   font-size: $font-size;
   font-family: Avenir, sans-serif;
+  font-weight: bold;
   color: $body-color;
+  letter-spacing: 1.5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

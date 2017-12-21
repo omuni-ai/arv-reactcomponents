@@ -47,18 +47,16 @@ class SelectExample extends Component {
     const { inpList, selectSelectedValue } = this.state;
 
     return (
-      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-selectcontainer">
-        <div className="nw-sample-selectwrapper">
-          <div className="nw-sample-select">
-            <div className="nw-space-bottom">Select Example</div>
-            <Select
-              className="nwc-select nwc-select-secondary nwc-select-sm nw-select"
-              selectedValue={selectSelectedValue}
-              inpList={inpList}
-              getSelection={this.getSelectSelection}
-              renderList={SelectExample.getList}
-            />
-          </div>
+      <GridColumn className="nw-block nwc-grid-col-sm-6 nwc-grid-col-md-4">
+        <div className="nw-sample-select">
+          <div className="nw-space-bottom">Select Example</div>
+          <Select
+            className="nwc-select-secondary nwc-select-sm nw-select"
+            selectedValue={selectSelectedValue}
+            inpList={inpList}
+            getSelection={this.getSelectSelection}
+            renderList={SelectExample.getList}
+          />
         </div>
       </GridColumn>
     );

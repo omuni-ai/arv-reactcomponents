@@ -2,6 +2,7 @@
   border: $button-border-width $button-border-type $button-border-color;
   padding: $button-padding-y $button-padding-x;
   background: $button-background;
+  cursor: pointer;
   color: $button-color;
   outline: 0;
 }
@@ -10,6 +11,7 @@
   .nwc-btn-#{$button-variants} {
     background: $value;
     color: set-color($value, $compliment-for-dark, $compliment-for-light);
+    border-color: $transparent;
     @if(lightness($value) > $lightness-threshold) {
       border-color: $compliment-for-light;
     }
