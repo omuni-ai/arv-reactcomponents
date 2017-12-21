@@ -1,7 +1,7 @@
 import React from "react";
 import { GridRow, GridColumn, Input, Utils } from "../../components";
 
-import "./styles/_index.scss";
+import "./_index.scss";
 
 const value = "";
 
@@ -10,7 +10,7 @@ function InputDisplay() {
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
       <h1>Inputs</h1>
       <GridRow>
-        <GridColumn className="nwc-grid-col-sm-12 nw-block">
+        <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
           <h2>Color Variants</h2>
           <Input
             className="nw-display-inp"
@@ -47,7 +47,7 @@ function InputDisplay() {
             onChange={Utils.noop}
           />
         </GridColumn>
-        <GridColumn className="nwc-grid-col-sm-12 nw-block">
+        <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
           <h2>Size Variants</h2>
           <Input
             className="nw-display-inp nwc-inp-xxl"

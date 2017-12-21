@@ -1,8 +1,6 @@
 import React from "react";
 import { GridRow, GridColumn, Button } from "../../components";
 
-import "./styles/_index.scss";
-
 function ButtonDisplay() {
   return (
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
