@@ -1,18 +1,19 @@
 .nwc-toastr-list {
   position: relative;
-  margin: 0 auto 10px;
-  border-radius: 3px;
-  max-width: 768px;
-  padding: 10px;
-  background: $white;
+  margin: $toastr-list-margin-y $toastr-list-margin-x;
+  border: $toastr-list-border-width $toastr-list-border-type $toastr-list-border-color;
+  border-radius: $toastr-list-border-radius;
+  max-width: $toastr-list-max-width;
+  padding: $toastr-list-padding-y $toastr-list-padding-x;
+  background: $toastr-list-background;
 }
 
-@each $all-toaster-variants, $value in $all-toaster-variants {
-  .nwc-toastr-list-#{$all-toaster-variants} {
+@each $toaster-variants, $value in $toaster-variants {
+  .nwc-toastr-list-#{$toaster-variants} {
     background: $value;
     color: set-color($value, $compliment-for-dark, $compliment-for-light);
-    @if(lightness($value) > 70) {
-      border: 1px solid $compliment-for-light;
+    @if(lightness($value) > $lightness-threshold) {
+      border-color: $compliment-for-light;
     }
   }
 }

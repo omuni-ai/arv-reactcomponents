@@ -1,24 +1,24 @@
 .nwc-btn {
-  border: 1px solid #eee;
-  padding: 6px;
-  background: $transparent;
-  color: $black;
+  border: $button-border-width $button-border-type $button-border-color;
+  padding: $button-padding-y $button-padding-x;
+  background: $button-background;
+  color: $button-color;
   outline: 0;
 }
 
-@each $all-button-variants, $value in $all-button-variants {
-  .nwc-btn-#{$all-button-variants} {
+@each $button-variants, $value in $button-variants {
+  .nwc-btn-#{$button-variants} {
     background: $value;
     color: set-color($value, $compliment-for-dark, $compliment-for-light);
-    @if(lightness($value) > 70) {
-      border: 1px solid $compliment-for-light;
+    @if(lightness($value) > $lightness-threshold) {
+      border-color: $compliment-for-light;
     }
   }
 }
 
 // Size Variants
-@each $all-button-sizevariants, $value in $all-button-sizevariants {
-  .nwc-btn-#{$all-button-sizevariants} {
+@each $button-sizevariants, $value in $button-sizevariants {
+  .nwc-btn-#{$button-sizevariants} {
     font-size: $value;
   }
 }

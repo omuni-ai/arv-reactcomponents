@@ -49,16 +49,16 @@ class Select extends Component {
     } = this.props;
 
     return (
-      <div className={`nwc-dropdown-container ${className}`}>
+      <div className={`nwc-select-container ${className}`}>
         <Label
-          className="nwc-dropdown"
+          className="nwc-select"
           htmlFor={id || this.inputId}
           {...otherProps}
         >
           {selectedValue}
           <Input
             id={id || this.inputId}
-            labelClassName="nwc-dropdown-label"
+            labelClassName="nwc-select-inp-label"
             className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
             placeholder="Enter text"
             value={inpVal}

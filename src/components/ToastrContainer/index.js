@@ -10,7 +10,9 @@ function ToastrContainer(props) {
     <ul className="nwc-toastr-container">
       {[...toastrList].reverse().map((item, index) => {
         if (index < limitTo) {
-          return <ToastrList item={item} hideToastr={hideToastr} />;
+          return (
+            <ToastrList item={item} key={item.id} hideToastr={hideToastr} />
+          );
         }
 
         return null;

@@ -5,11 +5,12 @@ import Close from "../Close";
 import "./styles/_index.scss";
 
 function ToastrList(props) {
-  const { item, hideToastr } = props;
+  const { item, hideToastr, ...otherProps } = props;
   return (
     <li
       key={`toastr-${item.id}`}
       className={`nwc-toastr-list ${item.className}`}
+      {...otherProps}
     >
       <Close
         className="nwc-close-sm"

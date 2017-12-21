@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 
 // Import common components
-import { Select, GridColumn, Utils } from "../../components";
+import { Select, GridColumn } from "../../components";
 
 // Import for page
 import "./_index.scss";
 
-console.log(Utils);
-
 class SelectExample extends Component {
   static getList(item) {
     return (
-      <li className="nw-sample-dropdown-list" key={item}>
+      <li className="nw-sample-select-list" key={item}>
         {item}
       </li>
     );
@@ -20,7 +18,7 @@ class SelectExample extends Component {
   constructor(props) {
     super(props);
 
-    const dropdownList = [
+    const selectList = [
       "Delhi",
       "Mumbai",
       "Gujarat",
@@ -32,8 +30,8 @@ class SelectExample extends Component {
     ];
 
     this.state = {
-      dropdownSelectedValue: dropdownList[0],
-      inpList: dropdownList,
+      selectSelectedValue: selectList[0],
+      inpList: selectList,
     };
 
     this.getSelectSelection = this.getSelectSelection.bind(this);
@@ -41,21 +39,21 @@ class SelectExample extends Component {
 
   getSelectSelection(selectedValue) {
     this.setState({
-      dropdownSelectedValue: selectedValue,
+      selectSelectedValue: selectedValue,
     });
   }
 
   render() {
-    const { inpList, dropdownSelectedValue } = this.state;
+    const { inpList, selectSelectedValue } = this.state;
 
     return (
-      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-dropdowncontainer">
-        <div className="nw-sample-dropdownwrapper">
-          <div className="nw-sample-dropdown">
+      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-sample-selectcontainer">
+        <div className="nw-sample-selectwrapper">
+          <div className="nw-sample-select">
             <div className="nw-space-bottom">Select Example</div>
             <Select
-              className="nwc-dropdown nwc-dropdown-secondary nwc-dropdown-sm nw-dropdown"
-              selectedValue={dropdownSelectedValue}
+              className="nwc-select nwc-select-secondary nwc-select-sm nw-select"
+              selectedValue={selectSelectedValue}
               inpList={inpList}
               getSelection={this.getSelectSelection}
               renderList={SelectExample.getList}

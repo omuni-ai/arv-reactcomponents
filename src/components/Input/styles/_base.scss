@@ -4,19 +4,19 @@
 }
 
 .nwc-inp {
-  border: 1px solid $concrete;
+  border: $input-border-width $input-border-type $input-border-color;
   width: 100%;
   height: 100%;
-  background: $transparent;
+  background: $input-background;
   outline: 0;
   
   &.is-invalid {
-    border-color: $red-ribbon;
+    border-color: $input-invalid-color;
   }
 }
 
-@each $all-input-variants, $value in $all-input-variants {
-  .nwc-inp-#{$all-input-variants} {
+@each $input-variants, $value in $input-variants {
+  .nwc-inp-#{$input-variants} {
     border-color: $value;
   }
 }
@@ -24,29 +24,30 @@
 .nwc-inp-checkbox {
   position: relative;
   display: inline-block;
-  border: 2px solid $black;
+  border: $input-checkbox-border-width $input-checkbox-border-type $input-checkbox-border-color;
   user-select: none;
 
   &.is-checked {
     &::before {
       content: ' ';
       position: absolute;
-      top: 2px;
-      bottom: 2px;
-      left: 2px;
-      right: 2px;
-      background: $black;
+      top: $input-checkbox-inner-spacing;
+      bottom: $input-checkbox-inner-spacing;
+      left: $input-checkbox-inner-spacing;
+      right: $input-checkbox-inner-spacing;
+      border: $input-checkbox-inner-border-width $input-checkbox-border-type $input-checkbox-border-color;
+      background: $input-checkbox-inner-background;
     }
   }
 }
 
-@each $all-input-variants, $value in $all-input-variants {
-  .nwc-inp-checkbox-#{$all-input-variants} {
+@each $input-variants, $value in $input-variants {
+  .nwc-inp-checkbox-#{$input-variants} {
     &.is-checked {
       &::before {
         background: $value;
-        @if(lightness($value) > 70) {
-          border: 2px solid $compliment-for-light;
+        @if(lightness($value) > $lightness-threshold) {
+          border-color: $compliment-for-light;
         }
       }
     }
@@ -56,7 +57,7 @@
 .nwc-inp-radio {
   position: relative;
   display: inline-block;
-  border: 2px solid $black;
+  border: $input-radio-border-width $input-radio-border-type $input-radio-border-color;
   border-radius: 50%;
   user-select: none;
 
@@ -64,23 +65,24 @@
     &::before {
       content: ' ';
       position: absolute;
-      top: 2px;
-      bottom: 2px;
-      left: 2px;
-      right: 2px;
+      top: $input-radio-inner-spacing;
+      bottom: $input-radio-inner-spacing;
+      left: $input-radio-inner-spacing;
+      right: $input-radio-inner-spacing;
+      border: $input-radio-inner-border-width $input-radio-border-type $input-radio-border-color;
       border-radius: 50%;
-      background: $black;
+      background: $input-radio-inner-background;
     }
   }
 }
 
-@each $all-input-variants, $value in $all-input-variants {
-  .nwc-inp-radio-#{$all-input-variants} {
+@each $input-variants, $value in $input-variants {
+  .nwc-inp-radio-#{$input-variants} {
     &.is-checked {
       &::before {
         background: $value;
-        @if(lightness($value) > 70) {
-          border: 2px solid $compliment-for-light;
+        @if(lightness($value) > $lightness-threshold) {
+          border-color: $compliment-for-light;
         }
       }
     }
@@ -88,8 +90,8 @@
 }
 
 .nwc-inp-dash {
-  border: 0;
-  border-bottom: 2px solid darken-colors($concrete, 1);
+  border-width: 0;
+  border-bottom-width: $input-dash-border-width;
 }
 
 /* stylelint-disable */
@@ -104,8 +106,8 @@
 /* stylelint-enable */
 
 // Size Variants
-@each $all-input-sizevariants, $value in $all-input-sizevariants {
-  .nwc-inp-#{$all-input-sizevariants} {
+@each $input-sizevariants, $value in $input-sizevariants {
+  .nwc-inp-#{$input-sizevariants} {
     min-width: $value;
     min-height: $value;
     font-size: $value;
@@ -123,4 +125,5 @@
   max-height: 1px;
   background: $transparent;
   color: $transparent;
+  outline: 0;
 }

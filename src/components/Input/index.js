@@ -16,24 +16,24 @@ class Input extends Component {
   }
 
   get defaultClassNames() {
-    const { type } = this.props;
+    const { type, className } = this.props;
     switch (type) {
       case "checkbox":
       case "radio":
         return "nwc-inp-hide";
       default:
-        return "nwc-inp";
+        return `nwc-inp  ${className}`;
     }
   }
 
   get cloneClassName() {
-    const { type, checked } = this.props;
-    const isCheckedClass = checked ? " is-checked" : "";
+    const { type, checked, className } = this.props;
+    const isCheckedClass = checked ? "is-checked" : "";
     switch (type) {
       case "checkbox":
-        return `nwc-inp-checkbox${isCheckedClass}`;
+        return `nwc-inp-checkbox ${className} ${isCheckedClass}`;
       case "radio":
-        return `nwc-inp-radio${isCheckedClass}`;
+        return `nwc-inp-radio ${className} ${isCheckedClass}`;
       default:
         return "nwc-inp-hide";
     }
@@ -56,12 +56,12 @@ class Input extends Component {
       >
         <input
           id={id || this.inputId}
-          className={`${this.defaultClassNames} ${className}`}
+          className={`${this.defaultClassNames}`}
           type={type}
           tabIndex="0"
           {...otherProps}
         />
-        <i className={`${this.cloneClassName} ${className}`} />
+        <i className={`${this.cloneClassName}`} />
       </Label>
     );
   }

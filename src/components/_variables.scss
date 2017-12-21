@@ -1,12 +1,14 @@
 /** Color Names picked from http://chir.ag/projects/name-that-color/ */
 
-$transparent: transparent !default;
-$violet-red: #f2258b !default;
-$lochmara: #0182cb !default;
+$transparent: transparent;
 $white: #fff !default;
 $black: #000 !default;
-$olive: #738c00 !default;
-$red-ribbon: #ea0423 !default;
+$violet-red: #f2258b !default;
+$lochmara: #0182cb !default;
+$fountain-blue: #5ca9c0 !default;
+$fern: #6ab373 !default;
+$tan-hide: #faa64b !default;
+$chestnut-rose: #c95757 !default;
 $concrete: #f3f3f3 !default;
 
 $font-size: 18px !default;
@@ -27,20 +29,96 @@ $screen-min-md: 993px !default;
 $screen-max-md: 1200px !default;
 $screen-min-lg: 1201px !default;
 
-/** Specific */
+// Value more than specified value will be considered dark colors
+$lightness-threshold: 70;
 
+//
 // Colors
-$compliment-for-dark: $white;
-$compliment-for-light: $black;
+//
+$compliment-for-dark: $white !default;
+$compliment-for-light: $black !default;
 
 $color-primary: $violet-red !default;
 $color-secondary: $lochmara !default;
-$color-notification: $lochmara !default;
-$color-success: $olive !default;
-$color-danger: $red-ribbon !default;
-$color-transparent-modal: rgba(0, 0, 0, 0.7) !default;
+$color-notification: $fountain-blue !default;
+$color-success: $fern !default;
+$color-warning: $tan-hide !default;
+$color-danger: $chestnut-rose !default;
 
+// ---- Components ---- //
+
+//
+// Autocomplete
+//
+$autocomplete-list-margin-y: 0 !default;
+$autocomplete-list-margin-x: 0 !default;
+$autocomplete-list-border-width: 1px !default;
+$autocomplete-list-border-type: solid !default;
+$autocomplete-list-border-color: darken-colors($concrete, 2) !default;
+$autocomplete-list-max-height: 200px !default;
+$autocomplete-list-padding-y: 5px !default;
+$autocomplete-list-padding-x: 0 !default;
+$autocomplete-list-background: $white !default;
+
+
+//
+// Button
+//
+
+$button-border-width: 1px !default;
+$button-border-type: solid !default;
+$button-border-color: darken-colors($concrete, 2) !default;
+$button-padding-y: 6px !default;
+$button-padding-x: 6px !default;
+$button-background: transparent !default;
+$button-color: $black !default;
+
+$button-variants: (
+  primary: $color-primary,
+  secondary: $white,
+  success: $color-success,
+  danger: $color-danger
+) !default; // variants background property
+
+$button-sizevariants: (
+  xxs: $font-size-xxs,
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  normal: $font-size-normal,
+  lg: $font-size-lg,
+  xl: $font-size-xl,
+  xxl: $font-size-xxl,
+) !default; // variants font-size property
+
+//
+// Close
+//
+$close-position-top: 0 !default;
+$close-position-right: 0 !default;
+$close-border-width: 0 !default;
+$close-border-type: solid !default;
+$close-border-color: darken-colors($concrete, 2) !default;
+$close-width: 37px !default;
+$close-height: 37px !default;
+$close-padding-y: 5px !default;
+$close-padding-x: 5px !default;
+$close-background: transparent !default;
+$close-lineheight: 0 !default;
+$close-color: darken-colors($concrete, 3) !default;
+
+$close-sizevariants: (
+  xxs: get-rems(15px, $font-size),
+  xs: get-rems(25px, $font-size),
+  sm: get-rems(35px, $font-size),
+  normal: get-rems(45px, $font-size),
+  lg: get-rems(55px, $font-size),
+  xl: get-rems(65px, $font-size),
+  xxl: get-rems(75px, $font-size),
+) !default; // variants font-size property
+
+//
 // Grid
+//
 $all-screen-max: (
   xs: $screen-max-xs,
   sm: $screen-max-sm,
@@ -55,44 +133,39 @@ $grid-gutter-width: 15px !default;
 $grid-container-offset: 50px !default;
 $total-cols: 12 !default;
 
-// Close
-$all-close-sizevariants: (
-  xxs: get-rems(15px, $font-size),
-  xs: get-rems(25px, $font-size),
-  sm: get-rems(35px, $font-size),
-  normal: get-rems(45px, $font-size),
-  lg: get-rems(55px, $font-size),
-  xl: get-rems(65px, $font-size),
-  xxl: get-rems(75px, $font-size),
-) !default; // variants font-size property
-
-// Button
-$all-button-variants: (
-  primary: $color-primary,
-  secondary: $white,
-  success: $color-success,
-  danger: $color-danger
-) !default; // variants background property
-
-$all-button-sizevariants: (
-  xxs: $font-size-xxs,
-  xs: $font-size-xs,
-  sm: $font-size-sm,
-  normal: $font-size-normal,
-  lg: $font-size-lg,
-  xl: $font-size-xl,
-  xxl: $font-size-xxl,
-) !default; // variants font-size property
-
+//
 // Input
-$all-input-variants: (
+//
+$input-border-width: 1px !default;
+$input-border-type: solid !default;
+$input-border-color: darken-colors($concrete, 2) !default;
+$input-background: transparent !default;
+$input-invalid-color: $color-danger !default;
+
+$input-checkbox-border-width: 2px !default;
+$input-checkbox-inner-border-width: 2px !default;
+$input-checkbox-border-type: solid !default;
+$input-checkbox-border-color: $black !default;
+$input-checkbox-inner-spacing: 2px !default;
+$input-checkbox-inner-background: $black !default;
+
+$input-radio-border-width: 2px !default;
+$input-radio-inner-border-width: 2px !default;
+$input-radio-border-type: solid !default;
+$input-radio-border-color: $black !default;
+$input-radio-inner-spacing: 2px !default;
+$input-radio-inner-background: $black !default;
+
+$input-dash-border-width: 2px !default;
+
+$input-variants: (
   primary: $color-primary,
   secondary: $white,
   success: $color-success,
   danger: $color-danger
 ) !default; // variants for border property
 
-$all-input-sizevariants: (
+$input-sizevariants: (
   xxs: $font-size-xxs,
   xs: $font-size-xs,
   sm: $font-size-sm,
@@ -102,19 +175,85 @@ $all-input-sizevariants: (
   xxl: $font-size-xxl,
 ) !default; // variants font-size property
 
-// Dropdown
-$all-dropdown-variants: (
+//
+// Modal Container
+//
+$modal-container-z-index: 999 !default;
+$modal-container-background: rgba(0, 0, 0, 0.7) !default;
+$modal-container-padding: 10px !default;
+$modal-container-769-padding: 10px !default;
+
+$modal-min-height: 200px !default;
+$modal-padding-y: 10px !default;
+$modal-padding-x: 10px !default;
+$modal-background: $white !default;
+$modal-border-radius: 0 !default;
+$modal-769-border-radius: 3px !default;
+$modal-height: 360px !default;
+
+//
+// Select
+//
+$select-border-width: 1px !default;
+$select-border-type: solid !default;
+$select-border-color: darken-colors($concrete, 2) !default;
+
+$select-list-margin-y: 0 !default;
+$select-list-margin-x: 0 !default;
+$select-list-border-width: 1px !default;
+$select-list-border-type: solid !default;
+$select-list-border-color: darken-colors($concrete, 2) !default;
+$select-list-max-height: 200px !default;
+$select-list-padding-y: 5px !default;
+$select-list-padding-x: 0 !default;
+$select-list-background: $white !default;
+
+$select-variants: (
   primary: $color-primary,
   secondary: $white,
   success: $color-success,
   danger: $color-danger
 ) !default; // variants for border property
 
+$select-sizevariants: (
+  xxs: $font-size-xxs,
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  normal: $font-size-normal,
+  lg: $font-size-lg,
+  xl: $font-size-xl,
+  xxl: $font-size-xxl,
+) !default; // variants font-size property
+
+//
 // Toaster
-$all-toaster-variants: (
+//
+$toastr-z-index: 1000;
+
+$toastr-list-margin-y: 10px !default;
+$toastr-list-margin-x: auto !default;
+$toastr-list-border-width: 1px !default;
+$toastr-list-border-type: solid !default;
+$toastr-list-border-color: darken-colors($concrete, 2) !default;
+$toastr-list-border-radius: 3px !default;
+$toastr-list-max-width: 768px !default;
+$toastr-list-padding-y: 10px !default;
+$toastr-list-padding-x: 10px !default;
+$toastr-list-background: $white !default;
+
+$toaster-variants: (
   notification: $color-notification,
   success: $color-success,
   danger: $color-danger
 ) !default; // variants for background property
 
 $screen-media: sm !default;
+
+// ---- Page --- //
+
+//
+// Body
+//
+
+$body-background: $white !default;
+$body-color: $black !default;

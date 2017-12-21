@@ -124,7 +124,7 @@ function renderListItems(inpVal, inpList, renderList) {
 
   return this.state.isSelectActive ? (
     <ul
-      className="nwc-dropdown-list-container"
+      className="nwc-select-list-container"
       ref={context => {
         this.listNodeWrapperRef = context;
       }}
