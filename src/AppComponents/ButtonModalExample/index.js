@@ -38,7 +38,7 @@ class ButtonModalExample extends Component {
         >
           Hello Modal
         </Button>
-        &nbsp;
+        <span>&nbsp;</span>
         <Button
           className="nwc-btn-primary nwc-btn-normal"
           onClick={this.showHaiMsg}

@@ -103,8 +103,8 @@ class InputExample extends Component {
               onKeyDown={e => {
                 this.toggleValue(e, "checkboxChecked");
               }}
-            />{" "}
-            &nbsp;
+            />
+            <span>&nbsp;</span>
             <Input
               name="sampleRadio"
               type="radio"

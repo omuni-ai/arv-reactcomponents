@@ -36,7 +36,7 @@ class ButtonToastrExample extends Component {
         >
           Show Toastr
         </Button>
-        &nbsp;
+        <span>&nbsp;</span>
         <Button
           className="nwc-btn-primary nwc-btn-normal"
           onClick={ButtonToastrExample.withTimeout}

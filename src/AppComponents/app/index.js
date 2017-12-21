@@ -6,6 +6,9 @@ import "./_index.scss";
 import ColorsDisplay from "../ColorsDisplay";
 import FontSizes from "../FontSizes";
 import MediaBreakpoints from "../MediaBreakpoints";
+import ButtonDisplay from "../ButtonDisplay";
+import InputDisplay from "../InputDisplay";
+import GridDisplay from "../GridDisplay";
 
 import AutocompleteExample from "../AutocompleteExample";
 import SelectExample from "../SelectExample";
@@ -20,6 +23,9 @@ function App() {
         <ColorsDisplay />
         <FontSizes />
         <MediaBreakpoints />
+        <ButtonDisplay />
+        <InputDisplay />
+        <GridDisplay />
 
         <AutocompleteExample />
         <SelectExample />

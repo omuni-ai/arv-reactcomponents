@@ -15,22 +15,22 @@ input {
   /* stylelint-disable */
   &::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    color: $white;
+    color: $black;
   }
 
   &::-moz-placeholder {
     /* Firefox 19+ */
-    color: $white;
+    color: $black;
   }
 
   &:-ms-input-placeholder {
     /* IE 10+ */
-    color: $white;
+    color: $black;
   }
 
   &:-moz-placeholder {
     /* Firefox 18- */
-    color: $white;
+    color: $black;
   }
   /* stylelint-enable */
 }
