@@ -82,7 +82,7 @@ function renderListItems(inpVal, inpList, renderList) {
 
   const list = filteredList.map((item, index) => {
     const elem = renderList(item);
-    const onClickFn = elem.props.onClick || (() => {});
+    const onClickFn = elem.props.onClick || Utils.noop;
     let addClass = "";
     if (index === selectedListIndex) {
       addClass = "is-active";
@@ -117,9 +117,9 @@ function renderListItems(inpVal, inpList, renderList) {
 function renderAutocompleteInput(elem) {
   const { id } = this.props;
   const toggleAutocompleteDisplayFn = toggleAutocompleteDisplay.bind(this);
-  const onKeyDownFn = elem.props.onKeyDown || (() => {});
-  const onFocusFn = elem.props.onFocus || (() => {});
-  const onBlurFn = elem.props.onBlur || (() => {});
+  const onKeyDownFn = elem.props.onKeyDown || Utils.noop;
+  const onFocusFn = elem.props.onFocus || Utils.noop;
+  const onBlurFn = elem.props.onBlur || Utils.noop;
 
   return cloneElement(elem, {
     id: id || this.inputId,

@@ -104,7 +104,7 @@ function renderListItems(inpVal, inpList, renderList) {
 
   const list = inpList.map((item, index) => {
     const elem = renderList(item);
-    const onClickFn = elem.props.onClick || (() => {});
+    const onClickFn = elem.props.onClick || Utils.noop;
     let addClass = "";
     if (index === selectedListIndex) {
       addClass = "is-active";
