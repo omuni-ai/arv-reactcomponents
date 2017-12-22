@@ -47,7 +47,7 @@ class SelectExample extends Component {
     const { inpList, selectSelectedValue } = this.state;
 
     return (
-      <GridColumn className="nw-block nwc-grid-col-sm-6 nwc-grid-col-md-4">
+      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-block nw-block-white">
         <div className="nw-sample-select">
           <div className="nw-space-bottom">Select Example</div>
           <Select

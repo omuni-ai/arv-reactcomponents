@@ -57,7 +57,7 @@ class InputExample extends Component {
     return (
       <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4">
         <GridRow>
-          <GridColumn className="nwc-grid-col-sm-12 nw-block">
+          <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
             <form name="sample-form">
               <div className="nw-space-bottom">
                 Input Example field with Validations Example
@@ -85,7 +85,7 @@ class InputExample extends Component {
               <div>{validateInputErrorMsg}</div>
             </form>
           </GridColumn>
-          <GridColumn className="nwc-grid-col-sm-12 nw-block">
+          <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
             <div className="nw-space-bottom">
               Input Example checkbox and radio
             </div>

@@ -30,7 +30,7 @@ class ButtonModalExample extends Component {
 
   render() {
     return (
-      <GridColumn className="nw-block nwc-grid-col-sm-6 nwc-grid-col-md-4">
+      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-block nw-block-white">
         <div className="nw-space-bottom">Button and Modal Example</div>
         <Button
           className="nwc-btn-primary nwc-btn-normal"

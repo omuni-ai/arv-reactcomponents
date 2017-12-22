@@ -94,7 +94,7 @@ class AutocompleteExample extends Component {
     const { inpList } = this.state;
 
     return (
-      <GridColumn className="nw-block nwc-grid-col-sm-6 nwc-grid-col-md-4">
+      <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-block nw-block-white">
         <div className="nw-sample-autocompletewrapper">
           <div className="nw-sample-autocomplete">
             <div className="nw-space-bottom">Autocomplete Example</div>

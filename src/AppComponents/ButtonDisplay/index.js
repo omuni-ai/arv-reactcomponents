@@ -6,7 +6,7 @@ function ButtonDisplay() {
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
       <h1>Buttons</h1>
       <GridRow>
-        <GridColumn className="nwc-grid-col-sm-12 nw-block">
+        <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
           <h2>Color Variants</h2>
           <Button>Normal</Button>
           <span>&nbsp;</span>
@@ -18,7 +18,7 @@ function ButtonDisplay() {
           <span>&nbsp;</span>
           <Button className="nwc-btn-danger">Danger</Button>
         </GridColumn>
-        <GridColumn className="nwc-grid-col-sm-12 nw-block">
+        <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
           <h2>Size Variants</h2>
           <Button className="nwc-btn-primary nwc-btn-xxl">Button xxl</Button>
           <span>&nbsp;</span>
