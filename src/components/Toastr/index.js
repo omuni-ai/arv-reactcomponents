@@ -32,14 +32,13 @@ class Toastr extends Component {
   render() {
     const { toastrList } = this.state;
 
-    return (
-      <div role="button" tabIndex={0}>
-        <ToastrContainer
-          toastrList={toastrList}
-          limitTo={this.limitTo}
-          hideToastr={hideToastrFn}
-        />
-      </div>
+    return ReactDOM.createPortal(
+      <ToastrContainer
+        toastrList={toastrList}
+        limitTo={this.limitTo}
+        hideToastr={hideToastrFn}
+      />,
+      document.querySelectorAll(".nwc-toastr-holder")[0],
     );
   }
 }

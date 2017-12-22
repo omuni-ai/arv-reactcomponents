@@ -7,17 +7,19 @@ import "./styles/_index.scss";
 function ToastrContainer(props) {
   const { toastrList, limitTo, hideToastr } = props;
   return (
-    <ul className="nwc-toastr-container">
-      {[...toastrList].reverse().map((item, index) => {
-        if (index < limitTo) {
-          return (
-            <ToastrList item={item} key={item.id} hideToastr={hideToastr} />
-          );
-        }
+    <div role="button" tabIndex={0}>
+      <ul className="nwc-toastr-container">
+        {[...toastrList].reverse().map((item, index) => {
+          if (index < limitTo) {
+            return (
+              <ToastrList item={item} key={item.id} hideToastr={hideToastr} />
+            );
+          }
 
-        return null;
-      })}
-    </ul>
+          return null;
+        })}
+      </ul>
+    </div>
   );
 }
 
