@@ -1,43 +1,23 @@
-import { Component } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import Utils from "../_jsUtils";
+import ModalContainer from "../ModalContainer";
 
-import {
-  renderModal,
-  openModal,
-  closeModal,
-  createBaseContainer,
-} from "./methods";
+import createBaseContainer from "./methods";
 
-class Modal extends Component {
-  constructor(props) {
-    super(props);
+function Modal(props) {
+  const { isOpen, ...otherProps } = props;
 
-    this.state = {
-      isOpen: false, // eslint-disable-line react/no-unused-state
-    };
-
-    this.openModal = openModal.bind(this);
-    this.closeModal = closeModal.bind(this);
-  }
-
-  componentDidUpdate() {
-    renderModal.bind(this)();
-  }
-
-  render() {
-    return null;
-  }
+  return ReactDOM.createPortal(
+    isOpen ? <ModalContainer {...otherProps} /> : null,
+    document.querySelectorAll(".nwc-modal-holder")[0],
+  );
 }
 
 createBaseContainer();
 
-Modal.defaultProps = {
-  onStateChange: Utils.noop,
-};
-
 Modal.propTypes = {
-  onStateChange: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+  isOpen: PropTypes.bool.isRequired,
 };
 
 export default Modal;

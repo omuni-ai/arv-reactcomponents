@@ -7,60 +7,74 @@ import { Button, Modal, GridColumn, Toastr } from "../../components";
 import "./_index.scss";
 
 class ButtonModalExample extends Component {
-  static onStateChange(bool) {
-    console.log(bool);
-  }
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      showHelloIsOpen: false,
+      showHaiIsOpen: false,
+    };
 
     this.showHelloMsg = this.showHelloMsg.bind(this);
     this.showHaiMsg = this.showHaiMsg.bind(this);
   }
 
-  showHelloMsg() {
-    this.helloRef.openModal();
+  showHelloMsg(bool) {
+    this.setState({
+      showHelloIsOpen: bool,
+    });
     Toastr.clearAll();
   }
 
-  showHaiMsg() {
-    this.haiRef.openModal();
+  showHaiMsg(bool) {
+    this.setState({
+      showHaiIsOpen: bool,
+    });
     Toastr.clearAll();
   }
 
   render() {
+    const { showHelloIsOpen, showHaiIsOpen } = this.state;
+
     return (
       <GridColumn className="nwc-grid-col-sm-6 nwc-grid-col-md-4 nw-block nw-block-white">
         <div className="nw-space-bottom">Button and Modal Example</div>
         <Button
           className="nwc-btn-primary nwc-btn-normal"
-          onClick={this.showHelloMsg}
+          onClick={() => {
+            this.showHaiMsg(true);
+          }}
         >
-          Hello Modal
+          Hai Modal
         </Button>
         <span>&nbsp;</span>
         <Button
           className="nwc-btn-primary nwc-btn-normal"
-          onClick={this.showHaiMsg}
+          onClick={() => {
+            this.showHelloMsg(true);
+          }}
         >
-          Hai Modal
+          Hello Modal
         </Button>
         <Modal
           className="nw-modal"
-          onStateChange={ButtonModalExample.onStateChange}
-          ref={c => {
-            this.helloRef = c;
+          isOpen={showHaiIsOpen}
+          onClose={() => {
+            this.showHaiMsg(false);
           }}
+          preventfix
         >
-          <div>Hello</div>
+          <div>Hai</div>
         </Modal>
         <Modal
           className="nw-modal"
-          ref={c => {
-            this.haiRef = c;
+          isOpen={showHelloIsOpen}
+          onClose={() => {
+            this.showHelloMsg(false);
           }}
+          preventfix
         >
-          <div>Hai</div>
+          <div>Hello</div>
         </Modal>
       </GridColumn>
     );

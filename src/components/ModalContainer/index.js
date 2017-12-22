@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Close from "../Close";
 import Utils from "../_jsUtils";
@@ -6,42 +6,62 @@ import Utils from "../_jsUtils";
 import setFocus from "./methods";
 import "./styles/_index.scss";
 
-function ModalContainer(props) {
-  const { className, children, closeModal, ...otherProps } = props;
+class ModalContainer extends Component {
+  componentDidMount() {
+    if (!this.props.preventfix) {
+      Utils.fixScroll();
+    }
+  }
 
-  return (
-    <div
-      role="button"
-      className={`nwc-modal-container ${className}`}
-      tabIndex={0}
-      onClick={closeModal}
-      // onKeyDownCapture={(e) => { this.closeModal(e, 'key'); }}
-      onKeyDown={closeModal}
-      ref={setFocus}
-      {...otherProps}
-    >
+  componentWillUnmount() {
+    Utils.unFixScroll();
+  }
+
+  render() {
+    const {
+      className,
+      children,
+      onClose,
+      preventfix,
+      ...otherProps
+    } = this.props;
+
+    return (
       <div
         role="button"
-        className="nwc-modal"
+        className={`nwc-modal-container ${className}`}
         tabIndex={0}
-        onClick={Utils.preventEventPropagation}
-        onKeyDown={null}
+        onClick={onClose}
+        // onKeyDownCapture={(e) => { this.onClose(e, 'key'); }}
+        onKeyDown={onClose}
+        ref={setFocus}
+        {...otherProps}
       >
-        <Close className="nwc-close-normal" onClick={closeModal} />
-        {children}
+        <div
+          role="button"
+          className="nwc-modal"
+          tabIndex={0}
+          onClick={Utils.preventEventPropagation}
+          onKeyDown={null}
+        >
+          <Close className="nwc-close-normal" onClick={onClose} />
+          {children}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 ModalContainer.defaultProps = {
   className: "",
+  preventfix: false,
 };
 
 ModalContainer.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
-  closeModal: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  preventfix: PropTypes.bool,
 };
 
 export default ModalContainer;
