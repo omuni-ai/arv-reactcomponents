@@ -139,6 +139,8 @@ $total-cols: 12 !default;
 $input-border-width: 2px !default;
 $input-border-type: solid !default;
 $input-border-color: darken-colors($concrete, 2) !default;
+$input-padding-y: 6px !default;
+$input-padding-x: 6px !default;
 $input-background: transparent !default;
 $input-invalid-color: $color-danger !default;
 

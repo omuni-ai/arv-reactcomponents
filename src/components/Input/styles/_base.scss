@@ -5,6 +5,7 @@
 
 .nwc-inp {
   border: $input-border-width $input-border-type $input-border-color;
+  padding: $input-padding-y $input-padding-x;
   background: $input-background;
   outline: 0;
   
