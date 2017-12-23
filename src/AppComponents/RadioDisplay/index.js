@@ -25,7 +25,7 @@ class RadioDisplay extends Component {
 
     return (
       <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
-        <h1>Checkboxes</h1>
+        <h1>Radio Buttons</h1>
         <GridRow>
           <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
             <h2>Color Variants</h2>
