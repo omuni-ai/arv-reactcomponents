@@ -12,7 +12,7 @@ function InputDisplay() {
           <h2>Color Variants</h2>
           <Input
             className="nw-display-inp"
-            placeholder=".nw-display-inp"
+            placeholder="Normal"
             value={value}
             onChange={Utils.noop}
           />
