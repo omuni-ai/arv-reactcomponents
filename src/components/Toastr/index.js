@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 // import Close from '../Close';
 
 import ToastrContainer from "../ToastrContainer";
-import "./styles/_index.scss";
 import {
   clearAll,
   hideToastr,

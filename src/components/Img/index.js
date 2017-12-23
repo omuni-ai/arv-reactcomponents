@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 
-import "./styles/_index.scss";
-
 function Img(props) {
   const { className, src, alt, onLoad, onError, ...otherProps } = props;
   return (

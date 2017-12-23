@@ -1,8 +1,6 @@
 import React from "react";
 import { GridRow, GridColumn, Input, Utils } from "../../components";
 
-import "./_index.scss";
-
 const value = "";
 
 function InputDisplay() {
@@ -14,35 +12,35 @@ function InputDisplay() {
           <h2>Color Variants</h2>
           <Input
             className="nw-display-inp"
-            placeholder="Default"
+            placeholder=".nw-display-inp"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-primary"
-            placeholder="Primary"
+            placeholder=".nwc-inp-primary"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-secondary"
-            placeholder="Secondary"
+            placeholder=".nwc-inp-secondary"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-success"
-            placeholder="Success"
+            placeholder=".nwc-inp-success"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-danger"
-            placeholder="Danger"
+            placeholder=".nwc-inp-danger"
             value={value}
             onChange={Utils.noop}
           />
@@ -51,49 +49,49 @@ function InputDisplay() {
           <h2>Size Variants</h2>
           <Input
             className="nw-display-inp nwc-inp-xxl"
-            placeholder="Input xxl"
+            placeholder=".nwc-inp-xxl"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-xl"
-            placeholder="Input xl"
+            placeholder=".nwc-inp-xl"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-lg"
-            placeholder="Input lg"
+            placeholder=".nwc-inp-lg"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-normal"
-            placeholder="Input normal"
+            placeholder=".nwc-inp-normal"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-sm"
-            placeholder="Input normal"
+            placeholder=".nwc-inp-sm"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-xs"
-            placeholder="Input normal"
+            placeholder=".nwc-inp-xs"
             value={value}
             onChange={Utils.noop}
           />
           <span>&nbsp;</span>
           <Input
             className="nw-display-inp nwc-inp-xxs"
-            placeholder="Input normal"
+            placeholder=".nwc-inp-xxs"
             value={value}
             onChange={Utils.noop}
           />

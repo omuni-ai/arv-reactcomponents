@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./styles/_index.scss";
 
 function Button(props) {
   const { className, children, ...otherProps } = props;

@@ -1,8 +1,6 @@
 import React from "react";
 import { GridRow, GridColumn } from "../../components";
 
-import "./_index.scss";
-
 function ColorsDisplay() {
   return (
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">

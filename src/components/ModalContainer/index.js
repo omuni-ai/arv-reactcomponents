@@ -4,7 +4,6 @@ import Close from "../Close";
 import Utils from "../_jsUtils";
 
 import setFocus from "./methods";
-import "./styles/_index.scss";
 
 class ModalContainer extends Component {
   componentDidMount() {

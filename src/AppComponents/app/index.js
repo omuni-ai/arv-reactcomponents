@@ -1,7 +1,6 @@
 import React from "react";
 
 import { GridContainer, GridRow } from "../../components";
-import "./_index.scss";
 
 import ColorsDisplay from "../ColorsDisplay";
 import FontSizes from "../FontSizes";

@@ -3,9 +3,6 @@ import React, { Component } from "react";
 // Import common components
 import { Button, Toastr, GridColumn } from "../../components";
 
-// Import for page
-import "./_index.scss";
-
 Toastr.setConfig({
   limitTo: 3, // Change default value of limitTo to `3`
 });

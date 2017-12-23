@@ -5,7 +5,6 @@ import Label from "../Label";
 
 // import for Page
 import getValidatedOutput from "./methods";
-import "./styles/_index.scss";
 
 class Input extends Component {
   constructor(props) {

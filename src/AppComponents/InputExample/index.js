@@ -3,9 +3,6 @@ import React, { Component } from "react";
 // Import common components
 import { Input, GridRow, GridColumn } from "../../components";
 
-// Import for page
-import "./_index.scss";
-
 class InputExample extends Component {
   constructor(props) {
     super(props);

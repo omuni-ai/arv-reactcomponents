@@ -1,5 +1,3 @@
-@import '../components/index';
-
 .nw-block {
   border: 1px solid darken-colors($concrete, 1);
   border-radius: 3px;
@@ -43,3 +41,10 @@ input {
 .nw-block-wrapper {
   margin-bottom: 50px;
 }
+
+@import './app/index';
+@import './AutocompleteExample/index';
+@import './ColorsDisplay/index';
+@import './FontSizes/index';
+@import './InputDisplay/index';
+@import './SelectExample/index';

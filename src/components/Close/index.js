@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Button from "../Button";
 
-import "./styles/_index.scss";
-
 // eslint-disable-next-line react/prefer-stateless-function
 class Close extends Component {
   render() {

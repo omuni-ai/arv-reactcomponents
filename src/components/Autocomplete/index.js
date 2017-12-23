@@ -4,7 +4,6 @@ import Utils from "../_jsUtils";
 
 // import for Page
 import { renderAutocompleteInput, renderListItems } from "./methods";
-import "./styles/_index.scss";
 
 let renderAutocompleteInputFn;
 let renderListItemsFn;

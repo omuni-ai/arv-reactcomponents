@@ -11,7 +11,6 @@ import {
   toggleSelectDisplay,
   renderListItems,
 } from "./methods";
-import "./styles/_index.scss";
 
 let onInpValChangeFn;
 let onUserInputFn;

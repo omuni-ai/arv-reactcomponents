@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 
-import "./styles/_index.scss";
-
 class GridColumn extends Component {
   componentDidMount() {
     Utils.requestAnimationFrame(() => {

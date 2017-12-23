@@ -8,6 +8,7 @@
   border: $select-border-width $select-border-type $select-border-color;
   width: 100%;
   height: 100%;
+  padding: $select-padding-y $select-padding-x;
   cursor: pointer;
   user-select: none;
 }

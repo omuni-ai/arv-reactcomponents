@@ -3,9 +3,6 @@ import React, { Component } from "react";
 // Import common components
 import { Button, Modal, GridColumn, Toastr } from "../../components";
 
-// Import for page
-import "./_index.scss";
-
 class ButtonModalExample extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +59,6 @@ class ButtonModalExample extends Component {
           onClose={() => {
             this.showHaiMsg(false);
           }}
-          preventfix
         >
           <div>Hai</div>
         </Modal>

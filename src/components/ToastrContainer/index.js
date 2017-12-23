@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import ToastrList from "../ToastrList";
 
-import "./styles/_index.scss";
-
 function ToastrContainer(props) {
   const { toastrList, limitTo, hideToastr } = props;
   return (

@@ -3,9 +3,6 @@ import React, { Component } from "react";
 // Import common components
 import { Select, GridColumn } from "../../components";
 
-// Import for page
-import "./_index.scss";
-
 class SelectExample extends Component {
   static getList(item) {
     return (

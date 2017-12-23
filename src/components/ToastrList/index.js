@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Close from "../Close";
 
-import "./styles/_index.scss";
-
 function ToastrList(props) {
   const { item, hideToastr, ...otherProps } = props;
   return (
