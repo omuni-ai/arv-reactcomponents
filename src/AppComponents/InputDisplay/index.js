@@ -54,12 +54,30 @@ class InputDisplay extends Component {
             </div>
             <div className="nw-div-wrapper">
               <Input
+                className="nwc-inp-notification"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-notification
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
                 className="nwc-inp-success"
                 placeholder="Enter Text"
                 value={inputTxt}
                 onChange={this.inpChange}
               />
               .nwc-inp-success
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-warning"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-warning
             </div>
             <div className="nw-div-wrapper">
               <Input

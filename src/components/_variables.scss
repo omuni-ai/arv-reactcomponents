@@ -76,7 +76,9 @@ $button-color: $black !default;
 $button-variants: (
   primary: $color-primary,
   secondary: $white,
+  notification: $color-notification,
   success: $color-success,
+  warning: $color-warning,
   danger: $color-danger
 ) !default; // variants background property
 
@@ -163,7 +165,9 @@ $input-dash-border-width: 2px !default;
 $input-variants: (
   primary: $color-primary,
   secondary: $white,
+  notification: $color-notification,
   success: $color-success,
+  warning: $color-warning,
   danger: $color-danger
 ) !default; // variants for border property
 
@@ -214,7 +218,9 @@ $select-list-background: $white !default;
 $select-variants: (
   primary: $color-primary,
   secondary: $white,
+  notification: $color-notification,
   success: $color-success,
+  warning: $color-warning,
   danger: $color-danger
 ) !default; // variants for border property
 
@@ -247,6 +253,7 @@ $toastr-list-background: $white !default;
 $toaster-variants: (
   notification: $color-notification,
   success: $color-success,
+  warning: $color-warning,
   danger: $color-danger
 ) !default; // variants for background property
 

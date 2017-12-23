@@ -65,12 +65,34 @@ class CheckboxDisplay extends Component {
               <Input
                 name="checkbox"
                 type="checkbox"
+                className="nwc-inp-checkbox-notification"
+                value={value}
+                checked={checkboxState}
+                onChange={this.onCheckChange}
+              />
+              .nwc-inp-checkbox-notification
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                name="checkbox"
+                type="checkbox"
                 className="nwc-inp-checkbox-success"
                 value={value}
                 checked={checkboxState}
                 onChange={this.onCheckChange}
               />
               .nwc-inp-checkbox-success
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                name="checkbox"
+                type="checkbox"
+                className="nwc-inp-checkbox-warning"
+                value={value}
+                checked={checkboxState}
+                onChange={this.onCheckChange}
+              />
+              .nwc-inp-checkbox-warning
             </div>
             <div className="nw-div-wrapper">
               <Input

@@ -65,12 +65,34 @@ class RadioDisplay extends Component {
               <Input
                 name="radio"
                 type="radio"
+                className="nwc-inp-radio-notification"
+                value={value}
+                checked={radioState}
+                onChange={this.onCheckChange}
+              />
+              .nwc-inp-radio-notification
+            </form>
+            <form className="nw-div-wrapper">
+              <Input
+                name="radio"
+                type="radio"
                 className="nwc-inp-radio-success"
                 value={value}
                 checked={radioState}
                 onChange={this.onCheckChange}
               />
               .nwc-inp-radio-success
+            </form>
+            <form className="nw-div-wrapper">
+              <Input
+                name="radio"
+                type="radio"
+                className="nwc-inp-radio-warning"
+                value={value}
+                checked={radioState}
+                onChange={this.onCheckChange}
+              />
+              .nwc-inp-radio-warning
             </form>
             <form className="nw-div-wrapper">
               <Input

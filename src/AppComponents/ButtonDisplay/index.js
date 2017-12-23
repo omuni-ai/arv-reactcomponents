@@ -20,8 +20,16 @@ function ButtonDisplay() {
             .nwc-btn-secondary
           </div>
           <div className="nw-div-wrapper">
+            <Button className="nwc-btn-notification">Button</Button>
+            .nwc-btn-notification
+          </div>
+          <div className="nw-div-wrapper">
             <Button className="nwc-btn-success">Button</Button>
             .nwc-btn-success
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-warning">Button</Button>
+            .nwc-btn-warning
           </div>
           <div className="nw-div-wrapper">
             <Button className="nwc-btn-danger">Button</Button>
