@@ -8,7 +8,7 @@ function Input(props, propName) {
   if (
     CheckFor[props.type] &&
     CheckFor[props.type].indexOf(propName) !== -1 &&
-    props[propName] === undefined
+    props[propName] === null
   ) {
     return new Error(`Missed \`${propName}\` prop on input type ${props.type}`);
   }

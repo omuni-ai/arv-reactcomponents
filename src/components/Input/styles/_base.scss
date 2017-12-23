@@ -24,6 +24,9 @@
   position: relative;
   display: inline-block;
   border: $input-checkbox-border-width $input-checkbox-border-type $input-checkbox-border-color;
+  min-width: $font-size-normal;
+  min-height: $font-size-normal;
+  font-size: $font-size-normal;
   user-select: none;
 
   &.is-checked {
@@ -58,6 +61,9 @@
   display: inline-block;
   border: $input-radio-border-width $input-radio-border-type $input-radio-border-color;
   border-radius: 50%;
+  min-width: $font-size-normal;
+  min-height: $font-size-normal;
+  font-size: $font-size-normal;
   user-select: none;
 
   &.is-checked {

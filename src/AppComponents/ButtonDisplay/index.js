@@ -6,33 +6,58 @@ function ButtonDisplay() {
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
       <h1>Buttons</h1>
       <GridRow>
-        <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
+        <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
           <h2>Color Variants</h2>
-          <Button>Normal</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-primary">.nwc-btn-primary</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-secondary">.nwc-btn-secondary</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-success">.nwc-btn-success</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-danger">.nwc-btn-danger</Button>
+          <div className="nw-div-wrapper">
+            <Button>Normal</Button>
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-primary">Button</Button>
+            .nwc-btn-primary
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-secondary">Button</Button>
+            .nwc-btn-secondary
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-success">Button</Button>
+            .nwc-btn-success
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-danger">Button</Button>
+            .nwc-btn-danger
+          </div>
         </GridColumn>
-        <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
+        <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
           <h2>Size Variants</h2>
-          <Button className="nwc-btn-xxl">.nwc-btn-xxl</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-xl">.nwc-btn-xl</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-lg">.nwc-btn-lg</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-normal">.nwc-btn-normal</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-sm">.nwc-btn-sm</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-xs">.nwc-btn-xs</Button>
-          <span>&nbsp;</span>
-          <Button className="nwc-btn-xxs">.nwc-btn-xxs</Button>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-xxl">Button</Button>
+            .nwc-btn-xxl
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-xl">Button</Button>
+            .nwc-btn-xl
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-lg">Button</Button>
+            .nwc-btn-lg
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-normal">Button</Button>
+            .nwc-btn-normal
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-sm">Button</Button>
+            .nwc-btn-sm
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-xs">Button</Button>
+            .nwc-btn-xs
+          </div>
+          <div className="nw-div-wrapper">
+            <Button className="nwc-btn-xxs">Button</Button>
+            .nwc-btn-xxs
+          </div>
         </GridColumn>
       </GridRow>
     </GridColumn>

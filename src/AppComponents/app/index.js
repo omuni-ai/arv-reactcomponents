@@ -7,6 +7,8 @@ import FontSizes from "../FontSizes";
 import MediaBreakpoints from "../MediaBreakpoints";
 import ButtonDisplay from "../ButtonDisplay";
 import InputDisplay from "../InputDisplay";
+import CheckboxDisplay from "../CheckboxDisplay";
+import RadioDisplay from "../RadioDisplay";
 import GridDisplay from "../GridDisplay";
 
 import AutocompleteExample from "../AutocompleteExample";
@@ -24,6 +26,8 @@ function App() {
         <MediaBreakpoints />
         <ButtonDisplay />
         <InputDisplay />
+        <CheckboxDisplay />
+        <RadioDisplay />
         <GridDisplay />
 
         <AutocompleteExample />

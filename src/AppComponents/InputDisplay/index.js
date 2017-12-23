@@ -1,105 +1,146 @@
-import React from "react";
-import { GridRow, GridColumn, Input, Utils } from "../../components";
+import React, { Component } from "react";
+import { GridRow, GridColumn, Input } from "../../components";
 
-const value = "";
+class InputDisplay extends Component {
+  constructor(props) {
+    super(props);
 
-function InputDisplay() {
-  return (
-    <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
-      <h1>Inputs</h1>
-      <GridRow>
-        <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
-          <h2>Color Variants</h2>
-          <Input
-            className="nw-display-inp"
-            placeholder="Normal"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-primary"
-            placeholder=".nwc-inp-primary"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-secondary"
-            placeholder=".nwc-inp-secondary"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-success"
-            placeholder=".nwc-inp-success"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-danger"
-            placeholder=".nwc-inp-danger"
-            value={value}
-            onChange={Utils.noop}
-          />
-        </GridColumn>
-        <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
-          <h2>Size Variants</h2>
-          <Input
-            className="nw-display-inp nwc-inp-xxl"
-            placeholder=".nwc-inp-xxl"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-xl"
-            placeholder=".nwc-inp-xl"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-lg"
-            placeholder=".nwc-inp-lg"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-normal"
-            placeholder=".nwc-inp-normal"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-sm"
-            placeholder=".nwc-inp-sm"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-xs"
-            placeholder=".nwc-inp-xs"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-          <Input
-            className="nw-display-inp nwc-inp-xxs"
-            placeholder=".nwc-inp-xxs"
-            value={value}
-            onChange={Utils.noop}
-          />
-          <span>&nbsp;</span>
-        </GridColumn>
-      </GridRow>
-    </GridColumn>
-  );
+    this.state = {
+      inputTxt: "",
+    };
+
+    this.inpChange = this.inpChange.bind(this);
+  }
+
+  inpChange(e) {
+    this.setState({
+      inputTxt: e.target.value,
+    });
+  }
+
+  render() {
+    const { inputTxt } = this.state;
+
+    return (
+      <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
+        <h1>Inputs</h1>
+        <GridRow>
+          <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
+            <h2>Color Variants</h2>
+            <div className="nw-div-wrapper">
+              <Input
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-primary"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-primary
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-secondary"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-secondary
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-success"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-success
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-danger"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-danger
+            </div>
+          </GridColumn>
+          <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
+            <h2>Size Variants</h2>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-xxl"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-xxl
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-xl"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-xl
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-lg"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-lg
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-normal"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-normal
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-sm"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-sm
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-xs"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-xs
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-xxs"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-xxs
+            </div>
+          </GridColumn>
+        </GridRow>
+      </GridColumn>
+    );
+  }
 }
 
 export default InputDisplay;

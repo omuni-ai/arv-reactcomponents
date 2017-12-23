@@ -14,37 +14,16 @@
   color: $black;
 }
 
-input {
-  /* stylelint-disable */
-  &::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    color: $black;
-  }
-
-  &::-moz-placeholder {
-    /* Firefox 19+ */
-    color: $black;
-  }
-
-  &:-ms-input-placeholder {
-    /* IE 10+ */
-    color: $black;
-  }
-
-  &:-moz-placeholder {
-    /* Firefox 18- */
-    color: $black;
-  }
-  /* stylelint-enable */
-}
-
 .nw-block-wrapper {
   margin-bottom: 50px;
+}
+
+.nw-div-wrapper {
+  margin-bottom: 10px;
 }
 
 @import './app/index';
 @import './AutocompleteExample/index';
 @import './ColorsDisplay/index';
 @import './FontSizes/index';
-@import './InputDisplay/index';
 @import './SelectExample/index';
