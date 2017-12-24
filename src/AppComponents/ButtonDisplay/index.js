@@ -9,7 +9,7 @@ function ButtonDisplay() {
         <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
           <h2>Color Variants</h2>
           <div className="nw-div-wrapper">
-            <Button>Normal</Button>
+            <Button>Button</Button>
           </div>
           <div className="nw-div-wrapper">
             <Button className="nwc-btn-primary">Button</Button>

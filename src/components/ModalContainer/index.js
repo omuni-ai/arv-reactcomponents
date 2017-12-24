@@ -3,9 +3,17 @@ import PropTypes from "prop-types";
 import Close from "../Close";
 import Utils from "../_jsUtils";
 
-import setFocus from "./methods";
+import { setFocus, onEscapeClose } from "./methods";
+
+let onEscapeCloseFn;
 
 class ModalContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    onEscapeCloseFn = onEscapeClose.bind(this);
+  }
+
   componentDidMount() {
     if (!this.props.preventfix) {
       Utils.fixScroll();
@@ -31,8 +39,7 @@ class ModalContainer extends Component {
         className={`nwc-modal-container ${className}`}
         tabIndex={0}
         onClick={onClose}
-        // onKeyDownCapture={(e) => { this.onClose(e, 'key'); }}
-        onKeyDown={onClose}
+        onKeyDown={onEscapeCloseFn}
         ref={setFocus}
         {...otherProps}
       >
