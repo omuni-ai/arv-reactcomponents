@@ -65,6 +65,10 @@ $autocomplete-list-background: $white !default;
 // Button
 //
 
+$button-primary-txt-color: $color-primary;
+$button-primary-txt-color-active: $white;
+$button-primary-txt-background-color-active: $black;
+
 $button-border-width: 1px !default;
 $button-border-type: solid !default;
 $button-border-color: darken-colors($concrete, 2) !default;

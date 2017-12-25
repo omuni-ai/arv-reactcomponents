@@ -7,6 +7,16 @@
   outline: 0;
 }
 
+.nwc-btn-primary-txt {
+  border: 0;
+  color: $button-primary-txt-color;
+
+  &.is-active {
+    background: $button-primary-txt-background-color-active;
+    color: $button-primary-txt-color-active;
+  }
+}
+
 @each $button-variants, $value in $button-variants {
   .nwc-btn-#{$button-variants} {
     background: $value;
