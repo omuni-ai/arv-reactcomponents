@@ -6,12 +6,22 @@
 .nwc-inp {
   border: $input-border-width $input-border-type $input-border-color;
   padding: $input-padding-y $input-padding-x;
-  background: $input-background;
   outline: 0;
   
   &.is-invalid {
     border-color: $input-invalid-color;
   }
+}
+
+.nwc-inp-primary-txt {
+  border: 0;
+  color: $input-primary-txt-color;
+}
+
+.nwc-inp-dark-background {
+  border: 0;
+  background: $input-dark-background;
+  color: $input-dark-background-txt;
 }
 
 @each $input-variants, $value in $input-variants {

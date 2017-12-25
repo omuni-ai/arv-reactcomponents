@@ -13,8 +13,8 @@ function ButtonDisplay() {
             .nwc-btn-primary-txt
           </div>
           <div className="nw-div-wrapper">
-            <Button className="nwc-btn-primary-txt is-active">Button</Button>
-            .nwc-btn-primary-txt.is-active
+            <Button className="nwc-btn-dark-background">Button</Button>
+            .nwc-btn-dark-background
           </div>
           <div className="nw-div-wrapper">
             <Button>Button</Button>

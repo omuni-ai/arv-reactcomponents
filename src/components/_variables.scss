@@ -66,8 +66,8 @@ $autocomplete-list-background: $white !default;
 //
 
 $button-primary-txt-color: $color-primary;
-$button-primary-txt-color-active: $white;
-$button-primary-txt-background-color-active: $black;
+$button-dark-background: $black;
+$button-dark-background-txt: $white;
 
 $button-border-width: 1px !default;
 $button-border-type: solid !default;
@@ -142,12 +142,15 @@ $total-cols: 12 !default;
 //
 // Input
 //
+$input-primary-txt-color: $color-primary;
+$input-dark-background: $black;
+$input-dark-background-txt: $white;
+
 $input-border-width: 2px !default;
 $input-border-type: solid !default;
 $input-border-color: darken-colors($concrete, 2) !default;
 $input-padding-y: 6px !default;
 $input-padding-x: 6px !default;
-$input-background: transparent !default;
 $input-invalid-color: $color-danger !default;
 
 $input-checkbox-border-width: 2px !default;

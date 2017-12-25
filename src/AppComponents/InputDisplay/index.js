@@ -29,6 +29,24 @@ class InputDisplay extends Component {
             <h2>Color Variants</h2>
             <div className="nw-div-wrapper">
               <Input
+                className="nwc-inp-primary-txt"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-primary-txt
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-dark-background"
+                placeholder="Enter Text"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              .nwc-inp-dark-background
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
                 placeholder="Enter Text"
                 value={inputTxt}
                 onChange={this.inpChange}
