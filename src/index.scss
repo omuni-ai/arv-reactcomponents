@@ -1,5 +1,5 @@
-@import '../node_modules/normalize.css';
-@import './components/index';
+@import "../node_modules/normalize.css";
+@import "./components/index";
 
 *,
 *::before,
@@ -22,33 +22,33 @@ body {
 }
 
 @font-face {
-  font-family: 'icomoon';
+  font-family: "icomoon";
   font-weight: normal;
   font-style: normal;
-  src: url('https://i.icomoon.io/public/0aa30857bb/NNNOW//icomoon.eot?bekquj');
-  src: url('https://i.icomoon.io/public/0aa30857bb/NNNOW//icomoon.eot?bekquj#iefix') format('embedded-opentype'), url('https://i.icomoon.io/public/0aa30857bb/NNNOW/icomoon.woff2?bekquj') format('woff2'), url('https://i.icomoon.io/public/0aa30857bb/NNNOW/icomoon.ttf?bekquj') format('truetype'), url('https://i.icomoon.io/public/0aa30857bb/NNNOW/icomoon.woff?bekquj') format('woff'), url('https://i.icomoon.io/public/0aa30857bb/NNNOW/icomoon.svg?bekquj#icomoon') format('svg');
+  src: url("https://i.icomoon.io/public/0aa30857bb/NNNOW//icomoon.eot?bekquj");
+  src: url("https://i.icomoon.io/public/0aa30857bb/NNNOW//icomoon.eot?bekquj#iefix") format("embedded-opentype"), url("https://i.icomoon.io/public/0aa30857bb/NNNOW/icomoon.woff2?bekquj") format("woff2"), url("https://i.icomoon.io/public/0aa30857bb/NNNOW/icomoon.ttf?bekquj") format("truetype"), url("https://i.icomoon.io/public/0aa30857bb/NNNOW/icomoon.woff?bekquj") format("woff"), url("https://i.icomoon.io/public/0aa30857bb/NNNOW/icomoon.svg?bekquj#icomoon") format("svg");
 }
 
 @font-face {
-  font-family: 'Avenir';
+  font-family: "Avenir";
   font-weight: 400;
   font-style: normal;
-  src: url('https://static.nnnow.com/client/fonts/Avenir.eot');
+  src: url("https://static.nnnow.com/client/fonts/Avenir.eot");
 
   /* IE9 Compat Modes */
-  src: url('https://static.nnnow.com/client/fonts/Avenir.eot?#iefix') format('embedded-opentype'), url('https://static.nnnow.com/client/fonts/Avenir.woff') format('woff'), url('https://static.nnnow.com/client/fonts/Avenir.ttf') format('truetype'), url('https://static.nnnow.com/client/fonts/Avenir.svg') format('svg');
+  src: url("https://static.nnnow.com/client/fonts/Avenir.eot?#iefix") format("embedded-opentype"), url("https://static.nnnow.com/client/fonts/Avenir.woff") format("woff"), url("https://static.nnnow.com/client/fonts/Avenir.ttf") format("truetype"), url("https://static.nnnow.com/client/fonts/Avenir.svg") format("svg");
 
   /* Legacy iOS */
 }
 
 @font-face {
-  font-family: 'Avenir-Black';
+  font-family: "Avenir-Black";
   font-weight: 400;
   font-style: normal;
-  src: url('https://static.nnnow.com/client/fonts/Avenir-Black.eot');
+  src: url("https://static.nnnow.com/client/fonts/Avenir-Black.eot");
 
   /* IE9 Compat Modes */
-  src: url('https://static.nnnow.com/client/fonts/Avenir-Black.eot?#iefix') format('embedded-opentype'), url('https://static.nnnow.com/client/fonts/Avenir-Black.woff') format('woff'), url('https://static.nnnow.com/client/fonts/Avenir-Black.ttf') format('truetype'), url('https://static.nnnow.com/client/fonts/Avenir-Black.svg') format('svg');
+  src: url("https://static.nnnow.com/client/fonts/Avenir-Black.eot?#iefix") format("embedded-opentype"), url("https://static.nnnow.com/client/fonts/Avenir-Black.woff") format("woff"), url("https://static.nnnow.com/client/fonts/Avenir-Black.ttf") format("truetype"), url("https://static.nnnow.com/client/fonts/Avenir-Black.svg") format("svg");
 
   /* Legacy iOS */
 }
@@ -57,4 +57,4 @@ body {
   margin-bottom: 15px;
 }
 
-@import './AppComponents/index';
+@import "./AppComponents/index";

@@ -119,7 +119,7 @@
     "selector-pseudo-element-colon-notation": "double",
     "selector-pseudo-element-no-unknown": true,
     "shorthand-property-no-redundant-values": true,
-    "string-quotes": "single",
+    "string-quotes": "double",
     "value-no-vendor-prefix": true,
     "unit-whitelist": ["rem", "%", "vh", "vw", "px", "s"],
     "declaration-property-unit-whitelist": [

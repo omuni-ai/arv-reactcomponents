@@ -41,7 +41,7 @@
 
   &.is-checked {
     &::before {
-      content: ' ';
+      content: " ";
       position: absolute;
       top: $input-checkbox-inner-spacing;
       bottom: $input-checkbox-inner-spacing;
@@ -78,7 +78,7 @@
 
   &.is-checked {
     &::before {
-      content: ' ';
+      content: " ";
       position: absolute;
       top: $input-radio-inner-spacing;
       bottom: $input-radio-inner-spacing;
