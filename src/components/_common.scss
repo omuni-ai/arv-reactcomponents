@@ -3,6 +3,19 @@
   overflow-y: scroll;
 }
 
+.nwc-clearfix {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
 .nwc-hide {
   display: none;
 }
+
+.nwc-hidden {
+  visibility: hidden;
+}
+
