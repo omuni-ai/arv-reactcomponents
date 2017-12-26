@@ -38,8 +38,8 @@ GridRow.defaultProps = {
 GridRow.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
   ]).isRequired,
 };
 
