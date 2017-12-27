@@ -1,3 +1,3 @@
-function noop() {}
+const noop = () => undefined;
 
 export default noop;
