@@ -3,6 +3,21 @@
   overflow-y: scroll;
 }
 
+.nwc-custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $common-scrollbar-track;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $common-scrollbar-thumb;
+  }
+}
+
 .nwc-clearfix {
   &::after {
     content: " ";
@@ -20,9 +35,9 @@
 }
 
 .nwc-text-primary {
-  color: $color-primary;
+  color: $common-color-primary;
 }
 
 .nwc-bg-primary {
-  background-color: $color-primary;
+  background-color: $common-color-primary;
 }

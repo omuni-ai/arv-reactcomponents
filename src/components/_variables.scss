@@ -45,6 +45,13 @@ $color-success: $fern !default;
 $color-warning: $tan-hide !default;
 $color-danger: $chestnut-rose !default;
 
+//
+// Common File
+//
+$common-scrollbar-track: $white;
+$common-scrollbar-thumb: darken-colors($concrete, 10);
+$common-color-primary: $color-primary;
+
 // ---- Components ---- //
 
 //
