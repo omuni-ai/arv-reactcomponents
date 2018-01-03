@@ -7,6 +7,7 @@ import requestAnimationFrame from "./requestAnimationFrame";
 import cancelAnimationFrame from "./cancelAnimationFrame";
 import customPropTypes from "./customPropTypes";
 import windowScroll from "./windowScroll";
+import localStorage from "./localStorage";
 
 const Utils = {
   noop,
@@ -19,6 +20,7 @@ const Utils = {
   cancelAnimationFrame,
   customPropTypes,
   windowScroll,
+  localStorage,
 };
 
 export default Utils;
