@@ -1,3 +1,13 @@
+@mixin equal-cols {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+  /* stylelint-disable */
+  -ms-flex-preferred-size: 0;
+  -ms-flex-positive: 1;
+  /* stylelint-enable */
+}
+
 .nwc-grid-col {
   position: relative;
   width: 100%;
@@ -7,19 +17,22 @@
 }
 
 @each $all-screen-min, $value in $all-screen-min {
+  .nwc-grid-col-xs {
+    @include equal-cols;
+  }
+
   %nwc-grid-col-#{$all-screen-min}-769 {
     @media screen and (min-width: $value) {
-      flex-grow: 1;
-      flex-basis: 0;
-      max-width: 100%;
-      /* stylelint-disable */
-      -ms-flex-preferred-size: 0;
-      -ms-flex-positive: 1;
-      /* stylelint-enable */
+      @include equal-cols;
     }
   }
 
   @for $i from 1 through $total-cols {
+    .nwc-grid-col-xs-#{$i} {
+      flex: 0 0 ($i / $total-cols) * 100%;
+      max-width: ($i / $total-cols) * 100%;
+    }
+
     %nwc-grid-col-#{$all-screen-min}-#{$i}-769 {
       @media screen and (min-width: $value) {
         flex: 0 0 ($i / $total-cols) * 100%;
