@@ -45,7 +45,7 @@ class ModalContainer extends Component {
       >
         <div
           role="button"
-          className="nwc-modal"
+          className="nwc-modal nwc-custom-scrollbar"
           tabIndex={0}
           onClick={Utils.preventEventPropagation}
           onKeyDown={null}
