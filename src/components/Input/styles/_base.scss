@@ -22,6 +22,25 @@
   border: 0;
   background: $input-dark-background;
   color: $input-dark-background-txt;
+
+  /* stylelint-disable */
+  &::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: $input-dark-background-txt;
+  }
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $input-dark-background-txt;
+  }
+  &:-ms-input-placeholder {
+    /* IE 10+ */
+    color: $input-dark-background-txt;
+  }
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: $input-dark-background-txt;
+  }
+  /* stylelint-enable */
 }
 
 @each $input-variants, $value in $input-variants {
