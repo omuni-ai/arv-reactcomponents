@@ -10,6 +10,8 @@ import InputDisplay from "../InputDisplay";
 import CheckboxDisplay from "../CheckboxDisplay";
 import RadioDisplay from "../RadioDisplay";
 import GridDisplay from "../GridDisplay";
+import CSSGlobalClassesDisplay from "../CSSGlobalClassesDisplay";
+import JSUtilsDisplay from "../JSUtilsDisplay";
 
 import AutocompleteExample from "../AutocompleteExample";
 import SelectExample from "../SelectExample";
@@ -35,6 +37,9 @@ function App() {
         <InputExample />
         <ButtonModalExample />
         <ButtonToastrExample />
+
+        <CSSGlobalClassesDisplay />
+        <JSUtilsDisplay />
       </GridRow>
     </GridContainer>
   );
