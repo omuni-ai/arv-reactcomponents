@@ -4,8 +4,8 @@ import Utils from "../_jsUtils";
 
 class GridColumn extends Component {
   componentDidMount() {
+    const { childNodes } = this.colRef;
     Utils.requestAnimationFrame(() => {
-      const { childNodes } = this.colRef;
       childNodes.forEach(item => {
         if (/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
           throw Error(`\`GridColumn\` cannot have \`GridColumn\` as immediate child. 

@@ -4,8 +4,8 @@ import Utils from "../_jsUtils";
 
 class GridContainer extends Component {
   componentDidMount() {
+    const { childNodes } = this.containerRef;
     Utils.requestAnimationFrame(() => {
-      const { childNodes } = this.containerRef;
       childNodes.forEach(item => {
         if (!/(^|\s)nwc-grid-row($|[\s])/.test(item.className)) {
           throw Error("`GridContainer` component must have `GridRow` as child");
