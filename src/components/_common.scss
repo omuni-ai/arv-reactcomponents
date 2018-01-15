@@ -27,17 +27,17 @@
 }
 
 .nwc-hide {
-  display: none;
+  display: none !important;
 }
 
 .nwc-hidden {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .nwc-text-primary {
-  color: $common-color-primary;
+  color: $common-color-primary !important;
 }
 
 .nwc-bg-primary {
-  background-color: $common-color-primary;
+  background-color: $common-color-primary !important;
 }
