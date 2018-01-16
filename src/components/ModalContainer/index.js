@@ -50,7 +50,10 @@ class ModalContainer extends Component {
           onClick={Utils.preventEventPropagation}
           onKeyDown={null}
         >
-          <Close className="nwc-close-normal" onClick={onClose} />
+          <Close
+            className="nwc-close-normal nwc-modal-close"
+            onClick={onClose}
+          />
           {children}
         </div>
       </div>

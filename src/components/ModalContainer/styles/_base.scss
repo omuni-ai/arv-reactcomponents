@@ -26,6 +26,10 @@
   outline: 0;
 }
 
+.nwc-modal-close {
+  padding: $modal-container-close-padding-y $modal-container-close-padding-x;
+}
+
 %nwc-modal-769 {
   @media screen and (min-width: $screen-min-sm) {
     top: 50%;

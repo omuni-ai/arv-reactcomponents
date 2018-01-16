@@ -113,8 +113,6 @@ $close-border-type: solid !default;
 $close-border-color: darken-colors($concrete, 2) !default;
 $close-width: 37px !default;
 $close-height: 37px !default;
-$close-padding-y: 25px !default;
-$close-padding-x: 25px !default;
 $close-background: transparent !default;
 $close-lineheight: 0 !default;
 $close-color: darken-colors($concrete, 3) !default;
@@ -201,6 +199,8 @@ $input-sizevariants: (
 $modal-container-z-index: 999 !default;
 $modal-container-background: rgba(0, 0, 0, 0.7) !default;
 $modal-container-769-padding: 10px !default;
+$modal-container-close-padding-y: 25px !default;
+$modal-container-close-padding-x: 25px !default;
 
 $modal-min-height: 200px !default;
 $modal-padding-y: 10px !default;
