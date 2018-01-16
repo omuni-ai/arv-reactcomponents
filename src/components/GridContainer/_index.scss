@@ -1,5 +1,5 @@
-@import "./base";
-@import "./media";
+@import "./styles/base";
+@import "./styles/media";
 
 @if $screen-media==xs {
   @include grid-container;
