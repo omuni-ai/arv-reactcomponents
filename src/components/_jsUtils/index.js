@@ -1,6 +1,7 @@
 import noop from "./noop";
 import getBoundClientRect from "./getBoundClientRect";
 import scrollElemToView from "./scrollElemToView";
+import scrollElemToTop from "./scrollElemToTop";
 import { fixScroll, unFixScroll, isBodyFixed } from "./fixScroll";
 import preventEventPropagation from "./preventEventPropagation";
 import requestAnimationFrame from "./requestAnimationFrame";
@@ -13,6 +14,7 @@ const Utils = {
   noop,
   getBoundClientRect,
   scrollElemToView,
+  scrollElemToTop,
   fixScroll,
   unFixScroll,
   isBodyFixed,
