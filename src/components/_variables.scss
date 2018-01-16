@@ -48,7 +48,7 @@ $color-danger: $chestnut-rose !default;
 //
 // Common File
 //
-$common-scrollbar-track: $white;
+$common-scrollbar-track: darken-colors($concrete, 1);
 $common-scrollbar-thumb: darken-colors($concrete, 5);
 $common-color-primary: $color-primary;
 
