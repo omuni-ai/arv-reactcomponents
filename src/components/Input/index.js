@@ -44,6 +44,7 @@ class Input extends Component {
       id,
       className,
       type,
+      inputRef,
       validateWithPattern,
       ...otherProps
     } = this.props;
@@ -55,6 +56,7 @@ class Input extends Component {
           className={`nwc-inp  ${className}`}
           type={type}
           tabIndex="0"
+          ref={inputRef}
           {...otherProps}
         />
       );
@@ -67,6 +69,7 @@ class Input extends Component {
           className="nwc-inp-hide"
           type={type}
           tabIndex="0"
+          ref={inputRef}
           {...otherProps}
         />
         <i className={`${this.cloneClassName}`} />
@@ -84,6 +87,7 @@ Input.defaultProps = {
   value: null,
   checked: null,
   maxLength: null,
+  inputRef: Utils.noop,
   validateWithPattern: null,
 };
 
@@ -97,6 +101,7 @@ Input.propTypes = {
   checked: Utils.customPropTypes.Input, // eslint-disable-line react/no-typos
   onChange: PropTypes.func.isRequired,
   maxLength: PropTypes.number,
+  inputRef: PropTypes.func,
   validateWithPattern: PropTypes.arrayOf(
     PropTypes.shape({
       pattern: PropTypes.instanceOf(RegExp),
