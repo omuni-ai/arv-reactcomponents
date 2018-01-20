@@ -69,6 +69,7 @@ class Select extends Component {
               toggleSelectDisplayFn(false);
             }}
           />
+          <i className="icomoon-arrow_bottom nwc-select-arrowbottom" />
         </Label>
         {renderListItemsFn(inpVal, inpList, renderList)}
       </div>
