@@ -16,11 +16,18 @@
   padding-right: $grid-gutter-width/2;
 }
 
-@each $all-screen-min, $value in $all-screen-min {
-  .nwc-grid-col-xs {
-    @include equal-cols;
-  }
+.nwc-grid-col-xs {
+  @include equal-cols;
+}
 
+@for $i from 1 through $total-cols {
+  .nwc-grid-col-xs-#{$i} {
+    flex: 0 0 ($i / $total-cols) * 100%;
+    max-width: ($i / $total-cols) * 100%;
+  }
+}
+
+@each $all-screen-min, $value in $all-screen-min {
   %nwc-grid-col-#{$all-screen-min}-769 {
     @media screen and (min-width: $value) {
       @include equal-cols;
@@ -28,11 +35,6 @@
   }
 
   @for $i from 1 through $total-cols {
-    .nwc-grid-col-xs-#{$i} {
-      flex: 0 0 ($i / $total-cols) * 100%;
-      max-width: ($i / $total-cols) * 100%;
-    }
-
     %nwc-grid-col-#{$all-screen-min}-#{$i}-769 {
       @media screen and (min-width: $value) {
         flex: 0 0 ($i / $total-cols) * 100%;
