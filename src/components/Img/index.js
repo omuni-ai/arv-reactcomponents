@@ -19,13 +19,14 @@ function Img(props) {
 Img.defaultProps = {
   className: "",
   alt: "NNNOW",
+  src: null,
   onLoad: Utils.noop,
   onError: Utils.noop,
 };
 
 Img.propTypes = {
   className: PropTypes.string,
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   alt: PropTypes.string,
   onLoad: PropTypes.func,
   onError: PropTypes.func,
