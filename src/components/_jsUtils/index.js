@@ -9,6 +9,7 @@ import cancelAnimationFrame from "./cancelAnimationFrame";
 import customPropTypes from "./customPropTypes";
 import windowScroll from "./windowScroll";
 import localStorage from "./localStorage";
+import onElementScroll from "./onElementScroll";
 
 const Utils = {
   noop,
@@ -24,6 +25,7 @@ const Utils = {
   customPropTypes,
   windowScroll,
   localStorage,
+  onElementScroll,
 };
 
 export default Utils;
