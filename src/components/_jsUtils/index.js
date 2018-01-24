@@ -4,6 +4,7 @@ import scrollElemToView from "./scrollElemToView";
 import scrollElemToTop from "./scrollElemToTop";
 import { fixScroll, unFixScroll, isBodyFixed } from "./fixScroll";
 import preventEventPropagation from "./preventEventPropagation";
+import preventDefault from "./preventDefault";
 import requestAnimationFrame from "./requestAnimationFrame";
 import cancelAnimationFrame from "./cancelAnimationFrame";
 import customPropTypes from "./customPropTypes";
@@ -20,6 +21,7 @@ const Utils = {
   unFixScroll,
   isBodyFixed,
   preventEventPropagation,
+  preventDefault,
   requestAnimationFrame,
   cancelAnimationFrame,
   customPropTypes,
