@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
 // import Close from '../Close';
 
@@ -13,7 +13,7 @@ import {
 
 let hideToastrFn;
 
-class Toastr extends Component {
+class Toastr extends PureComponent {
   constructor(props) {
     super(props);
 

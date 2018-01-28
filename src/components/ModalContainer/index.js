@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Close from "../Close";
 import Utils from "../_jsUtils";
@@ -7,7 +7,7 @@ import { setFocus, onEscapeClose } from "./methods";
 
 let onEscapeCloseFn;
 
-class ModalContainer extends Component {
+class ModalContainer extends PureComponent {
   constructor(props) {
     super(props);
 

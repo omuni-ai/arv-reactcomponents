@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 import Label from "../Label";
@@ -6,7 +6,7 @@ import Label from "../Label";
 // import for Page
 import getValidatedOutput from "./methods";
 
-class Input extends Component {
+class Input extends PureComponent {
   constructor(props) {
     super(props);
 

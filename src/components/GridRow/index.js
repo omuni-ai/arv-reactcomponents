@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 
-class GridRow extends Component {
+class GridRow extends PureComponent {
   componentDidMount() {
     const { childNodes } = this.rowRef;
     Utils.requestAnimationFrame(() => {

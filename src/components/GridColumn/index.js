@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 
-class GridColumn extends Component {
+class GridColumn extends PureComponent {
   componentDidMount() {
     const { childNodes } = this.colRef;
     Utils.requestAnimationFrame(() => {

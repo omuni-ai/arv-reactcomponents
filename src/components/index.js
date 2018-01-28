@@ -4,6 +4,7 @@ export { default as GridRow } from "./GridRow";
 export { default as GridColumn } from "./GridColumn";
 export { default as Button } from "./Button";
 export { default as Img } from "./Img";
+export { default as LazyImg } from "./LazyImg";
 export { default as Label } from "./Label";
 export { default as Input } from "./Input";
 export { default as Autocomplete } from "./Autocomplete";

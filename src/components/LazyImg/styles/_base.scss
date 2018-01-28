@@ -1,0 +1,15 @@
+.nwc-lazyimg-container {
+  display: inline-block;
+  transform: translate3d(0, 0, 0);
+}
+
+.nwc-lazyimg {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: opacity;
+
+  &.is-loaded,
+  &.is-error {
+    opacity: 1;
+  }
+}

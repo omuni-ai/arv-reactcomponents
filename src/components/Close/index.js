@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Button from "../Button";
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Close extends Component {
+class Close extends PureComponent {
   render() {
     const { className, ...otherProps } = this.props;
     return (
