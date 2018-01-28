@@ -11,6 +11,7 @@ import customPropTypes from "./customPropTypes";
 import windowScroll from "./windowScroll";
 import localStorage from "./localStorage";
 import onElementScroll from "./onElementScroll";
+import { getUrlParameter, setUrlParameter } from "./urlMethods";
 
 const Utils = {
   noop,
@@ -28,6 +29,8 @@ const Utils = {
   windowScroll,
   localStorage,
   onElementScroll,
+  getUrlParameter,
+  setUrlParameter,
 };
 
 export default Utils;
