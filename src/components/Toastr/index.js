@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
 // import Close from '../Close';
-
 import ToastrContainer from "../ToastrContainer";
 import {
   clearAll,

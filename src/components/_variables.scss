@@ -199,8 +199,8 @@ $input-sizevariants: (
 $modal-container-z-index: 999 !default;
 $modal-container-background: rgba(0, 0, 0, 0.7) !default;
 $modal-container-769-padding: 10px !default;
-$modal-container-close-padding-y: 25px !default;
-$modal-container-close-padding-x: 25px !default;
+$modal-container-close-width: 45px !default;
+$modal-container-close-height: 45px !default;
 
 $modal-min-height: 200px !default;
 $modal-padding-y: 10px !default;
@@ -208,7 +208,6 @@ $modal-padding-x: 10px !default;
 $modal-background: $white !default;
 $modal-border-radius: 0 !default;
 $modal-769-border-radius: 3px !default;
-$modal-height: 360px !default;
 
 //
 // Select

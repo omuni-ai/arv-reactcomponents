@@ -27,7 +27,8 @@
 }
 
 .nwc-modal-close {
-  padding: $modal-container-close-padding-y $modal-container-close-padding-x;
+  width: $modal-container-close-width;
+  height: $modal-container-close-height;
 }
 
 %nwc-modal-769 {
@@ -39,6 +40,5 @@
     border-radius: $modal-769-border-radius;
     max-width: 768px;
     max-height: 100%;
-    height: $modal-height;
   }
 }

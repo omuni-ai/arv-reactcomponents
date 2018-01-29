@@ -1,5 +1,6 @@
 .nwc-close {
   position: absolute;
+  z-index: 1;
   top: $close-position-top;
   right: $close-position-right;
   justify-content: center;
