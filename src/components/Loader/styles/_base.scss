@@ -1,0 +1,12 @@
+.nwc-loader {
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  width: $loader-width;
+  height: $loader-height;
+  will-change: transform;
+}
+
+.nwc-loader-circle {
+  stroke: $loader-color;
+}

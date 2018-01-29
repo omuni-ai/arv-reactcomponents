@@ -270,6 +270,15 @@ $toaster-variants: (
   danger: $color-danger
 ) !default; // variants for background property
 
+//
+// Loader
+//
+
+$loader-width: 50px !default;
+$loader-height: 50px !default;
+$loader-color: $color-primary !default;
+$loader-font-size: $font-size-xl !default;
+
 $screen-media: sm !default;
 
 // ---- Page --- //
