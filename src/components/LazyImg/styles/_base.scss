@@ -6,6 +6,7 @@
 .nwc-lazyimg {
   opacity: 0;
   transition: opacity 0.4s ease;
+  width: 100%;
   will-change: opacity;
 
   &.is-loaded,
