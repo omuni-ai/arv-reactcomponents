@@ -1,5 +1,9 @@
 function getBoundClientRect(elem) {
   // crossbrowser version
+  if (!elem) {
+    return null;
+  }
+
   const box = elem.getBoundingClientRect();
 
   const { body, documentElement } = document;

@@ -9,7 +9,6 @@ function setFocus(context) {
 function onEscapeClose(e) {
   Utils.preventEventPropagation(e);
   const { onClose } = this.props;
-  console.log(e.key);
   if (e.key === "Escape") {
     onClose(e);
   }

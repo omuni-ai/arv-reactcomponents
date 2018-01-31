@@ -19,10 +19,16 @@ function unFixScroll() {
   const bodyElem = document.querySelector("body");
   bodyElem.classList.toggle("nwc-hide-scrollbar", false);
   bodyElem.style.top = null;
-  bodyFixedState = false;
   if (scrollY) {
     window.scrollTo(0, scrollY);
   }
+  setTimeout(
+    () => {
+      bodyFixedState = false;
+    },
+    0,
+    false,
+  );
 }
 
 function isBodyFixed() {

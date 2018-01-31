@@ -84,14 +84,18 @@ class LazyImg extends PureComponent {
   }
 
   isImageInView() {
+    const { offset } = this.props;
     const windowScrollVals = Utils.windowScroll();
     const elementVals = Utils.getBoundClientRect(this.imgContainerRef);
 
     if (
-      (elementVals.top > windowScrollVals.top &&
-        elementVals.top < windowScrollVals.bottom) ||
-      (elementVals.bottom > windowScrollVals.top &&
-        elementVals.bottom < windowScrollVals.bottom)
+      elementVals &&
+      ((elementVals.top - offset > windowScrollVals.top &&
+        elementVals.top - offset < windowScrollVals.bottom) ||
+        (elementVals.bottom + offset > windowScrollVals.top &&
+          elementVals.bottom + offset < windowScrollVals.bottom) ||
+        (elementVals.top - offset < windowScrollVals.top &&
+          elementVals.bottom + offset > windowScrollVals.bottom))
     ) {
       return true;
     }
@@ -122,6 +126,7 @@ LazyImg.defaultProps = {
   src: null,
   onLoad: Utils.noop,
   onError: Utils.noop,
+  offset: 0,
 };
 
 LazyImg.propTypes = {
@@ -130,6 +135,7 @@ LazyImg.propTypes = {
   alt: PropTypes.string,
   onLoad: PropTypes.func,
   onError: PropTypes.func,
+  offset: PropTypes.number,
 };
 
 export default LazyImg;

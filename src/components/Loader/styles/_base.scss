@@ -2,11 +2,22 @@
   justify-content: center;
   align-items: center;
   display: inline-flex;
+  transform: translate3d(0, 0, 0);
+  animation: loaderAnimation 1s linear 0s infinite;
   width: $loader-width;
   height: $loader-height;
-  will-change: transform;
 }
 
 .nwc-loader-circle {
   stroke: $loader-color;
+}
+
+@keyframes loaderAnimation {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
