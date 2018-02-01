@@ -121,7 +121,7 @@
     "shorthand-property-no-redundant-values": true,
     "string-quotes": "double",
     "value-no-vendor-prefix": true,
-    "unit-whitelist": ["rem", "%", "vh", "vw", "px", "s"],
+    "unit-whitelist": ["rem", "%", "vh", "vw", "px", "s", "deg"],
     "declaration-property-unit-whitelist": [
       {
         "/^padding-?(top|bottom|left|right)?$/": ["px"],
