@@ -1,3 +1,4 @@
+export { default as Ripple } from "./Ripple";
 export { default as Close } from "./Close";
 export { default as GridContainer } from "./GridContainer";
 export { default as GridRow } from "./GridRow";
