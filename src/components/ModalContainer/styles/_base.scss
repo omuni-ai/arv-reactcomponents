@@ -7,6 +7,7 @@
   right: 0;
   background-color: $modal-container-background;
   outline: 0;
+  contain: content;
 }
 
 %nwc-modal-container-769 {
@@ -17,6 +18,7 @@
 
 %nwc-modal {
   position: relative;
+  opacity: 1;
   overflow: auto;
   width: 100%;
   min-height: $modal-min-height;
@@ -24,6 +26,8 @@
   padding: $modal-padding-y $modal-padding-x;
   background: $modal-background;
   outline: 0;
+  will-change: opacity;
+  contain: content;
 }
 
 .nwc-modal-close {
@@ -37,7 +41,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: 10px;
-    border-radius: $modal-769-border-radius;
     max-width: 768px;
     max-height: 100%;
   }

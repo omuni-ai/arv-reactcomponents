@@ -44,6 +44,7 @@ class Select extends Component {
       inpList,
       getSelection,
       renderList,
+      compareProp,
       ...otherProps
     } = this.props;
 
@@ -54,7 +55,7 @@ class Select extends Component {
           htmlFor={id || this.inputId}
           {...otherProps}
         >
-          {selectedValue}
+          {selectedValue[compareProp]}
           <Input
             id={id || this.inputId}
             className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
@@ -89,11 +90,12 @@ Select.propTypes = {
   selectedValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
     .isRequired,
   inpList: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.arrayOf(PropTypes.object),
     PropTypes.arrayOf(PropTypes.string),
   ]).isRequired,
   getSelection: PropTypes.func,
   renderList: PropTypes.func.isRequired,
+  compareProp: PropTypes.string.isRequired,
   // children: PropTypes.oneOfType([
   //   PropTypes.arrayOf(PropTypes.node),
   //   PropTypes.node,

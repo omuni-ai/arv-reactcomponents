@@ -95,7 +95,13 @@ function renderListItems(inpVal, inpList, renderList) {
   listNode = [];
 
   inpList.find((item, index) => {
-    if (inpVal && inpVal.length > 0 && regXSearchItemStartsWith.test(item)) {
+    const testAgainst = item[this.props.compareProp] || item;
+
+    if (
+      inpVal &&
+      inpVal.length > 0 &&
+      regXSearchItemStartsWith.test(testAgainst)
+    ) {
       selectedListIndex = index;
       return true;
     }
