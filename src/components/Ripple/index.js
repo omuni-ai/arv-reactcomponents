@@ -65,7 +65,7 @@ class Ripple extends PureComponent {
     this.toggleRippleClass(false);
     this.timeoutId = setTimeout(() => {
       this.toggleRippleClass(true);
-    });
+    }, 100);
   }
 
   render() {
