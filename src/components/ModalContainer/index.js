@@ -3,15 +3,13 @@ import PropTypes from "prop-types";
 import Close from "../Close";
 import Utils from "../_jsUtils";
 
-import { setFocus, onEscapeClose } from "./methods";
-
-let onEscapeCloseFn;
+import setFocus from "./methods";
 
 class ModalContainer extends PureComponent {
   constructor(props) {
     super(props);
 
-    onEscapeCloseFn = onEscapeClose.bind(this);
+    this.onEscapeClose = this.onEscapeClose.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +20,14 @@ class ModalContainer extends PureComponent {
 
   componentWillUnmount() {
     Utils.unFixScroll();
+  }
+
+  onEscapeClose(e) {
+    Utils.preventEventPropagation(e);
+    const { onClose } = this.props;
+    if (e.key === "Escape") {
+      onClose(e);
+    }
   }
 
   render() {
@@ -39,7 +45,7 @@ class ModalContainer extends PureComponent {
         className={`nwc-modal-container ${className}`}
         tabIndex={0}
         onClick={onClose}
-        onKeyDown={onEscapeCloseFn}
+        onKeyDown={this.onEscapeClose}
         ref={setFocus}
         {...otherProps}
       >

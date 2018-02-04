@@ -1,41 +1,186 @@
-import React, { Component } from "react";
+import React, { PureComponent, cloneElement } from "react";
 import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 
 // import for Page
 import Label from "../Label";
 import Input from "../Input";
-import {
-  onInpValChange,
-  onUserInput,
-  toggleSelectDisplay,
-  renderListItems,
-} from "./methods";
 
-let onInpValChangeFn;
-let onUserInputFn;
-let toggleSelectDisplayFn;
-let renderListItemsFn;
-
-class Select extends Component {
+class Select extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       inpVal: "",
-      isSelectActive: false,
+      isActive: false,
+      selectedListIndex: 0,
     };
 
     this.inputId = `${Math.round(Math.random() * 10 ** 10)}`;
+    this.inputTimeoutId = null;
+    this.navigateTimeoutId = null;
+    this.listNode = [];
+    this.listNodeItem = [];
 
-    onInpValChangeFn = onInpValChange.bind(this);
-    onUserInputFn = onUserInput.bind(this);
-    toggleSelectDisplayFn = toggleSelectDisplay.bind(this);
-    renderListItemsFn = renderListItems.bind(this);
+    this.onInpValChange = this.onInpValChange.bind(this);
+    this.onInpFocus = this.onInpFocus.bind(this);
+    this.onInpBlur = this.onInpBlur.bind(this);
+    this.renderListItems = this.renderListItems.bind(this);
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+    this.selectAndHideList = this.selectAndHideList.bind(this);
+    this.onUserInput = this.onUserInput.bind(this);
+    this.scrollHighlightedElemInView = this.scrollHighlightedElemInView.bind(
+      this,
+    );
+  }
+
+  onInpValChange(e) {
+    const inpVal = e.target.value;
+    const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, "i");
+    let selectedListIndex = 0;
+
+    this.props.inpList.find((item, index) => {
+      const testAgainst = item[this.props.compareProp] || item;
+
+      if (
+        inpVal &&
+        inpVal.length > 0 &&
+        regXSearchItemStartsWith.test(testAgainst)
+      ) {
+        selectedListIndex = index;
+        return true;
+      }
+
+      return false;
+    });
+
+    this.setState({
+      inpVal,
+      selectedListIndex,
+    });
+
+    clearTimeout(this.inputTimeoutId);
+    this.inputTimeoutId = setTimeout(() => {
+      this.setState({
+        inpVal: "",
+      });
+    }, 800);
+  }
+
+  onInpFocus() {
+    const { isActive } = this.state.isActive;
+    setTimeout(() => {
+      this.toggleDisplay(!isActive);
+    }, 300);
+  }
+
+  onInpBlur() {
+    setTimeout(() => {
+      this.toggleDisplay(false);
+    }, 300);
+  }
+
+  onUserInput(e) {
+    e.stopPropagation();
+    const listNodeLength = Object.keys(this.listNode).length - 1;
+    let isActive = true;
+    let { selectedListIndex } = this.state;
+
+    switch (e.key) {
+      case "ArrowUp":
+        e.preventDefault();
+        selectedListIndex =
+          this.state.selectedListIndex !== 0
+            ? this.state.selectedListIndex - 1
+            : listNodeLength;
+        break;
+      case "ArrowDown":
+        selectedListIndex =
+          this.state.selectedListIndex !== listNodeLength
+            ? this.state.selectedListIndex + 1
+            : 0;
+        break;
+      case "ArrowRight":
+      case "ArrowLeft":
+        break;
+      case "Enter":
+      case "Tab":
+        isActive = false;
+        this.selectAndHideList(this.state.selectedListIndex);
+        return;
+      default:
+        selectedListIndex = 0;
+    }
+
+    this.setState(
+      {
+        selectedListIndex,
+        isActive,
+      },
+      () => {
+        this.scrollHighlightedElemInView();
+      },
+    );
+  }
+
+  scrollHighlightedElemInView() {
+    Utils.scrollElemToView(
+      this.listNodeWrapperRef,
+      this.listNode[`item-${this.state.selectedListIndex}`],
+    );
+  }
+
+  selectAndHideList(index) {
+    this.props.getSelection(this.listNodeItem[index]);
+    this.setState({
+      selectedListIndex: index,
+      isActive: false,
+    });
+  }
+
+  toggleDisplay(bool) {
+    this.setState({
+      isActive: bool,
+    });
+  }
+
+  renderListItems(inpVal, inpList, renderList) {
+    this.listNode = [];
+
+    const list = inpList.map((item, index) => {
+      const elem = renderList(item);
+      const onClickFn = elem.props.onClick || Utils.noop;
+      let addClass = "";
+      if (index === this.state.selectedListIndex) {
+        addClass = "is-active";
+      }
+      this.listNodeItem[index] = item;
+      return cloneElement(elem, {
+        className: `${elem.props.className || ""} ${addClass}`,
+        ref: context => {
+          this.listNode[`item-${index}`] = context;
+        },
+        onClick: e => {
+          onClickFn(e);
+          this.selectAndHideList(index);
+        },
+      });
+    });
+
+    return this.state.isActive ? (
+      <ul
+        className="nwc-select-list-container"
+        ref={context => {
+          this.listNodeWrapperRef = context;
+        }}
+      >
+        {list}
+      </ul>
+    ) : null;
   }
 
   render() {
-    const { inpVal, isSelectActive } = this.state;
+    const { inpVal } = this.state;
 
     const {
       id,
@@ -61,18 +206,17 @@ class Select extends Component {
             className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
             placeholder="Enter text"
             value={inpVal}
-            onChange={onInpValChangeFn}
-            onKeyDown={onUserInputFn}
-            onFocus={() => {
-              toggleSelectDisplayFn(!isSelectActive);
-            }}
-            onBlur={() => {
-              toggleSelectDisplayFn(false);
+            onChange={this.onInpValChange}
+            onKeyDown={this.onUserInput}
+            onFocus={this.onInpFocus}
+            onBlur={this.onInpBlur}
+            ref={context => {
+              this.inputRef = context;
             }}
           />
           <i className="icomoon-arrow_bottom nwc-select-arrowbottom" />
         </Label>
-        {renderListItemsFn(inpVal, inpList, renderList)}
+        {this.renderListItems(inpVal, inpList, renderList)}
       </div>
     );
   }

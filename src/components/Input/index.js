@@ -4,13 +4,13 @@ import Utils from "../_jsUtils";
 import Label from "../Label";
 
 // import for Page
-import getValidatedOutput from "./methods";
+import { restrictVal, validateValue } from "./methods";
 
 class Input extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.getValidatedOutput = getValidatedOutput.bind(this);
+    this.getValidatedOutput = this.getValidatedOutput.bind(this);
     this.inputId = `${Math.round(Math.random() * 10 ** 10)}`;
   }
 
@@ -37,6 +37,21 @@ class Input extends PureComponent {
       default:
         return false;
     }
+  }
+
+  getValidatedOutput(value) {
+    const { type, maxLength, validateWithPattern } = this.props;
+
+    const newValue = restrictVal(value, type, maxLength);
+
+    const isValidObj = validateValue(newValue, validateWithPattern);
+    const { isValid, errorMsg } = isValidObj;
+
+    return {
+      value: newValue,
+      isValid,
+      errorMsg,
+    };
   }
 
   render() {

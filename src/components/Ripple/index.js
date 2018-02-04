@@ -13,7 +13,6 @@ class Ripple extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.handleClick = null;
     clearTimeout(this.timeoutId);
   }
 

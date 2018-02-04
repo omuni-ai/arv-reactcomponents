@@ -1,6 +1,4 @@
-function restrictVal(value, props) {
-  const { type, maxLength } = props;
-
+function restrictVal(value, type, maxLength) {
   const newValue = value;
 
   switch (type) {
@@ -14,8 +12,7 @@ function restrictVal(value, props) {
   }
 }
 
-function validateValue(value, props) {
-  const { validateWithPattern } = props;
+function validateValue(value, validateWithPattern) {
   const errorObj = { isValid: true, errorMsg: "" };
 
   validateWithPattern.find(item => {
@@ -30,19 +27,4 @@ function validateValue(value, props) {
   return errorObj;
 }
 
-function getValidatedOutput(value) {
-  const { props } = this;
-
-  const newValue = restrictVal(value, props);
-
-  const isValidObj = validateValue(newValue, props);
-  const { isValid, errorMsg } = isValidObj;
-
-  return {
-    value: newValue,
-    isValid,
-    errorMsg,
-  };
-}
-
-export default getValidatedOutput;
+export { restrictVal, validateValue };
