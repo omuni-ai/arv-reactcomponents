@@ -5,6 +5,13 @@
   cursor: pointer;
   color: $button-color;
   outline: 0;
+
+  &[disabled] {
+    border: $button-border-width $button-border-type $button-border-color-disabled !important;
+    background: $button-background-disabled !important;
+    cursor: not-allowed;
+    color: $button-color-disabled !important;
+  }
 }
 
 .nwc-btn-primary-txt {

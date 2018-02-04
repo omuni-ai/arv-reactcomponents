@@ -81,8 +81,12 @@ $button-border-type: solid !default;
 $button-border-color: darken-colors($concrete, 2) !default;
 $button-padding-y: 6px !default;
 $button-padding-x: 6px !default;
-$button-background: transparent !default;
+$button-background: $transparent !default;
 $button-color: $black !default;
+
+$button-background-disabled: $transparent !default;
+$button-border-color-disabled: darken-colors($concrete, 2) !default;
+$button-color-disabled: darken-colors($concrete, 2) !default;
 
 $button-variants: (
   primary: $color-primary,
