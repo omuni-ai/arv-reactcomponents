@@ -68,7 +68,7 @@ class Select extends PureComponent {
   }
 
   onInpFocus() {
-    const { isActive } = this.state.isActive;
+    const { isActive } = this.state;
     setTimeout(() => {
       this.toggleDisplay(!isActive);
     }, 300);
