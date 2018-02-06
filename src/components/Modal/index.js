@@ -8,10 +8,13 @@ import createBaseContainer from "./methods";
 function Modal(props) {
   const { isOpen, ...otherProps } = props;
 
-  return ReactDOM.createPortal(
-    isOpen ? <ModalContainer {...otherProps} /> : null,
-    document.querySelectorAll(".nwc-modal-holder")[0],
-  );
+  if (isOpen) {
+    return ReactDOM.createPortal(
+      <ModalContainer {...otherProps} />,
+      document.querySelector(".nwc-modal-holder"),
+    );
+  }
+  return null;
 }
 
 createBaseContainer();

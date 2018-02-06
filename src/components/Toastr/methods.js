@@ -42,7 +42,9 @@ function setConfig(obj) {
 function createBaseContainer() {
   const toastrContainer = document.createElement("div");
   toastrContainer.className = "nwc-toastr-holder";
-  document.querySelectorAll("body")[0].appendChild(toastrContainer);
+  if (document.querySelectorAll("body")[0]) {
+    document.querySelectorAll("body")[0].appendChild(toastrContainer);
+  }
 }
 
 export { clearAll, hideToastr, showToastr, setConfig, createBaseContainer };
