@@ -22,7 +22,7 @@ class Ripple extends PureComponent {
     const wrappedElement = (
       <Dummy>
         {child.props.children}
-        <div
+        <span
           className={`nwc-ripple ${this.props.className}`}
           ref={context => {
             this.rippleRef = context;
