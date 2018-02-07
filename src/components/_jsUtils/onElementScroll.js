@@ -15,7 +15,8 @@ function getScrollDirection(current, prev) {
 function onElementScroll(element, callback) {
   const isWindow = element === window;
   let prevScroll = 0;
-  element.addEventListener("scroll", () => {
+
+  const onScroll = () => {
     if (isWindow && isBodyFixed()) {
       return;
     }
@@ -29,7 +30,13 @@ function onElementScroll(element, callback) {
 
       prevScroll = scrollTop;
     });
-  });
+  };
+
+  element.addEventListener("scroll", onScroll);
+
+  return () => {
+    element.removeEventListener("scroll", onScroll);
+  };
 }
 
 export default onElementScroll;

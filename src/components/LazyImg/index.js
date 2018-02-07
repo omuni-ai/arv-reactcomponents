@@ -12,6 +12,7 @@ class LazyImg extends PureComponent {
       isError: false,
     };
 
+    this.removeListener = Utils.noop;
     this.onLoad = this.onLoad.bind(this);
     this.onError = this.onError.bind(this);
     this.isImageInView = this.isImageInView.bind(this);
@@ -20,6 +21,10 @@ class LazyImg extends PureComponent {
 
   componentDidMount() {
     this.initLazyLoad();
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
   }
 
   onLoad() {
@@ -74,11 +79,13 @@ class LazyImg extends PureComponent {
       return;
     }
 
-    Utils.onElementScroll(window, () => {
+    this.removeListener = Utils.onElementScroll(window, () => {
       if (this.isImageInView()) {
         this.setState({
           inView: true,
         });
+
+        this.removeListener();
       }
     });
   }
