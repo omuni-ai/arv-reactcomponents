@@ -23,6 +23,18 @@ class LazyImg extends PureComponent {
     this.initLazyLoad();
   }
 
+  componentWillReceiveProps(nextProps) {
+    setTimeout(() => {
+      if (this.props.index !== nextProps.index && this.isImageInView()) {
+        this.setState({
+          inView: true,
+        });
+
+        this.removeListener();
+      }
+    }, 300);
+  }
+
   componentWillUnmount() {
     this.removeListener();
   }
@@ -137,6 +149,7 @@ LazyImg.defaultProps = {
 };
 
 LazyImg.propTypes = {
+  index: PropTypes.number.isRequired,
   className: PropTypes.string,
   src: PropTypes.string,
   alt: PropTypes.string,
