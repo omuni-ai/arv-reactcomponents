@@ -149,16 +149,6 @@
   }
 }
 
-.nwc-inp-hide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 0;
-  min-width: 1px;
-  max-width: 1px;
-  min-height: 1px;
-  max-height: 1px;
-  background: $transparent;
-  color: $transparent;
-  outline: 0;
+.nwc-inp-hiddenwrapper {
+  display: none;
 }

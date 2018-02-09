@@ -79,14 +79,15 @@ class Input extends PureComponent {
 
     return (
       <Label className="nwc-inp-container" htmlFor={id || this.inputId}>
-        <input
-          id={id || this.inputId}
-          className="nwc-inp-hide"
-          type={type}
-          tabIndex="0"
-          ref={inputRef}
-          {...otherProps}
-        />
+        <span className="nwc-inp-hiddenwrapper">
+          <input
+            id={id || this.inputId}
+            type={type}
+            tabIndex="0"
+            ref={inputRef}
+            {...otherProps}
+          />
+        </span>
         <i className={`${this.cloneClassName}`} />
       </Label>
     );
