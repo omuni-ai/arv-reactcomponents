@@ -5,29 +5,64 @@ import Utils from "../_jsUtils";
 
 import setFocus from "./methods";
 
+let modalOpen = false;
+const isMobile = window.innerWidth <= 768;
 class ModalContainer extends PureComponent {
+  static isModalOpen() {
+    return modalOpen;
+  }
+
+  static handleHistoryOnOpen() {
+    const currentState = window.history.state;
+    window.history.pushState(currentState, "");
+  }
+
   constructor(props) {
     super(props);
 
+    this.onClose = this.onClose.bind(this);
     this.onEscapeClose = this.onEscapeClose.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
+    modalOpen = true;
     if (!this.props.preventfix) {
       Utils.fixScroll();
     }
+
+    if (isMobile) {
+      ModalContainer.handleHistoryOnOpen();
+    }
+    window.addEventListener("popstate", this.closeModal);
   }
 
   componentWillUnmount() {
+    modalOpen = false;
     Utils.unFixScroll();
+    window.removeEventListener("popstate", this.closeModal);
+  }
+
+  onClose(e) {
+    if (isMobile) {
+      window.history.back();
+    } else {
+      this.closeModal(e);
+    }
   }
 
   onEscapeClose(e) {
     Utils.preventEventPropagation(e);
-    const { onClose } = this.props;
     if (e.key === "Escape") {
-      onClose(e);
+      this.onClose(e);
     }
+  }
+
+  closeModal(e) {
+    const { onClose } = this.props;
+    setTimeout(() => {
+      onClose(e);
+    }, 50);
   }
 
   render() {
@@ -44,7 +79,7 @@ class ModalContainer extends PureComponent {
         role="button"
         className={`nwc-modal-container ${className}`}
         tabIndex={0}
-        onClick={onClose}
+        onClick={this.onClose}
         onKeyDown={this.onEscapeClose}
         ref={setFocus}
         {...otherProps}
@@ -58,7 +93,7 @@ class ModalContainer extends PureComponent {
         >
           <Close
             className="nwc-close-normal nwc-modal-close"
-            onClick={onClose}
+            onClick={this.onClose}
           />
           {children}
         </div>

@@ -32,7 +32,7 @@ class LazyImg extends PureComponent {
 
         this.removeListener();
       }
-    }, 300);
+    }, 500);
   }
 
   componentWillUnmount() {

@@ -19,6 +19,7 @@ function Modal(props) {
 
 createBaseContainer();
 
+Modal.isModalOpen = ModalContainer.isModalOpen;
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
 };

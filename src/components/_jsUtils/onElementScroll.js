@@ -3,9 +3,9 @@ import windowScroll from "./windowScroll";
 import { isBodyFixed } from "./fixScroll";
 
 function getScrollDirection(current, prev) {
-  if (prev - current < 0) {
+  if (prev - current < -5) {
     return "down";
-  } else if (prev - current > 0) {
+  } else if (prev - current > 5) {
     return "up";
   }
 
