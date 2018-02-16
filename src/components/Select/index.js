@@ -6,6 +6,8 @@ import Utils from "../_jsUtils";
 import Label from "../Label";
 import Input from "../Input";
 
+const BLOCK_VIRTUAL_KEYBOARD = window.innerWidth <= 768;
+
 class Select extends PureComponent {
   constructor(props) {
     super(props);
@@ -17,6 +19,7 @@ class Select extends PureComponent {
     };
 
     this.inputId = `${Math.round(Math.random() * 10 ** 10)}`;
+    this.blurTimeoutId = null;
     this.inputTimeoutId = null;
     this.navigateTimeoutId = null;
     this.listNode = [];
@@ -69,15 +72,14 @@ class Select extends PureComponent {
 
   onInpFocus() {
     const { isActive } = this.state;
-    setTimeout(() => {
-      this.toggleDisplay(!isActive);
-    }, 300);
+    this.toggleDisplay(!isActive);
+    clearTimeout(this.blurTimeoutId);
   }
 
   onInpBlur() {
-    setTimeout(() => {
+    this.blurTimeoutId = setTimeout(() => {
       this.toggleDisplay(false);
-    }, 300);
+    }, 200);
   }
 
   onUserInput(e) {
@@ -213,6 +215,7 @@ class Select extends PureComponent {
             ref={context => {
               this.inputRef = context;
             }}
+            readOnly={BLOCK_VIRTUAL_KEYBOARD}
           />
           <i className="icomoon-arrow_bottom nwc-select-arrowbottom" />
         </Label>

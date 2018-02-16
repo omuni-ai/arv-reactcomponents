@@ -1,9 +1,9 @@
 let lastTime = 0;
 const vendors = ["ms", "moz", "webkit", "o"];
-let rAF = window.requestAnimationFrame;
+let rAF = window.requestIdleCallback;
 
 if (!rAF) {
-  rAF = vendors.find(prefix => window[`${prefix}RequestAnimationFrame`]);
+  rAF = vendors.find(prefix => window[`${prefix}RequestIdleCallback`]);
 }
 
 if (!rAF) {
@@ -18,8 +18,8 @@ if (!rAF) {
   };
 }
 
-function requestAnimationFrame(callback) {
+function requestIdleCallback(callback) {
   return rAF(callback);
 }
 
-export default requestAnimationFrame;
+export default requestIdleCallback;

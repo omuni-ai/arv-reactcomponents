@@ -8,7 +8,7 @@
   border: $input-border-width $input-border-type $input-border-color;
   padding: $input-padding-y $input-padding-x;
   outline: 0;
-  
+
   &.is-invalid {
     border-color: $input-invalid-color;
   }
@@ -131,11 +131,16 @@
 
 /* stylelint-disable */
 
-.nwc-disable-controls::-webkit-outer-spin-button,
-.nwc-disable-controls::-webkit-inner-spin-button {
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
 
 
 /* stylelint-enable */
@@ -157,6 +162,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  transform: scale(0, 0);
   border: 0;
   min-width: 1px;
   max-width: 1px;
@@ -165,4 +171,5 @@
   background: $transparent;
   color: $transparent;
   outline: 0;
+  caret-color: $transparent;
 }
