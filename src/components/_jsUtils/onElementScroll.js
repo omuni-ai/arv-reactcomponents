@@ -12,7 +12,7 @@ function getScrollDirection(current, prev) {
   return "";
 }
 
-function onElementScroll(element, callback) {
+function onElementScroll(element, callback, optional = false) {
   const isWindow = element === window;
   let prevScroll = 0;
 
@@ -32,10 +32,10 @@ function onElementScroll(element, callback) {
     });
   };
 
-  element.addEventListener("scroll", onScroll);
+  element.addEventListener("scroll", onScroll, optional);
 
   return () => {
-    element.removeEventListener("scroll", onScroll);
+    element.removeEventListener("scroll", onScroll, optional);
   };
 }
 

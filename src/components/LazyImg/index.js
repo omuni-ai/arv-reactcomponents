@@ -91,15 +91,19 @@ class LazyImg extends PureComponent {
       return;
     }
 
-    this.removeListener = Utils.onElementScroll(window, () => {
-      if (this.isImageInView()) {
-        this.setState({
-          inView: true,
-        });
+    this.removeListener = Utils.onElementScroll(
+      window,
+      () => {
+        if (this.isImageInView()) {
+          this.setState({
+            inView: true,
+          });
 
-        this.removeListener();
-      }
-    });
+          this.removeListener();
+        }
+      },
+      { passive: true },
+    );
   }
 
   isImageInView() {
