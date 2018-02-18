@@ -18,6 +18,7 @@ import SelectExample from "../SelectExample";
 import InputExample from "../InputExample";
 import ButtonModalExample from "../ButtonModalExample";
 import ButtonToastrExample from "../ButtonToastrExample";
+import CarouselExample from "../CarouselExample";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <InputExample />
         <ButtonModalExample />
         <ButtonToastrExample />
+        <CarouselExample />
 
         <CSSGlobalClassesDisplay />
         <JSUtilsDisplay />

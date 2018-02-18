@@ -1,0 +1,14 @@
+.nw-carouselexample {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nw-carouselexample-item {
+  display: inline-block;
+  border: 1px solid $black;
+  width: 50%;
+}
+
+.nw-carouselexample-img {
+  width: 100%;
+}

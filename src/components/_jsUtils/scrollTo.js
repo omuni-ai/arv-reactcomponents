@@ -2,7 +2,8 @@ import easeInOut from "./easingFunctions";
 import windowScroll from "./windowScroll";
 import requestAnimationFrame from "./requestAnimationFrame";
 
-const scrollTo = (element, toX, toY, duration) => {
+let inProgress = false;
+const scrollTo = (element, toX, toY, duration = 0) => {
   const elem = element;
   const isWindow = elem === window;
   let startX;
@@ -22,6 +23,7 @@ const scrollTo = (element, toX, toY, duration) => {
   const increment = 20;
 
   const animateScroll = elapsedTime => {
+    inProgress = true;
     let elTime = elapsedTime;
     elTime += increment;
     const positionX = easeInOut(elTime, startX, changeX, duration);
@@ -36,12 +38,21 @@ const scrollTo = (element, toX, toY, duration) => {
       requestAnimationFrame(() => {
         animateScroll(elTime);
       });
+    } else {
+      inProgress = false;
     }
   };
 
-  requestAnimationFrame(() => {
-    animateScroll(0);
-  });
+  if (isWindow && !duration) {
+    window.scrollTo(toX, toY);
+  } else if (!duration) {
+    elem.scrollTop += changeY;
+    elem.scrollLeft += changeX;
+  } else if (!inProgress) {
+    requestAnimationFrame(() => {
+      animateScroll(0);
+    });
+  }
 };
 
 export default scrollTo;
