@@ -83,14 +83,14 @@ class Select extends PureComponent {
   }
 
   onUserInput(e) {
-    e.stopPropagation();
+    Utils.preventEventPropagation(e);
     const listNodeLength = Object.keys(this.listNode).length - 1;
     let isActive = true;
     let { selectedListIndex } = this.state;
 
     switch (e.key) {
       case "ArrowUp":
-        e.preventDefault();
+        Utils.preventDefault(e);
         selectedListIndex =
           this.state.selectedListIndex !== 0
             ? this.state.selectedListIndex - 1
@@ -106,6 +106,10 @@ class Select extends PureComponent {
       case "ArrowLeft":
         break;
       case "Enter":
+        Utils.preventDefault(e);
+        isActive = false;
+        this.selectAndHideList(this.state.selectedListIndex);
+        return;
       case "Tab":
         isActive = false;
         this.selectAndHideList(this.state.selectedListIndex);

@@ -82,9 +82,7 @@
     &.is-checked {
       &::before {
         background: $value;
-        @if(lightness($value) > $lightness-threshold) {
-          border-color: $compliment-for-light;
-        }
+        border-color: set-color($value, $transparent);
       }
     }
   }
@@ -120,9 +118,7 @@
     &.is-checked {
       &::before {
         background: $value;
-        @if(lightness($value) > $lightness-threshold) {
-          border-color: $compliment-for-light;
-        }
+        border-color: set-color($value, $transparent);
       }
     }
   }
