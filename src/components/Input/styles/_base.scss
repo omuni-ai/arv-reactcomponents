@@ -12,6 +12,10 @@
   &.is-invalid {
     border-color: $input-invalid-color;
   }
+  
+  &.is-untouched {
+    border-color: $transparent;
+  }
 }
 
 .nwc-inp-primary-txt {
