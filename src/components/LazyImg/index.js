@@ -30,6 +30,7 @@ class LazyImg extends PureComponent {
     this.removeListener = Utils.noop;
     this.onLoad = this.onLoad.bind(this);
     this.onError = this.onError.bind(this);
+    this.isInViewport = this.isInViewport.bind(this);
     this.isImageInView = this.isImageInView.bind(this);
     this.initLazyLoad = this.initLazyLoad.bind(this);
   }
@@ -121,19 +122,42 @@ class LazyImg extends PureComponent {
     );
   }
 
-  isImageInView() {
+  isInViewport(parentVals, elementVals) {
     const { offset } = this.props;
+
+    if (!parentVals) {
+      return true;
+    }
+
+    return (
+      elementVals &&
+      ((elementVals.top - offset > parentVals.top &&
+        elementVals.top - offset < parentVals.bottom) ||
+        (elementVals.bottom + offset > parentVals.top &&
+          elementVals.bottom + offset < parentVals.bottom) ||
+        (elementVals.top - offset < parentVals.top &&
+          elementVals.bottom + offset > parentVals.bottom)) &&
+      ((elementVals.left - offset > parentVals.left &&
+        elementVals.left - offset < parentVals.right) ||
+        (elementVals.right + offset > parentVals.left &&
+          elementVals.right + offset < parentVals.right) ||
+        (elementVals.left - offset < parentVals.left &&
+          elementVals.right + offset > parentVals.right))
+    );
+  }
+
+  isImageInView() {
+    const { parentElement } = this.props;
+    const { onWinLoad } = this.state;
     const windowScrollVals = Utils.windowScroll();
+    const parentElementVals =
+      (parentElement && Utils.getBoundClientRect(parentElement)) || null;
     const elementVals = Utils.getBoundClientRect(this.imgContainerRef);
 
     if (
-      elementVals &&
-      ((elementVals.top - offset > windowScrollVals.top &&
-        elementVals.top - offset < windowScrollVals.bottom) ||
-        (elementVals.bottom + offset > windowScrollVals.top &&
-          elementVals.bottom + offset < windowScrollVals.bottom) ||
-        (elementVals.top - offset < windowScrollVals.top &&
-          elementVals.bottom + offset > windowScrollVals.bottom))
+      onWinLoad ||
+      (this.isInViewport(windowScrollVals, elementVals) &&
+        this.isInViewport(parentElementVals, elementVals))
     ) {
       return true;
     }
@@ -143,6 +167,7 @@ class LazyImg extends PureComponent {
 
   render() {
     const {
+      onWinLoad,
       index,
       offset,
       className,
@@ -150,6 +175,7 @@ class LazyImg extends PureComponent {
       alt,
       onLoad,
       onError,
+      parentElement,
       ...otherProps
     } = this.props;
 
@@ -168,15 +194,18 @@ class LazyImg extends PureComponent {
 }
 
 LazyImg.defaultProps = {
+  onWinLoad: false,
   className: "",
   alt: "NNNOW",
   src: null,
   onLoad: Utils.noop,
   onError: Utils.noop,
   offset: 0,
+  parentElement: null,
 };
 
 LazyImg.propTypes = {
+  onWinLoad: PropTypes.bool,
   index: PropTypes.number.isRequired,
   className: PropTypes.string,
   src: PropTypes.string,
@@ -184,6 +213,7 @@ LazyImg.propTypes = {
   onLoad: PropTypes.func,
   onError: PropTypes.func,
   offset: PropTypes.number,
+  parentElement: PropTypes.shape({}),
 };
 
 export default LazyImg;

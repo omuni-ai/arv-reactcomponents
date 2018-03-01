@@ -8,8 +8,6 @@ class Carousel extends PureComponent {
 
     this.listNode = [];
     this.scrollToIndex = this.scrollToIndex.bind(this);
-
-    this.itemsList = this.renderItemsList();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -18,13 +16,7 @@ class Carousel extends PureComponent {
     });
   }
 
-  scrollToIndex(index) {
-    const elem = this.listNode[`item-${index}`];
-
-    Utils.scrollElemToView(this.parentRef, elem, 600);
-  }
-
-  renderItemsList() {
+  get renderItemsList() {
     const { items, renderItems } = this.props;
     const itemsList = items.map((item, index) => {
       const elem = renderItems(item, index);
@@ -39,6 +31,12 @@ class Carousel extends PureComponent {
     return itemsList;
   }
 
+  scrollToIndex(index) {
+    const elem = this.listNode[`item-${index}`];
+
+    Utils.scrollElemToView(this.parentRef, elem, 600);
+  }
+
   render() {
     const { className } = this.props;
 
@@ -49,7 +47,7 @@ class Carousel extends PureComponent {
         }}
         className={`nwc-carousel ${className}`}
       >
-        {this.itemsList}
+        {this.renderItemsList}
       </div>
     );
   }
