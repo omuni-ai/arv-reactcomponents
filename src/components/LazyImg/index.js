@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 
 const LazyImgRef = [];
+let windowScrollVals = Utils.windowScroll();
 class LazyImg extends PureComponent {
   static triggerLoad() {
     LazyImgRef.forEach(item => {
@@ -21,17 +22,24 @@ class LazyImg extends PureComponent {
   constructor(props) {
     super(props);
 
+    const { parentElement } = props;
+
     this.state = {
       inView: false,
       isLoaded: false,
       isError: false,
     };
 
+    this.parentElementVals =
+      (parentElement && Utils.getBoundClientRect(parentElement)) || null;
+
     this.removeListener = Utils.noop;
     this.onLoad = this.onLoad.bind(this);
     this.onError = this.onError.bind(this);
     this.isInViewport = this.isInViewport.bind(this);
     this.isImageInView = this.isImageInView.bind(this);
+    this.setContext = this.setContext.bind(this);
+    this.calcElemVals = this.calcElemVals.bind(this);
     this.initLazyLoad = this.initLazyLoad.bind(this);
   }
 
@@ -42,6 +50,7 @@ class LazyImg extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.index !== this.props.index) {
       setTimeout(() => {
+        this.calcElemVals(this.imgContainerRef);
         if (this.isImageInView()) {
           this.setState({
             inView: true,
@@ -98,6 +107,15 @@ class LazyImg extends PureComponent {
     return null;
   }
 
+  setContext(context) {
+    this.imgContainerRef = context;
+    this.calcElemVals(context);
+  }
+
+  calcElemVals(elem) {
+    this.elementVals = Utils.getBoundClientRect(elem);
+  }
+
   initLazyLoad() {
     if (this.isImageInView()) {
       this.setState({
@@ -147,17 +165,12 @@ class LazyImg extends PureComponent {
   }
 
   isImageInView() {
-    const { parentElement } = this.props;
     const { onWinLoad } = this.state;
-    const windowScrollVals = Utils.windowScroll();
-    const parentElementVals =
-      (parentElement && Utils.getBoundClientRect(parentElement)) || null;
-    const elementVals = Utils.getBoundClientRect(this.imgContainerRef);
 
     if (
       onWinLoad ||
-      (this.isInViewport(windowScrollVals, elementVals) &&
-        this.isInViewport(parentElementVals, elementVals))
+      (this.isInViewport(windowScrollVals, this.elementVals) &&
+        this.isInViewport(this.parentElementVals, this.elementVals))
     ) {
       return true;
     }
@@ -182,9 +195,7 @@ class LazyImg extends PureComponent {
     return (
       <div
         className={`nwc-lazyimg-container ${className}`}
-        ref={context => {
-          this.imgContainerRef = context;
-        }}
+        ref={this.setContext}
         {...otherProps}
       >
         {this.imgTagIfInView}
@@ -192,6 +203,14 @@ class LazyImg extends PureComponent {
     );
   }
 }
+
+Utils.onElementScroll(
+  window,
+  () => {
+    windowScrollVals = Utils.windowScroll();
+  },
+  { passive: true },
+);
 
 LazyImg.defaultProps = {
   onWinLoad: false,
