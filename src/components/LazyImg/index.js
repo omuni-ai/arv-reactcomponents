@@ -2,7 +2,22 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 
+const LazyImgRef = [];
 class LazyImg extends PureComponent {
+  static triggerLoad() {
+    LazyImgRef.forEach(item => {
+      let self = item;
+      const itemIndex = LazyImgRef.indexOf(self);
+
+      self.setState({
+        inView: true,
+      });
+
+      LazyImgRef.splice(itemIndex, 1);
+      self = null;
+    });
+  }
+
   constructor(props) {
     super(props);
 
@@ -24,15 +39,15 @@ class LazyImg extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    setTimeout(() => {
-      if (this.props.index !== nextProps.index && this.isImageInView()) {
-        this.setState({
-          inView: true,
-        });
-
-        this.removeListener();
-      }
-    }, 500);
+    if (nextProps && nextProps.index !== this.props.index) {
+      setTimeout(() => {
+        if (this.isImageInView()) {
+          this.setState({
+            inView: true,
+          });
+        }
+      }, 300);
+    }
   }
 
   componentWillUnmount() {
@@ -63,7 +78,7 @@ class LazyImg extends PureComponent {
     );
   }
 
-  getImgTagIfInView() {
+  get imgTagIfInView() {
     const { src, alt } = this.props;
     const { inView } = this.state;
 
@@ -87,18 +102,18 @@ class LazyImg extends PureComponent {
       this.setState({
         inView: true,
       });
-
-      return;
     }
 
     this.removeListener = Utils.onElementScroll(
       window,
       () => {
         if (this.isImageInView()) {
-          this.setState({
-            inView: true,
-          });
+          const { src } = this.props;
+          const imgClone = document.createElement("img");
+          imgClone.src = src;
+          LazyImgRef.push(this);
 
+          Utils.requestIdleCallback(LazyImg.triggerLoad, 300);
           this.removeListener();
         }
       },
@@ -127,7 +142,16 @@ class LazyImg extends PureComponent {
   }
 
   render() {
-    const { className, src, alt, onLoad, onError, ...otherProps } = this.props;
+    const {
+      index,
+      offset,
+      className,
+      src,
+      alt,
+      onLoad,
+      onError,
+      ...otherProps
+    } = this.props;
 
     return (
       <div
@@ -137,7 +161,7 @@ class LazyImg extends PureComponent {
         }}
         {...otherProps}
       >
-        {this.getImgTagIfInView()}
+        {this.imgTagIfInView}
       </div>
     );
   }

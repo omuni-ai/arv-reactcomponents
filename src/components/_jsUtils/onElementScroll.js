@@ -1,4 +1,5 @@
 import requestAnimationFrame from "./requestAnimationFrame";
+import cancelAnimationFrame from "./cancelAnimationFrame";
 import windowScroll from "./windowScroll";
 import { isBodyFixed } from "./fixScroll";
 
@@ -13,16 +14,19 @@ function getScrollDirection(current, prev) {
 }
 
 function onElementScroll(element, callback, optional = false) {
-  const isWindow = element === window;
+  const elem = element;
+  const isWindow = elem === window;
   let prevScroll = 0;
 
+  let requestAnimationFrameId;
   const onScroll = () => {
     if (isWindow && isBodyFixed()) {
       return;
     }
 
-    requestAnimationFrame(() => {
-      const scrollTop = (isWindow && windowScroll().top) || element.scrollTop;
+    cancelAnimationFrame(requestAnimationFrameId);
+    requestAnimationFrameId = requestAnimationFrame(() => {
+      const scrollTop = (isWindow && windowScroll().top) || elem.scrollTop;
       callback({
         scrollTop,
         direction: getScrollDirection(scrollTop, prevScroll),
@@ -32,10 +36,10 @@ function onElementScroll(element, callback, optional = false) {
     });
   };
 
-  element.addEventListener("scroll", onScroll, optional);
+  elem.addEventListener("scroll", onScroll, optional);
 
   return () => {
-    element.removeEventListener("scroll", onScroll, optional);
+    elem.removeEventListener("scroll", onScroll, optional);
   };
 }
 

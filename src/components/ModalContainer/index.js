@@ -14,6 +14,7 @@ class ModalContainer extends PureComponent {
 
   static handleHistoryOnOpen() {
     const currentState = window.history.state;
+    currentState.modal = true;
     window.history.pushState(currentState, "");
   }
 
@@ -44,7 +45,8 @@ class ModalContainer extends PureComponent {
   }
 
   onClose(e) {
-    if (isMobile) {
+    const currentState = window.history.state;
+    if (isMobile && currentState.modal) {
       window.history.back();
     } else {
       this.closeModal(e);

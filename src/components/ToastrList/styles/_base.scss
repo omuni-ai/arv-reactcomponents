@@ -12,8 +12,6 @@
   .nwc-toastr-list-#{$toaster-variants} {
     background: $value;
     color: set-color($value, $compliment-for-dark, $compliment-for-light);
-    @if(lightness($value) > $lightness-threshold) {
-      border-color: $compliment-for-light;
-    }
+    border-color: set-color($value, $transparent , $toastr-list-border-color);
   }
 }

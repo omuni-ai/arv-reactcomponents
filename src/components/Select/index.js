@@ -239,8 +239,11 @@ Select.defaultProps = {
 Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  selectedValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
-    .isRequired,
+  selectedValue: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
   inpList: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.arrayOf(PropTypes.string),

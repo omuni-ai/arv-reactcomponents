@@ -4,11 +4,12 @@ $transparent: transparent;
 $white: #fff !default;
 $black: #000 !default;
 $violet-red: #f2258b !default;
+$wild-strawberry: #f39 !default;
 $lochmara: #0182cb !default;
-$fountain-blue: #5ca9c0 !default;
-$fern: #6ab373 !default;
-$tan-hide: #faa64b !default;
-$chestnut-rose: #c95757 !default;
+$boston-blue: #3096b4 !default;
+$sushi: #9bb535 !default;
+$web-orange: #ffa500 !default;
+$torch-red: #ea0020 !default;
 $concrete: #f3f3f3 !default;
 
 $font-size: 18px !default;
@@ -38,12 +39,12 @@ $lightness-threshold: 70;
 $compliment-for-dark: $white !default;
 $compliment-for-light: $black !default;
 
-$color-primary: $violet-red !default;
+$color-primary: $wild-strawberry !default;
 $color-secondary: $lochmara !default;
-$color-notification: $fountain-blue !default;
-$color-success: $fern !default;
-$color-warning: $tan-hide !default;
-$color-danger: $chestnut-rose !default;
+$color-notification: $boston-blue !default;
+$color-success: $sushi !default;
+$color-warning: $web-orange !default;
+$color-danger: $torch-red !default;
 
 //
 // Common File

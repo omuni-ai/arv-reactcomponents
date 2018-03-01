@@ -12,7 +12,7 @@
   &.is-invalid {
     border-color: $input-invalid-color;
   }
-  
+
   &.is-untouched {
     border-color: $transparent;
   }
@@ -75,6 +75,18 @@
       background: $input-checkbox-inner-background;
     }
   }
+
+  &.is-covered {
+    border: 0;
+    background: darken-colors($concrete, 2);
+
+    &::before {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
 }
 
 @each $input-variants, $value in $input-variants {
@@ -109,6 +121,19 @@
       border: $input-radio-inner-border-width $input-radio-border-type $input-radio-border-color;
       border-radius: 50%;
       background: $input-radio-inner-background;
+    }
+  }
+
+  
+  &.is-covered {
+    border: 0;
+    background: darken-colors($concrete, 2);
+
+    &::before {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
   }
 }

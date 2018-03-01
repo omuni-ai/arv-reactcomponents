@@ -24,15 +24,15 @@ function ColorsDisplay() {
         <GridColumn className="nwc-grid-col-sm-4">$concrete</GridColumn>
       </GridRow>
       <GridRow className="nw-color-row">
-        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-violet-red">
+        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-primary">
           &nbsp;
         </GridColumn>
         <GridColumn className="nwc-grid-col-sm-4">
-          $violet-red / $color-primary
+          $wild-strawberry / $color-primary
         </GridColumn>
       </GridRow>
       <GridRow className="nw-color-row">
-        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-lochmara">
+        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-secondary">
           &nbsp;
         </GridColumn>
         <GridColumn className="nwc-grid-col-sm-4">
@@ -40,35 +40,35 @@ function ColorsDisplay() {
         </GridColumn>
       </GridRow>
       <GridRow className="nw-color-row">
-        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-fountain-blue">
+        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-notification">
           &nbsp;
         </GridColumn>
         <GridColumn className="nwc-grid-col-sm-4">
-          $fountain-blue / $color-notification
+          $boston-blue / $color-notification
         </GridColumn>
       </GridRow>
       <GridRow className="nw-color-row">
-        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-fern">
+        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-success">
           &nbsp;
         </GridColumn>
         <GridColumn className="nwc-grid-col-sm-4">
-          $fern / $color-success
+          $sushi / $color-success
         </GridColumn>
       </GridRow>
       <GridRow className="nw-color-row">
-        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-tan-hide">
+        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-warning">
           &nbsp;
         </GridColumn>
         <GridColumn className="nwc-grid-col-sm-4">
-          $tan-hide / $color-warning
+          $web-orange / $color-warning
         </GridColumn>
       </GridRow>
       <GridRow className="nw-color-row">
-        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-chestnut-rose">
+        <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-danger">
           &nbsp;
         </GridColumn>
         <GridColumn className="nwc-grid-col-sm-4">
-          $chestnut-rose / $color-danger
+          $torch-red / $color-danger
         </GridColumn>
       </GridRow>
     </GridColumn>

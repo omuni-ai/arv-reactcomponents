@@ -22,7 +22,8 @@ const getItem = function(key) {
     let objectWithTime = ls[key];
     if (!objectWithTime) return;
     objectWithTime = JSON.parse(ls[key]);
-    if (expiryTimeDefined === -1) return objectWithTime.content;
+    if (expiryTimeDefined === -1)
+      return objectWithTime.content || objectWithTime.value;
     let now = new Date();
     let expiration = new Date(objectWithTime.timestamp);
     expiration.setMinutes(expiration.getMinutes() + expiryTimeDefined);
@@ -31,7 +32,7 @@ const getItem = function(key) {
       ls.removeItem(key);
       return null;
     }
-    return objectWithTime.content || null;
+    return objectWithTime.content || objectWithTime.value || null;
   } catch (e) {
     console.debug("some error happen in fetching from client cache");
     return null;
