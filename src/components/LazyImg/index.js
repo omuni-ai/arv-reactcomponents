@@ -132,6 +132,7 @@ class LazyImg extends PureComponent {
           imgClone.src = src;
           LazyImgRef.push(this);
 
+          Utils.cancelIdleCallback(LazyImg.triggerLoad);
           Utils.requestIdleCallback(LazyImg.triggerLoad, 300);
           this.removeListener();
         }
