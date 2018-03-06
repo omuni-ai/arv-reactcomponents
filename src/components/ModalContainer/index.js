@@ -14,8 +14,10 @@ class ModalContainer extends PureComponent {
 
   static handleHistoryOnOpen() {
     const currentState = window.history.state;
-    currentState.modal = true;
-    window.history.pushState(currentState, "");
+    if (currentState) {
+      currentState.modal = true;
+      window.history.pushState(currentState, "");
+    }
   }
 
   constructor(props) {
