@@ -87,6 +87,12 @@ class CarouselExample extends PureComponent {
   render() {
     const { index } = this.state;
 
+    const nextIndex = index + 1;
+    const limitNextIndex = nextIndex >= this.items.length ? index : nextIndex;
+
+    const prevIndex = index - 1;
+    const limitPrevIndex = prevIndex < 0 ? index : prevIndex;
+
     return (
       <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
         <h1>Carousel</h1>
@@ -101,31 +107,17 @@ class CarouselExample extends PureComponent {
             />
             <Button
               onClick={() => {
-                this.setIndex(0);
+                this.setIndex(limitPrevIndex);
               }}
             >
-              1
+              &lt;
             </Button>
             <Button
               onClick={() => {
-                this.setIndex(1);
+                this.setIndex(limitNextIndex);
               }}
             >
-              2
-            </Button>
-            <Button
-              onClick={() => {
-                this.setIndex(2);
-              }}
-            >
-              3
-            </Button>
-            <Button
-              onClick={() => {
-                this.setIndex(3);
-              }}
-            >
-              4
+              &gt;
             </Button>
           </GridColumn>
         </GridRow>

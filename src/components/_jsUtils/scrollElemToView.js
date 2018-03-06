@@ -4,7 +4,7 @@ import scrollTo from "./scrollTo";
 function scrollElemToView(parent, child, duration = 0) {
   const parentElem = parent;
   const childElem = child;
-  if (parentElem && child) {
+  if (parentElem && childElem) {
     const parentVals = getBoundClientRect(parentElem);
     const childVals = getBoundClientRect(childElem);
     let offsetTop = 0;

@@ -23,7 +23,6 @@ const scrollTo = (element, toX, toY, duration = 0) => {
   const increment = 20;
 
   const animateScroll = elapsedTime => {
-    elem.scrollToProgress = true;
     let elTime = elapsedTime;
     elTime += increment;
     const positionX = easeInOut(elTime, startX, changeX, duration);
@@ -38,8 +37,6 @@ const scrollTo = (element, toX, toY, duration = 0) => {
       requestAnimationFrame(() => {
         animateScroll(elTime);
       });
-    } else {
-      elem.scrollToProgress = false;
     }
   };
 
@@ -48,7 +45,7 @@ const scrollTo = (element, toX, toY, duration = 0) => {
   } else if (!duration) {
     elem.scrollTop += changeY;
     elem.scrollLeft += changeX;
-  } else if (!elem.scrollToProgress) {
+  } else {
     requestIdleCallback(() => {
       animateScroll(0);
     });
