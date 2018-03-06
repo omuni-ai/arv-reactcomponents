@@ -1,5 +1,5 @@
 import React from "react";
-import { GridRow, GridColumn, Button } from "../../components";
+import { GridRow, GridColumn, Button, Ripple } from "../../components";
 
 function ButtonDisplay() {
   return (
@@ -73,6 +73,27 @@ function ButtonDisplay() {
           <div className="nw-div-wrapper">
             <Button className="nwc-btn-xxs">Button</Button>
             .nwc-btn-xxs
+          </div>
+        </GridColumn>
+      </GridRow>
+      <GridRow>
+        <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
+          <div className="nw-div-wrapper">
+            <Ripple className="nwc-ripple-dark">
+              <Button className="nwc-btn-secondary">
+                Button with Dark Ripple
+              </Button>
+            </Ripple>
+            &nbsp;&nbsp;
+            <Ripple className="nwc-ripple-light">
+              <Button className="nwc-btn-dark-background">
+                Button with light Ripple
+              </Button>
+            </Ripple>
+            &nbsp;&nbsp;
+          </div>
+          <div className="nw-div-wrapper">
+            <Button disabled>Disabled Button</Button>
           </div>
         </GridColumn>
       </GridRow>

@@ -39,6 +39,10 @@ function FontSizes() {
           <div className="nw-font-xxs">A B C a b c</div>
         </GridColumn>
         <GridColumn className="nw-block nwc-grid-col-sm-4">
+          <h2>$font-size-xxsm</h2>
+          <div className="nw-font-xxsm">A B C a b c</div>
+        </GridColumn>
+        <GridColumn className="nw-block nwc-grid-col-sm-4">
           <h2>$font-size-xxxs</h2>
           <div className="nw-font-xxxs">A B C a b c</div>
         </GridColumn>

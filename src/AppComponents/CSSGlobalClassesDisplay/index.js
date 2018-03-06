@@ -8,7 +8,7 @@ function CSSGlobalClassesDisplay() {
       <GridRow>
         <GridColumn className="nw-block">
           .nwc-clearfix, .nwc-hide, .nwc-hidden, .nwc-text-primary,
-          .nwc-bg-primary
+          .nwc-bg-primary, .nwc-contentloader
         </GridColumn>
       </GridRow>
     </GridColumn>

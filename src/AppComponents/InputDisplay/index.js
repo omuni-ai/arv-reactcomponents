@@ -174,6 +174,33 @@ class InputDisplay extends Component {
             </div>
           </GridColumn>
         </GridRow>
+        <GridRow>
+          <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
+            <div className="nw-div-wrapper">
+              <Input
+                className="is-invalid"
+                placeholder="On Invalid Input"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+              &nbsp;&nbsp;
+              <Input
+                className="is-invalid is-untouched"
+                placeholder="Invalid Untouched Input"
+                value={inputTxt}
+                onChange={this.inpChange}
+              />
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                placeholder="Disabled Input"
+                value={inputTxt}
+                onChange={this.inpChange}
+                disabled
+              />
+            </div>
+          </GridColumn>
+        </GridRow>
       </GridColumn>
     );
   }

@@ -187,6 +187,35 @@ class RadioDisplay extends Component {
             </form>
           </GridColumn>
         </GridRow>
+        <GridRow>
+          <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
+            <form className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-radio-primary is-covered"
+                name="radio"
+                type="radio"
+                placeholder="Normal"
+                value={value}
+                checked={radioState}
+                onChange={this.onCheckChange}
+              />
+              &nbsp;Covered Input Radio
+            </form>
+            <form className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-radio-primary is-covered"
+                name="radio"
+                type="radio"
+                placeholder="Normal"
+                value={value}
+                checked={radioState}
+                onChange={this.onCheckChange}
+                disabled
+              />
+              &nbsp;Disabled Input Radio
+            </form>
+          </GridColumn>
+        </GridRow>
       </GridColumn>
     );
   }

@@ -187,6 +187,35 @@ class CheckboxDisplay extends Component {
             </div>
           </GridColumn>
         </GridRow>
+        <GridRow>
+          <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-checkbox-primary nwc-inp-sm is-covered"
+                name="checkbox"
+                type="checkbox"
+                placeholder="Normal"
+                value={value}
+                checked={checkboxState}
+                onChange={this.onCheckChange}
+              />
+              &nbsp;Covered Input checkbox
+            </div>
+            <div className="nw-div-wrapper">
+              <Input
+                className="nwc-inp-checkbox-primary"
+                name="checkbox"
+                type="checkbox"
+                placeholder="Normal"
+                value={value}
+                checked={checkboxState}
+                onChange={this.onCheckChange}
+                disabled
+              />
+              &nbsp;Disabled Input checkbox
+            </div>
+          </GridColumn>
+        </GridRow>
       </GridColumn>
     );
   }

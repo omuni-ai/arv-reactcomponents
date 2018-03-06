@@ -14,6 +14,7 @@ $concrete: #f3f3f3 !default;
 
 $font-size: 18px !default;
 $font-size-xxxs: get-rems(10px, $font-size) !default;
+$font-size-xxsm: get-rems(11px, $font-size) !default;
 $font-size-xxs: get-rems(12px, $font-size) !default;
 $font-size-xs: get-rems(14px, $font-size) !default;
 $font-size-sm: get-rems(16px, $font-size) !default;

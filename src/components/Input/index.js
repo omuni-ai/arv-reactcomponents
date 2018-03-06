@@ -15,9 +15,10 @@ class Input extends PureComponent {
   }
 
   get cloneClassName() {
-    const { type, checked, className } = this.props;
+    const { type, checked, disabled, className } = this.props;
     const isCheckedClass = checked ? "is-checked" : "";
-    const additionalClasses = `${className} ${isCheckedClass}`;
+    const isDisabled = disabled ? "is-disabled" : "";
+    const additionalClasses = `${className} ${isCheckedClass} ${isDisabled}`;
     switch (type) {
       case "checkbox":
         return `nwc-inp-checkbox ${additionalClasses}`;
@@ -104,6 +105,7 @@ Input.defaultProps = {
   checked: null,
   maxLength: null,
   inputRef: Utils.noop,
+  disabled: false,
   validateWithPattern: null,
 };
 
@@ -118,6 +120,7 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   maxLength: PropTypes.number,
   inputRef: PropTypes.func,
+  disabled: PropTypes.bool,
   validateWithPattern: PropTypes.arrayOf(
     PropTypes.shape({
       pattern: PropTypes.instanceOf(RegExp),

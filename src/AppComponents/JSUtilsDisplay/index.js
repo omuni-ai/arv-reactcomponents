@@ -7,10 +7,12 @@ function JSUtilsDisplay() {
       <h1>JS Utils</h1>
       <GridRow>
         <GridColumn className="nw-block">
-          noop, getBoundClientRect, scrollElemToView, scrollElemToTop,
-          fixScroll, unFixScroll, isBodyFixed, preventEventPropagation,
-          requestAnimationFrame, cancelAnimationFrame, customPropTypes,
-          windowScroll, localStorage
+          noop, getBoundClientRect, scrollElemToView, scrollElemToTop, scrollTo,
+          fixScroll, unFixScroll, isBodyFixed, requestIdleCallback,
+          cancelIdleCallback, easeInOut, requestAnimationFrame,
+          cancelAnimationFrame, customPropTypes, windowScroll, localStorage,
+          isMobile, isTouch, onElementScroll, polyfill, preventDefault,
+          preventEventPropagation, getUrlParameter, setUrlParameter
         </GridColumn>
       </GridRow>
     </GridColumn>

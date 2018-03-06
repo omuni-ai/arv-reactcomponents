@@ -16,6 +16,10 @@
   &.is-untouched {
     border-color: unset;
   }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
 }
 
 .nwc-inp-primary-txt {
@@ -87,6 +91,16 @@
       right: 0;
     }
   }
+
+  &.is-disabled {
+    border: 0 !important;
+    background: darken-colors($concrete, 2) !important;
+    cursor: not-allowed;
+
+    &::before {
+      background: $transparent !important;
+    }
+  }
 }
 
 @each $input-variants, $value in $input-variants {
@@ -134,6 +148,16 @@
       bottom: 0;
       left: 0;
       right: 0;
+    }
+  }
+
+  &.is-disabled {
+    border: 0 !important;
+    background: darken-colors($concrete, 2) !important;
+    cursor: not-allowed;
+
+    &::before {
+      background: $transparent !important;
     }
   }
 }
