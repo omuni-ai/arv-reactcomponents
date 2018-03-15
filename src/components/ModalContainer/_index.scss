@@ -1,10 +1,6 @@
 @import "./styles/base";
 @import "./styles/media";
 
-@if $screen-media==xs {
-  @include modal;
-}
-
-@else if $screen-media==sm {
+@if $screen-media==sm {
   @include modal-769;
 }

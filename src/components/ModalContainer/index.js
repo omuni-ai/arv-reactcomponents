@@ -41,14 +41,16 @@ class ModalContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    modalOpen = false;
+    setTimeout(() => {
+      modalOpen = false;
+    }, 100);
     Utils.unFixScroll();
     window.removeEventListener("popstate", this.closeModal);
   }
 
   onClose(e) {
     const currentState = window.history.state;
-    if (isMobile && currentState.modal) {
+    if (isMobile && currentState && currentState.modal) {
       window.history.back();
     } else {
       this.closeModal(e);
@@ -64,9 +66,7 @@ class ModalContainer extends PureComponent {
 
   closeModal(e) {
     const { onClose } = this.props;
-    setTimeout(() => {
-      onClose(e);
-    }, 50);
+    onClose(e);
   }
 
   render() {
@@ -90,7 +90,7 @@ class ModalContainer extends PureComponent {
       >
         <div
           role="button"
-          className="nwc-modal nwc-custom-scrollbar"
+          className="nwc-modal"
           tabIndex={0}
           onClick={Utils.preventEventPropagation}
           onKeyDown={null}
@@ -99,7 +99,9 @@ class ModalContainer extends PureComponent {
             className="nwc-close-normal nwc-modal-close"
             onClick={this.onClose}
           />
-          {children}
+          <div className="nwc-custom-scrollbar nwc-modal-children">
+            {children}
+          </div>
         </div>
       </div>
     );

@@ -20,9 +20,7 @@ class Carousel extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    Utils.requestIdleCallback(() => {
-      this.scrollToIndex(nextProps.index);
-    });
+    this.scrollToIndex(nextProps.index);
   }
 
   onTouchStart(e) {
@@ -101,7 +99,14 @@ class Carousel extends PureComponent {
   }
 
   render() {
-    const { className } = this.props;
+    const {
+      className,
+      index,
+      items,
+      renderItems,
+      onSwipe,
+      ...otherProps
+    } = this.props;
 
     return (
       <div
@@ -112,6 +117,7 @@ class Carousel extends PureComponent {
         onTouchStart={this.onTouchStart}
         onTouchMove={this.onTouchMove}
         onTouchEnd={this.onTouchEnd}
+        {...otherProps}
       >
         {this.renderItemsList}
       </div>

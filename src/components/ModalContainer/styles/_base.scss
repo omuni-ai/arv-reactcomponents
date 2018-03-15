@@ -1,4 +1,4 @@
-%nwc-modal-container {
+.nwc-modal-container {
   position: fixed;
   z-index: $modal-container-z-index;
   top: 0;
@@ -10,29 +10,16 @@
   contain: content;
 }
 
-%nwc-modal-container-769 {
-  @media screen and (min-width: $screen-min-sm) {
-    padding: $modal-container-769-padding;
-  }
-}
-
-%nwc-modal {
+.nwc-modal {
   position: relative;
   opacity: 1;
-  overflow: auto;
   width: 100%;
   min-height: $modal-min-height;
   height: 100%;
-  padding: $modal-padding-y $modal-padding-x;
   background: $modal-background;
   outline: 0;
   will-change: opacity;
   contain: content;
-}
-
-.nwc-modal-close {
-  width: $modal-container-close-width;
-  height: $modal-container-close-height;
 }
 
 %nwc-modal-769 {
@@ -40,9 +27,26 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: 10px;
     max-width: 768px;
-    max-height: 100%;
     height: auto;
+  }
+}
+
+.nwc-modal-children {
+  display: inline-block;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  padding: $modal-children-padding-y$modal-children-padding-x;
+}
+
+.nwc-modal-close {
+  width: $modal-container-close-width;
+  height: $modal-container-close-height;
+}
+
+%nwc-modal-children-769 {
+  @media screen and (min-width: $screen-min-sm) {
+    max-height: calc(100vh - 20px);
   }
 }

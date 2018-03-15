@@ -1,7 +1,6 @@
 import easeInOut from "./easingFunctions";
 import windowScroll from "./windowScroll";
 import requestAnimationFrame from "./requestAnimationFrame";
-import requestIdleCallback from "./requestIdleCallback";
 
 const scrollTo = (element, toX, toY, duration = 0) => {
   const elem = element;
@@ -46,7 +45,7 @@ const scrollTo = (element, toX, toY, duration = 0) => {
     elem.scrollTop += changeY;
     elem.scrollLeft += changeX;
   } else {
-    requestIdleCallback(() => {
+    requestAnimationFrame(() => {
       animateScroll(0);
     });
   }

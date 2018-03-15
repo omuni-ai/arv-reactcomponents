@@ -28,6 +28,7 @@ class LazyImg extends PureComponent {
       inView: false,
       isLoaded: false,
       isError: false,
+      onWinLoad: props.onWinLoad || false,
     };
 
     this.parentElementVals =
