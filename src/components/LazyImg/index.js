@@ -22,17 +22,12 @@ class LazyImg extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { parentElement } = props;
-
     this.state = {
       inView: false,
       isLoaded: false,
       isError: false,
       onWinLoad: props.onWinLoad || false,
     };
-
-    this.parentElementVals =
-      (parentElement && Utils.getBoundClientRect(parentElement)) || null;
 
     this.removeListener = Utils.noop;
     this.onLoad = this.onLoad.bind(this);
@@ -45,7 +40,7 @@ class LazyImg extends PureComponent {
   }
 
   componentDidMount() {
-    this.initLazyLoad();
+    Utils.requestAnimationFrame(this.initLazyLoad);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -110,14 +105,20 @@ class LazyImg extends PureComponent {
 
   setContext(context) {
     this.imgContainerRef = context;
-    this.calcElemVals(context);
   }
 
   calcElemVals(elem) {
+    const { parentElement } = this.props;
+
     this.elementVals = Utils.getBoundClientRect(elem);
+    this.parentElementVals =
+      (parentElement && Utils.getBoundClientRect(parentElement)) || null;
   }
 
   initLazyLoad() {
+    const { src } = this.props;
+    this.calcElemVals(this.imgContainerRef);
+
     if (this.isImageInView()) {
       this.setState({
         inView: true,
@@ -128,7 +129,6 @@ class LazyImg extends PureComponent {
       window,
       () => {
         if (this.isImageInView()) {
-          const { src } = this.props;
           const imgClone = document.createElement("img");
           imgClone.src = src;
           LazyImgRef.push(this);

@@ -7,6 +7,10 @@ class Carousel extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = {
+      mounted: false,
+    };
+
     this.listNode = [];
     this.touchStartVals = null;
     this.touchEndVals = null;
@@ -19,8 +23,21 @@ class Carousel extends PureComponent {
     this.getDirection = this.getDirection.bind(this);
   }
 
+  componentDidMount() {
+    Utils.requestAnimationFrame(() => {
+      this.setState(
+        {
+          mounted: true,
+        },
+        () => {
+          this.scrollToIndex(this.props.index);
+        },
+      );
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
-    this.scrollToIndex(nextProps.index);
+    this.scrollToIndex(nextProps.index, 600);
   }
 
   onTouchStart(e) {
@@ -50,7 +67,7 @@ class Carousel extends PureComponent {
   get renderItemsList() {
     const { items, renderItems } = this.props;
     const itemsList = items.map((item, index) => {
-      const elem = renderItems(item, index);
+      const elem = renderItems(item, index, this.parentRef);
 
       return cloneElement(elem, {
         ref: context => {
@@ -92,13 +109,14 @@ class Carousel extends PureComponent {
     return direction;
   }
 
-  scrollToIndex(index) {
+  scrollToIndex(index, duration = 0) {
     const elem = this.listNode[`item-${index}`];
 
-    Utils.scrollElemToView(this.parentRef, elem, 600);
+    Utils.scrollElemToView(this.parentRef, elem, duration);
   }
 
   render() {
+    const { mounted } = this.state;
     const {
       className,
       index,
@@ -119,7 +137,7 @@ class Carousel extends PureComponent {
         onTouchEnd={this.onTouchEnd}
         {...otherProps}
       >
-        {this.renderItemsList}
+        {mounted && this.renderItemsList}
       </div>
     );
   }
