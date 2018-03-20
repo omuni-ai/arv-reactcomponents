@@ -40,7 +40,7 @@ class LazyImg extends PureComponent {
   }
 
   componentDidMount() {
-    Utils.requestAnimationFrame(this.initLazyLoad);
+    setTimeout(this.initLazyLoad, 300);
   }
 
   componentWillReceiveProps(nextProps) {
