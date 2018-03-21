@@ -100,6 +100,11 @@ class Autocomplete extends Component {
 
     const list = filteredList.map((item, index) => {
       const elem = renderList(item);
+
+      if (!elem) {
+        return null;
+      }
+
       const onClickFn = elem.props.onClick || Utils.noop;
       let addClass = "";
       if (index === this.state.selectedListIndex) {
