@@ -44,7 +44,9 @@ class ModalContainer extends PureComponent {
     setTimeout(() => {
       modalOpen = false;
     }, 100);
-    Utils.unFixScroll();
+    if (!this.props.preventfix) {
+      Utils.unFixScroll();
+    }
     window.removeEventListener("popstate", this.closeModal);
   }
 

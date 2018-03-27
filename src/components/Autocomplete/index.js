@@ -7,7 +7,7 @@ class Autocomplete extends Component {
     super(props);
 
     this.state = {
-      selectedListIndex: 0,
+      selectedListIndex: props.selectedIndex,
       isActive: false,
     };
 
@@ -84,9 +84,14 @@ class Autocomplete extends Component {
   }
 
   toggleDisplay(bool) {
-    this.setState({
-      isActive: bool,
-    });
+    this.setState(
+      {
+        isActive: bool,
+      },
+      () => {
+        this.scrollHighlightedElemInView();
+      },
+    );
   }
 
   renderListItems(inpVal, inpList, renderList) {
@@ -189,12 +194,14 @@ class Autocomplete extends Component {
 
 Autocomplete.defaultProps = {
   className: "",
+  selectedIndex: 0,
   getSelection: Utils.noop,
   minTextLength: 0,
 };
 
 Autocomplete.propTypes = {
   className: PropTypes.string,
+  selectedIndex: PropTypes.number,
   inpList: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.arrayOf(PropTypes.string),

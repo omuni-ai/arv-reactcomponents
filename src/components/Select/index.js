@@ -15,7 +15,7 @@ class Select extends PureComponent {
     this.state = {
       inpVal: "",
       isActive: false,
-      selectedListIndex: 0,
+      selectedListIndex: props.selectedIndex,
     };
 
     this.inputId = `${Math.round(Math.random() * 10 ** 10)}`;
@@ -145,9 +145,14 @@ class Select extends PureComponent {
   }
 
   toggleDisplay(bool) {
-    this.setState({
-      isActive: bool,
-    });
+    this.setState(
+      {
+        isActive: bool,
+      },
+      () => {
+        this.scrollHighlightedElemInView();
+      },
+    );
   }
 
   renderListItems(inpVal, inpList, renderList) {
@@ -237,6 +242,7 @@ class Select extends PureComponent {
 Select.defaultProps = {
   id: null,
   className: "",
+  selectedIndex: 0,
   getSelection: Utils.noop,
   compareProp: undefined,
 };
@@ -244,6 +250,7 @@ Select.defaultProps = {
 Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
+  selectedIndex: PropTypes.number,
   selectedValue: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,
