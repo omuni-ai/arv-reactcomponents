@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete Root Component Tests To Match SnapShot when showSearch is false  1`] = `null`;
+
+exports[`Root Component Tests To Match SnapShot 1`] = `null`;

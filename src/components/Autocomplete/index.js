@@ -178,6 +178,7 @@ class Autocomplete extends Component {
       renderInput,
       renderList,
       minTextLength,
+      selectedIndex,
       ...otherProps
     } = this.props;
 

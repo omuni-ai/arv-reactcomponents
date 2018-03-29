@@ -206,6 +206,7 @@ class Select extends PureComponent {
       getSelection,
       renderList,
       compareProp,
+      selectedIndex,
       ...otherProps
     } = this.props;
 
