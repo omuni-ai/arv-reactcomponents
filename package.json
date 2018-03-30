@@ -60,9 +60,10 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/components/**/test.component.{js,jsx,mjs}",
-      "!src/**/__*/**/*"
+      "src/components/**/*.{js,jsx,mjs}",
+      "!src/components/**/__tests__/*.{js,jsx,mjs}"
     ],
+    "testPathIgnorePatterns":["__snapshots__"],
     "coverageReporters": [
       "html"
     ],
@@ -74,7 +75,7 @@
     ],
     "setupTestFrameworkScriptFile": "<rootDir>/config/jest/test-setup.js",
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
+      "<rootDir>/src/**/__tests__/?(*.)(spec|test).{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
     ],
     "testEnvironment": "node",
