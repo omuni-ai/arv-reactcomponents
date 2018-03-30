@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // Import common components
-import { Input, Autocomplete } from "../../";
+import { Input, Autocomplete } from "../";
 
 class AutocompleteExample extends Component {
   static getList(item) {
