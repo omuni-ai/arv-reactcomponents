@@ -38,6 +38,7 @@ class AutocompleteExample extends Component {
 
     return (
       <Input
+        id="autocomplete-input"
         placeholder="Enter text"
         value={autocompleteInputValue}
         onChange={this.onInpValChange}
@@ -50,7 +51,6 @@ class AutocompleteExample extends Component {
 
     return (
       <Autocomplete
-        className="nw-autocomplete"
         inpList={inpList}
         getSelection={this.getAutocompleteSelection}
         renderInput={this.getInput}
