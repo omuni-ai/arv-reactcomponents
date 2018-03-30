@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Component Tests Matches Rendered SnapShot 1`] = `
+<button
+  className="nwc-btn nwc-close "
+  tabIndex="0"
+>
+  ×
+</button>
+`;
+
+exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
+<Close
+  className=""
+/>
+`;

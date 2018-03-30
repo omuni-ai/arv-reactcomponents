@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Import common components
 import { Input, Autocomplete } from "../";
 
-class AutocompleteExample extends Component {
+class AutocompleteTest extends Component {
   static getList(item) {
     if (item === "Hidden") {
       return null;
@@ -62,10 +62,10 @@ class AutocompleteExample extends Component {
         inpList={inpList}
         getSelection={this.getAutocompleteSelection}
         renderInput={this.getInput}
-        renderList={AutocompleteExample.getList}
+        renderList={AutocompleteTest.getList}
       />
     );
   }
 }
 
-export default AutocompleteExample;
+export default AutocompleteTest;
