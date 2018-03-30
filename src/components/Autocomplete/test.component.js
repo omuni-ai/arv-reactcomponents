@@ -5,7 +5,15 @@ import { Input, Autocomplete } from "../";
 
 class AutocompleteExample extends Component {
   static getList(item) {
-    return <li key={item}>{item}</li>;
+    if (item === "Hidden") {
+      return null;
+    }
+
+    return (
+      <li className="autocomplete-listitems" key={item}>
+        {item}
+      </li>
+    );
   }
 
   constructor(props) {
@@ -13,7 +21,7 @@ class AutocompleteExample extends Component {
 
     this.state = {
       autocompleteInputValue: "",
-      inpList: ["Arrow", "Levis", "Gap"],
+      inpList: ["Arrow", "Levis", "Hidden", "Gap"],
     };
 
     this.onInpValChange = this.onInpValChange.bind(this);
