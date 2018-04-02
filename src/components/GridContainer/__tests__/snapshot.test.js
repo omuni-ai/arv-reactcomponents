@@ -10,8 +10,12 @@ describe("Root Component Tests", () => {
     done();
   });
 
-  it("Matches Rendered SnapShot", done => {
-    expect(mount(<TestComponent />)).toMatchSnapshot();
-    done();
+  it("Matches Mounted SnapShot", done => {
+    const mounted = mount(<TestComponent />);
+
+    setTimeout(() => {
+      expect(mounted).toMatchSnapshot();
+      done();
+    }, 300);
   });
 });

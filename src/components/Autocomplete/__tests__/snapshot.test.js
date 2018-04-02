@@ -1,6 +1,5 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { shallowToJson } from "enzyme-to-json";
 
 import TestComponent from "../test.component";
@@ -11,8 +10,8 @@ describe("Root Component Tests", () => {
     done();
   });
 
-  it("Matches Rendered SnapShot", done => {
-    expect(renderer.create(<TestComponent />).toJSON()).toMatchSnapshot();
+  it("Matches Mounted SnapShot", done => {
+    expect(mount(<TestComponent />)).toMatchSnapshot();
     done();
   });
 });
