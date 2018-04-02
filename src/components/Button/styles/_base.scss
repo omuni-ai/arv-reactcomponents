@@ -17,6 +17,13 @@
 .nwc-btn-primary-txt {
   border: 0;
   color: $button-primary-txt-color;
+
+  &[disabled] {
+    border: $button-border-width $button-border-type $button-primary-border-color-disabled !important;
+    background: $button-primary-background-disabled !important;
+    cursor: not-allowed;
+    color: $button-primary-color-disabled !important;
+  }
 }
 
 .nwc-btn-dark-background {

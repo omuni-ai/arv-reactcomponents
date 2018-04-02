@@ -11,6 +11,7 @@ $sushi: #9bb535 !default;
 $web-orange: #ffa500 !default;
 $torch-red: #ea0020 !default;
 $concrete: #f3f3f3 !default;
+$dusty-gray: #999 !default;
 
 $font-size: 18px !default;
 $font-size-xxxs: get-rems(10px, $font-size) !default;
@@ -46,6 +47,7 @@ $color-notification: $boston-blue !default;
 $color-success: $sushi !default;
 $color-warning: $web-orange !default;
 $color-danger: $torch-red !default;
+$color-disabled: $dusty-gray !default;
 
 //
 // Common File
@@ -86,9 +88,13 @@ $button-padding-x: 6px !default;
 $button-background: $transparent !default;
 $button-color: $black !default;
 
-$button-background-disabled: $transparent !default;
-$button-border-color-disabled: darken-colors($concrete, 2) !default;
-$button-color-disabled: darken-colors($concrete, 2) !default;
+$button-background-disabled: $color-disabled !default;
+$button-border-color-disabled: $color-disabled !default;
+$button-color-disabled: $white !default;
+
+$button-primary-background-disabled: $transparent !default;
+$button-primary-border-color-disabled: $transparent !default;
+$button-primary-color-disabled: $color-disabled !default;
 
 $button-variants: (
   primary: $color-primary,
