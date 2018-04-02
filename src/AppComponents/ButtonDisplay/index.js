@@ -93,7 +93,15 @@ function ButtonDisplay() {
             &nbsp;&nbsp;
           </div>
           <div className="nw-div-wrapper">
-            <Button disabled>Disabled Button</Button>
+            <Button disabled>Normal Disabled</Button>
+            &nbsp;&nbsp;
+            <Button className="nwc-btn-primary" disabled>
+              Solid Disabled
+            </Button>
+            &nbsp;&nbsp;
+            <Button className="nwc-btn-secondary" disabled>
+              Flat Disabled
+            </Button>
           </div>
         </GridColumn>
       </GridRow>

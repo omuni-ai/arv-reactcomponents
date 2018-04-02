@@ -80,17 +80,24 @@ $button-primary-txt-color: $color-primary;
 $button-dark-background: $black;
 $button-dark-background-txt: $white;
 
-$button-border-width: 1px !default;
+$button-border-width: 2px !default;
 $button-border-type: solid !default;
-$button-border-color: darken-colors($concrete, 2) !default;
+$button-border-color: $black !default;
 $button-padding-y: 6px !default;
 $button-padding-x: 6px !default;
 $button-background: $transparent !default;
 $button-color: $black !default;
 
-$button-background-disabled: $color-disabled !default;
 $button-border-color-disabled: $color-disabled !default;
-$button-color-disabled: $white !default;
+$button-color-disabled: $color-disabled !default;
+
+$button-solid-background-disabled: $color-disabled !default;
+$button-solid-border-color-disabled: $color-disabled !default;
+$button-solid-color-disabled: $white !default;
+
+$button-flat-background-disabled: $white !default;
+$button-flat-border-color-disabled: $color-disabled !default;
+$button-flat-color-disabled: $color-disabled !default;
 
 $button-primary-background-disabled: $transparent !default;
 $button-primary-border-color-disabled: $transparent !default;
@@ -98,11 +105,14 @@ $button-primary-color-disabled: $color-disabled !default;
 
 $button-variants: (
   primary: $color-primary,
-  secondary: $white,
   notification: $color-notification,
   success: $color-success,
   warning: $color-warning,
   danger: $color-danger
+) !default; // variants background property
+
+$flat-button-variants: (
+  secondary: $black,
 ) !default; // variants background property
 
 $button-sizevariants: (

@@ -8,7 +8,6 @@
 
   &[disabled] {
     border: $button-border-width $button-border-type $button-border-color-disabled !important;
-    background: $button-background-disabled !important;
     cursor: not-allowed;
     color: $button-color-disabled !important;
   }
@@ -39,6 +38,28 @@
     border-color: $transparent;
     @if(lightness($value) > $lightness-threshold) {
       border-color: $compliment-for-light;
+    }
+
+    &[disabled] {
+      border: $button-border-width $button-border-type $button-solid-border-color-disabled !important;
+      background: $button-solid-background-disabled !important;
+      cursor: not-allowed;
+      color: $button-solid-color-disabled !important;
+    }
+  }
+}
+
+@each $flat-button-variants, $value in $flat-button-variants {
+  .nwc-btn-#{$flat-button-variants} {
+    background: $white;
+    color: $value;
+    border-color: $value;
+
+    &[disabled] {
+      border: $button-border-width $button-border-type $button-flat-border-color-disabled !important;
+      background: $button-flat-background-disabled !important;
+      cursor: not-allowed;
+      color: $button-flat-color-disabled !important;
     }
   }
 }
