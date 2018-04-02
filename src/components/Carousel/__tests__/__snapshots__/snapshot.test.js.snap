@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
+<CarouselTest>
+  <GridColumn
+    className="nw-block-wrapper nwc-grid-col-sm-12"
+  >
+    <div
+      className="nwc-grid-col nw-block-wrapper nwc-grid-col-sm-12"
+    >
+      <h1>
+        Carousel
+      </h1>
+      <GridRow
+        className=""
+      >
+        <div
+          className="nwc-grid-row "
+        >
+          <GridColumn
+            className="nwc-grid-col-sm-12 nw-block nw-block-white"
+          >
+            <div
+              className="nwc-grid-col nwc-grid-col-sm-12 nw-block nw-block-white"
+            >
+              <Carousel
+                className="nw-carouselexample"
+                index={0}
+                items={
+                  Array [
+                    Object {
+                      "id": "zsfef",
+                      "image": "https://cdn04.nnnow.com/web-images/medium/styles/7AZZWRHJ7WR/1473936756887/2.jpg",
+                    },
+                    Object {
+                      "id": "afaf",
+                      "image": "https://cdn02.nnnow.com/web-images/medium/styles/GE1QP56A4BB/1487854795485/2.jpg",
+                    },
+                    Object {
+                      "id": "fafa",
+                      "image": "https://cdn17.nnnow.com/web-images/medium/styles/MA8M6WD5PAL/1473157768702/2.jpg",
+                    },
+                    Object {
+                      "id": "sggaf",
+                      "image": "https://cdn16.nnnow.com/web-images/medium/styles/V4XYIADIQ9C/1481106617805/2.jpg",
+                    },
+                  ]
+                }
+                onSwipe={[Function]}
+                renderItems={[Function]}
+              >
+                <div
+                  className="nwc-carousel nw-carouselexample"
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                />
+              </Carousel>
+              <Button
+                className="nw-carouseltest-btnprev"
+                onClick={[Function]}
+              >
+                <button
+                  className="nwc-btn nw-carouseltest-btnprev"
+                  onClick={[Function]}
+                  tabIndex="0"
+                >
+                  &lt;
+                </button>
+              </Button>
+              <Button
+                className="nw-carouseltest-btnnext"
+                onClick={[Function]}
+              >
+                <button
+                  className="nwc-btn nw-carouseltest-btnnext"
+                  onClick={[Function]}
+                  tabIndex="0"
+                >
+                  &gt;
+                </button>
+              </Button>
+            </div>
+          </GridColumn>
+        </div>
+      </GridRow>
+    </div>
+  </GridColumn>
+</CarouselTest>
+`;
+
+exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
+<GridColumn
+  className="nw-block-wrapper nwc-grid-col-sm-12"
+>
+  <h1>
+    Carousel
+  </h1>
+  <GridRow
+    className=""
+  >
+    <GridColumn
+      className="nwc-grid-col-sm-12 nw-block nw-block-white"
+    >
+      <Carousel
+        className="nw-carouselexample"
+        index={0}
+        items={
+          Array [
+            Object {
+              "id": "zsfef",
+              "image": "https://cdn04.nnnow.com/web-images/medium/styles/7AZZWRHJ7WR/1473936756887/2.jpg",
+            },
+            Object {
+              "id": "afaf",
+              "image": "https://cdn02.nnnow.com/web-images/medium/styles/GE1QP56A4BB/1487854795485/2.jpg",
+            },
+            Object {
+              "id": "fafa",
+              "image": "https://cdn17.nnnow.com/web-images/medium/styles/MA8M6WD5PAL/1473157768702/2.jpg",
+            },
+            Object {
+              "id": "sggaf",
+              "image": "https://cdn16.nnnow.com/web-images/medium/styles/V4XYIADIQ9C/1481106617805/2.jpg",
+            },
+          ]
+        }
+        onSwipe={[Function]}
+        renderItems={[Function]}
+      />
+      <Button
+        className="nw-carouseltest-btnprev"
+        onClick={[Function]}
+      >
+        &lt;
+      </Button>
+      <Button
+        className="nw-carouseltest-btnnext"
+        onClick={[Function]}
+      >
+        &gt;
+      </Button>
+    </GridColumn>
+  </GridRow>
+</GridColumn>
+`;

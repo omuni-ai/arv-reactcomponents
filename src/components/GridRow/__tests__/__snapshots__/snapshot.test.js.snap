@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
+<GridRowTest>
+  <GridContainer
+    className=""
+    strict={false}
+  >
+    <div
+      className="nwc-grid-container  "
+    >
+      <GridRow
+        className=""
+      >
+        <div
+          className="nwc-grid-row "
+        >
+          <div>
+            Hello
+          </div>
+        </div>
+      </GridRow>
+    </div>
+  </GridContainer>
+</GridRowTest>
+`;
+
+exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
+<GridContainer
+  className=""
+  strict={false}
+>
+  <GridRow
+    className=""
+  >
+    <div>
+      Hello
+    </div>
+  </GridRow>
+</GridContainer>
+`;

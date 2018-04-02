@@ -1,23 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Root Component Tests Matches Rendered SnapShot 1`] = `
-<GridColumnSuccessTest>
-  <GridColumn
-    className=""
-  >
-    <div
-      className="nwc-grid-col "
-    >
-      <div>
-        Hello
-      </div>
-    </div>
-  </GridColumn>
-</GridColumnSuccessTest>
-`;
-
-exports[`Root Component Tests Matches Rendered SnapShot 2`] = `
-<GridColumnErrorTest>
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
+<GridColumnTest>
   <GridColumn
     className=""
   >
@@ -35,20 +19,10 @@ exports[`Root Component Tests Matches Rendered SnapShot 2`] = `
       </GridColumn>
     </div>
   </GridColumn>
-</GridColumnErrorTest>
+</GridColumnTest>
 `;
 
 exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
-<GridColumn
-  className=""
->
-  <div>
-    Hello
-  </div>
-</GridColumn>
-`;
-
-exports[`Root Component Tests Matches Shallow SnapShot 2`] = `
 <GridColumn
   className=""
 >
