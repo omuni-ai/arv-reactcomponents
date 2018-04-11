@@ -35,7 +35,7 @@
   .nwc-btn-#{$button-variants} {
     background: $value;
     color: set-color($value, $compliment-for-dark, $compliment-for-light);
-    border-color: $transparent;
+    border-color: $value;
     @if(lightness($value) > $lightness-threshold) {
       border-color: $compliment-for-light;
     }

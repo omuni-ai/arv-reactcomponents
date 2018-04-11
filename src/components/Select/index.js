@@ -98,6 +98,7 @@ class Select extends PureComponent {
         break;
       case "ArrowDown":
         selectedListIndex =
+          listNodeLength !== 0 &&
           this.state.selectedListIndex !== listNodeLength
             ? this.state.selectedListIndex + 1
             : 0;
@@ -137,6 +138,9 @@ class Select extends PureComponent {
   }
 
   selectAndHideList(index) {
+    if (index === -1) {
+      return;
+    }
     this.props.getSelection(this.listNodeItem[index]);
     this.setState({
       selectedListIndex: index,

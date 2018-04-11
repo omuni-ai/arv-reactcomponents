@@ -96,6 +96,7 @@ class AutocompleteExample extends Component {
           <div className="nw-sample-autocomplete">
             <div className="nw-space-bottom">Autocomplete Example</div>
             <Autocomplete
+              selectedIndex={-1}
               className="nw-autocomplete"
               inpList={inpList}
               getSelection={this.getAutocompleteSelection}

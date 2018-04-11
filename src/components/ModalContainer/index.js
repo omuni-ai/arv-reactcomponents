@@ -91,9 +91,8 @@ class ModalContainer extends PureComponent {
         {...otherProps}
       >
         <div
-          role="button"
+          role="presentation"
           className="nwc-modal"
-          tabIndex={0}
           onClick={Utils.preventEventPropagation}
           onKeyDown={null}
         >

@@ -47,6 +47,9 @@ class Carousel extends PureComponent {
   }
 
   onTouchMove(e) {
+    if (e.touches.length > 1) {
+      return;
+    }
     const [touchVals] = e.touches;
 
     this.touchEndVals = touchVals;

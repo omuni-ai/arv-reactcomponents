@@ -8,6 +8,7 @@
   transition: opacity 0.4s ease;
   width: 100%;
   will-change: opacity;
+  contain: style layout;
 
   &.is-loaded,
   &.is-error {
