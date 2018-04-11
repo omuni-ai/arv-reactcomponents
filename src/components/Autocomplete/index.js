@@ -35,14 +35,13 @@ class Autocomplete extends Component {
       case "ArrowUp":
         Utils.preventDefault(e);
         selectedListIndex =
-          this.state.selectedListIndex !== 0
+          this.state.selectedListIndex > 0
             ? this.state.selectedListIndex - 1
             : listNodeLength;
         break;
       case "ArrowDown":
         selectedListIndex =
-          listNodeLength !== 0 &&
-          this.state.selectedListIndex !== listNodeLength
+          listNodeLength !== 0 && this.state.selectedListIndex < listNodeLength
             ? this.state.selectedListIndex + 1
             : 0;
         break;
