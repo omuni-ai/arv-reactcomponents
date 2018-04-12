@@ -5,9 +5,8 @@ import { shallowToJson } from "enzyme-to-json";
 import GridColumnTest from "../test.component";
 
 describe("Root Component Tests", () => {
-  it("Matches Shallow SnapShot", done => {
+  it("Matches Shallow SnapShot", () => {
     expect(shallowToJson(shallow(<GridColumnTest />))).toMatchSnapshot();
-    done();
   });
 
   it("Matches Mounted SnapShot", done => {

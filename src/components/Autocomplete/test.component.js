@@ -59,6 +59,7 @@ class AutocompleteTest extends Component {
 
     return (
       <Autocomplete
+        selectedIndex={-1}
         inpList={inpList}
         getSelection={this.getAutocompleteSelection}
         renderInput={this.getInput}

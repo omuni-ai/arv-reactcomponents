@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
+<InputTest>
+  <Dummy>
+    <Input
+      checked={null}
+      className="nwc-inp-dash nwc-inp-sm "
+      disabled={false}
+      id="sample-text-input"
+      inputRef={[Function]}
+      maxLength={6}
+      name={null}
+      onChange={[Function]}
+      placeholder="Enter between [1-5]"
+      type="text"
+      validateWithPattern={
+        Array [
+          Object {
+            "msg": "Value must be a number",
+            "pattern": /\\^\\(\\(\\\\d\\+\\)\\*\\)\\?\\$/,
+          },
+          Object {
+            "msg": "Between 1-5",
+            "pattern": /\\^\\(\\(\\[1-5\\]\\+\\)\\*\\)\\?\\$/,
+          },
+        ]
+      }
+      value=""
+    >
+      <input
+        checked={null}
+        className="nwc-inp  nwc-inp-dash nwc-inp-sm "
+        disabled={false}
+        id="sample-text-input"
+        maxLength={6}
+        name={null}
+        onChange={[Function]}
+        placeholder="Enter between [1-5]"
+        tabIndex="0"
+        type="text"
+        value=""
+      />
+    </Input>
+    <div />
+    <Input
+      checked={false}
+      className="nwc-inp-checkbox-secondary nwc-inp-normal "
+      disabled={false}
+      id="sample-checkbox"
+      inputRef={[Function]}
+      maxLength={null}
+      name="sampleCheckbox"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder={null}
+      type="checkbox"
+      validateWithPattern={null}
+      value="0"
+    >
+      <Label
+        className="nwc-inp-container"
+        htmlFor="sample-checkbox"
+      >
+        <label
+          className="nwc-inp-container"
+          htmlFor="sample-checkbox"
+        >
+          <input
+            type="hidden"
+          />
+          <span
+            className="nwc-inp-hiddenwrapper"
+          >
+            <input
+              checked={false}
+              disabled={false}
+              id="sample-checkbox"
+              maxLength={null}
+              name="sampleCheckbox"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder={null}
+              tabIndex="0"
+              type="checkbox"
+              value="0"
+            />
+          </span>
+          <i
+            className="nwc-inp-checkbox nwc-inp-checkbox-secondary nwc-inp-normal   "
+          />
+        </label>
+      </Label>
+    </Input>
+    <Input
+      checked={false}
+      className="nwc-inp-radio-primary nwc-inp-normal "
+      disabled={false}
+      id="sample-radio"
+      inputRef={[Function]}
+      maxLength={null}
+      name="sampleRadio"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder={null}
+      type="radio"
+      validateWithPattern={null}
+      value="0"
+    >
+      <Label
+        className="nwc-inp-container"
+        htmlFor="sample-radio"
+      >
+        <label
+          className="nwc-inp-container"
+          htmlFor="sample-radio"
+        >
+          <input
+            type="hidden"
+          />
+          <span
+            className="nwc-inp-hiddenwrapper"
+          >
+            <input
+              checked={false}
+              disabled={false}
+              id="sample-radio"
+              maxLength={null}
+              name="sampleRadio"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder={null}
+              tabIndex="0"
+              type="radio"
+              value="0"
+            />
+          </span>
+          <i
+            className="nwc-inp-radio nwc-inp-radio-primary nwc-inp-normal   "
+          />
+        </label>
+      </Label>
+    </Input>
+  </Dummy>
+</InputTest>
+`;
+
+exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
+<Dummy>
+  <Input
+    checked={null}
+    className="nwc-inp-dash nwc-inp-sm "
+    disabled={false}
+    id="sample-text-input"
+    inputRef={[Function]}
+    maxLength={6}
+    name={null}
+    onChange={[Function]}
+    placeholder="Enter between [1-5]"
+    type="text"
+    validateWithPattern={
+      Array [
+        Object {
+          "msg": "Value must be a number",
+          "pattern": /\\^\\(\\(\\\\d\\+\\)\\*\\)\\?\\$/,
+        },
+        Object {
+          "msg": "Between 1-5",
+          "pattern": /\\^\\(\\(\\[1-5\\]\\+\\)\\*\\)\\?\\$/,
+        },
+      ]
+    }
+    value=""
+  />
+  <div />
+  <Input
+    checked={false}
+    className="nwc-inp-checkbox-secondary nwc-inp-normal "
+    disabled={false}
+    id="sample-checkbox"
+    inputRef={[Function]}
+    maxLength={null}
+    name="sampleCheckbox"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder={null}
+    type="checkbox"
+    validateWithPattern={null}
+    value="0"
+  />
+  <Input
+    checked={false}
+    className="nwc-inp-radio-primary nwc-inp-normal "
+    disabled={false}
+    id="sample-radio"
+    inputRef={[Function]}
+    maxLength={null}
+    name="sampleRadio"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder={null}
+    type="radio"
+    validateWithPattern={null}
+    value="0"
+  />
+</Dummy>
+`;

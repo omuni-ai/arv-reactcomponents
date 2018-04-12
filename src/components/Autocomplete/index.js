@@ -103,7 +103,8 @@ class Autocomplete extends Component {
     this.listNode = [];
 
     const filteredList = inpList.filter(
-      item => item.toLowerCase().indexOf(inpVal.toLowerCase()) > -1,
+      item =>
+        item.toLowerCase().indexOf((inpVal && inpVal.toLowerCase()) || "") > -1,
     );
 
     const list = filteredList.map((item, index) => {

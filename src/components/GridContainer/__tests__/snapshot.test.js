@@ -8,14 +8,13 @@ import {
 } from "../test.component";
 
 describe("Root Component Tests", () => {
-  it("Matches Shallow SnapShot", done => {
+  it("Matches Shallow SnapShot", () => {
     expect(
       shallowToJson(shallow(<GridContainerSuccessTest />)),
     ).toMatchSnapshot();
     expect(
       shallowToJson(shallow(<GridContainerErrorTest />)),
     ).toMatchSnapshot();
-    done();
   });
 
   it("Matches Mounted SnapShot", done => {

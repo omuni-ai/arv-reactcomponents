@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import TestComponent from "../test.component";
 
 describe("Root Component Tests", () => {
-  it("Allows Input", done => {
+  it("Allows Input", () => {
     const wrapper = mount(<TestComponent />);
     const input = wrapper.find("input");
 
@@ -15,16 +15,15 @@ describe("Root Component Tests", () => {
     });
 
     expect(input.instance().value).toBe("A");
-
-    done();
   });
 
-  it("On Enter Select Value", done => {
+  it("On Enter Select Value", () => {
     const wrapper = mount(<TestComponent />);
     const input = wrapper.find("input");
 
     input.simulate("focus");
     input.simulate("change", { target: { value: "Arr" } });
+    input.simulate("keyDown");
     input.simulate("keyDown", {
       key: "Enter",
       target: {
@@ -36,17 +35,18 @@ describe("Root Component Tests", () => {
     });
 
     expect(input.instance().value).toBe("Arrow");
-
-    done();
   });
 
-  it("On ArrowDown Select Value", done => {
+  it("On ArrowDown Select Value", () => {
     const wrapper = mount(<TestComponent />);
     const input = wrapper.find("input");
 
     input.simulate("focus");
 
     input
+      .simulate("keyDown", {
+        key: "ArrowDown",
+      })
       .simulate("keyDown", {
         key: "ArrowDown",
       })
@@ -68,11 +68,9 @@ describe("Root Component Tests", () => {
     });
 
     expect(input.instance().value).toBe("Arrow");
-
-    done();
   });
 
-  it("On ArrowUp Select Value", done => {
+  it("On ArrowUp Select Value", () => {
     const wrapper = mount(<TestComponent />);
     const input = wrapper.find("input");
 
@@ -95,18 +93,13 @@ describe("Root Component Tests", () => {
     });
 
     expect(input.instance().value).toBe("Levis");
-
-    done();
   });
 
-  it("No Action on left - right Arrows", done => {
+  it("No Action on left - right Arrows", () => {
     const wrapper = mount(<TestComponent />);
     const input = wrapper.find("input");
 
     input.simulate("focus");
-    input.simulate("keyDown", {
-      key: "ArrowLeft",
-    });
     input.simulate("keyDown", {
       key: "Enter",
       target: {
@@ -117,7 +110,7 @@ describe("Root Component Tests", () => {
       },
     });
 
-    expect(input.instance().value).toBe("Arrow");
+    expect(input.instance().value).toBe("");
 
     input.simulate("focus");
     input.simulate("change", { target: { value: "" } });
@@ -134,8 +127,7 @@ describe("Root Component Tests", () => {
       },
     });
 
-    expect(input.instance().value).toBe("Arrow");
-
-    done();
+    console.log(wrapper.html());
+    expect(input.instance().value).toBe("");
   });
 });

@@ -16,7 +16,7 @@ exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
     minTextLength={0}
     renderInput={[Function]}
     renderList={[Function]}
-    selectedIndex={0}
+    selectedIndex={-1}
   >
     <div
       className="nwc-autocomplete "
@@ -75,6 +75,6 @@ exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
   minTextLength={0}
   renderInput={[Function]}
   renderList={[Function]}
-  selectedIndex={0}
+  selectedIndex={-1}
 />
 `;
