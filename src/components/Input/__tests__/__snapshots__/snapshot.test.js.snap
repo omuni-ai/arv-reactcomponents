@@ -5,7 +5,7 @@ exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
   <Dummy>
     <Input
       checked={null}
-      className="nwc-inp-dash nwc-inp-sm "
+      className=""
       disabled={false}
       id="sample-text-input"
       inputRef={[Function]}
@@ -30,7 +30,7 @@ exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
     >
       <input
         checked={null}
-        className="nwc-inp  nwc-inp-dash nwc-inp-sm "
+        className="nwc-inp  "
         disabled={false}
         id="sample-text-input"
         maxLength={6}
@@ -45,7 +45,7 @@ exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
     <div />
     <Input
       checked={false}
-      className="nwc-inp-checkbox-secondary nwc-inp-normal "
+      className=""
       disabled={false}
       id="sample-checkbox"
       inputRef={[Function]}
@@ -87,14 +87,14 @@ exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
             />
           </span>
           <i
-            className="nwc-inp-checkbox nwc-inp-checkbox-secondary nwc-inp-normal   "
+            className="nwc-inp-checkbox   "
           />
         </label>
       </Label>
     </Input>
     <Input
       checked={false}
-      className="nwc-inp-radio-primary nwc-inp-normal "
+      className=""
       disabled={false}
       id="sample-radio"
       inputRef={[Function]}
@@ -136,10 +136,66 @@ exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
             />
           </span>
           <i
-            className="nwc-inp-radio nwc-inp-radio-primary nwc-inp-normal   "
+            className="nwc-inp-radio   "
           />
         </label>
       </Label>
+    </Input>
+    <Input
+      checked={null}
+      className=""
+      disabled={false}
+      id="sample-number-nomaxlength"
+      inputRef={[Function]}
+      maxLength={null}
+      name="sampleNumber"
+      onChange={[Function]}
+      placeholder={null}
+      type="number"
+      validateWithPattern={null}
+      value=""
+    >
+      <input
+        checked={null}
+        className="nwc-inp  "
+        disabled={false}
+        id="sample-number-nomaxlength"
+        maxLength={null}
+        name="sampleNumber"
+        onChange={[Function]}
+        placeholder={null}
+        tabIndex="0"
+        type="number"
+        value=""
+      />
+    </Input>
+    <Input
+      checked={null}
+      className=""
+      disabled={false}
+      id="sample-number"
+      inputRef={[Function]}
+      maxLength={5}
+      name="sampleNumber"
+      onChange={[Function]}
+      placeholder={null}
+      type="number"
+      validateWithPattern={null}
+      value=""
+    >
+      <input
+        checked={null}
+        className="nwc-inp  "
+        disabled={false}
+        id="sample-number"
+        maxLength={5}
+        name="sampleNumber"
+        onChange={[Function]}
+        placeholder={null}
+        tabIndex="0"
+        type="number"
+        value=""
+      />
     </Input>
   </Dummy>
 </InputTest>
@@ -149,7 +205,7 @@ exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
 <Dummy>
   <Input
     checked={null}
-    className="nwc-inp-dash nwc-inp-sm "
+    className=""
     disabled={false}
     id="sample-text-input"
     inputRef={[Function]}
@@ -175,7 +231,7 @@ exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
   <div />
   <Input
     checked={false}
-    className="nwc-inp-checkbox-secondary nwc-inp-normal "
+    className=""
     disabled={false}
     id="sample-checkbox"
     inputRef={[Function]}
@@ -190,7 +246,7 @@ exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
   />
   <Input
     checked={false}
-    className="nwc-inp-radio-primary nwc-inp-normal "
+    className=""
     disabled={false}
     id="sample-radio"
     inputRef={[Function]}
@@ -202,6 +258,34 @@ exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
     type="radio"
     validateWithPattern={null}
     value="0"
+  />
+  <Input
+    checked={null}
+    className=""
+    disabled={false}
+    id="sample-number-nomaxlength"
+    inputRef={[Function]}
+    maxLength={null}
+    name="sampleNumber"
+    onChange={[Function]}
+    placeholder={null}
+    type="number"
+    validateWithPattern={null}
+    value=""
+  />
+  <Input
+    checked={null}
+    className=""
+    disabled={false}
+    id="sample-number"
+    inputRef={[Function]}
+    maxLength={5}
+    name="sampleNumber"
+    onChange={[Function]}
+    placeholder={null}
+    type="number"
+    validateWithPattern={null}
+    value=""
   />
 </Dummy>
 `;

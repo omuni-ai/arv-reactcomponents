@@ -15,6 +15,10 @@ function restrictVal(value, type, maxLength) {
 function validateValue(value, validateWithPattern) {
   const errorObj = { isValid: true, errorMsg: "" };
 
+  if (!Array.isArray(validateWithPattern)) {
+    return errorObj;
+  }
+
   validateWithPattern.find(item => {
     if (!item.pattern.test(value)) {
       errorObj.isValid = false;

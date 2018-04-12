@@ -13,9 +13,12 @@ class InputTest extends Component {
       validateInputErrorMsg: "",
       checkboxChecked: false,
       radioChecked: false,
+      inputNumber: "",
     };
 
     this.validateInputChange = this.validateInputChange.bind(this);
+    this.changeNumber1 = this.changeNumber1.bind(this);
+    this.changeNumber = this.changeNumber.bind(this);
     this.toggleValue = this.toggleValue.bind(this);
   }
 
@@ -25,6 +28,28 @@ class InputTest extends Component {
 
   validateInputChange(e) {
     const validateOutput = this.validateInputRef.getValidatedOutput(
+      e.target.value,
+    );
+    this.setState({
+      isValidateInputValid: validateOutput.isValid,
+      validateInputValue: validateOutput.value,
+      validateInputErrorMsg: validateOutput.errorMsg,
+    });
+  }
+
+  changeNumber1(e) {
+    const validateOutput = this.validateNumberRef1.getValidatedOutput(
+      e.target.value,
+    );
+    this.setState({
+      isValidateInputValid: validateOutput.isValid,
+      validateInputValue: validateOutput.value,
+      validateInputErrorMsg: validateOutput.errorMsg,
+    });
+  }
+
+  changeNumber(e) {
+    const validateOutput = this.validateNumberRef.getValidatedOutput(
       e.target.value,
     );
     this.setState({
@@ -49,13 +74,14 @@ class InputTest extends Component {
       validateInputErrorMsg,
       checkboxChecked,
       radioChecked,
+      inputNumber,
     } = this.state;
 
     return (
       <Dummy>
         <Input
           id="sample-text-input"
-          className={`nwc-inp-dash nwc-inp-sm ${this.errorClass}`}
+          className={`${this.errorClass}`}
           placeholder="Enter between [1-5]"
           value={validateInputValue}
           onChange={this.validateInputChange}
@@ -81,9 +107,7 @@ class InputTest extends Component {
           type="checkbox"
           value="0"
           checked={checkboxChecked}
-          className={`nwc-inp-checkbox-secondary nwc-inp-normal ${
-            this.errorClass
-          }`}
+          className={`${this.errorClass}`}
           onChange={e => {
             this.toggleValue(e, "checkboxChecked");
           }}
@@ -97,13 +121,36 @@ class InputTest extends Component {
           type="radio"
           value="0"
           checked={radioChecked}
-          className={`nwc-inp-radio-primary nwc-inp-normal ${this.errorClass}`}
+          className={`${this.errorClass}`}
           onChange={e => {
             this.toggleValue(e, "radioChecked");
           }}
           onKeyDown={e => {
             this.toggleValue(e, "radioChecked");
           }}
+        />
+        <Input
+          id="sample-number-nomaxlength"
+          name="sampleNumber"
+          type="number"
+          value={inputNumber}
+          className={`${this.errorClass}`}
+          onChange={this.changeNumber1}
+          ref={c => {
+            this.validateNumberRef1 = c;
+          }}
+        />
+        <Input
+          id="sample-number"
+          name="sampleNumber"
+          type="number"
+          value={inputNumber}
+          className={`${this.errorClass}`}
+          onChange={this.changeNumber}
+          ref={c => {
+            this.validateNumberRef = c;
+          }}
+          maxLength={5}
         />
       </Dummy>
     );
