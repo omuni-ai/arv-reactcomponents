@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
+<LazyImgExample>
+  <LazyImg
+    alt="NNNOW"
+    className="nw-carouselexample-img"
+    index={0}
+    offset={300}
+    onError={[Function]}
+    onLoad={[Function]}
+    onWinLoad={true}
+    parentElement={null}
+    src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+  >
+    <div
+      className="nwc-lazyimg-container nw-carouselexample-img"
+    />
+  </LazyImg>
+</LazyImgExample>
+`;
+
+exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
+<LazyImg
+  alt="NNNOW"
+  className="nw-carouselexample-img"
+  index={0}
+  offset={300}
+  onError={[Function]}
+  onLoad={[Function]}
+  onWinLoad={true}
+  parentElement={null}
+  src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+/>
+`;

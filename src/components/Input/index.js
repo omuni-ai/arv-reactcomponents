@@ -24,6 +24,7 @@ class Input extends PureComponent {
         return `nwc-inp-checkbox ${additionalClasses}`;
       case "radio":
         return `nwc-inp-radio ${additionalClasses}`;
+      /* istanbul ignore next */
       default:
         return "";
     }
