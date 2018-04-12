@@ -127,7 +127,6 @@ describe("Root Component Tests", () => {
       },
     });
 
-    console.log(wrapper.html());
     expect(input.instance().value).toBe("");
   });
 });
