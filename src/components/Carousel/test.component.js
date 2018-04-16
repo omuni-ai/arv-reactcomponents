@@ -1,12 +1,5 @@
 import React, { PureComponent } from "react";
-import {
-  GridRow,
-  GridColumn,
-  Carousel,
-  Utils,
-  LazyImg,
-  Button,
-} from "../../components";
+import { GridRow, GridColumn, Carousel, Utils, LazyImg, Button } from "../";
 
 class CarouselTest extends PureComponent {
   constructor(props) {

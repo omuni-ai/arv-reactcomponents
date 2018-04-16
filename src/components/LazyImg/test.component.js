@@ -1,7 +1,7 @@
 import React from "react";
 
 // Import common components
-import { LazyImg } from "../../components";
+import { LazyImg } from "../";
 
 const LazyImgExample = () => (
   <LazyImg

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // Import common components
-import { Input, Dummy } from "../../components";
+import { Input, Dummy } from "../";
 
 class InputTest extends Component {
   constructor(props) {
