@@ -1,8 +1,7 @@
-import React, { PureComponent, cloneElement } from "react";
+import React, { PureComponent, cloneElement, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import Utils from "../_jsUtils";
-import Dummy from "../Dummy";
 
 class Ripple extends PureComponent {
   constructor(props) {
@@ -20,7 +19,7 @@ class Ripple extends PureComponent {
     const onClickFn = child.props.onClick || Utils.noop;
 
     const wrappedElement = (
-      <Dummy>
+      <Fragment>
         {child.props.children}
         <span
           className={`nwc-ripple ${this.props.className}`}
@@ -28,7 +27,7 @@ class Ripple extends PureComponent {
             this.rippleRef = context;
           }}
         />
-      </Dummy>
+      </Fragment>
     );
 
     const clonedElement = cloneElement(child, {

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 // Import common components
-import { Input, Dummy } from "../";
+import { Input } from "../";
 
 class InputTest extends Component {
   constructor(props) {
@@ -78,7 +78,7 @@ class InputTest extends Component {
     } = this.state;
 
     return (
-      <Dummy>
+      <Fragment>
         <Input
           id="sample-text-input"
           className={`${this.errorClass}`}
@@ -152,7 +152,7 @@ class InputTest extends Component {
           }}
           maxLength={5}
         />
-      </Dummy>
+      </Fragment>
     );
   }
 }
