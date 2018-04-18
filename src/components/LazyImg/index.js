@@ -70,7 +70,7 @@ class LazyImg extends PureComponent {
 
   onError() {
     this.setState({
-      isError: false,
+      isError: true,
     });
 
     this.props.onError();
