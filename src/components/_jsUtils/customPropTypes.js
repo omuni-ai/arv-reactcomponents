@@ -10,6 +10,7 @@ function Input(props, propName) {
     CheckFor[props.type].indexOf(propName) !== -1 &&
     props[propName] === null
   ) {
+    /* istanbul ignore next */
     return new Error(`Missed \`${propName}\` prop on input type ${props.type}`);
   }
 

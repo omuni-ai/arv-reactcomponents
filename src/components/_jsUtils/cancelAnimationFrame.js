@@ -2,6 +2,7 @@ const vendors = ["ms", "moz", "webkit", "o"];
 
 let cAF = window.cancelAnimationFrame;
 
+/* istanbul ignore next */
 if (!cAF) {
   cAF = vendors.find(
     prefix =>
@@ -10,6 +11,7 @@ if (!cAF) {
   );
 }
 
+/* istanbul ignore next */
 if (!cAF) {
   cAF = clearTimeout;
 }
