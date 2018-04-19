@@ -1,12 +1,12 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+
+import { isMobile } from "../constants";
 import Close from "../Close";
 import Utils from "../_jsUtils";
-
 import setFocus from "./methods";
 
 let modalOpen = false;
-const isMobile = window.innerWidth <= 768;
 class ModalContainer extends PureComponent {
   static isModalOpen() {
     return modalOpen;

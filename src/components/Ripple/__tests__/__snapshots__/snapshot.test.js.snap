@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
+<RippleTest>
+  <Ripple
+    className="nwc-ripple-dark"
+  >
+    <Button
+      className="nwc-ripple-container nwc-btn-secondary"
+      key=".0"
+      onClick={[Function]}
+    >
+      <button
+        className="nwc-btn nwc-ripple-container nwc-btn-secondary"
+        onClick={[Function]}
+        tabIndex="0"
+      >
+        Button with Dark Ripple
+        <span
+          className="nwc-ripple nwc-ripple-dark"
+        />
+      </button>
+    </Button>
+  </Ripple>
+  <Ripple
+    className="nwc-ripple-light"
+  >
+    <Button
+      className="nwc-ripple-container nwc-btn-dark-background"
+      key=".0"
+      onClick={[Function]}
+    >
+      <button
+        className="nwc-btn nwc-ripple-container nwc-btn-dark-background"
+        onClick={[Function]}
+        tabIndex="0"
+      >
+        Button with light Ripple
+        <span
+          className="nwc-ripple nwc-ripple-light"
+        />
+      </button>
+    </Button>
+  </Ripple>
+</RippleTest>
+`;
+
+exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
+<React.Fragment>
+  <Ripple
+    className="nwc-ripple-dark"
+  >
+    <Button
+      className="nwc-btn-secondary"
+    >
+      Button with Dark Ripple
+    </Button>
+  </Ripple>
+  <Ripple
+    className="nwc-ripple-light"
+  >
+    <Button
+      className="nwc-btn-dark-background"
+    >
+      Button with light Ripple
+    </Button>
+  </Ripple>
+</React.Fragment>
+`;

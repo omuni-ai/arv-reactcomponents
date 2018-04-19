@@ -28,6 +28,8 @@ global.navigator = {
 };
 copyProps(window, global);
 
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
+
 module.exports = {
   verbose: true,
 };
