@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // Import common components
-import { Modal } from "../../components";
+import { Modal } from "../";
 
 class ModalTest extends Component {
   constructor(props) {

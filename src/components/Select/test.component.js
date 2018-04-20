@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 // Import common components
-import { Select } from "../../components";
+import { Select } from "../";
 
 class SelectExample extends Component {
   static getOneEmptyList(item) {
