@@ -9,6 +9,7 @@ function scrollElemToView(parent, child, duration = 0) {
     const childVals = getBoundClientRect(childElem);
     let offsetTop = 0;
     let offsetLeft = 0;
+
     if (childVals.bottom > parentVals.bottom) {
       offsetTop = childVals.bottom - parentVals.bottom;
     } else if (childVals.top < parentVals.top) {

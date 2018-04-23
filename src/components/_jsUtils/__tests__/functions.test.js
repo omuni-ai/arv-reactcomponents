@@ -1,5 +1,29 @@
+import React from "react";
+import { mount } from "enzyme";
+
 import Utils from "../";
 import * as constants from "../../constants";
+
+const rAF = global.window.requestAnimationFrame;
+const cAF = global.window.cancelAnimationFrame;
+const rIC = global.window.requestIdleCallback;
+const cIC = global.window.cancelIdleCallback;
+
+const mockGetBoundClientRect = (
+  top,
+  right,
+  bottom,
+  left,
+  width,
+  height,
+) => () => ({
+  top,
+  right,
+  bottom,
+  left,
+  width,
+  height,
+});
 
 describe("fixScroll", () => {
   test("Window Fix and Unfix", () => {
@@ -111,5 +135,183 @@ describe("onElementScroll", () => {
 describe("polyfill", () => {
   test("polyfill", () => {
     Utils.polyfill();
+  });
+
+  afterAll(() => {
+    global.window.requestAnimationFrame = rAF;
+    global.window.cancelAnimationFrame = cAF;
+    global.window.requestIdleCallback = rIC;
+    global.window.cancelIdleCallback = cIC;
+  });
+});
+
+describe("animationFrame", () => {
+  test("requestAnimationFrame", done => {
+    const mockFn = jest.fn(() => 123123123);
+
+    const requestId = Utils.requestAnimationFrame(mockFn);
+    Utils.cancelAnimationFrame(requestId);
+
+    Utils.requestAnimationFrame(mockFn);
+
+    global.window.requestAnimationFrame = null;
+    const requestId2 = Utils.requestAnimationFrame(mockFn);
+
+    constants.requestAnimationFrameVendor = jest.fn(() => {
+      mockFn();
+    });
+    const requestId3 = Utils.requestAnimationFrame(mockFn);
+
+    setTimeout(() => {
+      expect(mockFn).toHaveBeenCalledTimes(3);
+
+      global.window.cancelAnimationFrame = null;
+      Utils.cancelAnimationFrame(requestId2);
+
+      constants.requestAnimationFrameVendor = jest.fn(() => {
+        mockFn();
+      });
+      Utils.cancelAnimationFrame(requestId3);
+
+      done();
+    }, 300);
+  });
+
+  afterAll(() => {
+    global.window.requestAnimationFrame = rAF;
+    global.window.cancelAnimationFrame = cAF;
+  });
+});
+
+describe("scroll functions", () => {
+  let element;
+  let mounted;
+  beforeAll(() => {
+    element = (
+      <div className="nw-parent">
+        <div className="nw-child">child</div>
+      </div>
+    );
+    mounted = mount(element);
+  });
+
+  test("scrollElemToTop", done => {
+    mounted
+      .find(".nw-parent")
+      .instance().getBoundingClientRect = mockGetBoundClientRect(
+      10,
+      0,
+      0,
+      10,
+      300,
+      300,
+    );
+    mounted
+      .find(".nw-child")
+      .instance().getBoundingClientRect = mockGetBoundClientRect(
+      0,
+      10,
+      10,
+      0,
+      300,
+      500,
+    );
+
+    Utils.scrollElemToTop(
+      mounted.find(".nw-parent").instance(),
+      mounted.find(".nw-child").instance(),
+    );
+
+    Utils.scrollElemToTop(
+      mounted.find(".nw-parent").instance(),
+      mounted.find(".nw-child").instance(),
+      300,
+    );
+
+    setTimeout(() => {
+      done();
+    }, 300);
+  });
+
+  test("scrollElemToView", done => {
+    mounted
+      .find(".nw-parent")
+      .instance().getBoundingClientRect = mockGetBoundClientRect(
+      300,
+      300,
+      300,
+      300,
+      300,
+      300,
+    );
+    mounted
+      .find(".nw-child")
+      .instance().getBoundingClientRect = mockGetBoundClientRect(
+      0,
+      0,
+      0,
+      0,
+      300,
+      500,
+    );
+
+    Utils.scrollElemToView(
+      mounted.find(".nw-parent").instance(),
+      mounted.find(".nw-child").instance(),
+    );
+
+    mounted
+      .find(".nw-child")
+      .instance().getBoundingClientRect = mockGetBoundClientRect(
+      1000,
+      1000,
+      1000,
+      1000,
+      300,
+      500,
+    );
+
+    Utils.scrollElemToView(
+      mounted.find(".nw-parent").instance(),
+      mounted.find(".nw-child").instance(),
+    );
+
+    Utils.scrollElemToView(
+      mounted.find(".nw-parent").instance(),
+      mounted.find(".nw-child").instance(),
+      300,
+    );
+
+    setTimeout(() => {
+      done();
+    }, 300);
+  });
+
+  test("scrollTo", done => {
+    Utils.scrollTo(window, 0, 300);
+
+    Utils.scrollTo(window, 0, 300, 300);
+
+    setTimeout(() => {
+      done();
+    }, 300);
+  });
+});
+
+describe("urlMethods", () => {
+  test("getUrlParameter", () => {
+    expect(Utils.getUrlParameter("http://www.abc.com?a=1", "a")).toBe("1");
+    expect(Utils.getUrlParameter("http://www.abc.com?a=1", "b")).toBe(
+      undefined,
+    );
+  });
+
+  test("setUrlParameter", () => {
+    expect(Utils.setUrlParameter("http://www.abc.com", "a", "1")).toBe(
+      "http://www.abc.com?a=1",
+    );
+    expect(Utils.setUrlParameter("http://www.abc.com?a=1", "a", "2")).toBe(
+      "http://www.abc.com?a=2",
+    );
   });
 });
