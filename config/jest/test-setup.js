@@ -1,6 +1,7 @@
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { JSDOM } from 'jsdom';
+import localStorage from 'mock-local-storage';
 
 // Setup enzyme's react adapter
 configure({
@@ -21,6 +22,7 @@ function copyProps(src, target) {
   Object.defineProperties(target, props);
 }
 
+global.localStorage = localStorage;
 global.window = window;
 global.document = window.document;
 global.navigator = {

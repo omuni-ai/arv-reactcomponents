@@ -77,22 +77,18 @@ describe("localstorage", () => {
   global.console.debug = jest.fn();
 
   test("Test Methods", () => {
-    Utils.localStorage.setItem("key", "value");
-    Utils.localStorage.getItem();
-    Utils.localStorage.getItem("key");
-
-    constants.localStorage = {};
     Utils.localStorage.removeItem("key");
-    expect(Utils.localStorage.getItem("alreadySet")).toBe(null);
+    expect(Utils.localStorage.getItem("key")).toBe(null);
     Utils.localStorage.setItem("key", "value");
     expect(Utils.localStorage.getItem("key")).toBe("value");
     Utils.localStorage.removeItem("key");
     expect(Utils.localStorage.getItem("key")).toBe(null);
-
     Utils.localStorage.setItem("key", "value");
-    setTimeout(() => {
-      expect(Utils.localStorage.getItem("key")).toBe(null);
-    }, 1000);
+
+    constants.localStorage = null;
+    Utils.localStorage.setItem("key", "value");
+    Utils.localStorage.getItem();
+    Utils.localStorage.getItem("key");
   });
 });
 
