@@ -1,8 +1,11 @@
-import { cancelAnimationFrameVendor } from "../constants";
+import {
+  windowCancelAnimationFrame,
+  vendorCancelAnimationFrame,
+} from "../constants";
 
 function cancelAnimationFrame(requestId) {
   const cAF =
-    window.cancelAnimationFrame || cancelAnimationFrameVendor || clearTimeout;
+    windowCancelAnimationFrame || vendorCancelAnimationFrame || clearTimeout;
   return cAF(requestId);
 }
 

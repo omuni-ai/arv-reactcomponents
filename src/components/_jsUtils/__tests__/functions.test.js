@@ -150,32 +150,19 @@ describe("animationFrame", () => {
 
     Utils.requestAnimationFrame(mockFn);
 
-    global.window.requestAnimationFrame = null;
-    const requestId2 = Utils.requestAnimationFrame(mockFn);
+    constants.windowRequestAnimationFrame = null;
+    Utils.requestAnimationFrame(mockFn);
 
-    constants.requestAnimationFrameVendor = jest.fn(() => {
+    constants.vendorRequestAnimationFrame = jest.fn(() => {
       mockFn();
     });
-    const requestId3 = Utils.requestAnimationFrame(mockFn);
+    Utils.requestAnimationFrame(mockFn);
 
     setTimeout(() => {
       expect(mockFn).toHaveBeenCalledTimes(3);
 
-      global.window.cancelAnimationFrame = null;
-      Utils.cancelAnimationFrame(requestId2);
-
-      constants.requestAnimationFrameVendor = jest.fn(() => {
-        mockFn();
-      });
-      Utils.cancelAnimationFrame(requestId3);
-
       done();
     }, 300);
-  });
-
-  afterAll(() => {
-    global.window.requestAnimationFrame = rAF;
-    global.window.cancelAnimationFrame = cAF;
   });
 });
 

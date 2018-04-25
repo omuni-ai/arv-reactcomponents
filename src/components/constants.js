@@ -4,11 +4,14 @@ export const isMobile = window.innerWidth <= 768;
 export const localStorage =
   ("localStorage" in window && window.localStorage) || null;
 
+export const windowRequestAnimationFrame = window.requestAnimationFrame;
+export const windowCancelAnimationFrame = window.cancelAnimationFrame;
+
 export const vendorsPrefixes = ["ms", "moz", "webkit", "o"];
-export const requestAnimationFrameVendor = vendorsPrefixes.find(
+export const vendorRequestAnimationFrame = vendorsPrefixes.find(
   prefix => window[`${prefix}RequestAnimationFrame`],
 );
-export const cancelAnimationFrameVendor = vendorsPrefixes.find(
+export const vendorCancelAnimationFrame = vendorsPrefixes.find(
   prefix =>
     window[`${prefix}CancelAnimationFrame`] ||
     window[`${prefix}CancelRequestAnimationFrame`],
