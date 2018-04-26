@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Img, GridColumn, Masonry } from "../../components";
+import { Img, GridRow, GridColumn, Masonry } from "../../components";
 
 class MasonryExample extends Component {
   static renderList(item) {
     return (
-      <div>
+      <div key={item.index}>
         <div>{item.index}</div>
         <Img style={{ width: "100%" }} src={item.image} />
         <div>{item.content}</div>
@@ -130,17 +130,19 @@ class MasonryExample extends Component {
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
     ];
-    this.columnCount = { lg: 5, md: 4, sm: 3, xs: 2 };
+    this.columnCount = { lg: 2, md: 3, sm: 4, xs: 12 };
   }
 
   render() {
     return (
       <GridColumn className="nw-block nw-block-white">
-        <Masonry
-          data={this.data}
-          columnCount={this.columnCount}
-          renderList={MasonryExample.renderList}
-        />
+        <GridRow>
+          <Masonry
+            data={this.data}
+            columnCount={this.columnCount}
+            renderList={MasonryExample.renderList}
+          />
+        </GridRow>
       </GridColumn>
     );
   }

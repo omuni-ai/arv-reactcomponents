@@ -1,132 +1,98 @@
-import React, { Component, cloneElement } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import { screenMedia } from "../constants";
+import { GridColumn } from "../";
 
-const emptyGrid = <div className="nwc-masonry-emptygrid">&nbsp;</div>;
-class Masonry extends Component {
+class Masonry extends PureComponent {
   constructor(props) {
     super(props);
 
+    const mediaAndCount = this.getMediaAndColCount();
     this.state = {
-      columnCount: this.getColumnCount(),
+      media: mediaAndCount.media,
+      columnCount: mediaAndCount.count,
     };
 
     this.resizeTimeoutId = null;
 
-    this.getColumnCount = this.getColumnCount.bind(this);
-    this.setRef = this.setRef.bind(this);
-    this.setColumnCount = this.setColumnCount.bind(this);
+    this.getMediaAndColCount = this.getMediaAndColCount.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener("resize", () => {
       clearTimeout(this.resizeTimeoutId);
       this.resizeTimeoutId = setTimeout(() => {
-        const columnCount = this.getColumnCount();
-        if (this.state.columnCount !== columnCount) {
-          this.setColumnCount(columnCount);
-
+        const mediaAndCount = this.getMediaAndColCount();
+        if (this.state.columnCount !== mediaAndCount.count) {
           this.setState({
-            columnCount,
+            media: mediaAndCount.media,
+            columnCount: mediaAndCount.count,
           });
         }
       }, 300);
     });
   }
 
-  get grids() {
-    const { data, renderList } = this.props;
-    const { columnCount } = this.state;
-    const arrayLength = data.length + (data.length % 2 === 0 ? 1 : 0);
+  get columns() {
+    const { className, data, renderList } = this.props;
+    const { media, columnCount } = this.state;
 
-    const paddingArray = new Array(
-      columnCount * Math.ceil(arrayLength / columnCount) - arrayLength, // eslint-disable-line
-    );
-    paddingArray.fill(null);
-
-    const grids = [];
+    const columns = [];
+    let grids = [];
     let masonryColumnCount = columnCount - 1;
     let i = 0;
-    const newArray = [...data, ...paddingArray];
 
-    while (newArray.length > 0) {
-      if (newArray[i] === undefined) {
+    const tempData = [...data];
+
+    while (tempData.length > 0) {
+      grids.push(renderList(tempData[i]));
+      tempData.splice(i, 1);
+      i += masonryColumnCount;
+
+      if (tempData[i] === undefined) {
+        columns.push(
+          <GridColumn
+            className={`nwc-grid-col-xs-${media} ${className}`}
+            key={columns.length}
+          >
+            {grids}
+          </GridColumn>,
+        );
+        grids = [];
         masonryColumnCount -= 1;
         i = 0;
       }
-
-      if (newArray[i] !== null) {
-        const elem = renderList(newArray[i]);
-        grids.push(
-          cloneElement(elem, {
-            className: `nwc-masonry-grid ${elem.props.className || ""}`,
-          }),
-        );
-      } else {
-        grids.push(emptyGrid);
-      }
-
-      newArray.splice(i, 1);
-      i += masonryColumnCount;
     }
 
-    return grids;
+    return columns;
   }
 
-  getColumnCount() {
-    const { data, columnCount } = this.props;
-    const { lg, md, sm, xs } = columnCount;
+  getMediaAndColCount() {
+    const { columnCount } = this.props;
+    const { lg, md, sm, xs = 6 } = columnCount;
     const width = window.innerWidth;
 
-    let matchingColumnCount;
     switch (true) {
       case width > screenMedia.lg:
-        matchingColumnCount = lg;
-        break;
-      case width > screenMedia.md:
-        matchingColumnCount = md;
-        break;
-      case width > screenMedia.sm:
-        matchingColumnCount = sm;
-        break;
-      default:
-        matchingColumnCount = xs;
+        if (lg) {
+          return { media: lg, count: 12 / lg };
+        }
+      case width > screenMedia.md: // eslint-disable-line
+        if (md) {
+          return { media: md, count: 12 / md };
+        }
+      case width > screenMedia.sm: // eslint-disable-line
+        if (sm) {
+          return { media: sm, count: 12 / sm };
+        }
+      default: // eslint-disable-line
+        return { media: xs, count: 12 / xs };
     }
-
-    return data.length - 1 > matchingColumnCount * 2
-      ? matchingColumnCount
-      : Math.ceil(data.length / 2);
-  }
-
-  setRef(ref) {
-    this.parentRef = ref;
-    this.setColumnCount(this.getColumnCount());
-  }
-
-  setColumnCount(count) {
-    this.parentRef.style.WebkitColumnCount = count;
-    this.parentRef.style.MozColumnCount = count;
-    this.parentRef.style.columnCount = count;
   }
 
   render() {
-    const {
-      className,
-      columnCount,
-      renderList,
-      data,
-      ...otherProps
-    } = this.props;
-    return (
-      <div
-        ref={this.setRef}
-        className={`nwc-masonry ${className}`}
-        {...otherProps}
-      >
-        {this.grids}
-      </div>
-    );
+    return this.columns;
   }
 }
 

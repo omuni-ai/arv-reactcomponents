@@ -1,6 +1,4 @@
-/* eslint-disable */
-
-export const screenMedia ={
+export const screenMedia = {
   lg: 1200,
   md: 992,
   sm: 768,
