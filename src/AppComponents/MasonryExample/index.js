@@ -33,7 +33,7 @@ class MasonryExample extends Component {
       {
         index: 3,
         image:
-          "http://www.freegreatpicture.com/files/30/20759-mountain-valley-scenery.jpg",
+          "https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         content:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
@@ -61,7 +61,7 @@ class MasonryExample extends Component {
       {
         index: 7,
         image:
-          "http://www.freegreatpicture.com/files/30/20759-mountain-valley-scenery.jpg",
+          "https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         content:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
@@ -89,7 +89,7 @@ class MasonryExample extends Component {
       {
         index: 11,
         image:
-          "http://www.freegreatpicture.com/files/30/20759-mountain-valley-scenery.jpg",
+          "https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         content:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
@@ -117,7 +117,7 @@ class MasonryExample extends Component {
       {
         index: 15,
         image:
-          "http://www.freegreatpicture.com/files/30/20759-mountain-valley-scenery.jpg",
+          "https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         content:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
