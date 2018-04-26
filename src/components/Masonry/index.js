@@ -16,6 +16,7 @@ class Masonry extends Component {
 
     this.getColumnCount = this.getColumnCount.bind(this);
     this.setRef = this.setRef.bind(this);
+    this.setColumnCount = this.setColumnCount.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +25,7 @@ class Masonry extends Component {
       this.resizeTimeoutId = setTimeout(() => {
         const columnCount = this.getColumnCount();
         if (this.state.columnCount !== columnCount) {
-          this.parentRef.style.columnCount = columnCount;
+          this.setColumnCount(columnCount);
 
           this.setState({
             columnCount,
@@ -74,23 +75,39 @@ class Masonry extends Component {
   }
 
   getColumnCount() {
-    const { lg, md, sm, xs } = this.props.columnCount;
+    const { data, columnCount } = this.props;
+    const { lg, md, sm, xs } = columnCount;
     const width = window.innerWidth;
+
+    let matchingColumnCount;
     switch (true) {
       case width > screenMedia.lg:
-        return lg;
+        matchingColumnCount = lg;
+        break;
       case width > screenMedia.md:
-        return md;
+        matchingColumnCount = md;
+        break;
       case width > screenMedia.sm:
-        return sm;
+        matchingColumnCount = sm;
+        break;
       default:
-        return xs;
+        matchingColumnCount = xs;
     }
+
+    return data.length - 1 > matchingColumnCount * 2
+      ? matchingColumnCount
+      : Math.ceil(data.length / 2);
   }
 
   setRef(ref) {
     this.parentRef = ref;
-    this.parentRef.style.columnCount = this.getColumnCount();
+    this.setColumnCount(this.getColumnCount());
+  }
+
+  setColumnCount(count) {
+    this.parentRef.style.WebkitColumnCount = count;
+    this.parentRef.style.MozColumnCount = count;
+    this.parentRef.style.columnCount = count;
   }
 
   render() {

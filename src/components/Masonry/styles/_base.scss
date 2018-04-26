@@ -1,11 +1,14 @@
+.nwc-masonry {
+  column-gap: $grid-gutter-width;
+}
+
 .nwc-masonry-grid {
   display: inline-block;
   box-sizing: border-box;
   width: 100%;
-  padding: 15px;
   background: $white;
 }
 
 .nwc-masonry-emptygrid {
-  height: 1px;
+  height: 0;
 }

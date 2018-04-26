@@ -8,6 +8,7 @@ class MasonryExample extends Component {
         <div>{item.index}</div>
         <Img style={{ width: "100%" }} src={item.image} />
         <div>{item.content}</div>
+        <br />
       </div>
     );
   }
@@ -19,7 +20,7 @@ class MasonryExample extends Component {
       {
         index: 1,
         image:
-          "http://hdwpro.com/wp-content/uploads/2016/03/Spring-Scenery-Wallpaper.jpg",
+          "https://i.pinimg.com/236x/a7/0f/a2/a70fa29cbdd07046f782ba7ac952a2af--charlotte-north-carolina-charlotte-nc.jpg",
         content:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
@@ -47,7 +48,7 @@ class MasonryExample extends Component {
       {
         index: 5,
         image:
-          "http://hdwpro.com/wp-content/uploads/2016/03/Spring-Scenery-Wallpaper.jpg",
+          "https://i.pinimg.com/236x/a7/0f/a2/a70fa29cbdd07046f782ba7ac952a2af--charlotte-north-carolina-charlotte-nc.jpg",
         content:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
@@ -75,7 +76,7 @@ class MasonryExample extends Component {
       {
         index: 9,
         image:
-          "http://hdwpro.com/wp-content/uploads/2016/03/Spring-Scenery-Wallpaper.jpg",
+          "https://i.pinimg.com/236x/a7/0f/a2/a70fa29cbdd07046f782ba7ac952a2af--charlotte-north-carolina-charlotte-nc.jpg",
         content:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
@@ -103,7 +104,7 @@ class MasonryExample extends Component {
       {
         index: 13,
         image:
-          "http://hdwpro.com/wp-content/uploads/2016/03/Spring-Scenery-Wallpaper.jpg",
+          "https://i.pinimg.com/236x/a7/0f/a2/a70fa29cbdd07046f782ba7ac952a2af--charlotte-north-carolina-charlotte-nc.jpg",
         content:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
       },
