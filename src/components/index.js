@@ -10,6 +10,7 @@ export { default as Label } from "./Label";
 export { default as Input } from "./Input";
 export { default as Autocomplete } from "./Autocomplete";
 export { default as Select } from "./Select";
+export { default as Masonry } from "./Masonry";
 export { default as Modal } from "./Modal";
 export { default as Toastr } from "./Toastr";
 export { default as Loader } from "./Loader";

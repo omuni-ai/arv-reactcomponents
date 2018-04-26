@@ -1,5 +1,11 @@
 /* eslint-disable */
 
+export const screenMedia ={
+  lg: 1200,
+  md: 992,
+  sm: 768,
+};
+
 export const isMobile = window.innerWidth <= 768;
 export const localStorage =
   ("localStorage" in window && window.localStorage) || null;

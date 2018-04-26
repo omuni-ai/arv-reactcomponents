@@ -19,6 +19,7 @@ import InputExample from "../InputExample";
 import ButtonModalExample from "../ButtonModalExample";
 import ButtonToastrExample from "../ButtonToastrExample";
 import CarouselExample from "../CarouselExample";
+import MasonryExample from "../MasonryExample";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
 
         <CSSGlobalClassesDisplay />
         <JSUtilsDisplay />
+        <MasonryExample />
       </GridRow>
     </GridContainer>
   );
