@@ -136,6 +136,7 @@ class MasonryExample extends Component {
   render() {
     return (
       <GridColumn className="nw-block nw-block-white">
+        <h1>Masonry</h1>
         <GridRow>
           <Masonry
             data={this.data}
