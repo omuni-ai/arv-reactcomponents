@@ -37,7 +37,7 @@ class Carousel extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.scrollToIndex(nextProps.index, 600);
+    this.scrollToIndex(nextProps.index, nextProps.animationDuration);
   }
 
   onTouchStart(e) {
@@ -149,11 +149,13 @@ class Carousel extends PureComponent {
 Carousel.defaultProps = {
   className: "",
   onSwipe: Utils.noop,
+  animationDuration: 600,
 };
 
 Carousel.propTypes = {
   className: PropTypes.string,
   index: PropTypes.number.isRequired,
+  animationDuration: PropTypes.number,
   items: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.shape({})),
     PropTypes.arrayOf(PropTypes.string),
