@@ -16,7 +16,10 @@ class Masonry extends PureComponent {
 
     this.resizeTimeoutId = null;
 
+    this.initialize = this.initialize.bind(this);
     this.getMediaAndColCount = this.getMediaAndColCount.bind(this);
+
+    this.initialize();
   }
 
   componentDidMount() {
@@ -25,6 +28,7 @@ class Masonry extends PureComponent {
       this.resizeTimeoutId = setTimeout(() => {
         const mediaAndCount = this.getMediaAndColCount();
         if (this.state.columnCount !== mediaAndCount.count) {
+          this.initialize();
           this.setState({
             media: mediaAndCount.media,
             columnCount: mediaAndCount.count,
@@ -35,15 +39,15 @@ class Masonry extends PureComponent {
   }
 
   get columns() {
-    const { className, data, renderList } = this.props;
-    const { media, columnCount } = this.state;
+    const { data, renderList } = this.props;
+    const { columnCount } = this.state;
 
-    const columns = [];
     let grids = [];
     let masonryColumnCount = columnCount - 1;
     let i = 0;
 
-    const tempData = [...data];
+    const tempData = data.slice(this.alreadyProcessed);
+    this.alreadyProcessed += tempData.length;
 
     while (tempData.length > 0) {
       grids.push(renderList(tempData[i]));
@@ -51,21 +55,23 @@ class Masonry extends PureComponent {
       i += masonryColumnCount;
 
       if (tempData[i] === undefined) {
-        columns.push(
-          <GridColumn
-            className={`nwc-grid-col-xs-${media} ${className}`}
-            key={columns.length}
-          >
-            {grids}
-          </GridColumn>,
-        );
-        grids = [];
+        this.gridColumns[this.colPos] = [
+          ...(this.gridColumns[this.colPos] || []),
+          ...grids,
+        ];
         masonryColumnCount -= 1;
         i = 0;
+        grids = [];
+
+        if (this.colPos < columnCount - 1) {
+          this.colPos += 1;
+        } else {
+          this.colPos = 0;
+        }
       }
     }
 
-    return columns;
+    return this.gridColumns;
   }
 
   getMediaAndColCount() {
@@ -94,8 +100,28 @@ class Masonry extends PureComponent {
     }
   }
 
+  initialize() {
+    this.colPos = 0;
+    this.gridColumns = [];
+    this.alreadyProcessed = 0;
+  }
+
   render() {
-    return this.columns;
+    const { className } = this.props;
+    const { media } = this.state;
+
+    // eslint-disable-next-line
+    return this.columns.map((item, key) => {
+      return (
+        <GridColumn
+          className={`nwc-grid-col-xs-${media} ${className}`}
+          // eslint-disable-next-line
+          key={key}
+        >
+          {item}
+        </GridColumn>
+      );
+    });
   }
 }
 
