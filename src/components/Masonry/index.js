@@ -39,8 +39,8 @@ class Masonry extends PureComponent {
   }
 
   get columns() {
-    const { data, renderList } = this.props;
-    const { columnCount } = this.state;
+    const { className, data, renderList } = this.props;
+    const { media, columnCount } = this.state;
 
     let grids = [];
     let masonryColumnCount = columnCount - 1;
@@ -71,7 +71,15 @@ class Masonry extends PureComponent {
       }
     }
 
-    return this.gridColumns;
+    return this.gridColumns.map((item, key) => (
+      <GridColumn
+        className={`nwc-grid-col-xs-${media} ${className}`}
+        // eslint-disable-next-line
+        key={key}
+      >
+        {item}
+      </GridColumn>
+    ));
   }
 
   getMediaAndColCount() {
@@ -107,21 +115,7 @@ class Masonry extends PureComponent {
   }
 
   render() {
-    const { className } = this.props;
-    const { media } = this.state;
-
-    // eslint-disable-next-line
-    return this.columns.map((item, key) => {
-      return (
-        <GridColumn
-          className={`nwc-grid-col-xs-${media} ${className}`}
-          // eslint-disable-next-line
-          key={key}
-        >
-          {item}
-        </GridColumn>
-      );
-    });
+    return this.columns;
   }
 }
 
