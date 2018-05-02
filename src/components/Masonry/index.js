@@ -78,15 +78,18 @@ class Masonry extends PureComponent {
         if (lg) {
           return { media: lg, count: 12 / lg };
         }
-      case width > screenMedia.md: // eslint-disable-line
+      // eslint-disable-next-line
+      case width > screenMedia.md:
         if (md) {
           return { media: md, count: 12 / md };
         }
-      case width > screenMedia.sm: // eslint-disable-line
+      // eslint-disable-next-line
+      case width > screenMedia.sm:
         if (sm) {
           return { media: sm, count: 12 / sm };
         }
-      default: // eslint-disable-line
+      // eslint-disable-next-line
+      default:
         return { media: xs, count: 12 / xs };
     }
   }
