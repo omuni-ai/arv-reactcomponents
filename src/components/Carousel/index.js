@@ -126,6 +126,7 @@ class Carousel extends PureComponent {
       items,
       renderItems,
       onSwipe,
+      animationDuration,
       ...otherProps
     } = this.props;
 
