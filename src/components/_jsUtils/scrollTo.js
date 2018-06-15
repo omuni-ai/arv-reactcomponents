@@ -29,8 +29,8 @@ const scrollTo = (element, toX, toY, duration = 0) => {
     if (isWindow) {
       elem.scrollTo(positionX, positionY);
     } else {
-      elem.scrollTop = positionY || elem.scrollTop;
-      elem.scrollLeft = positionX || elem.scrollLeft;
+      elem.scrollTop = positionY;
+      elem.scrollLeft = positionX;
     }
     if (elTime < duration) {
       requestAnimationFrame(() => {

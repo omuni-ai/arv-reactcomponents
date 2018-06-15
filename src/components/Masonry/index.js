@@ -46,13 +46,22 @@ class Masonry extends PureComponent {
     let masonryColumnCount = columnCount - 1;
     let i = 0;
 
+    let columnIndex = 0;
+    let columnMultiple = 1;
+
     const tempData = data.slice(this.alreadyProcessed);
     this.alreadyProcessed += tempData.length;
 
     while (tempData.length > 0) {
-      grids.push(renderList(tempData[i]));
+      /**
+       * Equation => loopIndex{i} + ColumnPosition{this.colPos} + (index of item in column{columnIndex} * multiplier for each column{columnMultiple})
+       */
+      grids.push(
+        renderList(tempData[i], i + this.colPos + columnIndex * columnMultiple),
+      );
       tempData.splice(i, 1);
       i += masonryColumnCount;
+      columnIndex += 1;
 
       if (tempData[i] === undefined) {
         this.gridColumns[this.colPos] = [
@@ -62,6 +71,8 @@ class Masonry extends PureComponent {
         masonryColumnCount -= 1;
         i = 0;
         grids = [];
+        columnIndex = 0;
+        columnMultiple += 1;
 
         if (this.colPos < columnCount - 1) {
           this.colPos += 1;
