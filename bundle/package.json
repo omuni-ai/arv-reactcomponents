@@ -1,6 +1,6 @@
 {
-  "name": "arv-reactcomponents",
-  "version": "1.0.6",
+  "name": "ar-components",
+  "version": "1.0.1",
   "description": "Set of components written with React",
   "main": "index.js",
   "scripts": {
