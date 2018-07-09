@@ -1,6 +1,6 @@
 {
-  "name": "ar-components",
-  "version": "1.0.1",
+  "name": "arv-reactcomponents",
+  "version": "1.0.6",
   "description": "Set of components written with React",
   "main": "index.js",
   "scripts": {
@@ -10,5 +10,13 @@
     "React"
   ],
   "author": "Jessel John",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arvind-Internet/arv-reactcomponents.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Arvind-Internet/arv-reactcomponents/issues"
+  },
+  "homepage": "https://github.com/Arvind-Internet/arv-reactcomponents#readme"
 }
