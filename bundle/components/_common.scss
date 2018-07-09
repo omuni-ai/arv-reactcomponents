@@ -1,0 +1,70 @@
+.nwc-hide-scrollbar {
+  position: fixed;
+  overflow-y: scroll;
+}
+
+.nwc-custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $common-scrollbar-track;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $common-scrollbar-thumb;
+  }
+}
+
+.nwc-clearfix {
+  &::after {
+    content: " ";
+    clear: both;
+    display: block;
+  }
+}
+
+.nwc-hide {
+  display: none !important;
+}
+
+.nwc-hidden {
+  visibility: hidden !important;
+}
+
+.nwc-text-primary {
+  color: $common-color-primary !important;
+}
+
+.nwc-bg-primary {
+  background-color: $common-color-primary !important;
+}
+
+.nwc-contentloader {
+  position: relative;
+  overflow: hidden;
+  min-height: 10px;
+  background: $content-loader-background;
+
+  &::before {
+    content: " ";
+    position: absolute;
+    animation: contentLoaderAnimation 1s linear infinite;
+    width: 100%;
+    height: 10px;
+    background-image: linear-gradient(to right, $content-loader-background 0%, $content-loader-darkgradient 20%, $content-loader-background 40%, $content-loader-background 100%);
+    will-change: translate;
+  }
+}
+
+@keyframes contentLoaderAnimation {
+  0% {
+    transform: translate(-100%, 0);
+  }
+
+  100% {
+    transform: translate(100%, 0);
+  }
+}

@@ -1,0 +1,17 @@
+.nwc-toastr-list {
+  position: relative;
+  margin: $toastr-list-margin-y $toastr-list-margin-x;
+  border: $toastr-list-border-width $toastr-list-border-type $toastr-list-border-color;
+  border-radius: $toastr-list-border-radius;
+  max-width: $toastr-list-max-width;
+  padding: $toastr-list-padding-y $toastr-list-padding-x;
+  background: $toastr-list-background;
+}
+
+@each $toaster-variants, $value in $toaster-variants {
+  .nwc-toastr-list-#{$toaster-variants} {
+    background: $value;
+    color: set-color($value, $compliment-for-dark, $compliment-for-light);
+    border-color: set-color($value, $transparent , $toastr-list-border-color);
+  }
+}

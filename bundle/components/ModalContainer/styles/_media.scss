@@ -1,0 +1,11 @@
+/** Media Mixins */
+
+@mixin modal-769 {
+  .nwc-modal {
+    @extend %nwc-modal-769;
+  }
+
+  .nwc-modal-children {
+    @extend %nwc-modal-children-769;
+  }
+}

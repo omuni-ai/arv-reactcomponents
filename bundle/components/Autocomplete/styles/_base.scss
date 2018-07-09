@@ -1,0 +1,17 @@
+.nwc-autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+.nwc-autocomplete-list-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  overflow: auto;
+  margin: $autocomplete-list-margin-y $autocomplete-list-margin-x;
+  border: $autocomplete-list-border-width $autocomplete-list-border-type $autocomplete-list-border-color;
+  width: 100%;
+  max-height: $autocomplete-list-max-height;
+  padding: $autocomplete-list-padding-y $autocomplete-list-padding-x;
+  background: $autocomplete-list-background;
+}

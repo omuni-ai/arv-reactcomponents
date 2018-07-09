@@ -1,0 +1,320 @@
+/** Color Names picked from http://chir.ag/projects/name-that-color/ */
+
+$transparent: transparent;
+$white: #fff !default;
+$black: #000 !default;
+$violet-red: #f2258b !default;
+$wild-strawberry: #f39 !default;
+$lochmara: #0182cb !default;
+$boston-blue: #3096b4 !default;
+$sushi: #9bb535 !default;
+$web-orange: #ffa500 !default;
+$torch-red: #ea0020 !default;
+$concrete: #f3f3f3 !default;
+$dusty-gray: #999 !default;
+
+$font-size: 18px !default;
+$font-size-xxxs: get-rems(10px, $font-size) !default;
+$font-size-xxsm: get-rems(11px, $font-size) !default;
+$font-size-xxs: get-rems(12px, $font-size) !default;
+$font-size-xs: get-rems(14px, $font-size) !default;
+$font-size-sm: get-rems(16px, $font-size) !default;
+$font-size-normal: 1rem !default;
+$font-size-lg: get-rems(20px, $font-size) !default;
+$font-size-xl: get-rems(22px, $font-size) !default;
+$font-size-xxl: get-rems(24px, $font-size) !default;
+$font-size-xxxl: get-rems(28px, $font-size) !default;
+
+$screen-max-xs: 768px !default;
+$screen-min-sm: 769px !default;
+$screen-max-sm: 992px !default;
+$screen-min-md: 993px !default;
+$screen-max-md: 1200px !default;
+$screen-min-lg: 1201px !default;
+
+// Value more than specified value will be considered dark colors
+$lightness-threshold: 70;
+
+//
+// Colors
+//
+$compliment-for-dark: $white !default;
+$compliment-for-light: $black !default;
+
+$color-primary: $wild-strawberry !default;
+$color-secondary: $lochmara !default;
+$color-notification: $boston-blue !default;
+$color-success: $sushi !default;
+$color-warning: $web-orange !default;
+$color-danger: $torch-red !default;
+$color-disabled: $dusty-gray !default;
+
+//
+// Common File
+//
+$common-scrollbar-track: darken-colors($concrete, 1);
+$common-scrollbar-thumb: darken-colors($concrete, 5);
+$common-color-primary: $color-primary;
+
+// ---- Components ---- //
+
+//
+// Autocomplete
+//
+$autocomplete-list-margin-y: 0 !default;
+$autocomplete-list-margin-x: 0 !default;
+$autocomplete-list-border-width: 1px !default;
+$autocomplete-list-border-type: solid !default;
+$autocomplete-list-border-color: darken-colors($concrete, 2) !default;
+$autocomplete-list-max-height: 200px !default;
+$autocomplete-list-padding-y: 5px !default;
+$autocomplete-list-padding-x: 0 !default;
+$autocomplete-list-background: $white !default;
+
+
+//
+// Button
+//
+
+$button-primary-txt-color: $color-primary;
+$button-dark-background: $black;
+$button-dark-background-txt: $white;
+
+$button-border-width: 2px !default;
+$button-border-type: solid !default;
+$button-border-color: $black !default;
+$button-padding-y: 6px !default;
+$button-padding-x: 6px !default;
+$button-background: $transparent !default;
+$button-color: $black !default;
+
+$button-border-color-disabled: $color-disabled !default;
+$button-color-disabled: $color-disabled !default;
+
+$button-solid-background-disabled: $color-disabled !default;
+$button-solid-border-color-disabled: $color-disabled !default;
+$button-solid-color-disabled: $white !default;
+
+$button-flat-background-disabled: $white !default;
+$button-flat-border-color-disabled: $color-disabled !default;
+$button-flat-color-disabled: $color-disabled !default;
+
+$button-primary-background-disabled: $transparent !default;
+$button-primary-border-color-disabled: $transparent !default;
+$button-primary-color-disabled: $color-disabled !default;
+
+$button-variants: (
+  primary: $color-primary,
+  notification: $color-notification,
+  success: $color-success,
+  warning: $color-warning,
+  danger: $color-danger
+) !default; // variants background property
+
+$flat-button-variants: (
+  secondary: $black,
+) !default; // variants background property
+
+$button-sizevariants: (
+  xxs: $font-size-xxs,
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  normal: $font-size-normal,
+  lg: $font-size-lg,
+  xl: $font-size-xl,
+  xxl: $font-size-xxl,
+) !default; // variants font-size property
+
+//
+// Close
+//
+$close-position-top: 0 !default;
+$close-position-right: 0 !default;
+$close-border-width: 0 !default;
+$close-border-type: solid !default;
+$close-border-color: darken-colors($concrete, 2) !default;
+$close-width: 37px !default;
+$close-height: 37px !default;
+$close-background: transparent !default;
+$close-lineheight: 0 !default;
+$close-color: darken-colors($concrete, 3) !default;
+
+$close-sizevariants: (
+  xxs: get-rems(15px, $font-size),
+  xs: get-rems(25px, $font-size),
+  sm: get-rems(35px, $font-size),
+  normal: get-rems(45px, $font-size),
+  lg: get-rems(55px, $font-size),
+  xl: get-rems(65px, $font-size),
+  xxl: get-rems(75px, $font-size),
+) !default; // variants font-size property
+
+//
+// Grid
+//
+$all-screen-max: (
+  xs: $screen-max-xs,
+  sm: $screen-max-sm,
+  md: $screen-max-md
+) !default;
+$all-screen-min: (
+  sm: $screen-min-sm,
+  md: $screen-min-md,
+  lg: $screen-min-lg
+) !default;
+$grid-gutter-width: 15px !default;
+$grid-container-offset: 50px !default;
+$total-cols: 12 !default;
+
+//
+// Input
+//
+$input-primary-txt-color: $color-primary;
+$input-dark-background: $black;
+$input-dark-background-txt: $white;
+
+$input-border-width: 2px !default;
+$input-border-type: solid !default;
+$input-border-color: darken-colors($concrete, 2) !default;
+$input-padding-y: 6px !default;
+$input-padding-x: 6px !default;
+$input-invalid-color: $color-danger !default;
+
+$input-checkbox-border-width: 2px !default;
+$input-checkbox-inner-border-width: 2px !default;
+$input-checkbox-border-type: solid !default;
+$input-checkbox-border-color: $black !default;
+$input-checkbox-inner-spacing: 2px !default;
+$input-checkbox-inner-background: $black !default;
+
+$input-radio-border-width: 2px !default;
+$input-radio-inner-border-width: 2px !default;
+$input-radio-border-type: solid !default;
+$input-radio-border-color: $black !default;
+$input-radio-inner-spacing: 2px !default;
+$input-radio-inner-background: $black !default;
+
+$input-dash-border-width: 2px !default;
+
+$input-variants: (
+  primary: $color-primary,
+  secondary: $white,
+  notification: $color-notification,
+  success: $color-success,
+  warning: $color-warning,
+  danger: $color-danger
+) !default; // variants for border property
+
+$input-sizevariants: (
+  xxs: $font-size-xxs,
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  normal: $font-size-normal,
+  lg: $font-size-lg,
+  xl: $font-size-xl,
+  xxl: $font-size-xxl,
+) !default; // variants font-size property
+
+//
+// Modal Container
+//
+$modal-container-z-index: 999 !default;
+$modal-container-background: rgba(0, 0, 0, 0.7) !default;
+$modal-container-close-width: 45px !default;
+$modal-container-close-height: 45px !default;
+
+$modal-min-height: 200px !default;
+$modal-background: $white !default;
+$modal-border-radius: 0 !default;
+
+$modal-children-padding-y: 10px !default;
+$modal-children-padding-x: 10px !default;
+
+//
+// Select
+//
+$select-border-width: 1px !default;
+$select-border-type: solid !default;
+$select-border-color: darken-colors($concrete, 2) !default;
+$select-padding-y: 6px !default;
+$select-padding-x: 6px !default;
+
+$select-list-margin-y: 0 !default;
+$select-list-margin-x: 0 !default;
+$select-list-border-width: 1px !default;
+$select-list-border-type: solid !default;
+$select-list-border-color: darken-colors($concrete, 2) !default;
+$select-list-max-height: 200px !default;
+$select-list-padding-y: 5px !default;
+$select-list-padding-x: 0 !default;
+$select-list-background: $white !default;
+
+$select-variants: (
+  primary: $color-primary,
+  secondary: $white,
+  notification: $color-notification,
+  success: $color-success,
+  warning: $color-warning,
+  danger: $color-danger
+) !default; // variants for border property
+
+$select-sizevariants: (
+  xxs: $font-size-xxs,
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  normal: $font-size-normal,
+  lg: $font-size-lg,
+  xl: $font-size-xl,
+  xxl: $font-size-xxl,
+) !default; // variants font-size property
+
+//
+// Toaster
+//
+$toastr-z-index: 1000;
+
+$toastr-list-margin-y: 10px !default;
+$toastr-list-margin-x: auto !default;
+$toastr-list-border-width: 1px !default;
+$toastr-list-border-type: solid !default;
+$toastr-list-border-color: darken-colors($concrete, 2) !default;
+$toastr-list-border-radius: 3px !default;
+$toastr-list-max-width: 1020px !default;
+$toastr-list-padding-y: 12px !default;
+$toastr-list-padding-x: 10px !default;
+$toastr-list-background: $white !default;
+
+$toaster-variants: (
+  notification: $color-notification,
+  success: $color-success,
+  warning: $color-warning,
+  danger: $color-danger
+) !default; // variants for background property
+
+//
+// Loader
+//
+
+$loader-width: 50px !default;
+$loader-height: 50px !default;
+$loader-color: $color-primary !default;
+$loader-font-size: $font-size-xl !default;
+
+
+//
+// Content Loader
+//
+
+$content-loader-background: #f6f7f9;
+$content-loader-darkgradient: #dfe1e4;
+
+$screen-media: sm !default;
+
+// ---- Page --- //
+
+//
+// Body
+//
+
+$body-background: #191919 !default;
+$body-color: $white !default;

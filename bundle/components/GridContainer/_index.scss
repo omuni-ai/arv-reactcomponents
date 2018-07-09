@@ -1,0 +1,10 @@
+@import "./styles/base";
+@import "./styles/media";
+
+@if $screen-media==xs {
+  @include grid-container;
+}
+
+@else if $screen-media==sm {
+  @include grid-container-769;
+}

@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
+<LazyImgExample>
+  <div>
+    <LazyImg
+      alt="NNNOW"
+      className="nw-carouselexample-img1"
+      index={0}
+      offset={300}
+      onError={[Function]}
+      onLoad={[Function]}
+      onWinLoad={true}
+      parentElement={null}
+      src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+    >
+      <div
+        className="nwc-lazyimg-container nw-carouselexample-img1"
+      >
+        <img
+          alt="NNNOW"
+          className="nwc-lazyimg "
+          onError={[Function]}
+          onLoad={[Function]}
+          src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+        />
+      </div>
+    </LazyImg>
+    <LazyImg
+      alt="NNNOW"
+      className="nw-carouselexample-img2"
+      index={0}
+      offset={300}
+      onError={[Function]}
+      onLoad={[Function]}
+      onWinLoad={false}
+      parentElement={null}
+      src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+    >
+      <div
+        className="nwc-lazyimg-container nw-carouselexample-img2"
+      >
+        <img
+          alt="NNNOW"
+          className="nwc-lazyimg "
+          onError={[Function]}
+          onLoad={[Function]}
+          src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+        />
+      </div>
+    </LazyImg>
+    <LazyImg
+      alt="NNNOW"
+      className="nw-carouselexample-img3"
+      index={0}
+      offset={0}
+      onError={[Function]}
+      onLoad={[Function]}
+      onWinLoad={false}
+      parentElement={
+        <div>
+          <div
+            class="nwc-lazyimg-container nw-carouselexample-img1"
+          >
+            <img
+              class="nwc-lazyimg "
+              src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+              alt="NNNOW"
+            />
+          </div>
+          <div
+            class="nwc-lazyimg-container nw-carouselexample-img2"
+          >
+            <img
+              class="nwc-lazyimg "
+              src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+              alt="NNNOW"
+            />
+          </div>
+          <div
+            class="nwc-lazyimg-container nw-carouselexample-img3"
+          />
+          <div
+            class="nwc-lazyimg-container nw-carouselexample-img4"
+          >
+            <img
+              class="nwc-lazyimg "
+              src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+              alt="NNNOW"
+            />
+          </div>
+        </div>
+      }
+      src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+    >
+      <div
+        className="nwc-lazyimg-container nw-carouselexample-img3"
+      />
+    </LazyImg>
+    <LazyImg
+      alt="NNNOW"
+      className="nw-carouselexample-img4"
+      index={0}
+      offset={300}
+      onError={[Function]}
+      onLoad={[Function]}
+      onWinLoad={false}
+      parentElement={
+        <div>
+          <div
+            class="nwc-lazyimg-container nw-carouselexample-img1"
+          >
+            <img
+              class="nwc-lazyimg "
+              src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+              alt="NNNOW"
+            />
+          </div>
+          <div
+            class="nwc-lazyimg-container nw-carouselexample-img2"
+          >
+            <img
+              class="nwc-lazyimg "
+              src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+              alt="NNNOW"
+            />
+          </div>
+          <div
+            class="nwc-lazyimg-container nw-carouselexample-img3"
+          />
+          <div
+            class="nwc-lazyimg-container nw-carouselexample-img4"
+          >
+            <img
+              class="nwc-lazyimg "
+              src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+              alt="NNNOW"
+            />
+          </div>
+        </div>
+      }
+      src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+    >
+      <div
+        className="nwc-lazyimg-container nw-carouselexample-img4"
+      >
+        <img
+          alt="NNNOW"
+          className="nwc-lazyimg "
+          onError={[Function]}
+          onLoad={[Function]}
+          src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+        />
+      </div>
+    </LazyImg>
+  </div>
+</LazyImgExample>
+`;
+
+exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
+<div>
+  <LazyImg
+    alt="NNNOW"
+    className="nw-carouselexample-img1"
+    index={0}
+    offset={300}
+    onError={[Function]}
+    onLoad={[Function]}
+    onWinLoad={true}
+    parentElement={null}
+    src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+  />
+  <LazyImg
+    alt="NNNOW"
+    className="nw-carouselexample-img2"
+    index={0}
+    offset={300}
+    onError={[Function]}
+    onLoad={[Function]}
+    onWinLoad={false}
+    parentElement={null}
+    src="https://static.nnnow.com/client/assets/images/nnnow-logo-beta_1.png"
+  />
+</div>
+`;

@@ -1,0 +1,224 @@
+.nwc-inp-container {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.nwc-inp {
+  border: $input-border-width $input-border-type $input-border-color;
+  padding: $input-padding-y $input-padding-x;
+  outline: 0;
+
+  &.is-invalid {
+    border-color: $input-invalid-color;
+  }
+
+  &.is-untouched {
+    border-color: unset;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.nwc-inp-primary-txt {
+  border: 0;
+  color: $input-primary-txt-color;
+}
+
+.nwc-inp-dark-background {
+  border: 0;
+  background: $input-dark-background;
+  color: $input-dark-background-txt;
+
+  /* stylelint-disable */
+  &::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: $input-dark-background-txt;
+  }
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $input-dark-background-txt;
+  }
+  &:-ms-input-placeholder {
+    /* IE 10+ */
+    color: $input-dark-background-txt;
+  }
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: $input-dark-background-txt;
+  }
+  /* stylelint-enable */
+}
+
+@each $input-variants, $value in $input-variants {
+  .nwc-inp-#{$input-variants} {
+    border-color: $value;
+  }
+}
+
+.nwc-inp-checkbox {
+  position: relative;
+  display: inline-block;
+  border: $input-checkbox-border-width $input-checkbox-border-type $input-checkbox-border-color;
+  min-width: $font-size-normal;
+  min-height: $font-size-normal;
+  font-size: $font-size-normal;
+  user-select: none;
+
+  &.is-checked {
+    &::before {
+      content: " ";
+      position: absolute;
+      top: $input-checkbox-inner-spacing;
+      bottom: $input-checkbox-inner-spacing;
+      left: $input-checkbox-inner-spacing;
+      right: $input-checkbox-inner-spacing;
+      border: $input-checkbox-inner-border-width $input-checkbox-border-type $input-checkbox-border-color;
+      background: $input-checkbox-inner-background;
+    }
+  }
+
+  &.is-covered {
+    border: 0;
+    background: darken-colors($concrete, 2);
+
+    &::before {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &.is-disabled {
+    border: 0 !important;
+    background: darken-colors($concrete, 2) !important;
+    cursor: not-allowed;
+
+    &::before {
+      background: $transparent !important;
+    }
+  }
+}
+
+@each $input-variants, $value in $input-variants {
+  .nwc-inp-checkbox-#{$input-variants} {
+    &.is-checked {
+      &::before {
+        background: $value;
+        border-color: set-color($value, $transparent);
+      }
+    }
+  }
+}
+
+.nwc-inp-radio {
+  position: relative;
+  display: inline-block;
+  border: $input-radio-border-width $input-radio-border-type $input-radio-border-color;
+  border-radius: 50%;
+  min-width: $font-size-normal;
+  min-height: $font-size-normal;
+  font-size: $font-size-normal;
+  user-select: none;
+
+  &.is-checked {
+    &::before {
+      content: " ";
+      position: absolute;
+      top: $input-radio-inner-spacing;
+      bottom: $input-radio-inner-spacing;
+      left: $input-radio-inner-spacing;
+      right: $input-radio-inner-spacing;
+      border: $input-radio-inner-border-width $input-radio-border-type $input-radio-border-color;
+      border-radius: 50%;
+      background: $input-radio-inner-background;
+    }
+  }
+
+  
+  &.is-covered {
+    border: 0;
+    background: darken-colors($concrete, 2);
+
+    &::before {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &.is-disabled {
+    border: 0 !important;
+    background: darken-colors($concrete, 2) !important;
+    cursor: not-allowed;
+
+    &::before {
+      background: $transparent !important;
+    }
+  }
+}
+
+@each $input-variants, $value in $input-variants {
+  .nwc-inp-radio-#{$input-variants} {
+    &.is-checked {
+      &::before {
+        background: $value;
+        border-color: set-color($value, $transparent);
+      }
+    }
+  }
+}
+
+.nwc-inp-dash {
+  border-width: 0;
+  border-bottom-width: $input-dash-border-width;
+}
+
+/* stylelint-disable */
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+
+
+/* stylelint-enable */
+
+// Size Variants
+@each $input-sizevariants, $value in $input-sizevariants {
+  .nwc-inp-#{$input-sizevariants} {
+    min-width: $value;
+    min-height: $value;
+    font-size: $value;
+  }
+}
+
+.nwc-inp-hiddenwrapper {
+  display: none;
+}
+
+.nwc-inp-hide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0, 0);
+  border: 0;
+  min-width: 1px;
+  max-width: 1px;
+  min-height: 1px;
+  max-height: 1px;
+  background: $transparent;
+  color: $transparent;
+  outline: 0;
+  caret-color: $transparent;
+}

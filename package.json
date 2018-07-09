@@ -56,7 +56,10 @@
     "lint": "eslint src --ext .jsx,.js",
     "lintfix": "yarn eslint --fix .",
     "prepush": "npm run build",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "cleanbundles": "rm -rf bundle/cjs && mkdir bundle/cjs && rm -rf bundle/components && mkdir bundle/components",
+    "bundle": "npm run cleanbundles && npx babel src/components --out-dir bundle/cjs && cp -R src/components/** bundle/components",
+    "publishToNpm": "npm run bundle && cd bundle && npm publish"
   },
   "jest": {
     "collectCoverageFrom": [

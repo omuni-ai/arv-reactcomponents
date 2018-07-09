@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
+<AutocompleteTest>
+  <Autocomplete
+    className=""
+    getSelection={[Function]}
+    inpList={
+      Array [
+        "Arrow",
+        "Levis",
+        "Hidden",
+        "Gap",
+      ]
+    }
+    minTextLength={0}
+    renderInput={[Function]}
+    renderList={[Function]}
+    selectedIndex={-1}
+  >
+    <div
+      className="nwc-autocomplete "
+    >
+      <Input
+        checked={null}
+        className=""
+        disabled={false}
+        id="autocomplete-input"
+        inputRef={[Function]}
+        maxLength={null}
+        name={null}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Enter text"
+        type="text"
+        validateWithPattern={null}
+        value=""
+      >
+        <input
+          checked={null}
+          className="nwc-inp  "
+          disabled={false}
+          id="autocomplete-input"
+          maxLength={null}
+          name={null}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Enter text"
+          tabIndex="0"
+          type="text"
+          value=""
+        />
+      </Input>
+    </div>
+  </Autocomplete>
+</AutocompleteTest>
+`;
+
+exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
+<Autocomplete
+  className=""
+  getSelection={[Function]}
+  inpList={
+    Array [
+      "Arrow",
+      "Levis",
+      "Hidden",
+      "Gap",
+    ]
+  }
+  minTextLength={0}
+  renderInput={[Function]}
+  renderList={[Function]}
+  selectedIndex={-1}
+/>
+`;

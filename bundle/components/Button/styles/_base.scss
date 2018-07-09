@@ -1,0 +1,73 @@
+.nwc-btn {
+  display: inline-block;
+  border: $button-border-width $button-border-type $button-border-color;
+  padding: $button-padding-y $button-padding-x;
+  background: $button-background;
+  cursor: pointer;
+  color: $button-color;
+  outline: 0;
+
+  &[disabled] {
+    border: $button-border-width $button-border-type $button-border-color-disabled !important;
+    cursor: not-allowed;
+    color: $button-color-disabled !important;
+  }
+}
+
+.nwc-btn-primary-txt {
+  border: 0;
+  color: $button-primary-txt-color;
+
+  &[disabled] {
+    border: $button-border-width $button-border-type $button-primary-border-color-disabled !important;
+    background: $button-primary-background-disabled !important;
+    cursor: not-allowed;
+    color: $button-primary-color-disabled !important;
+  }
+}
+
+.nwc-btn-dark-background {
+  border: 0;
+  background: $button-dark-background;
+  color: $button-dark-background-txt;
+}
+
+@each $button-variants, $value in $button-variants {
+  .nwc-btn-#{$button-variants} {
+    background: $value;
+    color: set-color($value, $compliment-for-dark, $compliment-for-light);
+    border-color: $value;
+    @if(lightness($value) > $lightness-threshold) {
+      border-color: $compliment-for-light;
+    }
+
+    &[disabled] {
+      border: $button-border-width $button-border-type $button-solid-border-color-disabled !important;
+      background: $button-solid-background-disabled !important;
+      cursor: not-allowed;
+      color: $button-solid-color-disabled !important;
+    }
+  }
+}
+
+@each $flat-button-variants, $value in $flat-button-variants {
+  .nwc-btn-#{$flat-button-variants} {
+    background: $white;
+    color: $value;
+    border-color: $value;
+
+    &[disabled] {
+      border: $button-border-width $button-border-type $button-flat-border-color-disabled !important;
+      background: $button-flat-background-disabled !important;
+      cursor: not-allowed;
+      color: $button-flat-color-disabled !important;
+    }
+  }
+}
+
+// Size Variants
+@each $button-sizevariants, $value in $button-sizevariants {
+  .nwc-btn-#{$button-sizevariants} {
+    font-size: $value;
+  }
+}

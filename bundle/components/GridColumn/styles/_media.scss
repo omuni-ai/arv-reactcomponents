@@ -1,0 +1,15 @@
+/** Media Mixins */
+
+@mixin grid-col-769 {
+  @each $all-screen-min, $value in $all-screen-min {
+    .nwc-grid-col-#{$all-screen-min} {
+      @extend %nwc-grid-col-#{$all-screen-min}-769;
+    }
+
+    @for $i from 1 through $total-cols {
+      .nwc-grid-col-#{$all-screen-min}-#{$i} {
+        @extend %nwc-grid-col-#{$all-screen-min}-#{$i}-769;
+      }
+    }
+  }
+}

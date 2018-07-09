@@ -1,0 +1,22 @@
+@function darken-colors($color, $times) {
+  @if $times==0 {
+    @error "No 0 value";
+  }
+  @return darken($color, $times*6%);
+}
+
+@function lighten-colors($color, $times) {
+  @if $times==0 {
+    @error "No 0 value";
+  }
+  @return lighten($color, $times*6%);
+}
+
+@function set-color($color, $compliment-for-dark: $white, $compliment-for-light: $black) {
+  @if (lightness($color) < $lightness-threshold) {
+    @return $compliment-for-dark;
+  }
+  @else {
+    @return $compliment-for-light;
+  }
+}
