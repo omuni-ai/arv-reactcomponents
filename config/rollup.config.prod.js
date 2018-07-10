@@ -1,11 +1,10 @@
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs'
-import nodeResolve from 'rollup-plugin-node-resolve'
-import { uglify } from 'rollup-plugin-uglify'
-import replace from 'rollup-plugin-replace'
+import commonjs from 'rollup-plugin-commonjs';
+import { uglify } from 'rollup-plugin-uglify';
+import replace from 'rollup-plugin-replace';
  
-var productionConfig =
+var config =
 {
    input:  'src/components/index.js',
    output: [
@@ -43,9 +42,6 @@ var productionConfig =
           "react"
         ]
       }),
-      nodeResolve({
-        jsnext: true
-      }),
       replace({
          'process.env.NODE_ENV': JSON.stringify( 'production' )
       }),
@@ -61,4 +57,4 @@ var productionConfig =
    ]
 }
  
-export default productionConfig;
+export default config;
