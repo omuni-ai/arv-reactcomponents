@@ -1,6 +1,6 @@
 import {
   windowRequestAnimationFrame,
-  requestAnimationFrameVendor,
+  vendorRequestAnimationFrame,
 } from "../constants";
 
 let lastTime = 0;
@@ -17,7 +17,7 @@ const customFn = cB => {
 
 function requestAnimationFrame(callback) {
   const rAF =
-    windowRequestAnimationFrame || requestAnimationFrameVendor || customFn;
+    windowRequestAnimationFrame || vendorRequestAnimationFrame || customFn;
   return rAF(callback);
 }
 
