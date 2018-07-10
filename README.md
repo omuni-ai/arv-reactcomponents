@@ -1,2 +1,2 @@
-## arvind-components
-React Bootstrap Components for Arvind
+## arv-reactcomponents
+Project in development
