@@ -57,7 +57,8 @@
     "lintfix": "yarn eslint --fix .",
     "prepush": "npm run build",
     "precommit": "npm run lint",
-    "bundle": "rollup -c config/rollup.config.dev.js && rollup -c config/rollup.config.prod.js && cp -R src/components/** bundle/components",
+    "initpackage": "cd bundle && rm -rf components",
+    "bundle": "npm run initpackage && rollup -c config/rollup.config.dev.js && rollup -c config/rollup.config.prod.js",
     "publishpackage": "npm run bundle && cd bundle && npm publish"
   },
   "jest": {
