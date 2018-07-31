@@ -11,6 +11,12 @@
   padding: $select-padding-y $select-padding-x;
   cursor: pointer;
   user-select: none;
+
+  &.is-disabled {
+    border: $select-border-width $select-border-type $select-border-color-disabled !important;
+    cursor: not-allowed;
+    color: $select-color-disabled !important;
+  }
 }
 
 .nwc-select-arrowbottom {

@@ -129,6 +129,12 @@ class Select extends PureComponent {
     );
   }
 
+  get isDisabledClass() {
+    const { disabled } = this.props;
+
+    return (disabled && "is-disabled") || "";
+  }
+
   scrollHighlightedElemInView() {
     Utils.scrollElemToView(
       this.listNodeWrapperRef,
@@ -148,9 +154,11 @@ class Select extends PureComponent {
   }
 
   toggleDisplay(bool) {
+    const { disabled } = this.props;
+
     this.setState(
       {
-        isActive: bool,
+        isActive: !disabled ? bool : false,
       },
       () => {
         this.scrollHighlightedElemInView();
@@ -204,6 +212,7 @@ class Select extends PureComponent {
     const {
       id,
       className,
+      disabled,
       selectedValue,
       inpList,
       getSelection,
@@ -216,7 +225,7 @@ class Select extends PureComponent {
     return (
       <div className={`nwc-select-container ${className}`}>
         <Label
-          className="nwc-select"
+          className={`nwc-select ${this.isDisabledClass}`}
           htmlFor={id || this.inputId}
           {...otherProps}
         >
@@ -233,6 +242,7 @@ class Select extends PureComponent {
             ref={context => {
               this.inputRef = context;
             }}
+            disabled={disabled}
             readOnly={BLOCK_VIRTUAL_KEYBOARD}
           />
           <i className="icomoon-arrow_bottom nwc-select-arrowbottom" />
@@ -246,6 +256,7 @@ class Select extends PureComponent {
 Select.defaultProps = {
   id: null,
   className: "",
+  disabled: false,
   selectedIndex: 0,
   getSelection: Utils.noop,
   compareProp: undefined,
@@ -254,6 +265,7 @@ Select.defaultProps = {
 Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   selectedIndex: PropTypes.number,
   selectedValue: PropTypes.oneOfType([
     PropTypes.object,

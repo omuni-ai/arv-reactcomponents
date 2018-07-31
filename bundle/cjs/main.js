@@ -2049,8 +2049,11 @@ var Select = function (_PureComponent) {
     value: function toggleDisplay(bool) {
       var _this5 = this;
 
+      var disabled = this.props.disabled;
+
+
       this.setState({
-        isActive: bool
+        isActive: !disabled ? bool : false
       }, function () {
         _this5.scrollHighlightedElemInView();
       });
@@ -2108,13 +2111,14 @@ var Select = function (_PureComponent) {
       var _props = this.props,
           id = _props.id,
           className = _props.className,
+          disabled = _props.disabled,
           selectedValue = _props.selectedValue,
           inpList = _props.inpList,
           getSelection = _props.getSelection,
           renderList = _props.renderList,
           compareProp = _props.compareProp,
           selectedIndex = _props.selectedIndex,
-          otherProps = _objectWithoutProperties$a(_props, ["id", "className", "selectedValue", "inpList", "getSelection", "renderList", "compareProp", "selectedIndex"]);
+          otherProps = _objectWithoutProperties$a(_props, ["id", "className", "disabled", "selectedValue", "inpList", "getSelection", "renderList", "compareProp", "selectedIndex"]);
 
       return react.createElement(
         "div",
@@ -2122,7 +2126,7 @@ var Select = function (_PureComponent) {
         react.createElement(
           Label,
           _extends$a({
-            className: "nwc-select",
+            className: "nwc-select " + this.isDisabledClass,
             htmlFor: id || this.inputId
           }, otherProps),
           selectedValue[compareProp] || selectedValue,
@@ -2138,12 +2142,21 @@ var Select = function (_PureComponent) {
             ref: function ref(context) {
               _this7.inputRef = context;
             },
+            disabled: disabled,
             readOnly: BLOCK_VIRTUAL_KEYBOARD
           }),
           react.createElement("i", { className: "icomoon-arrow_bottom nwc-select-arrowbottom" })
         ),
         this.renderListItems(inpVal, inpList, renderList)
       );
+    }
+  }, {
+    key: "isDisabledClass",
+    get: function get() {
+      var disabled = this.props.disabled;
+
+
+      return disabled && "is-disabled" || "";
     }
   }]);
 
@@ -2153,6 +2166,7 @@ var Select = function (_PureComponent) {
 Select.defaultProps = {
   id: null,
   className: "",
+  disabled: false,
   selectedIndex: 0,
   getSelection: Utils.noop,
   compareProp: undefined
@@ -2161,6 +2175,7 @@ Select.defaultProps = {
 Select.propTypes = {
   id: propTypes.string,
   className: propTypes.string,
+  disabled: propTypes.bool,
   selectedIndex: propTypes.number,
   selectedValue: propTypes.oneOfType([propTypes.object, propTypes.string, propTypes.number]).isRequired,
   inpList: propTypes.oneOfType([propTypes.arrayOf(propTypes.object), propTypes.arrayOf(propTypes.string)]).isRequired,

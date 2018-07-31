@@ -239,6 +239,9 @@ $select-border-color: darken-colors($concrete, 2) !default;
 $select-padding-y: 6px !default;
 $select-padding-x: 6px !default;
 
+$select-border-color-disabled: $color-disabled !default;
+$select-color-disabled: $color-disabled !default;
+
 $select-list-margin-y: 0 !default;
 $select-list-margin-x: 0 !default;
 $select-list-border-width: 1px !default;
