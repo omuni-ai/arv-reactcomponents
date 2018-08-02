@@ -33,6 +33,8 @@
 }
 
 .nwc-modal-children {
+  position: relative;
+  z-index: 0;
   display: inline-block;
   overflow: auto;
   width: 100%;
