@@ -1,10 +1,14 @@
 import React from "react";
 import { GridRow, GridColumn, Button, Ripple } from "../../components";
+import ShowCode from "../ShowCode";
+
+const componentFilePath = "ButtonDisplay/index.js";
 
 function ButtonDisplay() {
   return (
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
-      <h1>Buttons</h1>
+      <h1 className="nw-header">Buttons</h1>
+      <ShowCode fileName={componentFilePath} />
       <GridRow>
         <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
           <h2>Color Variants</h2>

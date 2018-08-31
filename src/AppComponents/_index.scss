@@ -22,9 +22,15 @@
   margin-bottom: 10px;
 }
 
+.nw-header {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 @import "./app/index";
 @import "./AutocompleteExample/index";
 @import "./ColorsDisplay/index";
 @import "./FontSizes/index";
 @import "./SelectExample/index";
 @import "./CarouselExample/index";
+@import "./ShowCode/index";
