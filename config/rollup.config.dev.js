@@ -20,10 +20,15 @@ var config = {
     }),
     commonjs({
       include: 'node_modules/**',
+      exclude: [
+        'node_modules/react',
+        'node_modules/prop-types'
+      ],
       namedExports: {
-        'node_modules/react/index.js': ['cloneElement', 'createElement', 'PropTypes',
+        'node_modules/react/index.js': ['cloneElement', 'createElement',
           'Children', 'Component', 'PureComponent', 'Fragment'
         ],
+        'node_modules/prop-types/index.js': ['PropTypes'],
         'src/components/constants.js': ['windowRequestAnimationFrame', 'vendorRequestAnimationFrame']
       }
     }),

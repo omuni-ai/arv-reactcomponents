@@ -14,3 +14,5 @@ package-lock.json
 hello-world.iml
 yarn.lock
 odin2.0.iml
+bundle/
+coverage/
