@@ -221,11 +221,10 @@ var react = createCommonjsModule(function (module) {
 });
 var react_1 = react.cloneElement;
 var react_2 = react.createElement;
-var react_3 = react.PropTypes;
-var react_4 = react.Children;
-var react_5 = react.Component;
-var react_6 = react.PureComponent;
-var react_7 = react.Fragment;
+var react_3 = react.Children;
+var react_4 = react.Component;
+var react_5 = react.PureComponent;
+var react_6 = react.Fragment;
 
 var factoryWithThrowingShims = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -285,6 +284,7 @@ var propTypes = createCommonjsModule(function (module) {
   module.exports = factoryWithThrowingShims();
 }
 });
+var propTypes_1 = propTypes.PropTypes;
 
 var noop = function noop() {
   return undefined;
@@ -718,10 +718,13 @@ var setUrlParameter = function setUrlParameter(url, name, value) {
   var regex = new RegExp("([?&])" + name + "=.*?(&|$)", "i");
   var separator = url.indexOf("?") !== -1 ? "&" : "?";
   if (url.match(regex)) {
-    return url.replace(regex, "$1" + name + "=" + value + "$2");
+    var replaceWith = value && "$1" + name + "=" + value + "$2" || separator;
+    return url.replace(regex, replaceWith);
   }
 
-  return "" + url + separator + name + "=" + value;
+  var returnUrl = setUrlParameter("" + url + separator + name + "=" + value, name, value);
+
+  return returnUrl;
 };
 
 var Utils = {
@@ -785,7 +788,7 @@ var Ripple = function (_PureComponent) {
       var onClickFn = child.props.onClick || Utils.noop;
 
       var wrappedElement = react.createElement(
-        react_7,
+        react_6,
         null,
         child.props.children,
         react.createElement("span", {
@@ -843,7 +846,7 @@ var Ripple = function (_PureComponent) {
   }]);
 
   return Ripple;
-}(react_6);
+}(react_5);
 
 Ripple.defaultProps = {
   className: ""
@@ -918,7 +921,7 @@ var Close = function (_PureComponent) {
   }]);
 
   return Close;
-}(react_6);
+}(react_5);
 
 Close.defaultProps = {
   className: ""
@@ -993,7 +996,7 @@ var GridContainer = function (_PureComponent) {
   }]);
 
   return GridContainer;
-}(react_6);
+}(react_5);
 
 GridContainer.defaultProps = {
   className: "",
@@ -1074,7 +1077,7 @@ var GridRow = function (_PureComponent) {
   }]);
 
   return GridRow;
-}(react_6);
+}(react_5);
 
 GridRow.defaultProps = {
   className: ""
@@ -1144,7 +1147,7 @@ var GridColumn = function (_PureComponent) {
   }]);
 
   return GridColumn;
-}(react_6);
+}(react_5);
 
 GridColumn.defaultProps = {
   className: ""
@@ -1412,7 +1415,7 @@ var LazyImg = function (_PureComponent) {
   }]);
 
   return LazyImg;
-}(react_6);
+}(react_5);
 
 Utils.onElementScroll(window, function () {
   windowScrollVals = Utils.windowScroll();
@@ -1622,7 +1625,7 @@ var Input$1 = function (_PureComponent) {
   }]);
 
   return Input;
-}(react_6);
+}(react_5);
 
 Input$1.defaultProps = {
   id: null,
@@ -1867,7 +1870,7 @@ var Autocomplete = function (_Component) {
   }]);
 
   return Autocomplete;
-}(react_5);
+}(react_4);
 
 Autocomplete.defaultProps = {
   className: "",
@@ -2161,7 +2164,7 @@ var Select = function (_PureComponent) {
   }]);
 
   return Select;
-}(react_6);
+}(react_5);
 
 Select.defaultProps = {
   id: null,
@@ -2337,7 +2340,7 @@ var Masonry$$1 = function (_PureComponent) {
   }]);
 
   return Masonry$$1;
-}(react_6);
+}(react_5);
 
 Masonry$$1.defaultProps = {
   className: ""
@@ -3044,7 +3047,7 @@ var ModalContainer = function (_PureComponent) {
   }]);
 
   return ModalContainer;
-}(react_6);
+}(react_5);
 
 ModalContainer.defaultProps = {
   className: "",
@@ -3251,7 +3254,7 @@ var Toastr = function (_Component) {
   }]);
 
   return Toastr;
-}(react_5);
+}(react_4);
 
 createBaseContainer$1();
 
@@ -3480,7 +3483,7 @@ var Carousel = function (_PureComponent) {
   }]);
 
   return Carousel;
-}(react_6);
+}(react_5);
 
 Carousel.defaultProps = {
   className: "",
