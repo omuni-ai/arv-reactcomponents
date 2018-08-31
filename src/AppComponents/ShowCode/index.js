@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Button, Modal, Toastr } from "../../components";
 
+const fetchUrl = `http://localhost:3000/api/getComponentData`;
 class ShowCode extends PureComponent {
   constructor(props) {
     super(props);
@@ -9,18 +10,17 @@ class ShowCode extends PureComponent {
     this.state = {
       showCodeIsOpen: false,
       code: null,
-      fetchUrl: `http://localhost:3000/api/getComponentData`,
-      data: { componentFilePath: `${props.fileName}` },
     };
 
+    this.data = { componentFilePath: `${props.fileName}` };
     this.showCodeMsg = this.showCodeMsg.bind(this);
   }
 
   fetchData() {
     if (!this.state.code) {
-      fetch(this.state.fetchUrl, {
+      fetch(fetchUrl, {
         method: "POST",
-        body: JSON.stringify(this.state.data),
+        body: JSON.stringify(this.data),
         headers: {
           "Content-Type": "application/json",
         },
@@ -39,6 +39,7 @@ class ShowCode extends PureComponent {
       showCodeIsOpen: bool,
     });
     Toastr.clearAll();
+    this.fetchData();
   }
 
   render() {
@@ -50,7 +51,6 @@ class ShowCode extends PureComponent {
           className="nwc-btn-sm nwc-btn-notification"
           onClick={() => {
             this.showCodeMsg(true);
-            this.fetchData();
           }}
         >
           Show Code
