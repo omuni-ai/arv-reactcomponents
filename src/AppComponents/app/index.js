@@ -21,38 +21,32 @@ import ButtonToastrExample from "../ButtonToastrExample";
 import CarouselExample from "../CarouselExample";
 import MasonryExample from "../MasonryExample";
 
-class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <GridContainer className="nw-app" strict>
-        <GridRow>
-          <ColorsDisplay />
-          <FontSizes />
-          <MediaBreakpoints />
-          <ButtonDisplay />
-          <InputDisplay />
-          <CheckboxDisplay />
-          <RadioDisplay />
-          <GridDisplay />
+function App() {
+  return (
+    <GridContainer className="nw-app" strict>
+      <GridRow>
+        <ColorsDisplay />
+        <FontSizes />
+        <MediaBreakpoints />
+        <ButtonDisplay />
+        <InputDisplay />
+        <CheckboxDisplay />
+        <RadioDisplay />
+        <GridDisplay />
 
-          <AutocompleteExample />
-          <SelectExample />
-          <InputExample />
-          <ButtonModalExample />
-          <ButtonToastrExample />
-          <CarouselExample />
+        <AutocompleteExample />
+        <SelectExample />
+        <InputExample />
+        <ButtonModalExample />
+        <ButtonToastrExample />
+        <CarouselExample />
 
-          <CSSGlobalClassesDisplay />
-          <JSUtilsDisplay />
-          <MasonryExample />
-        </GridRow>
-      </GridContainer>
-    );
-  }
+        <CSSGlobalClassesDisplay />
+        <JSUtilsDisplay />
+        <MasonryExample />
+      </GridRow>
+    </GridContainer>
+  );
 }
 
 export default App;

@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Button, Modal, Toastr } from "../../components";
 
-const fetchUrl = `http://localhost:3000/api/getComponentData`;
+const fetchUrl = `/api/getComponentData`;
 class ShowCode extends PureComponent {
   constructor(props) {
     super(props);

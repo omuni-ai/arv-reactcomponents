@@ -3,7 +3,6 @@
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 const path = require('path');
-const fs = require('fs');
 const config = require('./webpack.config.dev');
 const paths = require('./paths');
 const apifunction = require('./middleware.js');
