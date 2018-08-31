@@ -11,17 +11,10 @@ const setUrlParameter = (url, name, value) => {
   const regex = new RegExp(`([?&])${name}=.*?(&|$)`, "i");
   const separator = url.indexOf("?") !== -1 ? "&" : "?";
   if (url.match(regex)) {
-    const replaceWith = (value && `$1${name}=${value}$2`) || separator;
-    return url.replace(regex, replaceWith);
+    return url.replace(regex, `$1${name}=${value}$2`);
   }
 
-  const returnUrl = setUrlParameter(
-    `${url}${separator}${name}=${value}`,
-    name,
-    value,
-  );
-
-  return returnUrl;
+  return `${url}${separator}${name}=${value}`;
 };
 
 export { getUrlParameter, setUrlParameter };
