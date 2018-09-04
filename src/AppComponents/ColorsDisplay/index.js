@@ -1,10 +1,14 @@
 import React from "react";
 import { GridRow, GridColumn } from "../../components";
+import ShowCode from "../ShowCode";
+
+const componentFilePath = "ColorsDisplay/index.js";
 
 function ColorsDisplay() {
   return (
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
-      <h1>Colors</h1>
+      <h1 className="nw-header">Colors</h1>
+      <ShowCode fileName={componentFilePath} />
       <GridRow className="nw-color-row">
         <GridColumn className="nwc-grid-col-sm-8 nw-color-block nw-color-white">
           &nbsp;

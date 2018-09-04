@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { GridRow, GridColumn, Input } from "../../components";
+import ShowCode from "../ShowCode";
 
 const value = "";
+const componentFilePath = "RadioDisplay/index.js";
 
 class RadioDisplay extends Component {
   constructor(props) {
@@ -25,7 +27,8 @@ class RadioDisplay extends Component {
 
     return (
       <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
-        <h1>Radio Buttons</h1>
+        <h1 className="nw-header">Radio Buttons</h1>
+        <ShowCode fileName={componentFilePath} />
         <GridRow>
           <GridColumn className="nwc-grid-col-sm-6 nw-block nw-block-white">
             <h2>Color Variants</h2>

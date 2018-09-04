@@ -1,10 +1,14 @@
 import React from "react";
 import { GridRow, GridColumn } from "../../components";
+import ShowCode from "../ShowCode";
+
+const componentFilePath = "GridDisplay/index.js";
 
 function GridDisplay() {
   return (
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
-      <h1>Grid Layout</h1>
+      <h1 className="nw-header">Grid Layout</h1>
+      <ShowCode fileName={componentFilePath} />
       <GridRow>
         <GridColumn>
           <h2>1) .nwc-grid-col class</h2>
