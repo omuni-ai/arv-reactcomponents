@@ -1,5 +1,3 @@
-const express = require('express');
-const app = express();
 const fs = require('fs');
 const pre_path = "src/AppComponents/";
 
