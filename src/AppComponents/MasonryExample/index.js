@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Img, GridRow, GridColumn, Masonry } from "../../components";
+import ShowCode from "../ShowCode";
+
+const componentFilePath = "MasonryExample/index.js";
 
 class MasonryExample extends Component {
   static renderList(item) {
@@ -149,7 +152,8 @@ class MasonryExample extends Component {
   render() {
     return (
       <GridColumn className="nw-block nw-block-white">
-        <h1>Masonry</h1>
+        <h1 className="nw-header">Masonry</h1>
+        <ShowCode fileName={componentFilePath} />
         <GridRow>
           <Masonry
             data={this.state.data}

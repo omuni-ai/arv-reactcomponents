@@ -8,6 +8,10 @@ import {
   Button,
 } from "../../components";
 
+import ShowCode from "../ShowCode";
+
+const componentFilePath = "CarouselExample/index.js";
+
 class CarouselExample extends PureComponent {
   constructor(props) {
     super(props);
@@ -83,10 +87,8 @@ class CarouselExample extends PureComponent {
       </div>
     );
   }
-
   render() {
     const { index } = this.state;
-
     const nextIndex = index + 1;
     const limitNextIndex = nextIndex >= this.items.length ? index : nextIndex;
 
@@ -95,7 +97,8 @@ class CarouselExample extends PureComponent {
 
     return (
       <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
-        <h1>Carousel</h1>
+        <h1 className="nw-header">Carousel</h1>
+        <ShowCode fileName={componentFilePath} />
         <GridRow>
           <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
             <Carousel

@@ -1,10 +1,14 @@
 import React from "react";
 import { GridRow, GridColumn } from "../../components";
+import ShowCode from "../ShowCode";
+
+const componentFilePath = "MediaBreakpoints/index.js";
 
 function MediaBreakpoints() {
   return (
     <GridColumn className="nw-block-wrapper nwc-grid-col-sm-12">
-      <h1>Media Breakpoints</h1>
+      <h1 className="nw-header">Media Breakpoints</h1>
+      <ShowCode fileName={componentFilePath} />
       <GridRow>
         <GridColumn className="nwc-grid-col-sm-6 nw-block">
           <h2>For media max-width</h2>
