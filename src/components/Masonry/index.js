@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import { screenMedia } from "../constants";
-import { GridColumn } from "../";
+import GridColumn from "../GridColumn";
 
 class Masonry extends PureComponent {
   constructor(props) {
