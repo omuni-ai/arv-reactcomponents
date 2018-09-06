@@ -6,6 +6,7 @@ import replace from 'rollup-plugin-replace';
 
 var config = {
   input: 'src/components/index.js',
+  external: ['react', 'prop-types'],
   output: [{
     file: 'bundle/cjs/main.min.js',
     format: 'cjs'
@@ -17,15 +18,7 @@ var config = {
     }),
     commonjs({
       include: 'node_modules/**',
-      exclude: [
-        'node_modules/react',
-        'node_modules/prop-types'
-      ],
       namedExports: {
-        'node_modules/react/index.js': ['cloneElement', 'createElement',
-          'Children', 'Component', 'PureComponent', 'Fragment'
-        ],
-        'node_modules/prop-types/index.js': ['PropTypes'],
         'src/components/constants.js': ['windowRequestAnimationFrame', 'vendorRequestAnimationFrame']
       }
     }),
@@ -40,6 +33,7 @@ var config = {
         "stage-0",
         "react"
       ],
+      plugins: ['external-helpers']
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production')
