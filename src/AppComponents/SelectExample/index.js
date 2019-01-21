@@ -63,7 +63,7 @@ class SelectExample extends Component {
         <div className="nw-sample-select">
           <div className="nw-space-bottom">Select Example</div>
           <Select
-            className="nwc-select-secondary nwc-select-sm nw-select nw-space-bottom"
+            className="nwc-select-sm nw-select nw-space-bottom"
             selectedValue={selectSelectedValue}
             inpList={inpList}
             getSelection={this.getSelectSelection}

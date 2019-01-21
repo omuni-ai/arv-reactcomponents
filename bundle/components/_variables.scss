@@ -1,61 +1,3 @@
-/** Color Names picked from http://chir.ag/projects/name-that-color/ */
-
-$transparent: transparent !default;
-$white: #fff !default;
-$black: #000 !default;
-$violet-red: #f2258b !default;
-$wild-strawberry: #f39 !default;
-$lochmara: #0182cb !default;
-$boston-blue: #3096b4 !default;
-$sushi: #9bb535 !default;
-$web-orange: #ffa500 !default;
-$torch-red: #ea0020 !default;
-$concrete: #f3f3f3 !default;
-$dusty-gray: #999 !default;
-
-$font-size: 18px !default;
-$font-size-xxxs: get-rems(10px, $font-size);
-$font-size-xxsm: get-rems(11px, $font-size);
-$font-size-xxs: get-rems(12px, $font-size);
-$font-size-xs: get-rems(14px, $font-size);
-$font-size-sm: get-rems(16px, $font-size);
-$font-size-normal: 1rem !default;
-$font-size-lg: get-rems(20px, $font-size);
-$font-size-xl: get-rems(22px, $font-size);
-$font-size-xxl: get-rems(24px, $font-size);
-$font-size-xxxl: get-rems(28px, $font-size);
-
-$screen-max-xs: 768px !default;
-$screen-min-sm: 769px !default;
-$screen-max-sm: 992px !default;
-$screen-min-md: 993px !default;
-$screen-max-md: 1200px !default;
-$screen-min-lg: 1201px !default;
-
-// Value more than specified value will be considered dark colors
-$lightness-threshold: 70 !default;
-
-//
-// Colors
-//
-$compliment-for-dark: $white !default;
-$compliment-for-light: $black !default;
-
-$color-primary: $wild-strawberry !default;
-$color-secondary: $lochmara !default;
-$color-notification: $boston-blue !default;
-$color-success: $sushi !default;
-$color-warning: $web-orange !default;
-$color-danger: $torch-red !default;
-$color-disabled: $dusty-gray !default;
-
-//
-// Common File
-//
-$common-scrollbar-track: darken-colors($concrete, 1) !default;
-$common-scrollbar-thumb: darken-colors($concrete, 5) !default;
-$common-color-primary: $color-primary;
-
 // ---- Components ---- //
 
 //
@@ -76,7 +18,7 @@ $autocomplete-list-background: $white !default;
 // Button
 //
 
-$button-primary-txt-color: $color-primary;
+$button-primary-txt-color: $color-primary !default;
 $button-dark-background: $black !default;
 $button-dark-background-txt: $white !default;
 
@@ -88,20 +30,20 @@ $button-padding-x: 6px !default;
 $button-background: $transparent !default;
 $button-color: $black !default;
 
-$button-border-color-disabled: $color-disabled;
-$button-color-disabled: $color-disabled;
+$button-border-color-disabled: $color-disabled !default;
+$button-color-disabled: $color-disabled !default;
 
-$button-solid-background-disabled: $color-disabled;
-$button-solid-border-color-disabled: $color-disabled;
+$button-solid-background-disabled: $color-disabled !default;
+$button-solid-border-color-disabled: $color-disabled !default;
 $button-solid-color-disabled: $white !default;
 
 $button-flat-background-disabled: $white !default;
-$button-flat-border-color-disabled: $color-disabled;
-$button-flat-color-disabled: $color-disabled;
+$button-flat-border-color-disabled: $color-disabled !default;
+$button-flat-color-disabled: $color-disabled !default;
 
 $button-primary-background-disabled: $transparent !default;
 $button-primary-border-color-disabled: $transparent !default;
-$button-primary-color-disabled: $color-disabled;
+$button-primary-color-disabled: $color-disabled !default;
 
 $button-variants: (
   primary: $color-primary,
@@ -109,11 +51,11 @@ $button-variants: (
   success: $color-success,
   warning: $color-warning,
   danger: $color-danger
-); // variants background property
+) !default; // variants background property
 
 $flat-button-variants: (
   secondary: $black,
-); // variants background property
+) !default; // variants background property
 
 $button-sizevariants: (
   xxs: $font-size-xxs,
@@ -123,7 +65,7 @@ $button-sizevariants: (
   lg: $font-size-lg,
   xl: $font-size-xl,
   xxl: $font-size-xxl,
-); // variants font-size property
+) !default; // variants font-size property
 
 //
 // Close
@@ -147,7 +89,7 @@ $close-sizevariants: (
   lg: get-rems(55px, $font-size),
   xl: get-rems(65px, $font-size),
   xxl: get-rems(75px, $font-size),
-); // variants font-size property
+) !default; // variants font-size property
 
 //
 // Grid
@@ -156,12 +98,12 @@ $all-screen-max: (
   xs: $screen-max-xs,
   sm: $screen-max-sm,
   md: $screen-max-md
-);
+) !default;
 $all-screen-min: (
   sm: $screen-min-sm,
   md: $screen-min-md,
   lg: $screen-min-lg
-);
+) !default;
 $grid-gutter-width: 15px !default;
 $grid-container-offset: 50px !default;
 $total-cols: 12 !default;
@@ -169,7 +111,7 @@ $total-cols: 12 !default;
 //
 // Input
 //
-$input-primary-txt-color: $color-primary;
+$input-primary-txt-color: $color-primary !default;
 $input-dark-background: $black !default;
 $input-dark-background-txt: $white !default;
 
@@ -178,7 +120,7 @@ $input-border-type: solid !default;
 $input-border-color: darken-colors($concrete, 2) !default;
 $input-padding-y: 6px !default;
 $input-padding-x: 6px !default;
-$input-invalid-color: $color-danger;
+$input-invalid-color: $color-danger !default;
 
 $input-checkbox-border-width: 2px !default;
 $input-checkbox-inner-border-width: 2px !default;
@@ -198,12 +140,12 @@ $input-dash-border-width: 2px !default;
 
 $input-variants: (
   primary: $color-primary,
-  secondary: $white,
+  secondary: $color-secondary,
   notification: $color-notification,
   success: $color-success,
   warning: $color-warning,
   danger: $color-danger
-); // variants for border property
+) !default; // variants for border property
 
 $input-sizevariants: (
   xxs: $font-size-xxs,
@@ -213,7 +155,7 @@ $input-sizevariants: (
   lg: $font-size-lg,
   xl: $font-size-xl,
   xxl: $font-size-xxl,
-); // variants font-size property
+) !default; // variants font-size property
 
 //
 // Modal Container
@@ -239,8 +181,8 @@ $select-border-color: darken-colors($concrete, 2) !default;
 $select-padding-y: 6px !default;
 $select-padding-x: 6px !default;
 
-$select-border-color-disabled: $color-disabled;
-$select-color-disabled: $color-disabled;
+$select-border-color-disabled: $color-disabled !default;
+$select-color-disabled: $color-disabled !default;
 
 $select-list-margin-y: 0 !default;
 $select-list-margin-x: 0 !default;
@@ -254,12 +196,12 @@ $select-list-background: $white !default;
 
 $select-variants: (
   primary: $color-primary,
-  secondary: $white,
+  secondary: $color-secondary,
   notification: $color-notification,
   success: $color-success,
   warning: $color-warning,
   danger: $color-danger
-); // variants for border property
+) !default; // variants for border property
 
 $select-sizevariants: (
   xxs: $font-size-xxs,
@@ -269,7 +211,7 @@ $select-sizevariants: (
   lg: $font-size-lg,
   xl: $font-size-xl,
   xxl: $font-size-xxl,
-); // variants font-size property
+) !default; // variants font-size property
 
 //
 // Toaster
@@ -292,7 +234,7 @@ $toaster-variants: (
   success: $color-success,
   warning: $color-warning,
   danger: $color-danger
-); // variants for background property
+) !default; // variants for background property
 
 //
 // Loader
@@ -300,8 +242,8 @@ $toaster-variants: (
 
 $loader-width: 50px !default;
 $loader-height: 50px !default;
-$loader-color: $color-primary;
-$loader-font-size: $font-size-xl;
+$loader-color: $color-primary !default;
+$loader-font-size: $font-size-xl !default;
 
 
 //
@@ -321,3 +263,9 @@ $screen-media: sm !default;
 
 $body-background: #191919 !default;
 $body-color: $white !default;
+
+//
+// LazyImg
+//
+
+$lazyimg-container-font-size: 0;

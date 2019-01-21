@@ -11,12 +11,13 @@ function JSUtilsDisplay() {
       <ShowCode fileName={componentFilePath} />
       <GridRow>
         <GridColumn className="nw-block">
-          noop, getBoundClientRect, scrollElemToView, scrollElemToTop, scrollTo,
-          fixScroll, unFixScroll, isBodyFixed, requestIdleCallback,
-          cancelIdleCallback, easeInOut, requestAnimationFrame,
-          cancelAnimationFrame, customPropTypes, windowScroll, localStorage,
-          isMobile, isTouch, onElementScroll, polyfill, preventDefault,
-          preventEventPropagation, getUrlParameter, setUrlParameter
+          noop, addInputBlurForIOS, getBoundClientRect, scrollElemToView,
+          scrollElemToTop, scrollTo, fixScroll, unFixScroll, isBodyFixed,
+          requestIdleCallback, cancelIdleCallback, easeInOut,
+          requestAnimationFrame, cancelAnimationFrame, customPropTypes,
+          windowScroll, localStorage, isMobile, isTouch, onElementScroll,
+          polyfill, preventDefault, preventEventPropagation, getUrlParameter,
+          setUrlParameter
         </GridColumn>
       </GridRow>
     </GridColumn>

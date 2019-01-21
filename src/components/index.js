@@ -15,4 +15,5 @@ export { default as Modal } from "./Modal";
 export { default as Toastr } from "./Toastr";
 export { default as Loader } from "./Loader";
 export { default as Carousel } from "./Carousel";
+export { default as RecyclerView } from "./RecyclerView";
 export { default as Utils } from "./_jsUtils";

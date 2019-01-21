@@ -4,19 +4,30 @@ import Utils from "../_jsUtils";
 
 const LazyImgRef = [];
 let windowScrollVals = Utils.windowScroll();
+let bypass = false;
 class LazyImg extends PureComponent {
   static triggerLoad() {
     LazyImgRef.forEach(item => {
       let self = item;
-      const itemIndex = LazyImgRef.indexOf(self);
+      if (self.isImageInView()) {
+        const itemIndex = LazyImgRef.indexOf(self);
 
-      self.setState({
-        inView: true,
-      });
+        self.setState({
+          inView: true,
+        });
 
-      LazyImgRef.splice(itemIndex, 1);
-      self = null;
+        LazyImgRef.splice(itemIndex, 1);
+        self = null;
+      }
     });
+  }
+
+  static bypass() {
+    bypass = true;
+  }
+
+  static allow() {
+    bypass = false;
   }
 
   constructor(props) {
@@ -29,7 +40,6 @@ class LazyImg extends PureComponent {
       onWinLoad: props.onWinLoad || false,
     };
 
-    this.removeListener = Utils.noop;
     this.onLoad = this.onLoad.bind(this);
     this.onError = this.onError.bind(this);
     this.isInViewport = this.isInViewport.bind(this);
@@ -54,10 +64,6 @@ class LazyImg extends PureComponent {
         }
       }, 300);
     }
-  }
-
-  componentWillUnmount() {
-    this.removeListener();
   }
 
   onLoad() {
@@ -116,30 +122,17 @@ class LazyImg extends PureComponent {
   }
 
   initLazyLoad() {
-    const { src } = this.props;
     this.calcElemVals(this.imgContainerRef);
 
-    if (this.isImageInView()) {
+    if (bypass || this.isImageInView()) {
       this.setState({
         inView: true,
       });
+
+      return;
     }
 
-    this.removeListener = Utils.onElementScroll(
-      window,
-      () => {
-        if (this.isImageInView()) {
-          const imgClone = document.createElement("img");
-          imgClone.src = src;
-          LazyImgRef.push(this);
-
-          Utils.cancelIdleCallback(LazyImg.triggerLoad);
-          Utils.requestIdleCallback(LazyImg.triggerLoad, 300);
-          this.removeListener();
-        }
-      },
-      { passive: true },
-    );
+    LazyImgRef.push(this);
   }
 
   isInViewport(parentVals, elementVals) {
@@ -210,6 +203,7 @@ Utils.onElementScroll(
   window,
   () => {
     windowScrollVals = Utils.windowScroll();
+    LazyImg.triggerLoad();
   },
   { passive: true },
 );
@@ -217,7 +211,7 @@ Utils.onElementScroll(
 LazyImg.defaultProps = {
   onWinLoad: false,
   className: "",
-  alt: "NNNOW",
+  alt: "",
   src: null,
   onLoad: Utils.noop,
   onError: Utils.noop,

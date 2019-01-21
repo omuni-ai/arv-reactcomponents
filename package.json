@@ -31,7 +31,7 @@
     "jsdom": "^11.6.1",
     "mobx": "^3.4.1",
     "mobx-react": "^4.3.5",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "node-sass": "^4.7.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -63,7 +63,7 @@
     "prepush": "npm run build",
     "precommit": "npm run lint",
     "initpackage": "cd bundle && rm -rf components",
-    "bundle": "npm run initpackage && rollup -c config/rollup.config.dev.js && rollup -c config/rollup.config.prod.js",
+    "bundle": "npm run initpackage && rollup -c config/rollup.config.js",
     "publishpackage": "npm run bundle && cd bundle && npm publish"
   },
   "jest": {

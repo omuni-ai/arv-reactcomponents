@@ -2,6 +2,7 @@ import noop from "./noop";
 import isMobile from "./isMobile";
 import isTouch from "./isTouch";
 import polyfill from "./polyfill";
+import addInputBlurForIOS from "./addInputBlurForIOS";
 import easeInOut from "./easingFunctions";
 import scrollTo from "./scrollTo";
 import getBoundClientRect from "./getBoundClientRect";
@@ -18,6 +19,7 @@ import customPropTypes from "./customPropTypes";
 import windowScroll from "./windowScroll";
 import localStorage from "./localStorage";
 import onElementScroll from "./onElementScroll";
+import onElementResize from "./onElementResize";
 import { getUrlParameter, setUrlParameter } from "./urlMethods";
 
 const Utils = {
@@ -25,6 +27,7 @@ const Utils = {
   isMobile,
   isTouch,
   polyfill,
+  addInputBlurForIOS,
   easeInOut,
   scrollTo,
   getBoundClientRect,
@@ -43,6 +46,7 @@ const Utils = {
   windowScroll,
   localStorage,
   onElementScroll,
+  onElementResize,
   getUrlParameter,
   setUrlParameter,
 };

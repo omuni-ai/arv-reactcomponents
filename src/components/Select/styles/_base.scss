@@ -1,11 +1,16 @@
 .nwc-select-container {
   position: relative;
   display: inline-block;
+  border: $select-border-width $select-border-type $select-border-color;
+
+  &.is-disabled {
+    border: $select-border-width $select-border-type $select-border-color-disabled !important;
+    color: $select-color-disabled !important;
+  }
 }
 
 .nwc-select {
   display: inline-block;
-  border: $select-border-width $select-border-type $select-border-color;
   width: 100%;
   height: 100%;
   padding: $select-padding-y $select-padding-x;
@@ -13,9 +18,7 @@
   user-select: none;
 
   &.is-disabled {
-    border: $select-border-width $select-border-type $select-border-color-disabled !important;
     cursor: not-allowed;
-    color: $select-color-disabled !important;
   }
 }
 
@@ -32,11 +35,9 @@
 
 @each $select-variants, $value in $select-variants {
   .nwc-select-#{$select-variants} {
-    background: $value;
-    color: set-color($value, $compliment-for-dark, $compliment-for-light);
-    @if(lightness($value) > $lightness-threshold) {
-      border-color: $compliment-for-light;
-    }
+    background: set-color($value, $compliment-for-dark, $compliment-for-light);
+    color: $value;
+    border-color: $value;
   }
 }
 

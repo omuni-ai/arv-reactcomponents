@@ -4,14 +4,6 @@ import React, { Component } from "react";
 import { Input, Autocomplete, GridColumn } from "../../components";
 
 class AutocompleteExample extends Component {
-  static getList(item) {
-    return (
-      <li className="nw-sample-autocomplete-list" key={item}>
-        {item}
-      </li>
-    );
-  }
-
   constructor(props) {
     super(props);
 
@@ -59,6 +51,7 @@ class AutocompleteExample extends Component {
 
     this.onInpValChange = this.onInpValChange.bind(this);
     this.getInput = this.getInput.bind(this);
+    this.getList = this.getList.bind(this);
     this.getAutocompleteSelection = this.getAutocompleteSelection.bind(this);
   }
 
@@ -87,6 +80,21 @@ class AutocompleteExample extends Component {
     );
   }
 
+  getList(item) {
+    const inpVal = this.state.autocompleteInputValue;
+    if (
+      item.toLowerCase().indexOf((inpVal && inpVal.toLowerCase()) || "") > -1
+    ) {
+      return (
+        <li className="nw-sample-autocomplete-list" key={item}>
+          {item}
+        </li>
+      );
+    }
+
+    return null;
+  }
+
   render() {
     const { inpList } = this.state;
 
@@ -101,7 +109,7 @@ class AutocompleteExample extends Component {
               inpList={inpList}
               getSelection={this.getAutocompleteSelection}
               renderInput={this.getInput}
-              renderList={AutocompleteExample.getList}
+              renderList={this.getList}
             />
           </div>
         </div>

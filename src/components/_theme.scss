@@ -1,0 +1,56 @@
+/** Color Names picked from http://chir.ag/projects/name-that-color/ */
+
+$transparent: transparent !default;
+$white: #fff !default;
+$black: #000 !default;
+$violet-red: #f2258b !default;
+$wild-strawberry: #f39 !default;
+$lochmara: #0182cb !default;
+$boston-blue: #3096b4 !default;
+$sushi: #9bb535 !default;
+$web-orange: #ffa500 !default;
+$torch-red: #ea0020 !default;
+$concrete: #f3f3f3 !default;
+$dusty-gray: #999 !default;
+
+$font-size: 18px !default;
+$font-size-xxxs: get-rems(10px, $font-size) !default;
+$font-size-xxsm: get-rems(11px, $font-size) !default;
+$font-size-xxs: get-rems(12px, $font-size) !default;
+$font-size-xs: get-rems(14px, $font-size) !default;
+$font-size-sm: get-rems(16px, $font-size) !default;
+$font-size-normal: 1rem !default;
+$font-size-lg: get-rems(20px, $font-size) !default;
+$font-size-xl: get-rems(22px, $font-size) !default;
+$font-size-xxl: get-rems(24px, $font-size) !default;
+$font-size-xxxl: get-rems(28px, $font-size) !default;
+
+$screen-max-xs: 768px !default;
+$screen-min-sm: 769px !default;
+$screen-max-sm: 992px !default;
+$screen-min-md: 993px !default;
+$screen-max-md: 1200px !default;
+$screen-min-lg: 1201px !default;
+
+// Value more than specified value will be considered dark colors
+$lightness-threshold: 70 !default;
+
+//
+// Colors
+//
+$compliment-for-dark: $white !default;
+$compliment-for-light: $black !default;
+
+$color-primary: $wild-strawberry !default;
+$color-secondary: $lochmara !default;
+$color-notification: $boston-blue !default;
+$color-success: $sushi !default;
+$color-warning: $web-orange !default;
+$color-danger: $torch-red !default;
+$color-disabled: $dusty-gray !default;
+
+//
+// Common File
+//
+$common-scrollbar-track: darken-colors($concrete, 1) !default;
+$common-scrollbar-thumb: darken-colors($concrete, 5) !default;

@@ -129,6 +129,12 @@ class Select extends PureComponent {
     );
   }
 
+  get isActiveClassName() {
+    const { isActive } = this.state;
+
+    return (isActive && "is-active") || "";
+  }
+
   get isDisabledClass() {
     const { disabled } = this.props;
 
@@ -176,7 +182,7 @@ class Select extends PureComponent {
         return null;
       }
 
-      const onClickFn = elem.props.onClick || Utils.noop;
+      const onSelectFn = elem.props.onSelect || Utils.noop;
       let addClass = "";
       if (index === this.state.selectedListIndex) {
         addClass = "is-active";
@@ -188,7 +194,11 @@ class Select extends PureComponent {
           this.listNode[`item-${index}`] = context;
         },
         onClick: e => {
-          onClickFn(e);
+          onSelectFn(e);
+          this.selectAndHideList(index);
+        },
+        onMouseDown: e => {
+          onSelectFn(e);
           this.selectAndHideList(index);
         },
       });
@@ -223,7 +233,12 @@ class Select extends PureComponent {
     } = this.props;
 
     return (
-      <div className={`nwc-select-container ${className}`}>
+      <div
+        className={`nwc-select-container ${className} ${this.isDisabledClass} ${
+          this.isActiveClassName
+        }`}
+        onTouchStart={Utils.preventEventPropagation}
+      >
         <Label
           className={`nwc-select ${this.isDisabledClass}`}
           htmlFor={id || this.inputId}

@@ -6,7 +6,7 @@ import replace from 'rollup-plugin-replace';
 
 import copyFiles from "./rollup.copyfiles.plugin.js"
 
-var config = {
+var config = [{
   input: 'src/components/index.js',
   external: ['react', 'prop-types'],
   output: [{
@@ -47,6 +47,23 @@ var config = {
       matches: /.*\.scss$/
     })
   ]
-}
+}, {
+  input: 'bundle/cjs/main.js',
+  output: [{
+    file: 'bundle/cjs/main.min.js',
+    format: 'cjs'
+  }],
+  plugins: [
+    uglify({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: false
+    })
+  ]
+}];
 
 export default config;

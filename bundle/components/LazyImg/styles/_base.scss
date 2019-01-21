@@ -1,6 +1,7 @@
 .nwc-lazyimg-container {
   display: inline-block;
   transform: translate3d(0, 0, 0);
+  font-size: $lazyimg-container-font-size;
 }
 
 .nwc-lazyimg {

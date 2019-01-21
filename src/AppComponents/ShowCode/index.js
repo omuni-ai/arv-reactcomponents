@@ -27,16 +27,15 @@ class ShowCode extends PureComponent {
     if (!this.state.code) {
       fetch(fetchUrl, {
         method: "POST",
-        body: JSON.stringify(this.data),
         headers: {
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(this.data),
       })
         .then(response => response.text())
         .then(text => {
-          this.setState({
-            code: text,
-          });
+          this.setState({ code: text });
         });
     }
   }
@@ -69,9 +68,11 @@ class ShowCode extends PureComponent {
             this.showCodeMsg(false);
           }}
         >
-          <SyntaxHighlighter language="javascript" style={prism}>
-            {`${code}`}
-          </SyntaxHighlighter>
+          {code ? (
+            <SyntaxHighlighter language="javascript" style={prism}>
+              {`${code}`}
+            </SyntaxHighlighter>
+          ) : null}
         </Modal>
       </div>
     );

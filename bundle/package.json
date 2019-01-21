@@ -1,6 +1,6 @@
 {
   "name": "arv-reactcomponents",
-  "version": "1.2.2",
+  "version": "1.5.0",
   "description": "Set of components written with React",
   "main": "index.js",
   "scripts": {
@@ -13,12 +13,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Arvind-Internet/arv-reactcomponents.git"
+    "url": "git+https://github.com/omuni-ai/arv-reactcomponents.git"
   },
   "bugs": {
-    "url": "https://github.com/Arvind-Internet/arv-reactcomponents/issues"
+    "url": "https://github.com/omuni-ai/arv-reactcomponents/issues"
   },
-  "homepage": "https://github.com/Arvind-Internet/arv-reactcomponents#readme",
+  "homepage": "https://github.com/omuni-ai/arv-reactcomponents#readme",
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.2.0",

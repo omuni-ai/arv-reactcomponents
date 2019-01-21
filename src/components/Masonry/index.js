@@ -39,7 +39,14 @@ class Masonry extends PureComponent {
   }
 
   get columns() {
-    const { className, data, renderList } = this.props;
+    const {
+      className,
+      data,
+      renderList,
+      columnCount: count,
+      base,
+      ...otherProps
+    } = this.props;
     const { media, columnCount } = this.state;
 
     let grids = [];
@@ -76,6 +83,7 @@ class Masonry extends PureComponent {
         className={`nwc-grid-col-xs-${media} ${className}`}
         // eslint-disable-next-line
         key={key}
+        {...otherProps}
       >
         {item}
       </GridColumn>
@@ -83,28 +91,28 @@ class Masonry extends PureComponent {
   }
 
   getMediaAndColCount() {
-    const { columnCount } = this.props;
+    const { columnCount, base } = this.props;
     const { lg, md, sm, xs = 6 } = columnCount;
     const width = window.innerWidth;
 
     switch (true) {
       case width > screenMedia.lg:
         if (lg) {
-          return { media: lg, count: 12 / lg };
+          return { media: lg, count: base / lg };
         }
       // eslint-disable-next-line
       case width > screenMedia.md:
         if (md) {
-          return { media: md, count: 12 / md };
+          return { media: md, count: base / md };
         }
       // eslint-disable-next-line
       case width > screenMedia.sm:
         if (sm) {
-          return { media: sm, count: 12 / sm };
+          return { media: sm, count: base / sm };
         }
       // eslint-disable-next-line
       default:
-        return { media: xs, count: 12 / xs };
+        return { media: xs, count: base / xs };
     }
   }
 
@@ -121,9 +129,11 @@ class Masonry extends PureComponent {
 
 Masonry.defaultProps = {
   className: "",
+  base: 12,
 };
 
 Masonry.propTypes = {
+  base: PropTypes.number,
   className: PropTypes.string,
   columnCount: PropTypes.shape({
     lg: PropTypes.number,

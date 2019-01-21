@@ -18,7 +18,7 @@ function Img(props) {
 
 Img.defaultProps = {
   className: "",
-  alt: "NNNOW",
+  alt: "",
   src: null,
   onLoad: Utils.noop,
   onError: Utils.noop,

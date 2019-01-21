@@ -146,7 +146,7 @@ class MasonryExample extends Component {
       this.setState({
         data: [...this.state.data, ...newData],
       });
-    }, 10000);
+    }, 5000);
   }
 
   render() {

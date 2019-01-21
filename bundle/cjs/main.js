@@ -122,6 +122,16 @@ function polyfill() {
   window.cancelIdleCallback = cancelIdleCallback$1;
 }
 
+function isTextInput(node) {
+  return ["INPUT"].indexOf(node.nodeName) !== -1;
+}
+
+function addInputBlurForIOS(e) {
+  if (!isTextInput(e.target) && isTextInput(document.activeElement)) {
+    document.activeElement.blur();
+  }
+}
+
 // https://github.com/danro/jquery-easing/blob/master/jquery.easing.js
 
 var easeInOut = function easeInOut(currentTime, start, change, duration) {
@@ -429,6 +439,24 @@ function onElementScroll(element, callback) {
   };
 }
 
+function onElementResize(element, callback) {
+  var optional = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var elem = element;
+
+  var requestAnimationFrameId = void 0;
+  var onResize = function onResize() {
+    cancelAnimationFrame(requestAnimationFrameId);
+    requestAnimationFrameId = requestAnimationFrame$1(callback);
+  };
+
+  elem.addEventListener("resize", onResize, optional);
+
+  return function () {
+    elem.removeEventListener("resize", onResize, optional);
+  };
+}
+
 var getUrlParameter = function getUrlParameter(url, name) {
   var replacedName = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
   var regex = new RegExp("[\\?&]" + replacedName + "=([^&#]*)");
@@ -451,6 +479,7 @@ var Utils = {
   isMobile: isMobile,
   isTouch: isTouch,
   polyfill: polyfill,
+  addInputBlurForIOS: addInputBlurForIOS,
   easeInOut: easeInOut,
   scrollTo: scrollTo,
   getBoundClientRect: getBoundClientRect,
@@ -469,6 +498,7 @@ var Utils = {
   windowScroll: windowScroll,
   localStorage: obj,
   onElementScroll: onElementScroll,
+  onElementResize: onElementResize,
   getUrlParameter: getUrlParameter,
   setUrlParameter: setUrlParameter
 };
@@ -727,11 +757,7 @@ var Close = function (_PureComponent) {
           className = _props.className,
           otherProps = objectWithoutProperties(_props, ["className"]);
 
-      return React__default.createElement(
-        Button,
-        _extends({ className: "nwc-close " + className }, otherProps),
-        "\xD7"
-      );
+      return React__default.createElement(Button, _extends({ className: "nwc-close " + className }, otherProps));
     }
   }]);
   return Close;
@@ -952,7 +978,7 @@ function Img(props) {
 
 Img.defaultProps = {
   className: "",
-  alt: "NNNOW",
+  alt: "",
   src: null,
   onLoad: Utils.noop,
   onError: Utils.noop
@@ -968,6 +994,7 @@ Img.propTypes = {
 
 var LazyImgRef = [];
 var windowScrollVals = Utils.windowScroll();
+var _bypass = false;
 
 var LazyImg = function (_PureComponent) {
   inherits(LazyImg, _PureComponent);
@@ -976,15 +1003,27 @@ var LazyImg = function (_PureComponent) {
     value: function triggerLoad() {
       LazyImgRef.forEach(function (item) {
         var self = item;
-        var itemIndex = LazyImgRef.indexOf(self);
+        if (self.isImageInView()) {
+          var itemIndex = LazyImgRef.indexOf(self);
 
-        self.setState({
-          inView: true
-        });
+          self.setState({
+            inView: true
+          });
 
-        LazyImgRef.splice(itemIndex, 1);
-        self = null;
+          LazyImgRef.splice(itemIndex, 1);
+          self = null;
+        }
       });
+    }
+  }, {
+    key: "bypass",
+    value: function bypass() {
+      _bypass = true;
+    }
+  }, {
+    key: "allow",
+    value: function allow() {
+      _bypass = false;
     }
   }]);
 
@@ -1000,7 +1039,6 @@ var LazyImg = function (_PureComponent) {
       onWinLoad: props.onWinLoad || false
     };
 
-    _this.removeListener = Utils.noop;
     _this.onLoad = _this.onLoad.bind(_this);
     _this.onError = _this.onError.bind(_this);
     _this.isInViewport = _this.isInViewport.bind(_this);
@@ -1031,11 +1069,6 @@ var LazyImg = function (_PureComponent) {
           }
         }, 300);
       }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.removeListener();
     }
   }, {
     key: "onLoad",
@@ -1072,29 +1105,17 @@ var LazyImg = function (_PureComponent) {
   }, {
     key: "initLazyLoad",
     value: function initLazyLoad() {
-      var _this3 = this;
-
-      var src = this.props.src;
-
       this.calcElemVals(this.imgContainerRef);
 
-      if (this.isImageInView()) {
+      if (_bypass || this.isImageInView()) {
         this.setState({
           inView: true
         });
+
+        return;
       }
 
-      this.removeListener = Utils.onElementScroll(window, function () {
-        if (_this3.isImageInView()) {
-          var imgClone = document.createElement("img");
-          imgClone.src = src;
-          LazyImgRef.push(_this3);
-
-          Utils.cancelIdleCallback(LazyImg.triggerLoad);
-          Utils.requestIdleCallback(LazyImg.triggerLoad, 300);
-          _this3.removeListener();
-        }
-      }, { passive: true });
+      LazyImgRef.push(this);
     }
   }, {
     key: "isInViewport",
@@ -1177,12 +1198,13 @@ var LazyImg = function (_PureComponent) {
 
 Utils.onElementScroll(window, function () {
   windowScrollVals = Utils.windowScroll();
+  LazyImg.triggerLoad();
 }, { passive: true });
 
 LazyImg.defaultProps = {
   onWinLoad: false,
   className: "",
-  alt: "NNNOW",
+  alt: "",
   src: null,
   onLoad: Utils.noop,
   onError: Utils.noop,
@@ -1503,37 +1525,43 @@ var Autocomplete = function (_Component) {
 
 
       this.listNode = [];
+      var list = [];
+      var skipped = 0;
 
-      var filteredList = inpList.filter(function (item) {
-        return item.toLowerCase().indexOf(inpVal && inpVal.toLowerCase() || "") > -1;
-      });
-
-      var list = filteredList.map(function (item, index) {
+      inpList.forEach(function (item, index) {
         var elem = renderList(item);
+        var newIndex = index - skipped;
 
         if (!elem) {
-          return null;
+          skipped += 1;
+          return;
         }
 
-        var onClickFn = elem.props.onClick || Utils.noop;
+        var onSelectFn = elem.props.onSelect || Utils.noop;
         var addClass = "";
-        if (index === _this4.state.selectedListIndex) {
+        if (newIndex === _this4.state.selectedListIndex) {
           addClass = "is-active";
         }
-        _this4.listNodeItem[index] = item;
-        return React.cloneElement(elem, {
+        _this4.listNodeItem[newIndex] = item;
+        var clonedElem = React.cloneElement(elem, {
           className: (elem.props.className || "") + " " + addClass,
           ref: function ref(context) {
-            _this4.listNode["item-" + index] = context;
+            _this4.listNode["item-" + newIndex] = context;
           },
           onClick: function onClick(e) {
-            onClickFn(e);
-            _this4.selectAndHideList(index);
+            onSelectFn(e);
+            _this4.selectAndHideList(newIndex);
+          },
+          onMouseDown: function onMouseDown(e) {
+            onSelectFn(e);
+            _this4.selectAndHideList(newIndex);
           }
         });
+
+        list.push(clonedElem);
       });
 
-      return this.state.isActive && filteredList.length > 0 && inpVal.length >= minTextLength ? React__default.createElement(
+      return this.state.isActive && list.length > 0 && inpVal.length >= minTextLength ? React__default.createElement(
         "ul",
         {
           className: "nwc-autocomplete-list-container",
@@ -1594,10 +1622,21 @@ var Autocomplete = function (_Component) {
 
       return React__default.createElement(
         "div",
-        _extends({ className: "nwc-autocomplete " + className }, otherProps),
+        _extends({
+          className: "nwc-autocomplete " + className + " " + this.isActiveClassName,
+          onTouchStart: Utils.preventEventPropagation
+        }, otherProps),
         this.renderInput(elem),
         this.renderListItems(elem.props.value, inpList, renderList)
       );
+    }
+  }, {
+    key: "isActiveClassName",
+    get: function get$$1() {
+      var isActive = this.state.isActive;
+
+
+      return isActive && "is-active" || "";
     }
   }]);
   return Autocomplete;
@@ -1794,7 +1833,7 @@ var Select = function (_PureComponent) {
           return null;
         }
 
-        var onClickFn = elem.props.onClick || Utils.noop;
+        var onSelectFn = elem.props.onSelect || Utils.noop;
         var addClass = "";
         if (index === _this6.state.selectedListIndex) {
           addClass = "is-active";
@@ -1806,7 +1845,11 @@ var Select = function (_PureComponent) {
             _this6.listNode["item-" + index] = context;
           },
           onClick: function onClick(e) {
-            onClickFn(e);
+            onSelectFn(e);
+            _this6.selectAndHideList(index);
+          },
+          onMouseDown: function onMouseDown(e) {
+            onSelectFn(e);
             _this6.selectAndHideList(index);
           }
         });
@@ -1844,7 +1887,10 @@ var Select = function (_PureComponent) {
 
       return React__default.createElement(
         "div",
-        { className: "nwc-select-container " + className },
+        {
+          className: "nwc-select-container " + className + " " + this.isDisabledClass + " " + this.isActiveClassName,
+          onTouchStart: Utils.preventEventPropagation
+        },
         React__default.createElement(
           Label,
           _extends({
@@ -1871,6 +1917,14 @@ var Select = function (_PureComponent) {
         ),
         this.renderListItems(inpVal, inpList, renderList)
       );
+    }
+  }, {
+    key: "isActiveClassName",
+    get: function get$$1() {
+      var isActive = this.state.isActive;
+
+
+      return isActive && "is-active" || "";
     }
   }, {
     key: "isDisabledClass",
@@ -1954,7 +2008,9 @@ var Masonry = function (_PureComponent) {
   }, {
     key: "getMediaAndColCount",
     value: function getMediaAndColCount() {
-      var columnCount = this.props.columnCount;
+      var _props = this.props,
+          columnCount = _props.columnCount,
+          base = _props.base;
       var lg = columnCount.lg,
           md = columnCount.md,
           sm = columnCount.sm,
@@ -1966,21 +2022,21 @@ var Masonry = function (_PureComponent) {
       switch (true) {
         case width > screenMedia.lg:
           if (lg) {
-            return { media: lg, count: 12 / lg };
+            return { media: lg, count: base / lg };
           }
         // eslint-disable-next-line
         case width > screenMedia.md:
           if (md) {
-            return { media: md, count: 12 / md };
+            return { media: md, count: base / md };
           }
         // eslint-disable-next-line
         case width > screenMedia.sm:
           if (sm) {
-            return { media: sm, count: 12 / sm };
+            return { media: sm, count: base / sm };
           }
         // eslint-disable-next-line
         default:
-          return { media: xs, count: 12 / xs };
+          return { media: xs, count: base / xs };
       }
     }
   }, {
@@ -1998,10 +2054,13 @@ var Masonry = function (_PureComponent) {
   }, {
     key: "columns",
     get: function get$$1() {
-      var _props = this.props,
-          className = _props.className,
-          data = _props.data,
-          renderList = _props.renderList;
+      var _props2 = this.props,
+          className = _props2.className,
+          data = _props2.data,
+          renderList = _props2.renderList,
+          count = _props2.columnCount,
+          base = _props2.base,
+          otherProps = objectWithoutProperties(_props2, ["className", "data", "renderList", "columnCount", "base"]);
       var _state = this.state,
           media = _state.media,
           columnCount = _state.columnCount;
@@ -2036,11 +2095,11 @@ var Masonry = function (_PureComponent) {
       return this.gridColumns.map(function (item, key) {
         return React__default.createElement(
           GridColumn,
-          {
+          _extends({
             className: "nwc-grid-col-xs-" + media + " " + className
             // eslint-disable-next-line
             , key: key
-          },
+          }, otherProps),
           item
         );
       });
@@ -2050,10 +2109,12 @@ var Masonry = function (_PureComponent) {
 }(React.PureComponent);
 
 Masonry.defaultProps = {
-  className: ""
+  className: "",
+  base: 12
 };
 
 Masonry.propTypes = {
+  base: PropTypes.number,
   className: PropTypes.string,
   columnCount: PropTypes.shape({
     lg: PropTypes.number,
@@ -3318,6 +3379,274 @@ Carousel.propTypes = {
   onSwipe: PropTypes.func
 };
 
+var RecyclerView = function (_PureComponent) {
+  inherits(RecyclerView, _PureComponent);
+
+  function RecyclerView(props) {
+    classCallCheck(this, RecyclerView);
+
+    var _this = possibleConstructorReturn(this, (RecyclerView.__proto__ || Object.getPrototypeOf(RecyclerView)).call(this, props));
+
+    _this.state = {
+      scrolledBy: 0,
+      isContainerLoaded: false,
+      isWrapperLoaded: false
+    };
+
+    _this.containerRef = null;
+    _this.wrapperRef = null;
+    _this.windowInnerWidth = window.innerWidth;
+    _this.elemsInRow = props.elemsInRow;
+    _this.removeScrollListener = null;
+    _this.removeContainerScrollListener = null;
+    _this.productSavedHeight = null;
+    _this.storeProductHeight = _this.storeProductHeight.bind(_this);
+    _this.setContainer = _this.setContainer.bind(_this);
+    _this.setWrapper = _this.setWrapper.bind(_this);
+    _this.triggerChange = _this.triggerChange.bind(_this);
+    return _this;
+  }
+
+  createClass(RecyclerView, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      Utils.requestAnimationFrame(this.triggerChange);
+      this.removeScrollListener = Utils.onElementScroll(window, this.triggerChange, { passive: true });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.removeScrollListener();
+      this.removeContainerScrollListener();
+    }
+  }, {
+    key: "setContainer",
+    value: function setContainer(context) {
+      this.containerRef = context;
+
+      this.setState({
+        isContainerLoaded: true
+      });
+
+      if (this.containerRef) {
+        this.removeContainerScrollListener = Utils.onElementScroll(this.containerRef, this.triggerChange, {
+          passive: true
+        });
+      }
+    }
+  }, {
+    key: "setWrapper",
+    value: function setWrapper(context) {
+      this.wrapperRef = context;
+
+      this.setState({
+        isWrapperLoaded: true
+      });
+    }
+  }, {
+    key: "triggerChange",
+    value: function triggerChange() {
+      var elemsInRow = this.props.elemsInRow;
+      var viewHeight = this.viewHeight,
+          productSavedHeight = this.productSavedHeight;
+
+
+      if (!productSavedHeight) {
+        this.storeProductHeight();
+        return;
+      }
+
+      var scrolledBy = Math.ceil(viewHeight / productSavedHeight) * elemsInRow;
+
+      this.setState({
+        scrolledBy: scrolledBy
+      }, this.storeProductHeight);
+    }
+  }, {
+    key: "storeProductHeight",
+    value: function storeProductHeight() {
+      var elemsInRow = this.props.elemsInRow;
+
+
+      if (!this.productSavedHeight || this.elemsInRow !== elemsInRow || this.windowInnerWidth !== window.innerWidth) {
+        this.elemsInRow = elemsInRow;
+        this.windowInnerWidth = window.innerWidth;
+        this.productSavedHeight = this.productHeight;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _state = this.state,
+          isContainerLoaded = _state.isContainerLoaded,
+          isWrapperLoaded = _state.isWrapperLoaded;
+      var _props = this.props,
+          containerClassName = _props.containerClassName,
+          wrapperClassName = _props.wrapperClassName;
+
+
+      return React__default.createElement(
+        "div",
+        {
+          ref: this.setContainer,
+          className: containerClassName,
+          style: { height: this.parentVirtualHeight + "px" }
+        },
+        isContainerLoaded && React__default.createElement(
+          "div",
+          {
+            ref: this.setWrapper,
+            className: wrapperClassName,
+            style: { transform: "translateY(" + this.offsetTop + "px)" }
+          },
+          isWrapperLoaded && this.renderItems || null
+        ) || null
+      );
+    }
+  }, {
+    key: "listVals",
+    get: function get$$1() {
+      return Utils.getBoundClientRect(this.containerRef);
+    }
+  }, {
+    key: "totalRows",
+    get: function get$$1() {
+      var _props2 = this.props,
+          noOfElements = _props2.noOfElements,
+          elemsInRow = _props2.elemsInRow;
+
+
+      return noOfElements / elemsInRow;
+    }
+  }, {
+    key: "limits",
+    get: function get$$1() {
+      var _props3 = this.props,
+          elemsInRow = _props3.elemsInRow,
+          noOfElements = _props3.noOfElements;
+      var scrolledBy = this.state.scrolledBy;
+
+      var offsetBy = elemsInRow * 8;
+
+      var fromVal = scrolledBy - offsetBy;
+      var till = scrolledBy + offsetBy;
+
+      return {
+        from: fromVal >= 0 ? fromVal : 0,
+        till: till > noOfElements ? noOfElements : till
+      };
+    }
+  }, {
+    key: "productWidth",
+    get: function get$$1() {
+      var elemsInRow = this.props.elemsInRow;
+
+
+      return this.listVals.width / elemsInRow;
+    }
+  }, {
+    key: "productHeight",
+    get: function get$$1() {
+      var elemsInRow = this.props.elemsInRow;
+
+
+      if (!this.wrapperRef) {
+        return 0;
+      }
+
+      var renderItemsLength = this.renderItems ? this.renderItems.length : 0;
+
+      var rowsInView = renderItemsLength / elemsInRow;
+      var wrapperRefVals = Utils.getBoundClientRect(this.wrapperRef);
+
+      return wrapperRefVals.height / rowsInView;
+    }
+  }, {
+    key: "viewHeight",
+    get: function get$$1() {
+      var listVals = this.listVals;
+
+      var windowHeight = window.innerHeight;
+      var windowTop = Utils.windowScroll().top;
+
+      return windowHeight + (windowTop - listVals.top);
+    }
+  }, {
+    key: "offsetTop",
+    get: function get$$1() {
+      var isWrapperLoaded = this.state.isWrapperLoaded;
+
+
+      if (!isWrapperLoaded) {
+        return 0;
+      }
+
+      var productSavedHeight = this.productSavedHeight;
+      var limits = this.limits;
+      var elemsInRow = this.props.elemsInRow;
+
+
+      var heightOfHiddens = limits.from / elemsInRow * productSavedHeight;
+
+      return heightOfHiddens;
+    }
+  }, {
+    key: "parentVirtualHeight",
+    get: function get$$1() {
+      var productSavedHeight = this.productSavedHeight;
+
+
+      if (!productSavedHeight) {
+        return null;
+      }
+
+      var _props4 = this.props,
+          noOfElements = _props4.noOfElements,
+          elemsInRow = _props4.elemsInRow;
+
+
+      var heightOfList = Math.ceil(noOfElements / elemsInRow) * productSavedHeight;
+
+      return heightOfList;
+    }
+  }, {
+    key: "renderItems",
+    get: function get$$1() {
+      var limits = this.limits;
+      var _props5 = this.props,
+          renderList = _props5.renderList,
+          list = _props5.list;
+
+
+      var elemsToDisplay = list.slice(limits.from, limits.till);
+
+      var items = [];
+
+      elemsToDisplay.forEach(function (item, index) {
+        items.push(renderList(item, index + limits.from));
+      });
+
+      return items;
+    }
+  }]);
+  return RecyclerView;
+}(React.PureComponent);
+
+RecyclerView.defaultProps = {
+  containerClassName: "",
+  wrapperClassName: "",
+  noOfElements: 0
+};
+
+RecyclerView.propTypes = {
+  containerClassName: PropTypes.string,
+  wrapperClassName: PropTypes.string,
+  list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  noOfElements: PropTypes.number,
+  elemsInRow: PropTypes.number.isRequired,
+  renderList: PropTypes.func.isRequired
+};
+
 exports.Ripple = Ripple;
 exports.Close = Close;
 exports.GridContainer = GridContainer;
@@ -3335,5 +3664,6 @@ exports.Modal = Modal;
 exports.Toastr = Toastr;
 exports.Loader = Loader;
 exports.Carousel = Carousel;
+exports.RecyclerView = RecyclerView;
 exports.Utils = Utils;
 //# sourceMappingURL=main.js.map

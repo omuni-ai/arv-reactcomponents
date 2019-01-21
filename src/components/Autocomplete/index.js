@@ -68,6 +68,12 @@ class Autocomplete extends Component {
     );
   }
 
+  get isActiveClassName() {
+    const { isActive } = this.state;
+
+    return (isActive && "is-active") || "";
+  }
+
   scrollHighlightedElemInView() {
     Utils.scrollElemToView(
       this.listNodeWrapperRef,
@@ -101,39 +107,44 @@ class Autocomplete extends Component {
     const { minTextLength } = this.props;
 
     this.listNode = [];
+    const list = [];
+    let skipped = 0;
 
-    const filteredList = inpList.filter(
-      item =>
-        item.toLowerCase().indexOf((inpVal && inpVal.toLowerCase()) || "") > -1,
-    );
-
-    const list = filteredList.map((item, index) => {
+    inpList.forEach((item, index) => {
       const elem = renderList(item);
+      const newIndex = index - skipped;
 
       if (!elem) {
-        return null;
+        skipped += 1;
+        return;
       }
 
-      const onClickFn = elem.props.onClick || Utils.noop;
+      const onSelectFn = elem.props.onSelect || Utils.noop;
       let addClass = "";
-      if (index === this.state.selectedListIndex) {
+      if (newIndex === this.state.selectedListIndex) {
         addClass = "is-active";
       }
-      this.listNodeItem[index] = item;
-      return cloneElement(elem, {
+      this.listNodeItem[newIndex] = item;
+      const clonedElem = cloneElement(elem, {
         className: `${elem.props.className || ""} ${addClass}`,
         ref: context => {
-          this.listNode[`item-${index}`] = context;
+          this.listNode[`item-${newIndex}`] = context;
         },
         onClick: e => {
-          onClickFn(e);
-          this.selectAndHideList(index);
+          onSelectFn(e);
+          this.selectAndHideList(newIndex);
+        },
+        onMouseDown: e => {
+          onSelectFn(e);
+          this.selectAndHideList(newIndex);
         },
       });
+
+      list.push(clonedElem);
     });
 
     return this.state.isActive &&
-      filteredList.length > 0 &&
+      list.length > 0 &&
       inpVal.length >= minTextLength ? (
       <ul
         className="nwc-autocomplete-list-container"
@@ -189,7 +200,11 @@ class Autocomplete extends Component {
     const elem = renderInput();
 
     return (
-      <div className={`nwc-autocomplete ${className}`} {...otherProps}>
+      <div
+        className={`nwc-autocomplete ${className} ${this.isActiveClassName}`}
+        onTouchStart={Utils.preventEventPropagation}
+        {...otherProps}
+      >
         {this.renderInput(elem)}
         {this.renderListItems(elem.props.value, inpList, renderList)}
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GridContainer, GridRow } from "../../components";
+import { GridContainer, GridRow, Utils } from "../../components";
 
 import ColorsDisplay from "../ColorsDisplay";
 import FontSizes from "../FontSizes";
@@ -20,10 +20,15 @@ import ButtonModalExample from "../ButtonModalExample";
 import ButtonToastrExample from "../ButtonToastrExample";
 import CarouselExample from "../CarouselExample";
 import MasonryExample from "../MasonryExample";
+import RecyclerViewExample from "../RecyclerViewExample";
 
 function App() {
   return (
-    <GridContainer className="nw-app" strict>
+    <GridContainer
+      className="nw-app"
+      onTouchStart={Utils.addInputBlurForIOS}
+      strict
+    >
       <GridRow>
         <ColorsDisplay />
         <FontSizes />
@@ -43,6 +48,7 @@ function App() {
 
         <CSSGlobalClassesDisplay />
         <JSUtilsDisplay />
+        <RecyclerViewExample />
         <MasonryExample />
       </GridRow>
     </GridContainer>
