@@ -79,12 +79,14 @@ class LazyImg extends PureComponent {
       isError: true,
     });
 
-    this.props.onError();
+    if (!bypass) {
+      this.props.onError();
+    }
   }
 
   get imgStateClassName() {
     return (
-      (this.state.isLoaded && "is-loaded") ||
+      ((bypass || this.state.isLoaded) && "is-loaded") ||
       (this.state.isError && "is-error") ||
       ""
     );
