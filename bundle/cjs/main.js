@@ -1086,7 +1086,9 @@ var LazyImg = function (_PureComponent) {
         isError: true
       });
 
-      this.props.onError();
+      if (!_bypass) {
+        this.props.onError();
+      }
     }
   }, {
     key: "setContext",
@@ -1107,7 +1109,7 @@ var LazyImg = function (_PureComponent) {
     value: function initLazyLoad() {
       this.calcElemVals(this.imgContainerRef);
 
-      if (_bypass || this.isImageInView()) {
+      if (this.isImageInView()) {
         this.setState({
           inView: true
         });
@@ -1169,7 +1171,7 @@ var LazyImg = function (_PureComponent) {
   }, {
     key: "imgStateClassName",
     get: function get$$1() {
-      return this.state.isLoaded && "is-loaded" || this.state.isError && "is-error" || "";
+      return (_bypass || this.state.isLoaded) && "is-loaded" || this.state.isError && "is-error" || "";
     }
   }, {
     key: "imgTagIfInView",
@@ -1180,7 +1182,7 @@ var LazyImg = function (_PureComponent) {
       var inView = this.state.inView;
 
 
-      if (inView) {
+      if (_bypass || inView) {
         return React__default.createElement("img", {
           className: "nwc-lazyimg " + this.imgStateClassName,
           src: src,
@@ -2581,7 +2583,7 @@ var P={_caughtError:null,_hasCaughtError:!1,_rethrowError:null,_hasRethrowError:
 q);}},rethrowCaughtError:function(){return Ka.apply(P,arguments)},hasCaughtError:function(){return P._hasCaughtError},clearCaughtError:function(){if(P._hasCaughtError){var a=P._caughtError;P._caughtError=null;P._hasCaughtError=!1;return a}E("198");}};function Ja(a,b,c,d,e,f,g,h,k){P._hasCaughtError=!1;P._caughtError=null;var q=Array.prototype.slice.call(arguments,3);try{b.apply(c,q);}catch(v){P._caughtError=v,P._hasCaughtError=!0;}}
 function Ka(){if(P._hasRethrowError){var a=P._rethrowError;P._rethrowError=null;P._hasRethrowError=!1;throw a;}}var La=null,Ma={};
 function Na(){if(La)for(var a in Ma){var b=Ma[a],c=La.indexOf(a);-1<c?void 0:E("96",a);if(!Oa[c]){b.extractEvents?void 0:E("97",a);Oa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;Pa.hasOwnProperty(h)?E("99",h):void 0;Pa[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&Qa(k[e],g,h);e=!0;}else f.registrationName?(Qa(f.registrationName,g,h),e=!0):e=!1;e?void 0:E("98",d,a);}}}}
-function Qa(a,b,c){Ra[a]?E("100",a):void 0;Ra[a]=b;Sa[a]=b.eventTypes[c].dependencies;}var Oa=[],Pa={},Ra={},Sa={};function Ta(a){La?E("101"):void 0;La=Array.prototype.slice.call(a);Na();}function Ua(a){var b=!1,c;for(c in a)if(a.hasOwnProperty(c)){var d=a[c];Ma.hasOwnProperty(c)&&Ma[c]===d||(Ma[c]=d,b=!0);}b&&Na();}
+function Qa(a,b,c){Ra[a]?E("100",a):void 0;Ra[a]=b;Sa[a]=b.eventTypes[c].dependencies;}var Oa=[],Pa={},Ra={},Sa={};function Ta(a){La?E("101"):void 0;La=Array.prototype.slice.call(a);Na();}function Ua(a){var b=!1,c;for(c in a)if(a.hasOwnProperty(c)){var d=a[c];Ma.hasOwnProperty(c)&&Ma[c]===d||(Ma[c]?E("102",c):void 0,Ma[c]=d,b=!0);}b&&Na();}
 var Va=Object.freeze({plugins:Oa,eventNameDispatchConfigs:Pa,registrationNameModules:Ra,registrationNameDependencies:Sa,possibleRegistrationNames:null,injectEventPluginOrder:Ta,injectEventPluginsByName:Ua}),Wa=null,Xa=null,Ya=null;function Za(a,b,c,d){b=a.type||"unknown-event";a.currentTarget=Ya(d);P.invokeGuardedCallbackAndCatchFirstError(b,c,void 0,a);a.currentTarget=null;}
 function $a(a,b){null==b?E("30"):void 0;if(null==a)return b;if(Array.isArray(a)){if(Array.isArray(b))return a.push.apply(a,b),a;a.push(b);return a}return Array.isArray(b)?[a].concat(b):[a,b]}function ab(a,b,c){Array.isArray(a)?a.forEach(b,c):a&&b.call(c,a);}var bb=null;
 function cb(a,b){if(a){var c=a._dispatchListeners,d=a._dispatchInstances;if(Array.isArray(c))for(var e=0;e<c.length&&!a.isPropagationStopped();e++)Za(a,b,c[e],d[e]);else c&&Za(a,b,c,d);a._dispatchListeners=null;a._dispatchInstances=null;a.isPersistent()||a.constructor.release(a);}}function db(a){return cb(a,!0)}function gb(a){return cb(a,!1)}var hb={injectEventPluginOrder:Ta,injectEventPluginsByName:Ua};

@@ -96,7 +96,7 @@ class LazyImg extends PureComponent {
     const { src, alt } = this.props;
     const { inView } = this.state;
 
-    if (inView) {
+    if (bypass || inView) {
       return (
         <img
           className={`nwc-lazyimg ${this.imgStateClassName}`}
@@ -126,7 +126,7 @@ class LazyImg extends PureComponent {
   initLazyLoad() {
     this.calcElemVals(this.imgContainerRef);
 
-    if (bypass || this.isImageInView()) {
+    if (this.isImageInView()) {
       this.setState({
         inView: true,
       });
