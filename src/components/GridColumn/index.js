@@ -5,8 +5,9 @@ import Utils from "../_jsUtils";
 class GridColumn extends PureComponent {
   componentDidMount() {
     const { childNodes } = this.colRef;
+    const arrayOfChildNodes = [...childNodes];
     Utils.requestAnimationFrame(() => {
-      childNodes.forEach(item => {
+      arrayOfChildNodes.forEach(item => {
         if (/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
           throw Error(`\`GridColumn\` cannot have \`GridColumn\` as immediate child. 
             Use \`GridRow\` inbetween when nesting two columns.`);
