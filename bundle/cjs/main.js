@@ -1521,7 +1521,7 @@ var LazyImg = function (_PureComponent) {
   createClass(LazyImg, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      setTimeout(this.initLazyLoad, 300);
+      this.initLazyLoad();
     }
   }, {
     key: "componentWillReceiveProps",
@@ -1603,10 +1603,7 @@ var LazyImg = function (_PureComponent) {
   }, {
     key: "isImageInView",
     value: function isImageInView() {
-      var onWinLoad = this.state.onWinLoad;
-
-
-      if (onWinLoad || this.isInViewport(windowScrollVals, this.elementVals) && this.isInViewport(this.parentElementVals, this.elementVals)) {
+      if (this.isInViewport(windowScrollVals, this.elementVals) && this.isInViewport(this.parentElementVals, this.elementVals)) {
         return true;
       }
 
@@ -1649,11 +1646,12 @@ var LazyImg = function (_PureComponent) {
           src = _props2.src,
           alt = _props2.alt;
       var inView = this.state.inView;
+      var onWinLoad = this.state.onWinLoad;
 
       var objImg = document.createElement("img");
       objImg.src = src;
 
-      if (_bypass || objImg.complete || inView) {
+      if (_bypass || onWinLoad || objImg.complete || inView) {
         return React__default.createElement("img", {
           className: "nwc-lazyimg " + this.imgStateClassName,
           src: src,
