@@ -1250,8 +1250,9 @@ var GridContainer = function (_PureComponent) {
     value: function componentDidMount() {
       var childNodes = this.containerRef.childNodes;
 
+      var arrayOfChildNodes = [].concat(toConsumableArray(childNodes));
       Utils.requestAnimationFrame(function () {
-        childNodes.forEach(function (item) {
+        arrayOfChildNodes.forEach(function (item) {
           if (!/(^|\s)nwc-grid-row($|[\s])/.test(item.className)) {
             throw Error("`GridContainer` component must have `GridRow` as child");
           }
@@ -1324,8 +1325,9 @@ var GridRow = function (_PureComponent) {
     value: function componentDidMount() {
       var childNodes = this.rowRef.childNodes;
 
+      var arrayOfChildNodes = [].concat(toConsumableArray(childNodes));
       Utils.requestAnimationFrame(function () {
-        childNodes.forEach(function (item) {
+        arrayOfChildNodes.forEach(function (item) {
           if (!/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
             throw Error("`GridRow` component must have `GridColumn` as child");
           }
@@ -1381,8 +1383,9 @@ var GridColumn = function (_PureComponent) {
     value: function componentDidMount() {
       var childNodes = this.colRef.childNodes;
 
+      var arrayOfChildNodes = [].concat(toConsumableArray(childNodes));
       Utils.requestAnimationFrame(function () {
-        childNodes.forEach(function (item) {
+        arrayOfChildNodes.forEach(function (item) {
           if (/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
             throw Error("`GridColumn` cannot have `GridColumn` as immediate child. \n            Use `GridRow` inbetween when nesting two columns.");
           }
