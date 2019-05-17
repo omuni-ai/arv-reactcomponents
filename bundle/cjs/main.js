@@ -3670,10 +3670,6 @@ var Carousel = function (_PureComponent) {
 
     var _this = possibleConstructorReturn(this, (Carousel.__proto__ || Object.getPrototypeOf(Carousel)).call(this, props));
 
-    _this.state = {
-      mounted: false
-    };
-
     _this.listNode = [];
     _this.touchStartVals = null;
     _this.touchEndVals = null;
@@ -3693,11 +3689,7 @@ var Carousel = function (_PureComponent) {
       var _this2 = this;
 
       Utils.requestAnimationFrame(function () {
-        _this2.setState({
-          mounted: true
-        }, function () {
-          _this2.scrollToIndex(_this2.props.index);
-        });
+        _this2.scrollToIndex(_this2.props.index);
       });
     }
   }, {
@@ -3785,7 +3777,6 @@ var Carousel = function (_PureComponent) {
     value: function render() {
       var _this3 = this;
 
-      var mounted = this.state.mounted;
       var _props = this.props,
           className = _props.className,
           index = _props.index,
@@ -3807,7 +3798,7 @@ var Carousel = function (_PureComponent) {
           onTouchMove: this.onTouchMove,
           onTouchEnd: this.onTouchEnd
         }, otherProps),
-        mounted && this.renderItemsList
+        this.renderItemsList
       );
     }
   }, {
