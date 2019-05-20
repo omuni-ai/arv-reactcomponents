@@ -1648,10 +1648,8 @@ var LazyImg = function (_PureComponent) {
       var inView = this.state.inView;
       var onWinLoad = this.state.onWinLoad;
 
-      var objImg = document.createElement("img");
-      objImg.src = src;
 
-      if (_bypass || onWinLoad || objImg.complete || inView) {
+      if (_bypass || onWinLoad || inView) {
         return React__default.createElement("img", {
           className: "nwc-lazyimg " + this.imgStateClassName,
           src: src,

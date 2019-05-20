@@ -96,10 +96,8 @@ class LazyImg extends PureComponent {
     const { src, alt } = this.props;
     const { inView } = this.state;
     const { onWinLoad } = this.state;
-    const objImg = document.createElement("img");
-    objImg.src = src;
 
-    if (bypass || onWinLoad || objImg.complete || inView) {
+    if (bypass || onWinLoad || inView) {
       return (
         <img
           className={`nwc-lazyimg ${this.imgStateClassName}`}
