@@ -2246,8 +2246,7 @@ var Select = function (_PureComponent) {
           isActive = false;
           this.selectAndHideList(this.state.selectedListIndex);
           return;
-        default:
-          selectedListIndex = 0;
+        default: // No default
       }
 
       this.setState({
