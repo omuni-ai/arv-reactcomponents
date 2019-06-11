@@ -2164,40 +2164,16 @@ var Select = function (_PureComponent) {
     _this.selectAndHideList = _this.selectAndHideList.bind(_this);
     _this.onUserInput = _this.onUserInput.bind(_this);
     _this.scrollHighlightedElemInView = _this.scrollHighlightedElemInView.bind(_this);
+    _this.setValAndScroll = _this.setValAndScroll.bind(_this);
     return _this;
   }
 
   createClass(Select, [{
     key: "onInpValChange",
     value: function onInpValChange(e) {
-      var _this2 = this;
-
       var inpVal = e.target.value;
-      var regXSearchItemStartsWith = new RegExp("^" + inpVal, "i");
-      var selectedListIndex = 0;
 
-      this.props.inpList.find(function (item, index) {
-        var testAgainst = item[_this2.props.compareProp] || item;
-
-        if (inpVal && inpVal.length > 0 && regXSearchItemStartsWith.test(testAgainst)) {
-          selectedListIndex = index;
-          return true;
-        }
-
-        return false;
-      });
-
-      this.setState({
-        inpVal: inpVal,
-        selectedListIndex: selectedListIndex
-      });
-
-      clearTimeout(this.inputTimeoutId);
-      this.inputTimeoutId = setTimeout(function () {
-        _this2.setState({
-          inpVal: ""
-        });
-      }, 800);
+      this.setValAndScroll(inpVal);
     }
   }, {
     key: "onLabelClick",
@@ -2213,9 +2189,15 @@ var Select = function (_PureComponent) {
         return;
       }
 
+      var _props = this.props,
+          selectedValue = _props.selectedValue,
+          compareProp = _props.compareProp;
       var isActive = this.state.isActive;
 
       var activeState = this.isLabelClick ? !isActive : true;
+
+      this.setValAndScroll(selectedValue[compareProp] || selectedValue);
+
       this.toggleDisplay(activeState);
       clearTimeout(this.blurTimeoutId);
 
@@ -2224,7 +2206,7 @@ var Select = function (_PureComponent) {
   }, {
     key: "onInpBlur",
     value: function onInpBlur() {
-      var _this3 = this;
+      var _this2 = this;
 
       var returnBool = this.props.onBlur();
 
@@ -2233,14 +2215,12 @@ var Select = function (_PureComponent) {
       }
 
       this.blurTimeoutId = setTimeout(function () {
-        _this3.toggleDisplay(false);
+        _this2.toggleDisplay(false);
       }, 200);
     }
   }, {
     key: "onUserInput",
     value: function onUserInput(e) {
-      var _this4 = this;
-
       Utils.preventEventPropagation(e);
       var listNodeLength = Object.keys(this.listNode).length - 1;
       var isActive = true;
@@ -2267,15 +2247,45 @@ var Select = function (_PureComponent) {
           isActive = false;
           this.selectAndHideList(this.state.selectedListIndex);
           return;
-        default: // No default
+        default:
+          return;
       }
 
       this.setState({
         selectedListIndex: selectedListIndex,
         isActive: isActive
-      }, function () {
-        _this4.scrollHighlightedElemInView();
+      }, this.scrollHighlightedElemInView);
+    }
+  }, {
+    key: "setValAndScroll",
+    value: function setValAndScroll(value) {
+      var _this3 = this;
+
+      var regXSearchItemStartsWith = new RegExp("^" + value, "i");
+      var selectedListIndex = 0;
+
+      this.props.inpList.find(function (item, index) {
+        var testAgainst = item[_this3.props.compareProp] || item;
+
+        if (value && value.length > 0 && regXSearchItemStartsWith.test(testAgainst)) {
+          selectedListIndex = index;
+          return true;
+        }
+
+        return false;
       });
+
+      this.setState({
+        inpVal: value,
+        selectedListIndex: selectedListIndex
+      }, this.scrollHighlightedElemInView);
+
+      clearTimeout(this.inputTimeoutId);
+      this.inputTimeoutId = setTimeout(function () {
+        _this3.setState({
+          inpVal: ""
+        });
+      }, 800);
     }
   }, {
     key: "scrollHighlightedElemInView",
@@ -2297,7 +2307,7 @@ var Select = function (_PureComponent) {
   }, {
     key: "toggleDisplay",
     value: function toggleDisplay(bool) {
-      var _this5 = this;
+      var _this4 = this;
 
       var disabled = this.props.disabled;
 
@@ -2305,13 +2315,13 @@ var Select = function (_PureComponent) {
       this.setState({
         isActive: !disabled ? bool : false
       }, function () {
-        _this5.scrollHighlightedElemInView();
+        _this4.scrollHighlightedElemInView();
       });
     }
   }, {
     key: "renderListItems",
     value: function renderListItems(inpVal, inpList, renderList) {
-      var _this6 = this;
+      var _this5 = this;
 
       this.listNode = [];
 
@@ -2324,22 +2334,22 @@ var Select = function (_PureComponent) {
 
         var onSelectFn = elem.props.onSelect || Utils.noop;
         var addClass = "";
-        if (index === _this6.state.selectedListIndex) {
+        if (index === _this5.state.selectedListIndex) {
           addClass = "is-active";
         }
-        _this6.listNodeItem[index] = item;
+        _this5.listNodeItem[index] = item;
         return React.cloneElement(elem, {
           className: (elem.props.className || "") + " " + addClass,
           ref: function ref(context) {
-            _this6.listNode["item-" + index] = context;
+            _this5.listNode["item-" + index] = context;
           },
           onClick: function onClick(e) {
             onSelectFn(e);
-            _this6.selectAndHideList(index);
+            _this5.selectAndHideList(index);
           },
           onMouseDown: function onMouseDown(e) {
             onSelectFn(e);
-            _this6.selectAndHideList(index);
+            _this5.selectAndHideList(index);
           }
         });
       });
@@ -2349,7 +2359,7 @@ var Select = function (_PureComponent) {
         {
           className: "nwc-select-list-container",
           ref: function ref(context) {
-            _this6.listNodeWrapperRef = context;
+            _this5.listNodeWrapperRef = context;
           }
         },
         list
@@ -2358,20 +2368,20 @@ var Select = function (_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this6 = this;
 
       var inpVal = this.state.inpVal;
-      var _props = this.props,
-          id = _props.id,
-          className = _props.className,
-          disabled = _props.disabled,
-          selectedValue = _props.selectedValue,
-          inpList = _props.inpList,
-          getSelection = _props.getSelection,
-          renderList = _props.renderList,
-          compareProp = _props.compareProp,
-          selectedIndex = _props.selectedIndex,
-          otherProps = objectWithoutProperties(_props, ["id", "className", "disabled", "selectedValue", "inpList", "getSelection", "renderList", "compareProp", "selectedIndex"]);
+      var _props2 = this.props,
+          id = _props2.id,
+          className = _props2.className,
+          disabled = _props2.disabled,
+          selectedValue = _props2.selectedValue,
+          inpList = _props2.inpList,
+          getSelection = _props2.getSelection,
+          renderList = _props2.renderList,
+          compareProp = _props2.compareProp,
+          selectedIndex = _props2.selectedIndex,
+          otherProps = objectWithoutProperties(_props2, ["id", "className", "disabled", "selectedValue", "inpList", "getSelection", "renderList", "compareProp", "selectedIndex"]);
 
 
       return React__default.createElement(
@@ -2400,7 +2410,7 @@ var Select = function (_PureComponent) {
           onFocus: this.onInpFocus,
           onBlur: this.onInpBlur,
           ref: function ref(context) {
-            _this7.inputRef = context;
+            _this6.inputRef = context;
           },
           disabled: disabled,
           readOnly: BLOCK_VIRTUAL_KEYBOARD

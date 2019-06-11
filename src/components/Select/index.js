@@ -36,39 +36,13 @@ class Select extends PureComponent {
     this.scrollHighlightedElemInView = this.scrollHighlightedElemInView.bind(
       this,
     );
+    this.setValAndScroll = this.setValAndScroll.bind(this);
   }
 
   onInpValChange(e) {
     const inpVal = e.target.value;
-    const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, "i");
-    let selectedListIndex = 0;
 
-    this.props.inpList.find((item, index) => {
-      const testAgainst = item[this.props.compareProp] || item;
-
-      if (
-        inpVal &&
-        inpVal.length > 0 &&
-        regXSearchItemStartsWith.test(testAgainst)
-      ) {
-        selectedListIndex = index;
-        return true;
-      }
-
-      return false;
-    });
-
-    this.setState({
-      inpVal,
-      selectedListIndex,
-    });
-
-    clearTimeout(this.inputTimeoutId);
-    this.inputTimeoutId = setTimeout(() => {
-      this.setState({
-        inpVal: "",
-      });
-    }, 800);
+    this.setValAndScroll(inpVal);
   }
 
   onLabelClick() {
@@ -82,8 +56,12 @@ class Select extends PureComponent {
       return;
     }
 
+    const { selectedValue, compareProp } = this.props;
     const { isActive } = this.state;
     const activeState = this.isLabelClick ? !isActive : true;
+
+    this.setValAndScroll(selectedValue[compareProp] || selectedValue);
+
     this.toggleDisplay(activeState);
     clearTimeout(this.blurTimeoutId);
 
@@ -134,7 +112,8 @@ class Select extends PureComponent {
         isActive = false;
         this.selectAndHideList(this.state.selectedListIndex);
         return;
-      default: // No default
+      default:
+        return;
     }
 
     this.setState(
@@ -142,9 +121,7 @@ class Select extends PureComponent {
         selectedListIndex,
         isActive,
       },
-      () => {
-        this.scrollHighlightedElemInView();
-      },
+      this.scrollHighlightedElemInView,
     );
   }
 
@@ -158,6 +135,41 @@ class Select extends PureComponent {
     const { disabled } = this.props;
 
     return (disabled && "is-disabled") || "";
+  }
+
+  setValAndScroll(value) {
+    const regXSearchItemStartsWith = new RegExp(`^${value}`, "i");
+    let selectedListIndex = 0;
+
+    this.props.inpList.find((item, index) => {
+      const testAgainst = item[this.props.compareProp] || item;
+
+      if (
+        value &&
+        value.length > 0 &&
+        regXSearchItemStartsWith.test(testAgainst)
+      ) {
+        selectedListIndex = index;
+        return true;
+      }
+
+      return false;
+    });
+
+    this.setState(
+      {
+        inpVal: value,
+        selectedListIndex,
+      },
+      this.scrollHighlightedElemInView,
+    );
+
+    clearTimeout(this.inputTimeoutId);
+    this.inputTimeoutId = setTimeout(() => {
+      this.setState({
+        inpVal: "",
+      });
+    }, 800);
   }
 
   scrollHighlightedElemInView() {

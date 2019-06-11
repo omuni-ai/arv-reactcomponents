@@ -17,7 +17,7 @@ class SelectExample extends Component {
 
     const selectList = [
       "Delhi",
-      "Mumbai",
+      "Jaipur",
       "Gujarat",
       "Karnataka",
       "Pune",
@@ -27,7 +27,7 @@ class SelectExample extends Component {
     ];
 
     this.state = {
-      selectSelectedValue: selectList[0],
+      selectSelectedValue: selectList[7],
       inpList: selectList,
       disableState: false,
     };
