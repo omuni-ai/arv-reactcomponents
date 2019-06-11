@@ -2201,6 +2201,12 @@ var Select = function (_PureComponent) {
   }, {
     key: "onInpFocus",
     value: function onInpFocus() {
+      var returnBool = this.props.onFocus();
+
+      if (!returnBool) {
+        return;
+      }
+
       var isActive = this.state.isActive;
 
       this.toggleDisplay(!isActive);
@@ -2210,6 +2216,12 @@ var Select = function (_PureComponent) {
     key: "onInpBlur",
     value: function onInpBlur() {
       var _this3 = this;
+
+      var returnBool = this.props.onBlur();
+
+      if (!returnBool) {
+        return;
+      }
 
       this.blurTimeoutId = setTimeout(function () {
         _this3.toggleDisplay(false);
@@ -2410,6 +2422,12 @@ Select.defaultProps = {
   id: null,
   className: "",
   disabled: false,
+  onFocus: function onFocus() {
+    return true;
+  },
+  onBlur: function onBlur() {
+    return true;
+  },
   selectedIndex: 0,
   getSelection: Utils.noop,
   compareProp: undefined
@@ -2419,6 +2437,8 @@ Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   selectedIndex: PropTypes.number,
   selectedValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]).isRequired,
   inpList: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.string)]).isRequired,

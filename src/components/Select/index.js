@@ -71,12 +71,24 @@ class Select extends PureComponent {
   }
 
   onInpFocus() {
+    const returnBool = this.props.onFocus();
+
+    if (!returnBool) {
+      return;
+    }
+
     const { isActive } = this.state;
     this.toggleDisplay(!isActive);
     clearTimeout(this.blurTimeoutId);
   }
 
   onInpBlur() {
+    const returnBool = this.props.onBlur();
+
+    if (!returnBool) {
+      return;
+    }
+
     this.blurTimeoutId = setTimeout(() => {
       this.toggleDisplay(false);
     }, 200);
@@ -271,6 +283,8 @@ Select.defaultProps = {
   id: null,
   className: "",
   disabled: false,
+  onFocus: () => true,
+  onBlur: () => true,
   selectedIndex: 0,
   getSelection: Utils.noop,
   compareProp: undefined,
@@ -280,6 +294,8 @@ Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   selectedIndex: PropTypes.number,
   selectedValue: PropTypes.oneOfType([
     PropTypes.object,
