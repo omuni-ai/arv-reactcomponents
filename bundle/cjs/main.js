@@ -2156,6 +2156,7 @@ var Select = function (_PureComponent) {
     _this.listNodeItem = [];
 
     _this.onInpValChange = _this.onInpValChange.bind(_this);
+    _this.onLabelClick = _this.onLabelClick.bind(_this);
     _this.onInpFocus = _this.onInpFocus.bind(_this);
     _this.onInpBlur = _this.onInpBlur.bind(_this);
     _this.renderListItems = _this.renderListItems.bind(_this);
@@ -2199,6 +2200,11 @@ var Select = function (_PureComponent) {
       }, 800);
     }
   }, {
+    key: "onLabelClick",
+    value: function onLabelClick() {
+      this.isLabelClick = true;
+    }
+  }, {
     key: "onInpFocus",
     value: function onInpFocus() {
       var returnBool = this.props.onFocus();
@@ -2209,8 +2215,11 @@ var Select = function (_PureComponent) {
 
       var isActive = this.state.isActive;
 
-      this.toggleDisplay(!isActive);
+      var activeState = this.isLabelClick ? !isActive : true;
+      this.toggleDisplay(activeState);
       clearTimeout(this.blurTimeoutId);
+
+      this.isLabelClick = false;
     }
   }, {
     key: "onInpBlur",
@@ -2375,7 +2384,8 @@ var Select = function (_PureComponent) {
           Label,
           _extends({
             className: "nwc-select " + this.isDisabledClass,
-            htmlFor: id || this.inputId
+            htmlFor: id || this.inputId,
+            onClick: this.onLabelClick
           }, otherProps),
           selectedValue[compareProp] || selectedValue,
           React__default.createElement("i", { className: "icomoon-arrow_bottom nwc-select-arrowbottom" })

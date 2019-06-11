@@ -26,6 +26,7 @@ class Select extends PureComponent {
     this.listNodeItem = [];
 
     this.onInpValChange = this.onInpValChange.bind(this);
+    this.onLabelClick = this.onLabelClick.bind(this);
     this.onInpFocus = this.onInpFocus.bind(this);
     this.onInpBlur = this.onInpBlur.bind(this);
     this.renderListItems = this.renderListItems.bind(this);
@@ -70,6 +71,10 @@ class Select extends PureComponent {
     }, 800);
   }
 
+  onLabelClick() {
+    this.isLabelClick = true;
+  }
+
   onInpFocus() {
     const returnBool = this.props.onFocus();
 
@@ -78,8 +83,11 @@ class Select extends PureComponent {
     }
 
     const { isActive } = this.state;
-    this.toggleDisplay(!isActive);
+    const activeState = this.isLabelClick ? !isActive : true;
+    this.toggleDisplay(activeState);
     clearTimeout(this.blurTimeoutId);
+
+    this.isLabelClick = false;
   }
 
   onInpBlur() {
@@ -253,6 +261,7 @@ class Select extends PureComponent {
         <Label
           className={`nwc-select ${this.isDisabledClass}`}
           htmlFor={id || this.inputId}
+          onClick={this.onLabelClick}
           {...otherProps}
         >
           {selectedValue[compareProp] || selectedValue}
