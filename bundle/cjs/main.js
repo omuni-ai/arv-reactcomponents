@@ -2378,23 +2378,23 @@ var Select = function (_PureComponent) {
             htmlFor: id || this.inputId
           }, otherProps),
           selectedValue[compareProp] || selectedValue,
-          React__default.createElement(Input$1, {
-            id: id || this.inputId,
-            className: "nwc-inp-hide nwc-inp-dash nwc-inp-sm",
-            placeholder: "Enter text",
-            value: inpVal,
-            onChange: this.onInpValChange,
-            onKeyDown: this.onUserInput,
-            onFocus: this.onInpFocus,
-            onBlur: this.onInpBlur,
-            ref: function ref(context) {
-              _this7.inputRef = context;
-            },
-            disabled: disabled,
-            readOnly: BLOCK_VIRTUAL_KEYBOARD
-          }),
           React__default.createElement("i", { className: "icomoon-arrow_bottom nwc-select-arrowbottom" })
         ),
+        React__default.createElement(Input$1, {
+          id: id || this.inputId,
+          className: "nwc-inp-hide nwc-inp-dash nwc-inp-sm",
+          placeholder: "Enter text",
+          value: inpVal,
+          onChange: this.onInpValChange,
+          onKeyDown: this.onUserInput,
+          onFocus: this.onInpFocus,
+          onBlur: this.onInpBlur,
+          ref: function ref(context) {
+            _this7.inputRef = context;
+          },
+          disabled: disabled,
+          readOnly: BLOCK_VIRTUAL_KEYBOARD
+        }),
         this.renderListItems(inpVal, inpList, renderList)
       );
     }

@@ -256,23 +256,23 @@ class Select extends PureComponent {
           {...otherProps}
         >
           {selectedValue[compareProp] || selectedValue}
-          <Input
-            id={id || this.inputId}
-            className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
-            placeholder="Enter text"
-            value={inpVal}
-            onChange={this.onInpValChange}
-            onKeyDown={this.onUserInput}
-            onFocus={this.onInpFocus}
-            onBlur={this.onInpBlur}
-            ref={context => {
-              this.inputRef = context;
-            }}
-            disabled={disabled}
-            readOnly={BLOCK_VIRTUAL_KEYBOARD}
-          />
           <i className="icomoon-arrow_bottom nwc-select-arrowbottom" />
         </Label>
+        <Input
+          id={id || this.inputId}
+          className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
+          placeholder="Enter text"
+          value={inpVal}
+          onChange={this.onInpValChange}
+          onKeyDown={this.onUserInput}
+          onFocus={this.onInpFocus}
+          onBlur={this.onInpBlur}
+          ref={context => {
+            this.inputRef = context;
+          }}
+          disabled={disabled}
+          readOnly={BLOCK_VIRTUAL_KEYBOARD}
+        />
         {this.renderListItems(inpVal, inpList, renderList)}
       </div>
     );
