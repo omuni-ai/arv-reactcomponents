@@ -2169,6 +2169,12 @@ var Select = function (_PureComponent) {
   }
 
   createClass(Select, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearTimeout(this.blurTimeoutId);
+      clearTimeout(this.inputTimeoutId);
+    }
+  }, {
     key: "onInpValChange",
     value: function onInpValChange(e) {
       var inpVal = e.target.value;

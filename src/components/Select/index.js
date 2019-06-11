@@ -39,6 +39,11 @@ class Select extends PureComponent {
     this.setValAndScroll = this.setValAndScroll.bind(this);
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.blurTimeoutId);
+    clearTimeout(this.inputTimeoutId);
+  }
+
   onInpValChange(e) {
     const inpVal = e.target.value;
 
