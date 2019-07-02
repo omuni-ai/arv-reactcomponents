@@ -474,6 +474,43 @@ var setUrlParameter = function setUrlParameter(url, name, value) {
   return "" + url + separator + name + "=" + value;
 };
 
+var _this = undefined;
+
+var throttle = function throttle(fn, delay) {
+  var flag = false;
+  return function () {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var context = _this;
+    if (!flag) {
+      setTimeout(function () {
+        fn.apply(context, args);
+        flag = false;
+      }, delay);
+      flag = true;
+    }
+  };
+};
+
+var _this$1 = undefined;
+
+var debounce = function debounce(fn, delay) {
+  var timeoutId = void 0;
+  return function () {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var context = _this$1;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+};
+
 var Utils = {
   noop: noop,
   isMobile: isMobile,
@@ -500,7 +537,9 @@ var Utils = {
   onElementScroll: onElementScroll,
   onElementResize: onElementResize,
   getUrlParameter: getUrlParameter,
-  setUrlParameter: setUrlParameter
+  setUrlParameter: setUrlParameter,
+  throttle: throttle,
+  debounce: debounce
 };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
