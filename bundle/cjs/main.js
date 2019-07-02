@@ -474,6 +474,43 @@ var setUrlParameter = function setUrlParameter(url, name, value) {
   return "" + url + separator + name + "=" + value;
 };
 
+var _this = undefined;
+
+var throttle = function throttle(fn, delay) {
+  var flag = false;
+  return function () {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var context = _this;
+    if (!flag) {
+      setTimeout(function () {
+        fn.apply(context, args);
+        flag = false;
+      }, delay);
+      flag = true;
+    }
+  };
+};
+
+var _this$1 = undefined;
+
+var debounce = function debounce(fn, delay) {
+  var timeoutId = void 0;
+  return function () {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var context = _this$1;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+};
+
 var Utils = {
   noop: noop,
   isMobile: isMobile,
@@ -500,7 +537,265 @@ var Utils = {
   onElementScroll: onElementScroll,
   onElementResize: onElementResize,
   getUrlParameter: getUrlParameter,
-  setUrlParameter: setUrlParameter
+  setUrlParameter: setUrlParameter,
+  throttle: throttle,
+  debounce: debounce
+};
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+var jsx = function () {
+  var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7;
+  return function createRawReactElement(type, props, key, children) {
+    var defaultProps = type && type.defaultProps;
+    var childrenLength = arguments.length - 3;
+
+    if (!props && childrenLength !== 0) {
+      props = {};
+    }
+
+    if (props && defaultProps) {
+      for (var propName in defaultProps) {
+        if (props[propName] === void 0) {
+          props[propName] = defaultProps[propName];
+        }
+      }
+    } else if (!props) {
+      props = defaultProps || {};
+    }
+
+    if (childrenLength === 1) {
+      props.children = children;
+    } else if (childrenLength > 1) {
+      var childArray = Array(childrenLength);
+
+      for (var i = 0; i < childrenLength; i++) {
+        childArray[i] = arguments[i + 3];
+      }
+
+      props.children = childArray;
+    }
+
+    return {
+      $$typeof: REACT_ELEMENT_TYPE,
+      type: type,
+      key: key === undefined ? null : '' + key,
+      ref: null,
+      props: props,
+      _owner: null
+    };
+  };
+}();
+
+var asyncIterator = function (iterable) {
+  if (typeof Symbol === "function") {
+    if (Symbol.asyncIterator) {
+      var method = iterable[Symbol.asyncIterator];
+      if (method != null) return method.call(iterable);
+    }
+
+    if (Symbol.iterator) {
+      return iterable[Symbol.iterator]();
+    }
+  }
+
+  throw new TypeError("Object is not async iterable");
+};
+
+var asyncGenerator = function () {
+  function AwaitValue(value) {
+    this.value = value;
+  }
+
+  function AsyncGenerator(gen) {
+    var front, back;
+
+    function send(key, arg) {
+      return new Promise(function (resolve, reject) {
+        var request = {
+          key: key,
+          arg: arg,
+          resolve: resolve,
+          reject: reject,
+          next: null
+        };
+
+        if (back) {
+          back = back.next = request;
+        } else {
+          front = back = request;
+          resume(key, arg);
+        }
+      });
+    }
+
+    function resume(key, arg) {
+      try {
+        var result = gen[key](arg);
+        var value = result.value;
+
+        if (value instanceof AwaitValue) {
+          Promise.resolve(value.value).then(function (arg) {
+            resume("next", arg);
+          }, function (arg) {
+            resume("throw", arg);
+          });
+        } else {
+          settle(result.done ? "return" : "normal", result.value);
+        }
+      } catch (err) {
+        settle("throw", err);
+      }
+    }
+
+    function settle(type, value) {
+      switch (type) {
+        case "return":
+          front.resolve({
+            value: value,
+            done: true
+          });
+          break;
+
+        case "throw":
+          front.reject(value);
+          break;
+
+        default:
+          front.resolve({
+            value: value,
+            done: false
+          });
+          break;
+      }
+
+      front = front.next;
+
+      if (front) {
+        resume(front.key, front.arg);
+      } else {
+        back = null;
+      }
+    }
+
+    this._invoke = send;
+
+    if (typeof gen.return !== "function") {
+      this.return = undefined;
+    }
+  }
+
+  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+      return this;
+    };
+  }
+
+  AsyncGenerator.prototype.next = function (arg) {
+    return this._invoke("next", arg);
+  };
+
+  AsyncGenerator.prototype.throw = function (arg) {
+    return this._invoke("throw", arg);
+  };
+
+  AsyncGenerator.prototype.return = function (arg) {
+    return this._invoke("return", arg);
+  };
+
+  return {
+    wrap: function (fn) {
+      return function () {
+        return new AsyncGenerator(fn.apply(this, arguments));
+      };
+    },
+    await: function (value) {
+      return new AwaitValue(value);
+    }
+  };
+}();
+
+var asyncGeneratorDelegate = function (inner, awaitWrap) {
+  var iter = {},
+      waiting = false;
+
+  function pump(key, value) {
+    waiting = true;
+    value = new Promise(function (resolve) {
+      resolve(inner[key](value));
+    });
+    return {
+      done: false,
+      value: awaitWrap(value)
+    };
+  }
+
+  if (typeof Symbol === "function" && Symbol.iterator) {
+    iter[Symbol.iterator] = function () {
+      return this;
+    };
+  }
+
+  iter.next = function (value) {
+    if (waiting) {
+      waiting = false;
+      return value;
+    }
+
+    return pump("next", value);
+  };
+
+  if (typeof inner.throw === "function") {
+    iter.throw = function (value) {
+      if (waiting) {
+        waiting = false;
+        throw value;
+      }
+
+      return pump("throw", value);
+    };
+  }
+
+  if (typeof inner.return === "function") {
+    iter.return = function (value) {
+      return pump("return", value);
+    };
+  }
+
+  return iter;
+};
+
+var asyncToGenerator = function (fn) {
+  return function () {
+    var gen = fn.apply(this, arguments);
+    return new Promise(function (resolve, reject) {
+      function step(key, arg) {
+        try {
+          var info = gen[key](arg);
+          var value = info.value;
+        } catch (error) {
+          reject(error);
+          return;
+        }
+
+        if (info.done) {
+          resolve(value);
+        } else {
+          return Promise.resolve(value).then(function (value) {
+            step("next", value);
+          }, function (err) {
+            step("throw", err);
+          });
+        }
+      }
+
+      return step("next");
+    });
+  };
 };
 
 var classCallCheck = function (instance, Constructor) {
@@ -527,6 +822,47 @@ var createClass = function () {
   };
 }();
 
+var defineEnumerableProperties = function (obj, descs) {
+  for (var key in descs) {
+    var desc = descs[key];
+    desc.configurable = desc.enumerable = true;
+    if ("value" in desc) desc.writable = true;
+    Object.defineProperty(obj, key, desc);
+  }
+
+  return obj;
+};
+
+var defaults = function (obj, defaults) {
+  var keys = Object.getOwnPropertyNames(defaults);
+
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    var value = Object.getOwnPropertyDescriptor(defaults, key);
+
+    if (value && value.configurable && obj[key] === undefined) {
+      Object.defineProperty(obj, key, value);
+    }
+  }
+
+  return obj;
+};
+
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
 var _extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -539,6 +875,31 @@ var _extends = Object.assign || function (target) {
   }
 
   return target;
+};
+
+var get = function get(object, property, receiver) {
+  if (object === null) object = Function.prototype;
+  var desc = Object.getOwnPropertyDescriptor(object, property);
+
+  if (desc === undefined) {
+    var parent = Object.getPrototypeOf(object);
+
+    if (parent === null) {
+      return undefined;
+    } else {
+      return get(parent, property, receiver);
+    }
+  } else if ("value" in desc) {
+    return desc.value;
+  } else {
+    var getter = desc.get;
+
+    if (getter === undefined) {
+      return undefined;
+    }
+
+    return getter.call(receiver);
+  }
 };
 
 var inherits = function (subClass, superClass) {
@@ -555,6 +916,47 @@ var inherits = function (subClass, superClass) {
     }
   });
   if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+var _instanceof = function (left, right) {
+  if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
+    return right[Symbol.hasInstance](left);
+  } else {
+    return left instanceof right;
+  }
+};
+
+var interopRequireDefault = function (obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+};
+
+var interopRequireWildcard = function (obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};
+
+    if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }
+
+    newObj.default = obj;
+    return newObj;
+  }
+};
+
+var newArrowCheck = function (innerThis, boundThis) {
+  if (innerThis !== boundThis) {
+    throw new TypeError("Cannot instantiate an arrow function");
+  }
+};
+
+var objectDestructuringEmpty = function (obj) {
+  if (obj == null) throw new TypeError("Cannot destructure undefined");
 };
 
 var objectWithoutProperties = function (obj, keys) {
@@ -575,6 +977,30 @@ var possibleConstructorReturn = function (self, call) {
   }
 
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+var selfGlobal = typeof global === "undefined" ? self : global;
+
+var set = function set(object, property, value, receiver) {
+  var desc = Object.getOwnPropertyDescriptor(object, property);
+
+  if (desc === undefined) {
+    var parent = Object.getPrototypeOf(object);
+
+    if (parent !== null) {
+      set(parent, property, value, receiver);
+    }
+  } else if ("value" in desc && desc.writable) {
+    desc.value = value;
+  } else {
+    var setter = desc.set;
+
+    if (setter !== undefined) {
+      setter.call(receiver, value);
+    }
+  }
+
+  return value;
 };
 
 var slicedToArray = function () {
@@ -615,6 +1041,51 @@ var slicedToArray = function () {
   };
 }();
 
+var slicedToArrayLoose = function (arr, i) {
+  if (Array.isArray(arr)) {
+    return arr;
+  } else if (Symbol.iterator in Object(arr)) {
+    var _arr = [];
+
+    for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
+      _arr.push(_step.value);
+
+      if (i && _arr.length === i) break;
+    }
+
+    return _arr;
+  } else {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  }
+};
+
+var taggedTemplateLiteral = function (strings, raw) {
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+};
+
+var taggedTemplateLiteralLoose = function (strings, raw) {
+  strings.raw = raw;
+  return strings;
+};
+
+var temporalRef = function (val, name, undef) {
+  if (val === undef) {
+    throw new ReferenceError(name + " is not defined - temporal dead zone");
+  } else {
+    return val;
+  }
+};
+
+var temporalUndefined = {};
+
+var toArray = function (arr) {
+  return Array.isArray(arr) ? arr : Array.from(arr);
+};
+
 var toConsumableArray = function (arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
@@ -624,6 +1095,40 @@ var toConsumableArray = function (arr) {
     return Array.from(arr);
   }
 };
+
+var babelHelpers = /*#__PURE__*/Object.freeze({
+  jsx: jsx,
+  asyncIterator: asyncIterator,
+  asyncGenerator: asyncGenerator,
+  asyncGeneratorDelegate: asyncGeneratorDelegate,
+  asyncToGenerator: asyncToGenerator,
+  classCallCheck: classCallCheck,
+  createClass: createClass,
+  defineEnumerableProperties: defineEnumerableProperties,
+  defaults: defaults,
+  defineProperty: defineProperty,
+  get: get,
+  inherits: inherits,
+  interopRequireDefault: interopRequireDefault,
+  interopRequireWildcard: interopRequireWildcard,
+  newArrowCheck: newArrowCheck,
+  objectDestructuringEmpty: objectDestructuringEmpty,
+  objectWithoutProperties: objectWithoutProperties,
+  possibleConstructorReturn: possibleConstructorReturn,
+  selfGlobal: selfGlobal,
+  set: set,
+  slicedToArray: slicedToArray,
+  slicedToArrayLoose: slicedToArrayLoose,
+  taggedTemplateLiteral: taggedTemplateLiteral,
+  taggedTemplateLiteralLoose: taggedTemplateLiteralLoose,
+  temporalRef: temporalRef,
+  temporalUndefined: temporalUndefined,
+  toArray: toArray,
+  toConsumableArray: toConsumableArray,
+  'typeof': _typeof,
+  'extends': _extends,
+  'instanceof': _instanceof
+});
 
 var Ripple = function (_PureComponent) {
   inherits(Ripple, _PureComponent);
@@ -784,8 +1289,9 @@ var GridContainer = function (_PureComponent) {
     value: function componentDidMount() {
       var childNodes = this.containerRef.childNodes;
 
+      var arrayOfChildNodes = [].concat(toConsumableArray(childNodes));
       Utils.requestAnimationFrame(function () {
-        childNodes.forEach(function (item) {
+        arrayOfChildNodes.forEach(function (item) {
           if (!/(^|\s)nwc-grid-row($|[\s])/.test(item.className)) {
             throw Error("`GridContainer` component must have `GridRow` as child");
           }
@@ -818,7 +1324,7 @@ var GridContainer = function (_PureComponent) {
     }
   }, {
     key: "classNameForStrict",
-    get: function get$$1() {
+    get: function get() {
       return this.props.strict ? "nwc-grid-container-strict" : "";
     }
   }]);
@@ -858,8 +1364,9 @@ var GridRow = function (_PureComponent) {
     value: function componentDidMount() {
       var childNodes = this.rowRef.childNodes;
 
+      var arrayOfChildNodes = [].concat(toConsumableArray(childNodes));
       Utils.requestAnimationFrame(function () {
-        childNodes.forEach(function (item) {
+        arrayOfChildNodes.forEach(function (item) {
           if (!/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
             throw Error("`GridRow` component must have `GridColumn` as child");
           }
@@ -915,8 +1422,9 @@ var GridColumn = function (_PureComponent) {
     value: function componentDidMount() {
       var childNodes = this.colRef.childNodes;
 
+      var arrayOfChildNodes = [].concat(toConsumableArray(childNodes));
       Utils.requestAnimationFrame(function () {
-        childNodes.forEach(function (item) {
+        arrayOfChildNodes.forEach(function (item) {
           if (/(^|\s)nwc-grid-col($|[\s])/.test(item.className)) {
             throw Error("`GridColumn` cannot have `GridColumn` as immediate child. \n            Use `GridRow` inbetween when nesting two columns.");
           }
@@ -1052,7 +1560,7 @@ var LazyImg = function (_PureComponent) {
   createClass(LazyImg, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      setTimeout(this.initLazyLoad, 300);
+      this.initLazyLoad();
     }
   }, {
     key: "componentWillReceiveProps",
@@ -1086,7 +1594,9 @@ var LazyImg = function (_PureComponent) {
         isError: true
       });
 
-      this.props.onError();
+      if (!_bypass) {
+        this.props.onError();
+      }
     }
   }, {
     key: "setContext",
@@ -1107,7 +1617,7 @@ var LazyImg = function (_PureComponent) {
     value: function initLazyLoad() {
       this.calcElemVals(this.imgContainerRef);
 
-      if (_bypass || this.isImageInView()) {
+      if (this.isImageInView()) {
         this.setState({
           inView: true
         });
@@ -1132,10 +1642,7 @@ var LazyImg = function (_PureComponent) {
   }, {
     key: "isImageInView",
     value: function isImageInView() {
-      var onWinLoad = this.state.onWinLoad;
-
-
-      if (onWinLoad || this.isInViewport(windowScrollVals, this.elementVals) && this.isInViewport(this.parentElementVals, this.elementVals)) {
+      if (this.isInViewport(windowScrollVals, this.elementVals) && this.isInViewport(this.parentElementVals, this.elementVals)) {
         return true;
       }
 
@@ -1168,19 +1675,20 @@ var LazyImg = function (_PureComponent) {
     }
   }, {
     key: "imgStateClassName",
-    get: function get$$1() {
-      return this.state.isLoaded && "is-loaded" || this.state.isError && "is-error" || "";
+    get: function get() {
+      return (_bypass || this.state.isLoaded) && "is-loaded" || this.state.isError && "is-error" || "";
     }
   }, {
     key: "imgTagIfInView",
-    get: function get$$1() {
+    get: function get() {
       var _props2 = this.props,
           src = _props2.src,
           alt = _props2.alt;
       var inView = this.state.inView;
+      var onWinLoad = this.state.onWinLoad;
 
 
-      if (inView) {
+      if (_bypass || onWinLoad || inView) {
         return React__default.createElement("img", {
           className: "nwc-lazyimg " + this.imgStateClassName,
           src: src,
@@ -1355,7 +1863,7 @@ var Input$1 = function (_PureComponent) {
     }
   }, {
     key: "cloneClassName",
-    get: function get$$1() {
+    get: function get() {
       var _props3 = this.props,
           type = _props3.type,
           checked = _props3.checked,
@@ -1377,7 +1885,7 @@ var Input$1 = function (_PureComponent) {
     }
   }, {
     key: "isCheckTypes",
-    get: function get$$1() {
+    get: function get() {
       var type = this.props.type;
 
       switch (type) {
@@ -1632,7 +2140,7 @@ var Autocomplete = function (_Component) {
     }
   }, {
     key: "isActiveClassName",
-    get: function get$$1() {
+    get: function get() {
       var isActive = this.state.isActive;
 
 
@@ -1687,6 +2195,7 @@ var Select = function (_PureComponent) {
     _this.listNodeItem = [];
 
     _this.onInpValChange = _this.onInpValChange.bind(_this);
+    _this.onLabelClick = _this.onLabelClick.bind(_this);
     _this.onInpFocus = _this.onInpFocus.bind(_this);
     _this.onInpBlur = _this.onInpBlur.bind(_this);
     _this.renderListItems = _this.renderListItems.bind(_this);
@@ -1694,63 +2203,69 @@ var Select = function (_PureComponent) {
     _this.selectAndHideList = _this.selectAndHideList.bind(_this);
     _this.onUserInput = _this.onUserInput.bind(_this);
     _this.scrollHighlightedElemInView = _this.scrollHighlightedElemInView.bind(_this);
+    _this.setValAndScroll = _this.setValAndScroll.bind(_this);
     return _this;
   }
 
   createClass(Select, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearTimeout(this.blurTimeoutId);
+      clearTimeout(this.inputTimeoutId);
+    }
+  }, {
     key: "onInpValChange",
     value: function onInpValChange(e) {
-      var _this2 = this;
-
       var inpVal = e.target.value;
-      var regXSearchItemStartsWith = new RegExp("^" + inpVal, "i");
-      var selectedListIndex = 0;
 
-      this.props.inpList.find(function (item, index) {
-        var testAgainst = item[_this2.props.compareProp] || item;
-
-        if (inpVal && inpVal.length > 0 && regXSearchItemStartsWith.test(testAgainst)) {
-          selectedListIndex = index;
-          return true;
-        }
-
-        return false;
-      });
-
-      this.setState({
-        inpVal: inpVal,
-        selectedListIndex: selectedListIndex
-      });
-
-      clearTimeout(this.inputTimeoutId);
-      this.inputTimeoutId = setTimeout(function () {
-        _this2.setState({
-          inpVal: ""
-        });
-      }, 800);
+      this.setValAndScroll(inpVal);
+    }
+  }, {
+    key: "onLabelClick",
+    value: function onLabelClick() {
+      this.isLabelClick = true;
     }
   }, {
     key: "onInpFocus",
     value: function onInpFocus() {
+      var returnBool = this.props.onFocus();
+
+      if (!returnBool) {
+        return;
+      }
+
+      var _props = this.props,
+          selectedValue = _props.selectedValue,
+          compareProp = _props.compareProp;
       var isActive = this.state.isActive;
 
-      this.toggleDisplay(!isActive);
+      var activeState = this.isLabelClick ? !isActive : true;
+
+      this.setValAndScroll(selectedValue[compareProp] || selectedValue);
+
+      this.toggleDisplay(activeState);
       clearTimeout(this.blurTimeoutId);
+
+      this.isLabelClick = false;
     }
   }, {
     key: "onInpBlur",
     value: function onInpBlur() {
-      var _this3 = this;
+      var _this2 = this;
+
+      var returnBool = this.props.onBlur();
+
+      if (!returnBool) {
+        return;
+      }
 
       this.blurTimeoutId = setTimeout(function () {
-        _this3.toggleDisplay(false);
+        _this2.toggleDisplay(false);
       }, 200);
     }
   }, {
     key: "onUserInput",
     value: function onUserInput(e) {
-      var _this4 = this;
-
       Utils.preventEventPropagation(e);
       var listNodeLength = Object.keys(this.listNode).length - 1;
       var isActive = true;
@@ -1778,15 +2293,44 @@ var Select = function (_PureComponent) {
           this.selectAndHideList(this.state.selectedListIndex);
           return;
         default:
-          selectedListIndex = 0;
+          return;
       }
 
       this.setState({
         selectedListIndex: selectedListIndex,
         isActive: isActive
-      }, function () {
-        _this4.scrollHighlightedElemInView();
+      }, this.scrollHighlightedElemInView);
+    }
+  }, {
+    key: "setValAndScroll",
+    value: function setValAndScroll(value) {
+      var _this3 = this;
+
+      var regXSearchItemStartsWith = new RegExp("^" + value, "i");
+      var selectedListIndex = 0;
+
+      this.props.inpList.find(function (item, index) {
+        var testAgainst = item[_this3.props.compareProp] || item;
+
+        if (value && value.length > 0 && regXSearchItemStartsWith.test(testAgainst)) {
+          selectedListIndex = index;
+          return true;
+        }
+
+        return false;
       });
+
+      this.setState({
+        inpVal: value,
+        selectedListIndex: selectedListIndex
+      }, this.scrollHighlightedElemInView);
+
+      clearTimeout(this.inputTimeoutId);
+      this.inputTimeoutId = setTimeout(function () {
+        _this3.setState({
+          inpVal: ""
+        });
+      }, 800);
     }
   }, {
     key: "scrollHighlightedElemInView",
@@ -1808,7 +2352,7 @@ var Select = function (_PureComponent) {
   }, {
     key: "toggleDisplay",
     value: function toggleDisplay(bool) {
-      var _this5 = this;
+      var _this4 = this;
 
       var disabled = this.props.disabled;
 
@@ -1816,13 +2360,13 @@ var Select = function (_PureComponent) {
       this.setState({
         isActive: !disabled ? bool : false
       }, function () {
-        _this5.scrollHighlightedElemInView();
+        _this4.scrollHighlightedElemInView();
       });
     }
   }, {
     key: "renderListItems",
     value: function renderListItems(inpVal, inpList, renderList) {
-      var _this6 = this;
+      var _this5 = this;
 
       this.listNode = [];
 
@@ -1835,22 +2379,22 @@ var Select = function (_PureComponent) {
 
         var onSelectFn = elem.props.onSelect || Utils.noop;
         var addClass = "";
-        if (index === _this6.state.selectedListIndex) {
+        if (index === _this5.state.selectedListIndex) {
           addClass = "is-active";
         }
-        _this6.listNodeItem[index] = item;
+        _this5.listNodeItem[index] = item;
         return React.cloneElement(elem, {
           className: (elem.props.className || "") + " " + addClass,
           ref: function ref(context) {
-            _this6.listNode["item-" + index] = context;
+            _this5.listNode["item-" + index] = context;
           },
           onClick: function onClick(e) {
             onSelectFn(e);
-            _this6.selectAndHideList(index);
+            _this5.selectAndHideList(index);
           },
           onMouseDown: function onMouseDown(e) {
             onSelectFn(e);
-            _this6.selectAndHideList(index);
+            _this5.selectAndHideList(index);
           }
         });
       });
@@ -1860,7 +2404,7 @@ var Select = function (_PureComponent) {
         {
           className: "nwc-select-list-container",
           ref: function ref(context) {
-            _this6.listNodeWrapperRef = context;
+            _this5.listNodeWrapperRef = context;
           }
         },
         list
@@ -1869,20 +2413,20 @@ var Select = function (_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this6 = this;
 
       var inpVal = this.state.inpVal;
-      var _props = this.props,
-          id = _props.id,
-          className = _props.className,
-          disabled = _props.disabled,
-          selectedValue = _props.selectedValue,
-          inpList = _props.inpList,
-          getSelection = _props.getSelection,
-          renderList = _props.renderList,
-          compareProp = _props.compareProp,
-          selectedIndex = _props.selectedIndex,
-          otherProps = objectWithoutProperties(_props, ["id", "className", "disabled", "selectedValue", "inpList", "getSelection", "renderList", "compareProp", "selectedIndex"]);
+      var _props2 = this.props,
+          id = _props2.id,
+          className = _props2.className,
+          disabled = _props2.disabled,
+          selectedValue = _props2.selectedValue,
+          inpList = _props2.inpList,
+          getSelection = _props2.getSelection,
+          renderList = _props2.renderList,
+          compareProp = _props2.compareProp,
+          selectedIndex = _props2.selectedIndex,
+          otherProps = objectWithoutProperties(_props2, ["id", "className", "disabled", "selectedValue", "inpList", "getSelection", "renderList", "compareProp", "selectedIndex"]);
 
 
       return React__default.createElement(
@@ -1895,32 +2439,33 @@ var Select = function (_PureComponent) {
           Label,
           _extends({
             className: "nwc-select " + this.isDisabledClass,
-            htmlFor: id || this.inputId
+            htmlFor: id || this.inputId,
+            onClick: this.onLabelClick
           }, otherProps),
           selectedValue[compareProp] || selectedValue,
-          React__default.createElement(Input$1, {
-            id: id || this.inputId,
-            className: "nwc-inp-hide nwc-inp-dash nwc-inp-sm",
-            placeholder: "Enter text",
-            value: inpVal,
-            onChange: this.onInpValChange,
-            onKeyDown: this.onUserInput,
-            onFocus: this.onInpFocus,
-            onBlur: this.onInpBlur,
-            ref: function ref(context) {
-              _this7.inputRef = context;
-            },
-            disabled: disabled,
-            readOnly: BLOCK_VIRTUAL_KEYBOARD
-          }),
           React__default.createElement("i", { className: "icomoon-arrow_bottom nwc-select-arrowbottom" })
         ),
+        React__default.createElement(Input$1, {
+          id: id || this.inputId,
+          className: "nwc-inp-hide nwc-inp-dash nwc-inp-sm",
+          placeholder: "Enter text",
+          value: inpVal,
+          onChange: this.onInpValChange,
+          onKeyDown: this.onUserInput,
+          onFocus: this.onInpFocus,
+          onBlur: this.onInpBlur,
+          ref: function ref(context) {
+            _this6.inputRef = context;
+          },
+          disabled: disabled,
+          readOnly: BLOCK_VIRTUAL_KEYBOARD
+        }),
         this.renderListItems(inpVal, inpList, renderList)
       );
     }
   }, {
     key: "isActiveClassName",
-    get: function get$$1() {
+    get: function get() {
       var isActive = this.state.isActive;
 
 
@@ -1928,7 +2473,7 @@ var Select = function (_PureComponent) {
     }
   }, {
     key: "isDisabledClass",
-    get: function get$$1() {
+    get: function get() {
       var disabled = this.props.disabled;
 
 
@@ -1942,6 +2487,12 @@ Select.defaultProps = {
   id: null,
   className: "",
   disabled: false,
+  onFocus: function onFocus() {
+    return true;
+  },
+  onBlur: function onBlur() {
+    return true;
+  },
   selectedIndex: 0,
   getSelection: Utils.noop,
   compareProp: undefined
@@ -1951,6 +2502,8 @@ Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   selectedIndex: PropTypes.number,
   selectedValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]).isRequired,
   inpList: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.string)]).isRequired,
@@ -2053,7 +2606,7 @@ var Masonry = function (_PureComponent) {
     }
   }, {
     key: "columns",
-    get: function get$$1() {
+    get: function get() {
       var _props2 = this.props,
           className = _props2.className,
           data = _props2.data,
@@ -2581,7 +3134,7 @@ var P={_caughtError:null,_hasCaughtError:!1,_rethrowError:null,_hasRethrowError:
 q);}},rethrowCaughtError:function(){return Ka.apply(P,arguments)},hasCaughtError:function(){return P._hasCaughtError},clearCaughtError:function(){if(P._hasCaughtError){var a=P._caughtError;P._caughtError=null;P._hasCaughtError=!1;return a}E("198");}};function Ja(a,b,c,d,e,f,g,h,k){P._hasCaughtError=!1;P._caughtError=null;var q=Array.prototype.slice.call(arguments,3);try{b.apply(c,q);}catch(v){P._caughtError=v,P._hasCaughtError=!0;}}
 function Ka(){if(P._hasRethrowError){var a=P._rethrowError;P._rethrowError=null;P._hasRethrowError=!1;throw a;}}var La=null,Ma={};
 function Na(){if(La)for(var a in Ma){var b=Ma[a],c=La.indexOf(a);-1<c?void 0:E("96",a);if(!Oa[c]){b.extractEvents?void 0:E("97",a);Oa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;Pa.hasOwnProperty(h)?E("99",h):void 0;Pa[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&Qa(k[e],g,h);e=!0;}else f.registrationName?(Qa(f.registrationName,g,h),e=!0):e=!1;e?void 0:E("98",d,a);}}}}
-function Qa(a,b,c){Ra[a]?E("100",a):void 0;Ra[a]=b;Sa[a]=b.eventTypes[c].dependencies;}var Oa=[],Pa={},Ra={},Sa={};function Ta(a){La?E("101"):void 0;La=Array.prototype.slice.call(a);Na();}function Ua(a){var b=!1,c;for(c in a)if(a.hasOwnProperty(c)){var d=a[c];Ma.hasOwnProperty(c)&&Ma[c]===d||(Ma[c]=d,b=!0);}b&&Na();}
+function Qa(a,b,c){Ra[a]?E("100",a):void 0;Ra[a]=b;Sa[a]=b.eventTypes[c].dependencies;}var Oa=[],Pa={},Ra={},Sa={};function Ta(a){La?E("101"):void 0;La=Array.prototype.slice.call(a);Na();}function Ua(a){var b=!1,c;for(c in a)if(a.hasOwnProperty(c)){var d=a[c];Ma.hasOwnProperty(c)&&Ma[c]===d||(Ma[c]?E("102",c):void 0,Ma[c]=d,b=!0);}b&&Na();}
 var Va=Object.freeze({plugins:Oa,eventNameDispatchConfigs:Pa,registrationNameModules:Ra,registrationNameDependencies:Sa,possibleRegistrationNames:null,injectEventPluginOrder:Ta,injectEventPluginsByName:Ua}),Wa=null,Xa=null,Ya=null;function Za(a,b,c,d){b=a.type||"unknown-event";a.currentTarget=Ya(d);P.invokeGuardedCallbackAndCatchFirstError(b,c,void 0,a);a.currentTarget=null;}
 function $a(a,b){null==b?E("30"):void 0;if(null==a)return b;if(Array.isArray(a)){if(Array.isArray(b))return a.push.apply(a,b),a;a.push(b);return a}return Array.isArray(b)?[a].concat(b):[a,b]}function ab(a,b,c){Array.isArray(a)?a.forEach(b,c):a&&b.call(c,a);}var bb=null;
 function cb(a,b){if(a){var c=a._dispatchListeners,d=a._dispatchInstances;if(Array.isArray(c))for(var e=0;e<c.length&&!a.isPropagationStopped();e++)Za(a,b,c[e],d[e]);else c&&Za(a,b,c,d);a._dispatchListeners=null;a._dispatchInstances=null;a.isPersistent()||a.constructor.release(a);}}function db(a){return cb(a,!0)}function gb(a){return cb(a,!1)}var hb={injectEventPluginOrder:Ta,injectEventPluginsByName:Ua};
@@ -3199,10 +3752,6 @@ var Carousel = function (_PureComponent) {
 
     var _this = possibleConstructorReturn(this, (Carousel.__proto__ || Object.getPrototypeOf(Carousel)).call(this, props));
 
-    _this.state = {
-      mounted: false
-    };
-
     _this.listNode = [];
     _this.touchStartVals = null;
     _this.touchEndVals = null;
@@ -3222,11 +3771,7 @@ var Carousel = function (_PureComponent) {
       var _this2 = this;
 
       Utils.requestAnimationFrame(function () {
-        _this2.setState({
-          mounted: true
-        }, function () {
-          _this2.scrollToIndex(_this2.props.index);
-        });
+        _this2.scrollToIndex(_this2.props.index);
       });
     }
   }, {
@@ -3314,7 +3859,6 @@ var Carousel = function (_PureComponent) {
     value: function render() {
       var _this3 = this;
 
-      var mounted = this.state.mounted;
       var _props = this.props,
           className = _props.className,
           index = _props.index,
@@ -3336,12 +3880,12 @@ var Carousel = function (_PureComponent) {
           onTouchMove: this.onTouchMove,
           onTouchEnd: this.onTouchEnd
         }, otherProps),
-        mounted && this.renderItemsList
+        this.renderItemsList
       );
     }
   }, {
     key: "renderItemsList",
-    get: function get$$1() {
+    get: function get() {
       var _this4 = this;
 
       var _props2 = this.props,
@@ -3505,12 +4049,12 @@ var RecyclerView = function (_PureComponent) {
     }
   }, {
     key: "listVals",
-    get: function get$$1() {
+    get: function get() {
       return Utils.getBoundClientRect(this.containerRef);
     }
   }, {
     key: "totalRows",
-    get: function get$$1() {
+    get: function get() {
       var _props2 = this.props,
           noOfElements = _props2.noOfElements,
           elemsInRow = _props2.elemsInRow;
@@ -3520,7 +4064,7 @@ var RecyclerView = function (_PureComponent) {
     }
   }, {
     key: "limits",
-    get: function get$$1() {
+    get: function get() {
       var _props3 = this.props,
           elemsInRow = _props3.elemsInRow,
           noOfElements = _props3.noOfElements;
@@ -3538,7 +4082,7 @@ var RecyclerView = function (_PureComponent) {
     }
   }, {
     key: "productWidth",
-    get: function get$$1() {
+    get: function get() {
       var elemsInRow = this.props.elemsInRow;
 
 
@@ -3546,7 +4090,7 @@ var RecyclerView = function (_PureComponent) {
     }
   }, {
     key: "productHeight",
-    get: function get$$1() {
+    get: function get() {
       var elemsInRow = this.props.elemsInRow;
 
 
@@ -3563,7 +4107,7 @@ var RecyclerView = function (_PureComponent) {
     }
   }, {
     key: "viewHeight",
-    get: function get$$1() {
+    get: function get() {
       var listVals = this.listVals;
 
       var windowHeight = window.innerHeight;
@@ -3573,7 +4117,7 @@ var RecyclerView = function (_PureComponent) {
     }
   }, {
     key: "offsetTop",
-    get: function get$$1() {
+    get: function get() {
       var isWrapperLoaded = this.state.isWrapperLoaded;
 
 
@@ -3592,7 +4136,7 @@ var RecyclerView = function (_PureComponent) {
     }
   }, {
     key: "parentVirtualHeight",
-    get: function get$$1() {
+    get: function get() {
       var productSavedHeight = this.productSavedHeight;
 
 
@@ -3611,7 +4155,7 @@ var RecyclerView = function (_PureComponent) {
     }
   }, {
     key: "renderItems",
-    get: function get$$1() {
+    get: function get() {
       var limits = this.limits;
       var _props5 = this.props,
           renderList = _props5.renderList,
@@ -3647,23 +4191,23 @@ RecyclerView.propTypes = {
   renderList: PropTypes.func.isRequired
 };
 
-exports.Ripple = Ripple;
+exports.Autocomplete = Autocomplete;
+exports.Button = Button;
+exports.Carousel = Carousel;
 exports.Close = Close;
+exports.GridColumn = GridColumn;
 exports.GridContainer = GridContainer;
 exports.GridRow = GridRow;
-exports.GridColumn = GridColumn;
-exports.Button = Button;
 exports.Img = Img;
-exports.LazyImg = LazyImg;
-exports.Label = Label;
 exports.Input = Input$1;
-exports.Autocomplete = Autocomplete;
-exports.Select = Select;
+exports.Label = Label;
+exports.LazyImg = LazyImg;
+exports.Loader = Loader;
 exports.Masonry = Masonry;
 exports.Modal = Modal;
-exports.Toastr = Toastr;
-exports.Loader = Loader;
-exports.Carousel = Carousel;
 exports.RecyclerView = RecyclerView;
+exports.Ripple = Ripple;
+exports.Select = Select;
+exports.Toastr = Toastr;
 exports.Utils = Utils;
 //# sourceMappingURL=main.js.map

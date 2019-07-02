@@ -50,7 +50,7 @@ class LazyImg extends PureComponent {
   }
 
   componentDidMount() {
-    setTimeout(this.initLazyLoad, 300);
+    this.initLazyLoad();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -95,8 +95,9 @@ class LazyImg extends PureComponent {
   get imgTagIfInView() {
     const { src, alt } = this.props;
     const { inView } = this.state;
+    const { onWinLoad } = this.state;
 
-    if (inView) {
+    if (bypass || onWinLoad || inView) {
       return (
         <img
           className={`nwc-lazyimg ${this.imgStateClassName}`}
@@ -126,7 +127,7 @@ class LazyImg extends PureComponent {
   initLazyLoad() {
     this.calcElemVals(this.imgContainerRef);
 
-    if (bypass || this.isImageInView()) {
+    if (this.isImageInView()) {
       this.setState({
         inView: true,
       });
@@ -162,12 +163,9 @@ class LazyImg extends PureComponent {
   }
 
   isImageInView() {
-    const { onWinLoad } = this.state;
-
     if (
-      onWinLoad ||
-      (this.isInViewport(windowScrollVals, this.elementVals) &&
-        this.isInViewport(this.parentElementVals, this.elementVals))
+      this.isInViewport(windowScrollVals, this.elementVals) &&
+      this.isInViewport(this.parentElementVals, this.elementVals)
     ) {
       return true;
     }
