@@ -9,7 +9,7 @@ const throttle = (fn, delay) => {
       }, delay);
       flag = true;
     }
-  }
+  };
 };
 
 export default throttle;
