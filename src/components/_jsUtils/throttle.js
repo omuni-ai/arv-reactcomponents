@@ -1,6 +1,6 @@
 const throttle = (fn, delay) => {
   let flag = false;
-  return (...args) => {
+  return function(...args) {
     const context = this;
     if (!flag) {
       setTimeout(() => {
@@ -9,7 +9,7 @@ const throttle = (fn, delay) => {
       }, delay);
       flag = true;
     }
-  };
+  }
 };
 
 export default throttle;
