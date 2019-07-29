@@ -6,7 +6,7 @@ const debounce = (fn, delay) => {
     timeoutId = setTimeout(() => {
       fn.apply(context, args);
     }, delay);
-  }
+  };
 };
 
 export default debounce;
