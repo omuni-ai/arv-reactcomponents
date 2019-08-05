@@ -234,9 +234,7 @@ class Select extends PureComponent {
 
     return (
       <div
-        className={`nwc-select-container ${className} ${this.isDisabledClass} ${
-          this.isActiveClassName
-        }`}
+        className={`nwc-select-container ${className} ${this.isDisabledClass} ${this.isActiveClassName}`}
         onTouchStart={Utils.preventEventPropagation}
       >
         <Label
