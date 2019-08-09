@@ -1,5 +1,5 @@
 /* eslint-disable */
-//require("babel-register");
+require("@babel/register");
 const express = require("express");
 const path = require("path");
 const compression = require("compression");
