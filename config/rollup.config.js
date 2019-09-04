@@ -58,7 +58,7 @@ var config = [{
         preamble: "/* uglified */"
       },
       warnings: false,
-      sourceMap: false
+      sourcemap: false
     })
   ]
 }];
