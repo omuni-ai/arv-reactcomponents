@@ -799,7 +799,7 @@ function (_PureComponent) {
 
       return React__default.createElement(Button, _extends({
         className: "nwc-close ".concat(className)
-      }, otherProps));
+      }, otherProps), "\xA0");
     }
   }]);
 
