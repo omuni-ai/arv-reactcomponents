@@ -6,7 +6,11 @@ import Button from "../Button";
 class Close extends PureComponent {
   render() {
     const { className, ...otherProps } = this.props;
-    return <Button className={`nwc-close ${className}`} {...otherProps} />;
+    return (
+      <Button className={`nwc-close ${className}`} {...otherProps}>
+        &nbsp;
+      </Button>
+    );
   }
 }
 
