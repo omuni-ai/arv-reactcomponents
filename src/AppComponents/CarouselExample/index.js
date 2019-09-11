@@ -73,6 +73,7 @@ class CarouselExample extends PureComponent {
           className="nw-carouselexample-img"
           src={item.image}
           offset={300}
+          rootMargin={1500}
         />
       </div>
     );

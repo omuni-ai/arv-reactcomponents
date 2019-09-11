@@ -1,5 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import "intersection-observer";
+
 import Utils from "../_jsUtils";
 
 let bypass = false;
@@ -23,7 +25,7 @@ class LazyImg extends PureComponent {
 
     const observerOptions = {
       root: props.parentElement,
-      rootMargin: "0px",
+      rootMargin: `${props.rootMargin}px`,
       threshold: props.threshold,
     };
 
@@ -93,12 +95,14 @@ class LazyImg extends PureComponent {
 
   intersectionCallback(entries) {
     entries.forEach(entry => {
-      if (entry.intersectionRatio > 0) {
-        this.setState({
-          inView: true,
-        });
+      if (entry.isIntersecting) {
+        window.requestIdleCallback(() => {
+          this.setState({
+            inView: true,
+          });
 
-        this.observer.unobserve(entry.target);
+          this.observer.unobserve(entry.target);
+        });
       }
     });
   }
@@ -139,6 +143,7 @@ LazyImg.defaultProps = {
   onError: Utils.noop,
   offset: 0,
   parentElement: null,
+  rootMargin: 0,
   threshold: [0.1],
 };
 
@@ -152,6 +157,7 @@ LazyImg.propTypes = {
   onError: PropTypes.func,
   offset: PropTypes.number,
   parentElement: PropTypes.shape({}),
+  rootMargin: PropTypes.number,
   threshold: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.number),
