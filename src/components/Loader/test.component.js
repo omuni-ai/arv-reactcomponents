@@ -1,5 +1,5 @@
 import React from "react";
-import Loader from "./";
+import Loader from ".";
 
 const LoaderTest = () => <Loader className="nw-loader" />;
 

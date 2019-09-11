@@ -1,5 +1,5 @@
 import React from "react";
-import GridColumn from "./";
+import GridColumn from ".";
 
 const GridColumnTest = () => (
   <GridColumn>

@@ -65,6 +65,8 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
+    "lint": "eslint src --ext .jsx,.js",
+    "lintfix": "yarn eslint --fix .",
     "start": "node scripts/start.js",
     "start:prod": "NODE_ENV=production npm run build && node scripts/start.js",
     "start:dev": "NODE_ENV=development npm run build && node scripts/start.js",

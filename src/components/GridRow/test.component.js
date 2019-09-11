@@ -1,6 +1,6 @@
 import React from "react";
 import GridContainer from "../GridContainer";
-import GridRow from "./";
+import GridRow from ".";
 
 const GridRowTest = () => (
   <GridContainer>

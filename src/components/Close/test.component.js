@@ -1,5 +1,5 @@
 import React from "react";
-import Close from "./";
+import Close from ".";
 
 const CloseTest = () => <Close />;
 

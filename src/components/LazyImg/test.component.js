@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 // Import common components
-import { LazyImg, Utils } from "../";
+import { LazyImg, Utils } from "..";
 
 class LazyImgExample extends Component {
   constructor(props) {

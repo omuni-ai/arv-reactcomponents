@@ -5,7 +5,7 @@ import { shallowToJson } from "enzyme-to-json";
 import TestComponent from "../test.component";
 import * as constants from "../../constants";
 
-import Modal from "../";
+import Modal from "..";
 
 describe("Root Component Tests", () => {
   beforeAll(() => {

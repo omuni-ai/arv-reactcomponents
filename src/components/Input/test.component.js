@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 // Import common components
-import { Input } from "../";
+import { Input } from "..";
 
 class InputTest extends Component {
   constructor(props) {

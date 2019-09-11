@@ -1,5 +1,5 @@
 import React from "react";
-import GridContainer from "./";
+import GridContainer from ".";
 import GridRow from "../GridRow";
 import GridColumn from "../GridColumn";
 

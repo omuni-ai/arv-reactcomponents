@@ -45,7 +45,6 @@ class CarouselExample extends PureComponent {
 
     this.onItemClick = this.onItemClick.bind(this);
     this.renderItems = this.renderItems.bind(this);
-    this.setParent = this.setParent.bind(this);
   }
 
   onItemClick(index) {
@@ -56,14 +55,6 @@ class CarouselExample extends PureComponent {
     this.setState({
       index,
     });
-  }
-
-  setParent() {
-    const [carouselContainer] = document.querySelectorAll(
-      ".nw-carouselexample",
-    );
-
-    this.carouselContainer = carouselContainer;
   }
 
   renderItems(item, index) {
@@ -82,7 +73,6 @@ class CarouselExample extends PureComponent {
           className="nw-carouselexample-img"
           src={item.image}
           offset={300}
-          parentElement={this.carouselContainer}
         />
       </div>
     );
@@ -102,7 +92,6 @@ class CarouselExample extends PureComponent {
         <GridRow>
           <GridColumn className="nwc-grid-col-sm-12 nw-block nw-block-white">
             <Carousel
-              ref={this.setParent}
               className="nw-carouselexample"
               index={index}
               items={this.items}

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Button, Ripple } from "../";
+import { Button, Ripple } from "..";
 
 function RippleTest() {
   return (

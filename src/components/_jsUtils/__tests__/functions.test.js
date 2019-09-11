@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import Utils from "../";
+import Utils from "..";
 import * as constants from "../../constants";
 
 const rAF = global.window.requestAnimationFrame;

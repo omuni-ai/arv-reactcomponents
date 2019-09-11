@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Img, GridRow, GridColumn, Masonry } from "../";
+import { Img, GridRow, GridColumn, Masonry } from "..";
 
 class MasonryTest extends Component {
   static renderList(item) {

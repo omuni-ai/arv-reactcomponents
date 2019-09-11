@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import Toastr from "../";
+import Toastr from "..";
 
 Toastr.setConfig({
   limitTo: 1,

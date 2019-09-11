@@ -2,26 +2,8 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Utils from "../_jsUtils";
 
-const LazyImgRef = [];
-let windowScrollVals = Utils.windowScroll();
 let bypass = false;
 class LazyImg extends PureComponent {
-  static triggerLoad() {
-    LazyImgRef.forEach(item => {
-      let self = item;
-      if (self.isImageInView()) {
-        const itemIndex = LazyImgRef.indexOf(self);
-
-        self.setState({
-          inView: true,
-        });
-
-        LazyImgRef.splice(itemIndex, 1);
-        self = null;
-      }
-    });
-  }
-
   static bypass() {
     bypass = true;
   }
@@ -37,33 +19,23 @@ class LazyImg extends PureComponent {
       inView: false,
       isLoaded: false,
       isError: false,
-      onWinLoad: props.onWinLoad || false,
+    };
+
+    const observerOptions = {
+      root: props.parentElement,
+      rootMargin: "0px",
+      threshold: props.threshold,
     };
 
     this.onLoad = this.onLoad.bind(this);
     this.onError = this.onError.bind(this);
-    this.isInViewport = this.isInViewport.bind(this);
-    this.isImageInView = this.isImageInView.bind(this);
     this.setContext = this.setContext.bind(this);
-    this.calcElemVals = this.calcElemVals.bind(this);
-    this.initLazyLoad = this.initLazyLoad.bind(this);
-  }
+    this.intersectionCallback = this.intersectionCallback.bind(this);
 
-  componentDidMount() {
-    this.initLazyLoad();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps && nextProps.index !== this.props.index) {
-      setTimeout(() => {
-        this.calcElemVals(this.imgContainerRef);
-        if (this.isImageInView()) {
-          this.setState({
-            inView: true,
-          });
-        }
-      }, 300);
-    }
+    this.observer = new IntersectionObserver(
+      this.intersectionCallback,
+      observerOptions,
+    );
   }
 
   onLoad() {
@@ -93,9 +65,8 @@ class LazyImg extends PureComponent {
   }
 
   get imgTagIfInView() {
-    const { src, alt } = this.props;
+    const { src, alt, onWinLoad } = this.props;
     const { inView } = this.state;
-    const { onWinLoad } = this.state;
 
     if (bypass || onWinLoad || inView) {
       return (
@@ -114,63 +85,22 @@ class LazyImg extends PureComponent {
 
   setContext(context) {
     this.imgContainerRef = context;
-  }
-
-  calcElemVals(elem) {
-    const { parentElement } = this.props;
-
-    this.elementVals = Utils.getBoundClientRect(elem);
-    this.parentElementVals =
-      (parentElement && Utils.getBoundClientRect(parentElement)) || null;
-  }
-
-  initLazyLoad() {
-    this.calcElemVals(this.imgContainerRef);
-
-    if (this.isImageInView()) {
-      this.setState({
-        inView: true,
-      });
-
-      return;
+    const { onWinLoad } = this.props;
+    if (!bypass && !onWinLoad) {
+      this.observer.observe(context);
     }
-
-    LazyImgRef.push(this);
   }
 
-  isInViewport(parentVals, elementVals) {
-    const { offset } = this.props;
+  intersectionCallback(entries) {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > 0) {
+        this.setState({
+          inView: true,
+        });
 
-    if (!parentVals) {
-      return true;
-    }
-
-    return (
-      elementVals &&
-      ((elementVals.top - offset > parentVals.top &&
-        elementVals.top - offset < parentVals.bottom) ||
-        (elementVals.bottom + offset > parentVals.top &&
-          elementVals.bottom + offset < parentVals.bottom) ||
-        (elementVals.top - offset < parentVals.top &&
-          elementVals.bottom + offset > parentVals.bottom)) &&
-      ((elementVals.left - offset > parentVals.left &&
-        elementVals.left - offset < parentVals.right) ||
-        (elementVals.right + offset > parentVals.left &&
-          elementVals.right + offset < parentVals.right) ||
-        (elementVals.left - offset < parentVals.left &&
-          elementVals.right + offset > parentVals.right))
-    );
-  }
-
-  isImageInView() {
-    if (
-      this.isInViewport(windowScrollVals, this.elementVals) &&
-      this.isInViewport(this.parentElementVals, this.elementVals)
-    ) {
-      return true;
-    }
-
-    return false;
+        this.observer.unobserve(entry.target);
+      }
+    });
   }
 
   render() {
@@ -183,6 +113,7 @@ class LazyImg extends PureComponent {
       alt,
       onLoad,
       onError,
+      threshold,
       parentElement,
       ...otherProps
     } = this.props;
@@ -199,15 +130,6 @@ class LazyImg extends PureComponent {
   }
 }
 
-Utils.onElementScroll(
-  window,
-  () => {
-    windowScrollVals = Utils.windowScroll();
-    LazyImg.triggerLoad();
-  },
-  { passive: true },
-);
-
 LazyImg.defaultProps = {
   onWinLoad: false,
   className: "",
@@ -217,6 +139,7 @@ LazyImg.defaultProps = {
   onError: Utils.noop,
   offset: 0,
   parentElement: null,
+  threshold: [0.1],
 };
 
 LazyImg.propTypes = {
@@ -229,6 +152,10 @@ LazyImg.propTypes = {
   onError: PropTypes.func,
   offset: PropTypes.number,
   parentElement: PropTypes.shape({}),
+  threshold: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
 };
 
 export default LazyImg;

@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 
 import TestComponent from "../test.component";
 
-import Modal from "../";
+import Modal from "..";
 
 describe("Root Component Tests", () => {
   test("Escape on Close", done => {
