@@ -1800,7 +1800,13 @@ function (_PureComponent) {
     _this.onError = _this.onError.bind(_assertThisInitialized(_this));
     _this.setContext = _this.setContext.bind(_assertThisInitialized(_this));
     _this.intersectionCallback = _this.intersectionCallback.bind(_assertThisInitialized(_this));
-    _this.observer = new IntersectionObserver(_this.intersectionCallback, observerOptions);
+
+    if ("IntersectionObserver" in window && "IntersectionObserverEntry" in window && "intersectionRatio" in window.IntersectionObserverEntry.prototype) {
+      _this.observer = new IntersectionObserver(_this.intersectionCallback, observerOptions);
+    } else {
+      _bypass = true;
+    }
+
     return _this;
   }
 
@@ -1862,9 +1868,10 @@ function (_PureComponent) {
           alt = _this$props.alt,
           onLoad = _this$props.onLoad,
           onError = _this$props.onError,
+          rootMargin = _this$props.rootMargin,
           threshold = _this$props.threshold,
           parentElement = _this$props.parentElement,
-          otherProps = _objectWithoutProperties(_this$props, ["onWinLoad", "index", "offset", "className", "src", "alt", "onLoad", "onError", "threshold", "parentElement"]);
+          otherProps = _objectWithoutProperties(_this$props, ["onWinLoad", "index", "offset", "className", "src", "alt", "onLoad", "onError", "rootMargin", "threshold", "parentElement"]);
 
       return React__default.createElement("div", _extends({
         className: "nwc-lazyimg-container ".concat(className),

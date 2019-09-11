@@ -34,10 +34,18 @@ class LazyImg extends PureComponent {
     this.setContext = this.setContext.bind(this);
     this.intersectionCallback = this.intersectionCallback.bind(this);
 
-    this.observer = new IntersectionObserver(
-      this.intersectionCallback,
-      observerOptions,
-    );
+    if (
+      "IntersectionObserver" in window &&
+      "IntersectionObserverEntry" in window &&
+      "intersectionRatio" in window.IntersectionObserverEntry.prototype
+    ) {
+      this.observer = new IntersectionObserver(
+        this.intersectionCallback,
+        observerOptions,
+      );
+    } else {
+      bypass = true;
+    }
   }
 
   onLoad() {
@@ -117,6 +125,7 @@ class LazyImg extends PureComponent {
       alt,
       onLoad,
       onError,
+      rootMargin,
       threshold,
       parentElement,
       ...otherProps
