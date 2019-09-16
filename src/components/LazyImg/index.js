@@ -25,7 +25,7 @@ class LazyImg extends PureComponent {
 
     const observerOptions = {
       root: props.parentElement,
-      rootMargin: `${props.rootMargin}px`,
+      rootMargin: `${props.rootMargin}`,
       threshold: props.threshold,
     };
 

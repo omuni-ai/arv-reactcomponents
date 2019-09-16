@@ -1793,7 +1793,7 @@ function (_PureComponent) {
     };
     var observerOptions = {
       root: props.parentElement,
-      rootMargin: "".concat(props.rootMargin, "px"),
+      rootMargin: "".concat(props.rootMargin),
       threshold: props.threshold
     };
     _this.onLoad = _this.onLoad.bind(_assertThisInitialized(_this));
