@@ -1832,6 +1832,10 @@ function (_PureComponent) {
   }, {
     key: "setContext",
     value: function setContext(context) {
+      if (!context) {
+        return;
+      }
+
       this.imgContainerRef = context;
       var onWinLoad = this.props.onWinLoad;
 

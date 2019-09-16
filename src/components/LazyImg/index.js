@@ -94,6 +94,10 @@ class LazyImg extends PureComponent {
   }
 
   setContext(context) {
+    if (!context) {
+      return;
+    }
+
     this.imgContainerRef = context;
     const { onWinLoad } = this.props;
     if (!bypass && !onWinLoad) {
