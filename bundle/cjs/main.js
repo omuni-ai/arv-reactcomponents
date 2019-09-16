@@ -1846,12 +1846,12 @@ function (_PureComponent) {
 
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
+          _this2.observer.unobserve(entry.target);
+
           window.requestIdleCallback(function () {
             _this2.setState({
               inView: true
             });
-
-            _this2.observer.unobserve(entry.target);
           });
         }
       });
@@ -1862,7 +1862,6 @@ function (_PureComponent) {
       var _this$props = this.props,
           onWinLoad = _this$props.onWinLoad,
           index = _this$props.index,
-          offset = _this$props.offset,
           className = _this$props.className,
           src = _this$props.src,
           alt = _this$props.alt,
@@ -1871,7 +1870,7 @@ function (_PureComponent) {
           rootMargin = _this$props.rootMargin,
           threshold = _this$props.threshold,
           parentElement = _this$props.parentElement,
-          otherProps = _objectWithoutProperties(_this$props, ["onWinLoad", "index", "offset", "className", "src", "alt", "onLoad", "onError", "rootMargin", "threshold", "parentElement"]);
+          otherProps = _objectWithoutProperties(_this$props, ["onWinLoad", "index", "className", "src", "alt", "onLoad", "onError", "rootMargin", "threshold", "parentElement"]);
 
       return React__default.createElement("div", _extends({
         className: "nwc-lazyimg-container ".concat(className),
@@ -1916,7 +1915,6 @@ LazyImg.defaultProps = {
   src: null,
   onLoad: Utils.noop,
   onError: Utils.noop,
-  offset: 0,
   parentElement: null,
   rootMargin: 0,
   threshold: [0.1]
@@ -1929,7 +1927,6 @@ LazyImg.propTypes = {
   alt: PropTypes.string,
   onLoad: PropTypes.func,
   onError: PropTypes.func,
-  offset: PropTypes.number,
   parentElement: PropTypes.shape({}),
   rootMargin: PropTypes.number,
   threshold: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])

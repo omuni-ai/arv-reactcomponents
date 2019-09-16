@@ -104,12 +104,11 @@ class LazyImg extends PureComponent {
   intersectionCallback(entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        this.observer.unobserve(entry.target);
         window.requestIdleCallback(() => {
           this.setState({
             inView: true,
           });
-
-          this.observer.unobserve(entry.target);
         });
       }
     });
@@ -119,7 +118,6 @@ class LazyImg extends PureComponent {
     const {
       onWinLoad,
       index,
-      offset,
       className,
       src,
       alt,
@@ -150,7 +148,6 @@ LazyImg.defaultProps = {
   src: null,
   onLoad: Utils.noop,
   onError: Utils.noop,
-  offset: 0,
   parentElement: null,
   rootMargin: 0,
   threshold: [0.1],
@@ -164,7 +161,6 @@ LazyImg.propTypes = {
   alt: PropTypes.string,
   onLoad: PropTypes.func,
   onError: PropTypes.func,
-  offset: PropTypes.number,
   parentElement: PropTypes.shape({}),
   rootMargin: PropTypes.number,
   threshold: PropTypes.oneOfType([
