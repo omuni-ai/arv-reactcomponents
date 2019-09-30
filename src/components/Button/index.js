@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 function Button(props) {
   const { className, children, ...otherProps } = props;
   return (
-    <button className={`nwc-btn ${className}`} tabIndex="0" {...otherProps}>
+    <button
+      type="button"
+      className={`nwc-btn ${className}`}
+      tabIndex="0"
+      {...otherProps}
+    >
       {children}
     </button>
   );

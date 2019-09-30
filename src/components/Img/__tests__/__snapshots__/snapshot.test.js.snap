@@ -1,28 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Root Component Tests Matches Mounted SnapShot 1`] = `
-<ImgTest>
-  <Img
-    alt="NNNOW"
-    className=""
-    onError={[Function]}
-    onLoad={[Function]}
-    src="https://static.nnnow.com/client/assets/images/icon/defaultSkuImage.png"
-  >
-    <img
-      alt="NNNOW"
-      className="nwc-img "
-      onError={[Function]}
-      onLoad={[Function]}
-      src="https://static.nnnow.com/client/assets/images/icon/defaultSkuImage.png"
-    />
-  </Img>
-</ImgTest>
-`;
+exports[`Root Component Tests Matches Mounted SnapShot 1`] = `ReactWrapper {}`;
 
 exports[`Root Component Tests Matches Shallow SnapShot 1`] = `
 <Img
-  alt="NNNOW"
+  alt=""
   className=""
   onError={[Function]}
   onLoad={[Function]}

@@ -105,7 +105,7 @@ class RecyclerView extends PureComponent {
     const { limits } = this;
     const { elemsInRow } = this.props;
 
-    const heightOfHiddens = limits.from / elemsInRow * productSavedHeight;
+    const heightOfHiddens = (limits.from / elemsInRow) * productSavedHeight;
 
     return heightOfHiddens;
   }

@@ -26,17 +26,8 @@ var config = [{
       }
     }),
     babel({
-      babelrc: false,
-      exclude: 'node_modules/**',
-      "presets": [
-        ["env", {
-          "modules": false
-        }],
-        "es2017",
-        "stage-0",
-        "react"
-      ],
-      plugins: ['external-helpers']
+      babelrc: true,
+      exclude: 'node_modules/**'
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production')
@@ -56,12 +47,18 @@ var config = [{
   plugins: [
     uglify({
       compress: {
-        warnings: false
+        dead_code: true,
+        global_defs: {
+            DEBUG: false
+        }
       },
       output: {
-        comments: false
+        comments: false,
+        beautify: false,
+        preamble: "/* uglified */"
       },
-      sourceMap: false
+      warnings: false,
+      sourcemap: false
     })
   ]
 }];

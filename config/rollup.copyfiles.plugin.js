@@ -29,7 +29,7 @@ const copyFiles = function(options) {
 
 const copyPlugin = function(options) {
   return {
-    ongenerate() {
+    generateBundle() {
       const targDir = path.dirname(options.output);
       let folderPath = "";
 

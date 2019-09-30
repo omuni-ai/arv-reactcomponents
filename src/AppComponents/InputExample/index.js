@@ -91,9 +91,7 @@ class InputExample extends Component {
               type="checkbox"
               value="0"
               checked={checkboxChecked}
-              className={`nwc-inp-checkbox-secondary nwc-inp-normal ${
-                this.errorClass
-              }`}
+              className={`nwc-inp-checkbox-secondary nwc-inp-normal ${this.errorClass}`}
               onChange={e => {
                 this.toggleValue(e, "checkboxChecked");
               }}
@@ -107,9 +105,7 @@ class InputExample extends Component {
               type="radio"
               value="0"
               checked={radioChecked}
-              className={`nwc-inp-radio-primary nwc-inp-normal ${
-                this.errorClass
-              }`}
+              className={`nwc-inp-radio-primary nwc-inp-normal ${this.errorClass}`}
               onChange={e => {
                 this.toggleValue(e, "radioChecked");
               }}
