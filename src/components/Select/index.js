@@ -26,6 +26,7 @@ class Select extends PureComponent {
     this.listNodeItem = [];
 
     this.onInpValChange = this.onInpValChange.bind(this);
+    this.onLabelClick = this.onLabelClick.bind(this);
     this.onInpFocus = this.onInpFocus.bind(this);
     this.onInpBlur = this.onInpBlur.bind(this);
     this.renderListItems = this.renderListItems.bind(this);
@@ -35,48 +36,50 @@ class Select extends PureComponent {
     this.scrollHighlightedElemInView = this.scrollHighlightedElemInView.bind(
       this,
     );
+    this.setValAndScroll = this.setValAndScroll.bind(this);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.blurTimeoutId);
+    clearTimeout(this.inputTimeoutId);
   }
 
   onInpValChange(e) {
     const inpVal = e.target.value;
-    const regXSearchItemStartsWith = new RegExp(`^${inpVal}`, "i");
-    let selectedListIndex = 0;
 
-    this.props.inpList.find((item, index) => {
-      const testAgainst = item[this.props.compareProp] || item;
+    this.setValAndScroll(inpVal);
+  }
 
-      if (
-        inpVal &&
-        inpVal.length > 0 &&
-        regXSearchItemStartsWith.test(testAgainst)
-      ) {
-        selectedListIndex = index;
-        return true;
-      }
-
-      return false;
-    });
-
-    this.setState({
-      inpVal,
-      selectedListIndex,
-    });
-
-    clearTimeout(this.inputTimeoutId);
-    this.inputTimeoutId = setTimeout(() => {
-      this.setState({
-        inpVal: "",
-      });
-    }, 800);
+  onLabelClick() {
+    this.isLabelClick = true;
   }
 
   onInpFocus() {
+    const returnBool = this.props.onFocus();
+
+    if (!returnBool) {
+      return;
+    }
+
+    const { selectedValue, compareProp } = this.props;
     const { isActive } = this.state;
-    this.toggleDisplay(!isActive);
+    const activeState = this.isLabelClick ? !isActive : true;
+
+    this.setValAndScroll(selectedValue[compareProp] || selectedValue);
+
+    this.toggleDisplay(activeState);
     clearTimeout(this.blurTimeoutId);
+
+    this.isLabelClick = false;
   }
 
   onInpBlur() {
+    const returnBool = this.props.onBlur();
+
+    if (!returnBool) {
+      return;
+    }
+
     this.blurTimeoutId = setTimeout(() => {
       this.toggleDisplay(false);
     }, 200);
@@ -115,7 +118,7 @@ class Select extends PureComponent {
         this.selectAndHideList(this.state.selectedListIndex);
         return;
       default:
-        selectedListIndex = 0;
+        return;
     }
 
     this.setState(
@@ -123,9 +126,7 @@ class Select extends PureComponent {
         selectedListIndex,
         isActive,
       },
-      () => {
-        this.scrollHighlightedElemInView();
-      },
+      this.scrollHighlightedElemInView,
     );
   }
 
@@ -139,6 +140,41 @@ class Select extends PureComponent {
     const { disabled } = this.props;
 
     return (disabled && "is-disabled") || "";
+  }
+
+  setValAndScroll(value) {
+    const regXSearchItemStartsWith = new RegExp(`^${value}`, "i");
+    let selectedListIndex = 0;
+
+    this.props.inpList.find((item, index) => {
+      const testAgainst = item[this.props.compareProp] || item;
+
+      if (
+        value &&
+        value.length > 0 &&
+        regXSearchItemStartsWith.test(testAgainst)
+      ) {
+        selectedListIndex = index;
+        return true;
+      }
+
+      return false;
+    });
+
+    this.setState(
+      {
+        inpVal: value,
+        selectedListIndex,
+      },
+      this.scrollHighlightedElemInView,
+    );
+
+    clearTimeout(this.inputTimeoutId);
+    this.inputTimeoutId = setTimeout(() => {
+      this.setState({
+        inpVal: "",
+      });
+    }, 800);
   }
 
   scrollHighlightedElemInView() {
@@ -240,26 +276,27 @@ class Select extends PureComponent {
         <Label
           className={`nwc-select ${this.isDisabledClass}`}
           htmlFor={id || this.inputId}
+          onClick={this.onLabelClick}
           {...otherProps}
         >
           {selectedValue[compareProp] || selectedValue}
-          <Input
-            id={id || this.inputId}
-            className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
-            placeholder="Enter text"
-            value={inpVal}
-            onChange={this.onInpValChange}
-            onKeyDown={this.onUserInput}
-            onFocus={this.onInpFocus}
-            onBlur={this.onInpBlur}
-            ref={context => {
-              this.inputRef = context;
-            }}
-            disabled={disabled}
-            readOnly={BLOCK_VIRTUAL_KEYBOARD}
-          />
           <i className="icomoon-arrow_bottom nwc-select-arrowbottom" />
         </Label>
+        <Input
+          id={id || this.inputId}
+          className="nwc-inp-hide nwc-inp-dash nwc-inp-sm"
+          placeholder="Enter text"
+          value={inpVal}
+          onChange={this.onInpValChange}
+          onKeyDown={this.onUserInput}
+          onFocus={this.onInpFocus}
+          onBlur={this.onInpBlur}
+          ref={context => {
+            this.inputRef = context;
+          }}
+          disabled={disabled}
+          readOnly={BLOCK_VIRTUAL_KEYBOARD}
+        />
         {this.renderListItems(inpVal, inpList, renderList)}
       </div>
     );
@@ -270,6 +307,8 @@ Select.defaultProps = {
   id: null,
   className: "",
   disabled: false,
+  onFocus: () => true,
+  onBlur: () => true,
   selectedIndex: 0,
   getSelection: Utils.noop,
   compareProp: undefined,
@@ -279,6 +318,8 @@ Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   selectedIndex: PropTypes.number,
   selectedValue: PropTypes.oneOfType([
     PropTypes.object,

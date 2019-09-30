@@ -643,6 +643,40 @@ var setUrlParameter = function setUrlParameter(url, name, value) {
   return "".concat(url).concat(separator).concat(name, "=").concat(value);
 };
 
+var throttle = function throttle(fn, delay) {
+  var flag = false;
+  return function () {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var context = this;
+
+    if (!flag) {
+      setTimeout(function () {
+        fn.apply(context, args);
+        flag = false;
+      }, delay);
+      flag = true;
+    }
+  };
+};
+
+var debounce = function debounce(fn, delay) {
+  var timeoutId;
+  return function () {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var context = this;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+};
+
 var Utils = {
   noop: noop,
   isMobile: isMobile,
@@ -669,7 +703,9 @@ var Utils = {
   onElementScroll: onElementScroll,
   onElementResize: onElementResize,
   getUrlParameter: getUrlParameter,
-  setUrlParameter: setUrlParameter
+  setUrlParameter: setUrlParameter,
+  throttle: throttle,
+  debounce: debounce
 };
 
 var Ripple =
@@ -2396,6 +2432,7 @@ function (_PureComponent) {
     _this.listNode = [];
     _this.listNodeItem = [];
     _this.onInpValChange = _this.onInpValChange.bind(_assertThisInitialized(_this));
+    _this.onLabelClick = _this.onLabelClick.bind(_assertThisInitialized(_this));
     _this.onInpFocus = _this.onInpFocus.bind(_assertThisInitialized(_this));
     _this.onInpBlur = _this.onInpBlur.bind(_assertThisInitialized(_this));
     _this.renderListItems = _this.renderListItems.bind(_assertThisInitialized(_this));
@@ -2403,59 +2440,64 @@ function (_PureComponent) {
     _this.selectAndHideList = _this.selectAndHideList.bind(_assertThisInitialized(_this));
     _this.onUserInput = _this.onUserInput.bind(_assertThisInitialized(_this));
     _this.scrollHighlightedElemInView = _this.scrollHighlightedElemInView.bind(_assertThisInitialized(_this));
+    _this.setValAndScroll = _this.setValAndScroll.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Select, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearTimeout(this.blurTimeoutId);
+      clearTimeout(this.inputTimeoutId);
+    }
+  }, {
     key: "onInpValChange",
     value: function onInpValChange(e) {
-      var _this2 = this;
-
       var inpVal = e.target.value;
-      var regXSearchItemStartsWith = new RegExp("^".concat(inpVal), "i");
-      var selectedListIndex = 0;
-      this.props.inpList.find(function (item, index) {
-        var testAgainst = item[_this2.props.compareProp] || item;
-
-        if (inpVal && inpVal.length > 0 && regXSearchItemStartsWith.test(testAgainst)) {
-          selectedListIndex = index;
-          return true;
-        }
-
-        return false;
-      });
-      this.setState({
-        inpVal: inpVal,
-        selectedListIndex: selectedListIndex
-      });
-      clearTimeout(this.inputTimeoutId);
-      this.inputTimeoutId = setTimeout(function () {
-        _this2.setState({
-          inpVal: ""
-        });
-      }, 800);
+      this.setValAndScroll(inpVal);
+    }
+  }, {
+    key: "onLabelClick",
+    value: function onLabelClick() {
+      this.isLabelClick = true;
     }
   }, {
     key: "onInpFocus",
     value: function onInpFocus() {
+      var returnBool = this.props.onFocus();
+
+      if (!returnBool) {
+        return;
+      }
+
+      var _this$props = this.props,
+          selectedValue = _this$props.selectedValue,
+          compareProp = _this$props.compareProp;
       var isActive = this.state.isActive;
-      this.toggleDisplay(!isActive);
+      var activeState = this.isLabelClick ? !isActive : true;
+      this.setValAndScroll(selectedValue[compareProp] || selectedValue);
+      this.toggleDisplay(activeState);
       clearTimeout(this.blurTimeoutId);
+      this.isLabelClick = false;
     }
   }, {
     key: "onInpBlur",
     value: function onInpBlur() {
-      var _this3 = this;
+      var _this2 = this;
+
+      var returnBool = this.props.onBlur();
+
+      if (!returnBool) {
+        return;
+      }
 
       this.blurTimeoutId = setTimeout(function () {
-        _this3.toggleDisplay(false);
+        _this2.toggleDisplay(false);
       }, 200);
     }
   }, {
     key: "onUserInput",
     value: function onUserInput(e) {
-      var _this4 = this;
-
       Utils.preventEventPropagation(e);
       var listNodeLength = Object.keys(this.listNode).length - 1;
       var isActive = true;
@@ -2487,15 +2529,41 @@ function (_PureComponent) {
           return;
 
         default:
-          selectedListIndex = 0;
+          return;
       }
 
       this.setState({
         selectedListIndex: selectedListIndex,
         isActive: isActive
-      }, function () {
-        _this4.scrollHighlightedElemInView();
+      }, this.scrollHighlightedElemInView);
+    }
+  }, {
+    key: "setValAndScroll",
+    value: function setValAndScroll(value) {
+      var _this3 = this;
+
+      var regXSearchItemStartsWith = new RegExp("^".concat(value), "i");
+      var selectedListIndex = 0;
+      this.props.inpList.find(function (item, index) {
+        var testAgainst = item[_this3.props.compareProp] || item;
+
+        if (value && value.length > 0 && regXSearchItemStartsWith.test(testAgainst)) {
+          selectedListIndex = index;
+          return true;
+        }
+
+        return false;
       });
+      this.setState({
+        inpVal: value,
+        selectedListIndex: selectedListIndex
+      }, this.scrollHighlightedElemInView);
+      clearTimeout(this.inputTimeoutId);
+      this.inputTimeoutId = setTimeout(function () {
+        _this3.setState({
+          inpVal: ""
+        });
+      }, 800);
     }
   }, {
     key: "scrollHighlightedElemInView",
@@ -2518,19 +2586,19 @@ function (_PureComponent) {
   }, {
     key: "toggleDisplay",
     value: function toggleDisplay(bool) {
-      var _this5 = this;
+      var _this4 = this;
 
       var disabled = this.props.disabled;
       this.setState({
         isActive: !disabled ? bool : false
       }, function () {
-        _this5.scrollHighlightedElemInView();
+        _this4.scrollHighlightedElemInView();
       });
     }
   }, {
     key: "renderListItems",
     value: function renderListItems(inpVal, inpList, renderList) {
-      var _this6 = this;
+      var _this5 = this;
 
       this.listNode = [];
       var list = inpList.map(function (item, index) {
@@ -2543,61 +2611,64 @@ function (_PureComponent) {
         var onSelectFn = elem.props.onSelect || Utils.noop;
         var addClass = "";
 
-        if (index === _this6.state.selectedListIndex) {
+        if (index === _this5.state.selectedListIndex) {
           addClass = "is-active";
         }
 
-        _this6.listNodeItem[index] = item;
+        _this5.listNodeItem[index] = item;
         return React.cloneElement(elem, {
           className: "".concat(elem.props.className || "", " ").concat(addClass),
           ref: function ref(context) {
-            _this6.listNode["item-".concat(index)] = context;
+            _this5.listNode["item-".concat(index)] = context;
           },
           onClick: function onClick(e) {
             onSelectFn(e);
 
-            _this6.selectAndHideList(index);
+            _this5.selectAndHideList(index);
           },
           onMouseDown: function onMouseDown(e) {
             onSelectFn(e);
 
-            _this6.selectAndHideList(index);
+            _this5.selectAndHideList(index);
           }
         });
       });
       return this.state.isActive ? React__default.createElement("ul", {
         className: "nwc-select-list-container",
         ref: function ref(context) {
-          _this6.listNodeWrapperRef = context;
+          _this5.listNodeWrapperRef = context;
         }
       }, list) : null;
     }
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this6 = this;
 
       var inpVal = this.state.inpVal;
 
-      var _this$props = this.props,
-          id = _this$props.id,
-          className = _this$props.className,
-          disabled = _this$props.disabled,
-          selectedValue = _this$props.selectedValue,
-          inpList = _this$props.inpList,
-          getSelection = _this$props.getSelection,
-          renderList = _this$props.renderList,
-          compareProp = _this$props.compareProp,
-          selectedIndex = _this$props.selectedIndex,
-          otherProps = _objectWithoutProperties(_this$props, ["id", "className", "disabled", "selectedValue", "inpList", "getSelection", "renderList", "compareProp", "selectedIndex"]);
+      var _this$props2 = this.props,
+          id = _this$props2.id,
+          className = _this$props2.className,
+          disabled = _this$props2.disabled,
+          selectedValue = _this$props2.selectedValue,
+          inpList = _this$props2.inpList,
+          getSelection = _this$props2.getSelection,
+          renderList = _this$props2.renderList,
+          compareProp = _this$props2.compareProp,
+          selectedIndex = _this$props2.selectedIndex,
+          otherProps = _objectWithoutProperties(_this$props2, ["id", "className", "disabled", "selectedValue", "inpList", "getSelection", "renderList", "compareProp", "selectedIndex"]);
 
       return React__default.createElement("div", {
         className: "nwc-select-container ".concat(className, " ").concat(this.isDisabledClass, " ").concat(this.isActiveClassName),
         onTouchStart: Utils.preventEventPropagation
       }, React__default.createElement(Label, _extends({
         className: "nwc-select ".concat(this.isDisabledClass),
-        htmlFor: id || this.inputId
-      }, otherProps), selectedValue[compareProp] || selectedValue, React__default.createElement(Input$1, {
+        htmlFor: id || this.inputId,
+        onClick: this.onLabelClick
+      }, otherProps), selectedValue[compareProp] || selectedValue, React__default.createElement("i", {
+        className: "icomoon-arrow_bottom nwc-select-arrowbottom"
+      })), React__default.createElement(Input$1, {
         id: id || this.inputId,
         className: "nwc-inp-hide nwc-inp-dash nwc-inp-sm",
         placeholder: "Enter text",
@@ -2607,13 +2678,11 @@ function (_PureComponent) {
         onFocus: this.onInpFocus,
         onBlur: this.onInpBlur,
         ref: function ref(context) {
-          _this7.inputRef = context;
+          _this6.inputRef = context;
         },
         disabled: disabled,
         readOnly: BLOCK_VIRTUAL_KEYBOARD
-      }), React__default.createElement("i", {
-        className: "icomoon-arrow_bottom nwc-select-arrowbottom"
-      })), this.renderListItems(inpVal, inpList, renderList));
+      }), this.renderListItems(inpVal, inpList, renderList));
     }
   }, {
     key: "isActiveClassName",
@@ -2636,6 +2705,12 @@ Select.defaultProps = {
   id: null,
   className: "",
   disabled: false,
+  onFocus: function onFocus() {
+    return true;
+  },
+  onBlur: function onBlur() {
+    return true;
+  },
   selectedIndex: 0,
   getSelection: Utils.noop,
   compareProp: undefined
@@ -2644,6 +2719,8 @@ Select.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   selectedIndex: PropTypes.number,
   selectedValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]).isRequired,
   inpList: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.string)]).isRequired,

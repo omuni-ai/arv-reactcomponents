@@ -21,6 +21,8 @@ import localStorage from "./localStorage";
 import onElementScroll from "./onElementScroll";
 import onElementResize from "./onElementResize";
 import { getUrlParameter, setUrlParameter } from "./urlMethods";
+import throttle from "./throttle";
+import debounce from "./debounce";
 
 const Utils = {
   noop,
@@ -49,6 +51,8 @@ const Utils = {
   onElementResize,
   getUrlParameter,
   setUrlParameter,
+  throttle,
+  debounce,
 };
 
 export default Utils;
