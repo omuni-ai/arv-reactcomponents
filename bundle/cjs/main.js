@@ -1956,7 +1956,7 @@ LazyImg.defaultProps = {
   onLoad: Utils.noop,
   onError: Utils.noop,
   parentElement: null,
-  rootMargin: 0,
+  rootMargin: "0px",
   threshold: [0.1]
 };
 LazyImg.propTypes = {
@@ -1967,8 +1967,8 @@ LazyImg.propTypes = {
   alt: PropTypes.string,
   onLoad: PropTypes.func,
   onError: PropTypes.func,
-  parentElement: PropTypes.shape({}),
-  rootMargin: PropTypes.number,
+  parentElement: PropTypes.node,
+  rootMargin: PropTypes.string,
   threshold: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
 };
 
