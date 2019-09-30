@@ -72,7 +72,7 @@ class CarouselExample extends PureComponent {
           index={this.state.index}
           className="nw-carouselexample-img"
           src={item.image}
-          rootMargin={1500}
+          rootMargin="1500px"
         />
       </div>
     );
