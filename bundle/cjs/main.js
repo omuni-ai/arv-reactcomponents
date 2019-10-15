@@ -1913,7 +1913,7 @@ function (_PureComponent) {
           otherProps = _objectWithoutProperties(_this$props, ["onWinLoad", "index", "className", "src", "alt", "onLoad", "onError", "rootMargin", "threshold", "parentElement"]);
 
       return React__default.createElement("div", _extends({
-        className: "nwc-lazyimg-container ".concat(className),
+        className: "nwc-lazyimg-container ".concat(className, " ").concat(this.imgStateClassName),
         ref: this.setContext
       }, otherProps), this.imgTagIfInView);
     }
@@ -1933,7 +1933,7 @@ function (_PureComponent) {
 
       if (_bypass || onWinLoad || inView) {
         return React__default.createElement("img", {
-          className: "nwc-lazyimg ".concat(this.imgStateClassName),
+          className: "nwc-lazyimg",
           src: src,
           alt: alt,
           onLoad: this.onLoad,
