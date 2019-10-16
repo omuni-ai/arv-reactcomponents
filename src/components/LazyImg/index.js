@@ -81,7 +81,7 @@ class LazyImg extends PureComponent {
     if (bypass || onWinLoad || inView) {
       return (
         <img
-          className="nwc-lazyimg"
+          className={`nwc-lazyimg ${this.imgStateClassName}`}
           src={src}
           alt={alt}
           onLoad={this.onLoad}

@@ -1,18 +1,18 @@
 .nwc-lazyimg-container {
   display: inline-block;
-  opacity: 0;
   transform: translate3d(0, 0, 0);
-  transition: opacity 0.4s ease;
   font-size: $lazyimg-container-font-size;
+}
+
+.nwc-lazyimg {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  width: 100%;
+  will-change: opacity;
+  contain: style layout;
 
   &.is-loaded,
   &.is-error {
     opacity: 1;
   }
-}
-
-.nwc-lazyimg {
-  width: 100%;
-  will-change: opacity;
-  contain: style layout;
 }

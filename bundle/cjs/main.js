@@ -1933,7 +1933,7 @@ function (_PureComponent) {
 
       if (_bypass || onWinLoad || inView) {
         return React__default.createElement("img", {
-          className: "nwc-lazyimg",
+          className: "nwc-lazyimg ".concat(this.imgStateClassName),
           src: src,
           alt: alt,
           onLoad: this.onLoad,
